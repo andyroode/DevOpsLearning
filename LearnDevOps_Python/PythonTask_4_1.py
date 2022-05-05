@@ -30,18 +30,9 @@ def flower(t_name, r, angle, count):
         circle(t_name,r,angle)
         t.home()
         t_name.lt(float((i+1)*float(360/count)))
+    t_name.hideturtle()
 
 
 
-#circle(t,100,70)
-#t.lt(180-70)
-#circle(t,100,70)
-#t.home()
-#t.lt(51.42)
-#circle(t,100,70)
-#t.lt(180-70)
-#circle(t,100,70)
-#t.lt(360-70)
-#circle(t,100,70)
-flower(t,100,70,15)
+flower(t,300,40,8)
 turtle.mainloop()
