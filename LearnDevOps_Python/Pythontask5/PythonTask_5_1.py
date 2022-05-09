@@ -16,4 +16,4 @@ def timeCalc (val):
     seconds = int(val - years_sec - months_sec - days_sec - hours_sec - minutes_sec)
     print(years,' years, ',months,' months, ',days, ' days, ',hours,' hours, ',minutes,' minutes, ',seconds, ' seconds ')
 
-timeCalc(time_val)    
+timeCalc(time_val)
