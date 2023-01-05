@@ -1,0 +1,105 @@
+---
+# tasks file for postgre13-install
+
+- name: Download the PostgreSQL13 repo
+  yum: 
+   name: "{{ source_url }}"
+   state: present
+
+- name: Update the list of available packages in Postgres repo
+  yum:
+   name: '*'
+   state: latest  
+
+- name: Install the PostgreSQL13
+  yum:
+   name: "{{ PostgreSQL_version_full }}"
+   state: latest
+
+- name: Install the PostgreSQL13-Server
+  yum:
+   name: "{{ PostgreSQL_version_full }}-server"
+   state: latest
+
+- name: Install Python3
+  yum:
+   name: "{{ Python_version }}"
+   
+- name: Install psycopg2 package for manipulating the PostgreSQL13
+  yum: 
+   name: "{{ Python_version }}-psycopg2"  
+   state: present
+  
+- name: Checking the initialization of db
+  stat:
+   path: "/var/lib/pgsql/{{ PostgreSQL_version_short }}/data/pg_hba.conf"
+  register: postgres_data
+
+- name: Init PostgreSQL DB
+  shell: /usr/pgsql-{{ PostgreSQL_version_short }}/bin/postgresql-{{ PostgreSQL_version_short }}-setup initdb
+  when: not postgres_data.stat.exists
+
+- name: Start the Postgres13 service
+  service: 
+   name: "{{ PostgreSQL_service_name }}"
+   state: started
+   enabled: yes
+  
+- name: Adding the Postgres13 user
+  become_user: postgres
+  postgresql_user:
+   state: present
+   name: "{{ postgres_user }}"
+   password: "{{ postgres_password }}"
+  vars: 
+   ansible_python_interpreter: "/usr/bin/{{ Python_version }}"
+  
+- name: Creating the db
+  become_user: postgres
+  postgresql_db:
+   state: present
+   name: "{{ postgres_db_name }}"
+  vars: 
+   ansible_python_interpreter: "/usr/bin/{{ Python_version }}"
+  
+- name: "Grant db user access to app db"
+  become_user: postgres
+  postgresql_privs:
+   type: database
+   database: "{{ postgres_db_name }}"
+   roles: "{{ postgres_user }}"
+   grant_option: no
+   privs: all
+  vars: 
+   ansible_python_interpreter: "/usr/bin/{{ Python_version }}" 
+  
+- name: Allow md5 connection for the db user
+  become_user: postgres
+  postgresql_pg_hba:
+   dest: "/var/lib/pgsql/{{ PostgreSQL_version_short }}/data/pg_hba.conf"
+   contype: host
+   databases: all
+   method: md5
+   users: "{{ postgres_user }}"
+   create: true
+  vars: 
+   ansible_python_interpreter: "/usr/bin/{{ Python_version }}" 
+  notify: Restart Postgres13  
+
+- name: Update the listen ip
+  replace:
+   path: /var/lib/pgsql/{{ PostgreSQL_version_short }}/data/postgresql.conf
+   regexp: "#listen_addresses = 'localhost'"
+   replace: "listen_addresses = '{{ ansible_host }}'"
+  notify: Restart Postgres13  
+ 
+- name: Collect all info except settings and roles
+  become_user: "postgres"
+  postgresql_info:
+   filter: "!settings,!roles"
+  vars: 
+   ansible_python_interpreter: "/usr/bin/{{ Python_version }}"   
+  register: results
+  
+- debug:
+   var: results  

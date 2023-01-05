@@ -1,0 +1,52 @@
+---
+# tasks file for liferay-install
+
+- name: Update the Ubuntu packages
+  apt:
+   name: '*'
+   state: latest
+  
+- name: Install JDK1.8
+  apt:
+   name: "{{ JAVA_VERSION }}"
+   state: present
+
+- name: Clean-up the existing JAVA_HOME path
+  lineinfile:
+   path: /etc/environment 
+   regexp: '^JAVA_HOME.*'
+   state: absent
+   
+- name: Add the JAVA_HOME path
+  lineinfile:
+   path: /etc/environment 
+   line: "{{ JAVA_HOME }}"
+
+- name: Download the Liferay archive
+  get_url:
+   url: "{{ LIFERAY_SOURCE_URL }}"
+   dest: "/opt/{{ LIFERAY_VERSION_FULL }}.tar.gz"
+   
+- name: Unarchive the liferay to folder
+  unarchive:
+   src: "/opt/{{ LIFERAY_VERSION_FULL }}.tar.gz"
+   dest: "/var/"
+   remote_src: yes
+
+- name: Start the Liferay portal
+  shell: "/var/liferay*/tomcat*/bin/startup.sh start"
+  
+- name: Wait until HTTP status will return 200
+  uri:
+    url: "http://{{ ansible_host }}:8080"
+    return_content: yes
+    validate_certs: no
+    status_code:
+      - 200
+  until: uri_output.status == 200
+  retries: 30 
+  delay: 5
+  register: uri_output
+  
+- debug:
+   var: uri_output
