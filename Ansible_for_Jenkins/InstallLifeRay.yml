@@ -1,0 +1,11 @@
+---
+
+- name: Install the Liferay portal
+  hosts: web_server
+  become: yes
+
+  roles:
+   - liferay-install-startup
+
+    
+
