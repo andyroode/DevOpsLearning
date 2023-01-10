@@ -1,0 +1,10 @@
+---
+ansible_host: db_ip_address
+ansible_ssh_user: db_ssh_user
+ansible_ssh_pass: db_ssh_pass
+ansible_sudo_pass: db_sudo_pass
+owner: Andrei Rudchenko
+ansible_python_interpreter: /usr/bin/python
+postgres_db_name: pgsql_db_name
+postgres_user: pgsql_user_name
+postgres_password: pgsql_pass

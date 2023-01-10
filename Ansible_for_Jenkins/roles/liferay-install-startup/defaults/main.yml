@@ -1,0 +1,9 @@
+---
+#Installing the JAVA
+JAVA_VERSION: openjdk-8-jre-headless
+JAVA_HOME: JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+
+#Installing the Liferay portal
+LIFERAY_VERSION_SHORT: 7.4.3.54-ga54
+LIFERAY_VERSION_FULL: liferay-ce-portal-tomcat-7.4.3.54-ga54-20221208120838175
+LIFERAY_SOURCE_URL: "https://github.com/liferay/liferay-portal/releases/download/{{ LIFERAY_VERSION_SHORT }}/{{ LIFERAY_VERSION_FULL }}.tar.gz"
