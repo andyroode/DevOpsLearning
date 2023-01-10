@@ -1,6 +1,5 @@
 ---
 ansible_host: web_server_ip_address
-ansible_ssh_user: web_server_ssh_user
-ansible_ssh_pass: web_server_ssh_pass
-ansible_sudo_pass: web_server_sudo_pass
-owner: Andrei Rudchenko
+ansible_ssh_user: andrei
+ansible_ssh_pass: samsa
+ansible_sudo_pass: samsa
