@@ -3,3 +3,4 @@ ansible_host: web_server_ip_address
 ansible_ssh_user: andrei
 ansible_ssh_pass: liferay_ssh_user_pass
 ansible_sudo_pass: liferay_ssh_user_pass
+host_key_checking: false
