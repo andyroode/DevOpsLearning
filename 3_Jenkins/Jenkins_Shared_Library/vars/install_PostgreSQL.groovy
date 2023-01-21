@@ -6,6 +6,6 @@ def call (Map config = [:]){
     	file.text = new_db_serverConf
 	ansiblePlaybook disableHostKeyChecking: true, 
 		installation: 'Ansible', 
-		inventory: 'Ansible_for_Jenkins/hosts', 
-		playbook: 'Ansible_for_Jenkins/InstallPostgres13.yml'
+		inventory: '2_Ansible/hosts', 
+		playbook: '2_Ansible/InstallPostgres13.yml'
 }
