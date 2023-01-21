@@ -5,6 +5,6 @@ node {
 	}
 	
 	stage('Install PostgreSQL-13') {
-        install_PostgreSQL(db_ip_address:db_ip_address,pgsql_db_name:pgsql_db_name,db_ssh_pass:pgsql_ssh_user_pass)
+        install_PostgreSQL(db_ip_address:db_ip_address,pgsql_db_name:pgsql_db_name,db_ssh_pass:db_ssh_pass)
     }
 }
