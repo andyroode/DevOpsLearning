@@ -1,8 +1,0 @@
----
-# defaults file for postgre13-install
-
-source_url: https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
-PostgreSQL_version_full: postgresql13
-PostgreSQL_version_short: 13
-PostgreSQL_service_name: postgresql-13
-Python_version: python3
