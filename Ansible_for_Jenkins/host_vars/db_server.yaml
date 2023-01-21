@@ -1,9 +1,0 @@
----
-ansible_host: db_ip_address
-ansible_ssh_user: andrei
-ansible_ssh_pass: db_ssh_pass
-ansible_sudo_pass: db_ssh_pass
-ansible_python_interpreter: /usr/bin/python
-postgres_db_name: pgsql_db_name
-postgres_user: andrei
-postgres_password: db_ssh_pass
