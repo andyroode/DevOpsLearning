@@ -1,0 +1,12 @@
+node {
+    stage('Install PostgreSQL-13') {
+        sh "sed -i 's/db_ip_address/$db_ip_address/g' ${pwd}/workspace/${JOB_NAME}/2_Ansible/host_vars/db_server.yaml"
+        sh "sed -i 's/pgsql_db_name/$pgsql_db_name/g' ${pwd}/workspace/${JOB_NAME}/2_Ansible/host_vars/db_server.yaml"
+        sh "sed -i 's/db_ssh_pass/$db_ssh_pass/g' ${pwd}/workspace/${JOB_NAME}/2_Ansible/host_vars/db_server.yaml"
+        
+		ansiblePlaybook disableHostKeyChecking: true, 
+			installation: 'Ansible', 
+			inventory: '2_Ansible/hosts', 
+			playbook: '2_Ansible/InstallPostgres13.yml'
+    }
+}
