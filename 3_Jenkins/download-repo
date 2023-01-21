@@ -1,0 +1,11 @@
+pipeline{
+	agent any
+    stages{
+        stage('Download Ansible playbooks') {
+            steps{
+                git 'https://github.com/andyroode/DevOpsLearning.git'
+                sh "ls -la"
+            }
+        }
+	}
+}
