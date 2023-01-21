@@ -4,6 +4,7 @@ def call (Map config = [:]){
 		                  replace('pgsql_db_name', config.pgsql_db_name).
 		                  replace('db_ssh_pass', config.db_ssh_pass)
     	file.text = newConfig
+	file.println()
 	ansiblePlaybook disableHostKeyChecking: true, 
 		installation: 'Ansible', 
 		inventory: 'Ansible_for_Jenkins/hosts', 
