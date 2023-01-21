@@ -1,10 +1,11 @@
+@Library("my-jenkins-library") _
 node {
-    stage('Download the Ansible playbooks'){
+	stage('Download the Ansible playbooks'){
 		git 'https://github.com/andyroode/DevOpsLearning.git'
-        sh "ls -la"
+        	sh "ls -la"
 	}
 	
 	stage('Install PostgreSQL-13') {
-        install_PostgreSQL(db_ip_address:db_ip_address,pgsql_db_name:pgsql_db_name,db_ssh_pass:db_ssh_pass)
-    }
+        	install_PostgreSQL(db_ip_address:db_ip_address,pgsql_db_name:pgsql_db_name,db_ssh_pass:db_ssh_pass)
+    	}
 }
