@@ -1,0 +1,5 @@
+---
+ansible_host: web_server_ip_address
+ansible_ssh_user: andrei
+ansible_ssh_pass: samsa
+ansible_sudo_pass: samsa
