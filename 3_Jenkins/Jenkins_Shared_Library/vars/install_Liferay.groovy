@@ -5,6 +5,6 @@ def call (Map config = [:]){
 	ansiblePlaybook become: true, 
 		disableHostKeyChecking: true, 
 		installation: 'Ansible',
-		inventory: 'Ansible_for_Jenkins/hosts', 
-		playbook: 'Ansible_for_Jenkins/InstallLifeRay.yml'
+		inventory: '2_Ansible/hosts', 
+		playbook: '2_Ansible/InstallLifeRay.yml'
 }
