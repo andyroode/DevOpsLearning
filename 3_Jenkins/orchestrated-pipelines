@@ -1,0 +1,40 @@
+@Library("my-jenkins-library") _ 
+pipeline {
+    
+	parameters {
+		booleanParam description: 'Install Liferay?', name: 'Install_Liferay'
+		string description: 'Connection - Liferay Portal IP Address', name: 'web_server_ip_address'
+		booleanParam description: 'Install PostgreSQL?', name: 'Install_Postgres'
+		string description: 'Connection - DataBase IP Address', name: 'db_ip_address'
+		password defaultValue: '', description: 'SSH User Password for PostgreSQL host', name: 'db_ssh_pass'
+		string description: 'DataBase Name', name: 'pgsql_db_name'
+    }
+	
+	agent any
+    stages {
+        stage('Install the PostgreSQL') {
+            when{
+					expression {Install_Postgres == 'true'}
+				}
+			steps{
+                build job: 'install-postgreSQL',
+                parameters: [
+                    string(name: 'db_ip_address', value: db_ip_address),
+                    password(description: 'SSH User Password for PostgreSQL host', name: 'db_ssh_pass', value: db_ssh_pass),
+                    string (description: 'DataBase Name', name: 'pgsql_db_name', value: pgsql_db_name)
+                ]
+            }
+        }
+		stage('Install the Liferay') {
+            when{
+					expression {Install_Liferay == 'true'}
+				}
+			steps{
+                build job: 'install-liferay',
+                parameters: [
+                    string(name: 'web_server_ip_address', value: web_server_ip_address)
+                ]
+            }
+        }
+    }
+}
