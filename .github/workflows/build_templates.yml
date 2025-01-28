@@ -26,7 +26,7 @@ jobs:
         run: python3 /build_env/scripts/build_env/parameter_container_handler.py
 
       - name: Prepare Git Commit
-        run: /module/scripts/prepare.sh "/module/ansible/playbooks/git_commit.yaml"
+        run: /module/scripts/prepare.sh "git_commit.yaml"
 
       - name: Create Archive
         run: |
