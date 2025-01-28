@@ -1,0 +1,23 @@
+####################################
+#### Pipeline variables
+.pipeline_vars:
+  variables:
+    # pipeline workflow
+    INCLUDE_BUILDS:
+      value: "true"
+      description: "Whether to run build, possible values - true/false"
+    ENV_NAMES:
+      value: "env_template_test"
+      description: "Set ENV_NAMES - multiple items supported using Shift+Enter new lines"
+    ENV_TEMPLATE_TEST:
+      value: "false"
+      description: "possible values - true/false"
+    ENV_BUILDER:
+      value: "true"
+      description: "Whether to run env_builder, possible values - true/false"
+    GET_PASSPORT:
+      value: "false"
+      description: "Whether to get cloud passport, possible values - true/false"
+    CMDB_IMPORT:
+      value: "true"
+      description: "Whether to import cmdb, possible values - true/false"

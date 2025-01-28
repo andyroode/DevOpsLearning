@@ -1,0 +1,4 @@
+release_system:
+  pati:
+    username: envgen.creds.get('pati-cred').username
+    password: envgen.creds.get('pati-cred').password

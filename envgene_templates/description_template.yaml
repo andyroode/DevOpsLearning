@@ -1,0 +1,17 @@
+@override
+build:
+  env:
+    type: microservice
+    version: openjdk-11.0.2_gradle-5.6.2_mvn-3.6.0_python-3.7.0
+  variables:
+    DVERSION: {% raw %}"{{ lookup('env', 'CI_COMMIT_REF_SLUG') }}"{% endraw %}
+  networkRules: sandbox
+
+deploy:
+  dmp:
+    application_id: "{{ cookiecutter.env_template_atifact_name }}"
+
+publication:
+  cloud-dd:
+    configuration:
+      type: configuration

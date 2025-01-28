@@ -1,0 +1,35 @@
+name: Build and Archive Templates
+
+on:
+  push:
+    branches:
+      - '**' # Запускать на всех ветках
+  workflow_dispatch: # Позволяет запускать вручную
+
+jobs:
+  prefix_build:
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, '[ct_skip]')" # Аналог rules
+    container: # Указываем Docker-контейнер
+      image: ghcr.io/netcracker/qubership-build-envgene:main
+      options: --entrypoint /bin/bash # Настраиваем entrypoint, если требуется
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3 # Клонируем репозиторий
+
+      - name: Build Parameters Containers
+        run: python3 /build_env/scripts/build_env/parameter_container_handler.py # Выполнение основного скрипта
+
+      - name: Prepare Git Commit
+        run: /module/scripts/prepare.sh "git_commit.yaml" # Подготовка файлов для коммита
+
+      - name: Create Archive
+        run: |
+          mkdir -p archives # Создаем директорию для архива
+          zip -r archives/generated_templates.zip templates # Упаковываем templates в архив
+
+      - name: Upload Archive
+        uses: actions/upload-artifact@v3
+        with:
+          name: generated-templates # Имя артефакта
+          path: archives/generated_templates.zip # Путь к архиву

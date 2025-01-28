@@ -1,0 +1,18 @@
+include:
+  - project: "IT.DPL.auto-deployment/pipelined/linters"
+    ref: v1.0.2
+    file: "templates/api.yaml"
+
+.linters.variables:
+  variables:
+    linters_image: "artifactorycn.netcracker.com:17011/it.dpl.docker.dev/linters:v1.0.2"
+    ####
+    yamllint_conf: "${CI_PROJECT_DIR}/.yamllint"
+    ####
+    ansible_lint_conf: "${CI_PROJECT_DIR}/ansible/.ansible-lint"
+
+yamllint:
+  extends: .linters.yamllint
+  script:
+    - yamllint -f colored -c "$yamllint_conf" "$yamllint_path/" --no-warnings
+  stage: prepare
