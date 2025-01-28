@@ -13,6 +13,11 @@ jobs:
     container:
       image: ghcr.io/netcracker/qubership-build-envgene:main
       options: --entrypoint /bin/bash
+    env:
+      module_ansible_dir: /module/ansible
+      module_inventory: ${{ github.workspace }}/configuration/inventory.yaml
+      module_ansible_cfg: /module/ansible/ansible.cfg
+      module_config_default: /module/templates/defaults.yaml
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
