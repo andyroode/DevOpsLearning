@@ -33,7 +33,7 @@ jobs:
       COMMIT_MESSAGE: "Automated commit [ci_skip]"
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Build Parameters Containers
         run: python3 /build_env/scripts/build_env/parameter_container_handler.py
@@ -43,8 +43,8 @@ jobs:
 
       - name: Create Archive
         run: |
-          mkdir -p archives # Создаем директорию для архива
-          zip -r archives/generated_templates.zip templates # Упаковываем templates в архив
+          mkdir -p archives 
+          zip -r archives/generated_templates.zip templates
 
       - name: Upload Archive
         uses: actions/upload-artifact@v3
