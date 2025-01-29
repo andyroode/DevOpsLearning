@@ -25,7 +25,7 @@ jobs:
       CLUSTER_NAME: my_cluster
       ENVIRONMENT_NAME: my_environment_name
       DEPLOYMENT_TICKET_ID: ticket_12345
-      COMMIT_ENV: true
+      COMMIT_ENV: false
       COMMIT_MESSAGE: "Automated commit [ci_skip]"
     steps:
       - name: Checkout Code
