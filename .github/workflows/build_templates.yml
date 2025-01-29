@@ -43,7 +43,7 @@ jobs:
           zip -r archives/generated_templates.zip templates
 
       - name: Upload Archive
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: generated-templates
           path: archives/generated_templates.zip
