@@ -18,13 +18,9 @@ jobs:
       module_inventory: ${{ github.workspace }}/configuration/inventory.yaml
       module_ansible_cfg: /module/ansible/ansible.cfg
       module_config_default: /module/templates/defaults.yaml
-      CI_PROJECT_DIR: ${{ github.workspace }}
-      CI_SERVER_HOST: github.com
-      CI_PROJECT_PATH: ${{ github.repository }}
-      CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-      GITLAB_USER_EMAIL: ${{ secrets.GITLAB_USER_EMAIL }}
-      GITLAB_USER_LOGIN: ${{ secrets.GITLAB_USER_LOGIN }}
-      GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+      GITHUB_USER_NAME: ${{ secrets.GIT_USER_NAME }}
+      GITHUB_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
+      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
       ENV_NAME: my_environment
       CLUSTER_NAME: my_cluster
       ENVIRONMENT_NAME: my_environment_name
