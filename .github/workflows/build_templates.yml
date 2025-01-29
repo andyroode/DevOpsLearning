@@ -37,8 +37,13 @@ jobs:
       - name: Prepare Git Commit
         run: /module/scripts/prepare.sh "git_commit.yaml"
 
-      - name: Upload templates folder as artifact
+      - name: Create Archive
+        run: |
+          mkdir -p archives 
+          zip -r archives/generated_templates.zip templates
+
+      - name: Upload Archive
         uses: actions/upload-artifact@v4
         with:
           name: generated-templates
-          path: templates/
+          path: archives/generated_templates.zip
