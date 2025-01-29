@@ -1,0 +1,56 @@
+name: Build and Archive
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Шаг 1. Скачиваем код репозитория
+      - uses: actions/checkout@v4
+
+      # Шаг 2. Задаём переменные окружения
+      - name: Setup environment variables
+        run: |
+          echo "BUILD_NAME=env_templates.zip" >> $GITHUB_ENV
+          GIT_BRANCH_OR_TAG=$(git symbolic-ref -q --short HEAD || git describe --tags --exact-match)
+          echo "GIT_BRANCH_OR_TAG=$GIT_BRANCH_OR_TAG" >> $GITHUB_ENV
+          echo "VERSION_FILE=version.txt" >> $GITHUB_ENV
+
+      # Шаг 3. Создаём version.txt с информацией о коммите
+      - name: Create version file
+        run: |
+          source $GITHUB_ENV
+          
+          if git tag --list | grep -q -e "^${GIT_BRANCH_OR_TAG}\$"; then
+            GIT_LINE="tags/${GIT_BRANCH_OR_TAG}"
+          elif git branch -r | grep -q -e "origin/${GIT_BRANCH_OR_TAG}\$"; then
+            GIT_LINE="origin/${GIT_BRANCH_OR_TAG}"
+          else
+            GIT_LINE="${GIT_BRANCH_OR_TAG}"
+          fi
+          
+          git show --format="date:          %ci%ncommit hash:   %H%nbranch or tag: %d%n" -s "$GIT_LINE" >> "$VERSION_FILE"
+  
+
+        # Шаг 4. Архивируем папку envgene_templates/templates
+      - name: Archive envgene_templates/templates
+        run: |
+          source $GITHUB_ENV
+          rm -f "$BUILD_NAME"
+          mkdir -p target
+          zip -r "target/${BUILD_NAME}" envgene_templates/templates
+
+      # Шаг 5. Удаляем временный version.txt
+      - name: Clean up
+        run: |
+          source $GITHUB_ENV
+          rm -f "$VERSION_FILE"
+
+      # Шаг 6. Загружаем ZIP-архив в артефакты Actions
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: env_templates
+          path: target/env_templates.zip
