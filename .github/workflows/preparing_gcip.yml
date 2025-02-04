@@ -75,4 +75,4 @@ jobs:
           -e JSON_SCHEMAS_DIR="$JSON_SCHEMAS_DIR" \
           -e CI_COMMIT_REF_NAME="$CI_COMMIT_REF_NAME" \
           ghcr.io/netcracker/qubership-build-gcip:main \
-          python /module/scripts/main.py
+          python /module/scripts/main.py generate_pipeline
