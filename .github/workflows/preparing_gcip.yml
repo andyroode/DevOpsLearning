@@ -1,0 +1,59 @@
+name: Pipeline Execution
+
+on:
+  workflow_dispatch:
+    inputs:
+      ENV_NAMES:
+        description: 'Environment names (comma-separated)'
+        required: true
+        default: 'dev,prod'
+      ENV_BUILDER:
+        description: 'Enable environment builder (true/false)'
+        required: false
+        default: 'false'
+      GET_PASSPORT:
+        description: 'Get passport (true/false)'
+        required: false
+        default: 'false'
+      CMDB_IMPORT:
+        description: 'Enable CMDB import (true/false)'
+        required: false
+        default: 'false'
+      GENERATE_EFFECTIVE_SET:
+        description: 'Generate effective set (true/false)'
+        required: false
+        default: 'false'
+      ENV_TEMPLATE_VERSION:
+        description: 'Environment template version'
+        required: false
+        default: ''
+      ENV_TEMPLATE_TEST:
+        description: 'Enable environment template test (true/false)'
+        required: false
+        default: 'false'
+      IS_OFFSITE:
+        description: 'Is offsite deployment (true/false)'
+        required: false
+        default: 'false'
+      JSON_SCHEMAS_DIR:
+        description: 'Path to JSON schemas directory'
+        required: false
+        default: '/module/schemas'
+
+jobs:
+  print-parameters:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Output
+        run: |
+          echo "ENV_NAMES: ${{ github.event.inputs.ENV_NAMES }}"
+          echo "ENV_BUILDER: ${{ github.event.inputs.ENV_BUILDER }}"
+          echo "GET_PASSPORT: ${{ github.event.inputs.GET_PASSPORT }}"
+          echo "CMDB_IMPORT: ${{ github.event.inputs.CMDB_IMPORT }}"
+          echo "GENERATE_EFFECTIVE_SET: ${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}"
+          echo "ENV_TEMPLATE_VERSION: ${{ github.event.inputs.ENV_TEMPLATE_VERSION }}"
+          echo "ENV_TEMPLATE_TEST: ${{ github.event.inputs.ENV_TEMPLATE_TEST }}"
+          echo "IS_OFFSITE: ${{ github.event.inputs.IS_OFFSITE }}"
+          echo "JSON_SCHEMAS_DIR: ${{ github.event.inputs.JSON_SCHEMAS_DIR }}"
+          echo "CI_COMMIT_REF_NAME (авто): ${{ github.ref_name }}"
