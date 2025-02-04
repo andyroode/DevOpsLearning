@@ -1,0 +1,11 @@
+inventory:
+  templateArtifact:
+    registry: "temp"
+    repository: "temp"
+    templateRepository: "temp"
+    artifact:
+      group_id: "com.temp"
+      artifact_id: "sd.temp"
+      version: "release-1"
+generatedVersions:
+  generateEnvironmentLatestVersion: "release-1"  # This value is automatically generated during job run.

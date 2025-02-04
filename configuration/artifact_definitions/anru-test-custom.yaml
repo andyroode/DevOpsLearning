@@ -1,0 +1,11 @@
+name: "anru-test-custom"
+groupId: "com.some.value"
+artifactId: "anru-test-custom"
+registry:
+  name: "Sandbox BS"
+  credentialsId: "somevalue"
+  mavenConfig:
+    repositoryDomainName: "https://value.com"
+    targetSnapshot: "temp"
+    targetStaging: "temp"
+    targetRelease: "temp"

@@ -1,0 +1,10 @@
+artifactorycn:
+  username: somevalue.secret
+  password: somevalue.secret
+  releaseRepository: "https://site.com"
+  snapshotRepository: "https://site.com"
+  stagingRepository: "https://site.com"
+  proxyRepository: "https://site.com"
+  releaseTemplateRepository: "https://site.com"
+  snapshotTemplateRepository: "https://site.com"
+  stagingTemplateRepository: "https://site.com
