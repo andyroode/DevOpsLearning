@@ -41,19 +41,40 @@ on:
         default: '/module/schemas'
 
 jobs:
-  print-parameters:
+  run-script-in-docker:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Output
+      - name: Checkout репозитория
+        uses: actions/checkout@v3
+
+      - name: Set environment variables
         run: |
-          echo "ENV_NAMES: ${{ github.event.inputs.ENV_NAMES }}"
-          echo "ENV_BUILDER: ${{ github.event.inputs.ENV_BUILDER }}"
-          echo "GET_PASSPORT: ${{ github.event.inputs.GET_PASSPORT }}"
-          echo "CMDB_IMPORT: ${{ github.event.inputs.CMDB_IMPORT }}"
-          echo "GENERATE_EFFECTIVE_SET: ${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}"
-          echo "ENV_TEMPLATE_VERSION: ${{ github.event.inputs.ENV_TEMPLATE_VERSION }}"
-          echo "ENV_TEMPLATE_TEST: ${{ github.event.inputs.ENV_TEMPLATE_TEST }}"
-          echo "IS_OFFSITE: ${{ github.event.inputs.IS_OFFSITE }}"
-          echo "JSON_SCHEMAS_DIR: ${{ github.event.inputs.JSON_SCHEMAS_DIR }}"
-          echo "CI_COMMIT_REF_NAME (авто): ${{ github.ref_name }}"
+          echo "ENV_NAMES=${{ github.event.inputs.ENV_NAMES }}" >> $GITHUB_ENV
+          echo "ENV_BUILDER=${{ github.event.inputs.ENV_BUILDER }}" >> $GITHUB_ENV
+          echo "GET_PASSPORT=${{ github.event.inputs.GET_PASSPORT }}" >> $GITHUB_ENV
+          echo "CMDB_IMPORT=${{ github.event.inputs.CMDB_IMPORT }}" >> $GITHUB_ENV
+          echo "GENERATE_EFFECTIVE_SET=${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}" >> $GITHUB_ENV
+          echo "ENV_TEMPLATE_VERSION=${{ github.event.inputs.ENV_TEMPLATE_VERSION }}" >> $GITHUB_ENV
+          echo "ENV_TEMPLATE_TEST=${{ github.event.inputs.ENV_TEMPLATE_TEST }}" >> $GITHUB_ENV
+          echo "IS_OFFSITE=${{ github.event.inputs.IS_OFFSITE }}" >> $GITHUB_ENV
+          echo "JSON_SCHEMAS_DIR=${{ github.event.inputs.JSON_SCHEMAS_DIR }}" >> $GITHUB_ENV
+          echo "CI_COMMIT_REF_NAME=${{ github.ref_name }}" >> $GITHUB_ENV
+
+      - name: Run main.py inside Docker container
+        run: |
+          docker run --rm \
+            -v $PWD:/workspace \  # Монтируем репозиторий внутрь контейнера
+            -w /workspace \  # Устанавливаем рабочую директорию внутри контейнера
+            -e ENV_NAMES="$ENV_NAMES" \
+            -e ENV_BUILDER="$ENV_BUILDER" \
+            -e GET_PASSPORT="$GET_PASSPORT" \
+            -e CMDB_IMPORT="$CMDB_IMPORT" \
+            -e GENERATE_EFFECTIVE_SET="$GENERATE_EFFECTIVE_SET" \
+            -e ENV_TEMPLATE_VERSION="$ENV_TEMPLATE_VERSION" \
+            -e ENV_TEMPLATE_TEST="$ENV_TEMPLATE_TEST" \
+            -e IS_OFFSITE="$IS_OFFSITE" \
+            -e JSON_SCHEMAS_DIR="$JSON_SCHEMAS_DIR" \
+            -e CI_COMMIT_REF_NAME="$CI_COMMIT_REF_NAME" \
+            ghcr.io/netcracker/qubership-build-gcip:main \
+            python /module/scripts/main.py
