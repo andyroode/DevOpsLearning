@@ -1,6 +1,3 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
-# Contents will be overwritten by next generation.
-# Please modify this contents only for development purposes or as workaround.
 name: "val1"
 version: 0
 baseline: "dev"

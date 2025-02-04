@@ -1,4 +1,4 @@
-artifactorycn:
+myreg:
   username: somevalue.secret
   password: somevalue.secret
   releaseRepository: "https://site.com"
