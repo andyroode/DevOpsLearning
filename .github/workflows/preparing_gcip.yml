@@ -64,18 +64,18 @@ jobs:
       - name: Run main.py inside Docker container
         run: |
           docker run --rm \
-            -v $GITHUB_WORKSPACE:/repo \  # Монтируем весь репозиторий в контейнер
-            -w /repo \  # Устанавливаем рабочую директорию в контейнере
-            -e CI_PROJECT_DIR="/repo" \  # Передаём путь как в GitLab
-            -e ENV_NAMES="$ENV_NAMES" \
-            -e ENV_BUILDER="$ENV_BUILDER" \
-            -e GET_PASSPORT="$GET_PASSPORT" \
-            -e CMDB_IMPORT="$CMDB_IMPORT" \
-            -e GENERATE_EFFECTIVE_SET="$GENERATE_EFFECTIVE_SET" \
-            -e ENV_TEMPLATE_VERSION="$ENV_TEMPLATE_VERSION" \
-            -e ENV_TEMPLATE_TEST="$ENV_TEMPLATE_TEST" \
-            -e IS_OFFSITE="$IS_OFFSITE" \
-            -e JSON_SCHEMAS_DIR="$JSON_SCHEMAS_DIR" \
-            -e CI_COMMIT_REF_NAME="$CI_COMMIT_REF_NAME" \
+            -v "$GITHUB_WORKSPACE:/repo" \
+            -w /repo \
+            -e CI_PROJECT_DIR="/repo" \
+            -e ENV_NAMES="${ENV_NAMES:-}" \
+            -e ENV_BUILDER="${ENV_BUILDER:-}" \
+            -e GET_PASSPORT="${GET_PASSPORT:-}" \
+            -e CMDB_IMPORT="${CMDB_IMPORT:-}" \
+            -e GENERATE_EFFECTIVE_SET="${GENERATE_EFFECTIVE_SET:-}" \
+            -e ENV_TEMPLATE_VERSION="${ENV_TEMPLATE_VERSION:-}" \
+            -e ENV_TEMPLATE_TEST="${ENV_TEMPLATE_TEST:-}" \
+            -e IS_OFFSITE="${IS_OFFSITE:-}" \
+            -e JSON_SCHEMAS_DIR="${JSON_SCHEMAS_DIR:-}" \
+            -e CI_COMMIT_REF_NAME="${CI_COMMIT_REF_NAME:-}" \
             ghcr.io/netcracker/qubership-build-gcip:main \
             python /module/scripts/main.py generate_pipeline
