@@ -3,11 +3,6 @@ name: Pipeline Execution
 on:
   workflow_dispatch:
     inputs:
-      DEPLOYMENT_TICKET_ID:
-        description: "Jira ticket"
-        required: true
-        default: "FAKE-0000"
-        type: string
       ENV_NAMES:
         description: 'Environment names (comma-separated)'
         required: true
@@ -18,10 +13,6 @@ on:
         default: 'false'
       GET_PASSPORT:
         description: 'Get passport (true/false)'
-        required: false
-        default: 'false'
-      CMDB_IMPORT:
-        description: 'Enable CMDB import (true/false)'
         required: false
         default: 'false'
       GENERATE_EFFECTIVE_SET:
@@ -49,21 +40,11 @@ on:
         description: 'Path to JSON schemas directory'
         required: false
         default: '/module/schemas'
-      SD_SOURCE_TYPE:
-        description: "Source of the SD ('artifact' specified by SD_VERSION or 'json' given in SD_DATA)"
-        required: true
-        default: "json"
-        type: string
       SD_DATA:
         description: "SD in JSON string"
         required: true
         default: '{ "version": 2.2, "type": "deploy" }'
         type: string
-      SD_DELTA:
-        description: "true OR false"
-        required: true
-        default: "false"
-        type: boolean
       SD_VERSION:
         description: "Version of the artifact with SD"
         required: true
