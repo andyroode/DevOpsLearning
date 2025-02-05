@@ -69,6 +69,9 @@ jobs:
           echo "ENV_INVENTORY_INIT=${{ github.event.inputs.ENV_INVENTORY_INIT }}" >> $GITHUB_ENV
           echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
           
+      - name: Fix Git Safe Directory Issue
+        run: |
+          git config --global --add safe.directory /repo
 
       - name: Run main.py inside Docker container
         run: |
