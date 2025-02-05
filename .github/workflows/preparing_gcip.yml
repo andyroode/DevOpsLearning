@@ -93,4 +93,4 @@ jobs:
             -e CI_COMMIT_REF_NAME="${CI_COMMIT_REF_NAME:-""}" \
             -e GH_TOKEN="${GH_TOKEN:-""}" \
             ghcr.io/netcracker/qubership-build-gcip:main \
-            python /module/scripts/main.py generate_pipeline
+            sh -c "git config --global --add safe.directory /repo && python /module/scripts/main.py generate_pipeline"
