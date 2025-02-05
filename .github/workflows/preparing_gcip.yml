@@ -27,7 +27,6 @@ on:
         description: "Whether to generate new env inventory, possible values - true/false"
         required: true
         default: "false"
-        type: boolean
       IS_OFFSITE:
         description: 'Is offsite deployment (true/false)'
         required: false
@@ -75,18 +74,18 @@ jobs:
           docker run --rm \
             -v "$GITHUB_WORKSPACE:/repo" \
             -w /repo \
-            -e GITHUB_ACTIONS="true" \  # Добавляем флаг GitHub Actions
-            -e GITHUB_WORKSPACE="${GITHUB_WORKSPACE:-}" \
-            -e ENV_NAMES="${ENV_NAMES:-}" \
-            -e ENV_BUILDER="${ENV_BUILDER:-}" \
-            -e GENERATE_EFFECTIVE_SET="${GENERATE_EFFECTIVE_SET:-}" \
-            -e ENV_TEMPLATE_VERSION="${ENV_TEMPLATE_VERSION:-}" \
-            -e ENV_TEMPLATE_TEST="${ENV_TEMPLATE_TEST:-}" \
-            -e IS_OFFSITE="${IS_OFFSITE:-}" \
-            -e JSON_SCHEMAS_DIR="${JSON_SCHEMAS_DIR:-}" \
-            -e SD_DATA="${SD_DATA:-}" \
-            -e SD_VERSION="${SD_VERSION:-}" \
-            -e ENV_INVENTORY_INIT="${ENV_INVENTORY_INIT:-}" \
-            -e CI_COMMIT_REF_NAME="${CI_COMMIT_REF_NAME:-}" \
+            -e GITHUB_ACTIONS="true" \
+            -e GITHUB_WORKSPACE="${GITHUB_WORKSPACE:-""}" \
+            -e ENV_NAMES="${ENV_NAMES:-""}" \
+            -e ENV_BUILDER="${ENV_BUILDER:-""}" \
+            -e GENERATE_EFFECTIVE_SET="${GENERATE_EFFECTIVE_SET:-""}" \
+            -e ENV_TEMPLATE_VERSION="${ENV_TEMPLATE_VERSION:-""}" \
+            -e ENV_TEMPLATE_TEST="${ENV_TEMPLATE_TEST:-""}" \
+            -e IS_OFFSITE="${IS_OFFSITE:-""}" \
+            -e JSON_SCHEMAS_DIR="${JSON_SCHEMAS_DIR:-""}" \
+            -e SD_DATA='${SD_DATA:-"{}"}' \
+            -e SD_VERSION="${SD_VERSION:-""}" \
+            -e ENV_INVENTORY_INIT="${ENV_INVENTORY_INIT:-""}" \
+            -e CI_COMMIT_REF_NAME="${CI_COMMIT_REF_NAME:-""}" \
             ghcr.io/netcracker/qubership-build-gcip:main \
             python /module/scripts/main.py generate_pipeline
