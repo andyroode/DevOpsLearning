@@ -2,6 +2,40 @@ name: Inventory Generation Pipeline
 
 on:
   workflow_dispatch:
+    inputs:
+      ENV_NAME:
+        description: "Environment name"
+        required: true
+        type: string
+      CLUSTER_NAME:
+        description: "Cluster name"
+        required: true
+        type: string
+      ENV_GENERATION_PARAMS:
+        description: "JSON parameters for environment generation"
+        required: false
+        type: string
+        default: "{}"
+      module_ansible_dir:
+        description: "Ansible directory path"
+        required: false
+        type: string
+        default: "/module/ansible"
+      module_inventory:
+        description: "Path to inventory file"
+        required: false
+        type: string
+        default: "${{ github.workspace }}/configuration/inventory.yaml"
+      module_ansible_cfg:
+        description: "Path to ansible config"
+        required: false
+        type: string
+        default: "/module/ansible/ansible.cfg"
+      module_config_default:
+        description: "Default config path"
+        required: false
+        type: string
+        default: "/module/templates/defaults.yaml"
 
 jobs:
   env_inventory_generation:
