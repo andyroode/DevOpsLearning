@@ -11,10 +11,6 @@ on:
         description: 'Enable environment builder (true/false)'
         required: false
         default: 'false'
-      GET_PASSPORT:
-        description: 'Get passport (true/false)'
-        required: false
-        default: 'false'
       GENERATE_EFFECTIVE_SET:
         description: 'Generate effective set (true/false)'
         required: false
@@ -63,20 +59,16 @@ jobs:
         run: |
           echo "ENV_NAMES=${{ github.event.inputs.ENV_NAMES }}" >> $GITHUB_ENV
           echo "ENV_BUILDER=${{ github.event.inputs.ENV_BUILDER }}" >> $GITHUB_ENV
-          echo "GET_PASSPORT=${{ github.event.inputs.GET_PASSPORT }}" >> $GITHUB_ENV
-          echo "CMDB_IMPORT=${{ github.event.inputs.CMDB_IMPORT }}" >> $GITHUB_ENV
           echo "GENERATE_EFFECTIVE_SET=${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}" >> $GITHUB_ENV
           echo "ENV_TEMPLATE_VERSION=${{ github.event.inputs.ENV_TEMPLATE_VERSION }}" >> $GITHUB_ENV
           echo "ENV_TEMPLATE_TEST=${{ github.event.inputs.ENV_TEMPLATE_TEST }}" >> $GITHUB_ENV
           echo "IS_OFFSITE=${{ github.event.inputs.IS_OFFSITE }}" >> $GITHUB_ENV
           echo "JSON_SCHEMAS_DIR=${{ github.event.inputs.JSON_SCHEMAS_DIR }}" >> $GITHUB_ENV
           echo "CI_COMMIT_REF_NAME=${{ github.ref_name }}" >> $GITHUB_ENV
-          echo "SD_SOURCE_TYPE=${{ github.event.inputs.SD_SOURCE_TYPE }}" >> $GITHUB_ENV
           echo "SD_DATA=${{ github.event.inputs.SD_DATA }}" >> $GITHUB_ENV
-          echo "SD_DELTA=${{ github.event.inputs.SD_DELTA }}" >> $GITHUB_ENV
           echo "SD_VERSION=${{ github.event.inputs.SD_VERSION }}" >> $GITHUB_ENV
           echo "ENV_INVENTORY_INIT=${{ github.event.inputs.ENV_INVENTORY_INIT }}" >> $GITHUB_ENV
-          echo "DEPLOYMENT_TICKET_ID=${{ github.event.inputs.DEPLOYMENT_TICKET_ID }}" >> $GITHUB_ENV
+          
 
       - name: Run main.py inside Docker container
         run: |
@@ -86,16 +78,12 @@ jobs:
             -e CI_PROJECT_DIR="/repo" \
             -e ENV_NAMES="${ENV_NAMES:-}" \
             -e ENV_BUILDER="${ENV_BUILDER:-}" \
-            -e GET_PASSPORT="${GET_PASSPORT:-}" \
-            -e CMDB_IMPORT="${CMDB_IMPORT:-}" \
             -e GENERATE_EFFECTIVE_SET="${GENERATE_EFFECTIVE_SET:-}" \
             -e ENV_TEMPLATE_VERSION="${ENV_TEMPLATE_VERSION:-}" \
             -e ENV_TEMPLATE_TEST="${ENV_TEMPLATE_TEST:-}" \
             -e IS_OFFSITE="${IS_OFFSITE:-}" \
             -e JSON_SCHEMAS_DIR="${JSON_SCHEMAS_DIR:-}" \
-            -e SD_SOURCE_TYPE="${SD_SOURCE_TYPE:-}" \
             -e SD_DATA="${SD_DATA:-}" \
-            -e SD_DELTA="${SD_DELTA:-}" \
             -e SD_VERSION="${SD_VERSION:-}" \
             -e ENV_INVENTORY_INIT="${ENV_INVENTORY_INIT:-}" \
             -e CI_COMMIT_REF_NAME="${CI_COMMIT_REF_NAME:-}" \
