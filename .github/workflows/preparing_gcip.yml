@@ -67,7 +67,7 @@ jobs:
           echo "SD_DATA=${{ github.event.inputs.SD_DATA }}" >> $GITHUB_ENV
           echo "SD_VERSION=${{ github.event.inputs.SD_VERSION }}" >> $GITHUB_ENV
           echo "ENV_INVENTORY_INIT=${{ github.event.inputs.ENV_INVENTORY_INIT }}" >> $GITHUB_ENV
-          echo "GH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> $GITHUB_ENV
+          echo "GH_TOKEN=${{ secrets.MY_GITHUB_TOKEN }}" >> $GITHUB_ENV
           
       - name: Fix Git Safe Directory Issue
         run: |
