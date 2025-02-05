@@ -1,0 +1,38 @@
+name: Inventory Generation Pipeline
+
+on:
+  workflow_call:
+
+jobs:
+  env_inventory_generation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout репозитория
+        uses: actions/checkout@v3
+
+      - name: Set environment variables
+        run: |
+          echo "ENV_NAME=$ENV_NAME" >> $GITHUB_ENV
+          echo "CLUSTER_NAME=$CLUSTER_NAME" >> $GITHUB_ENV
+          echo "ENV_GENERATION_PARAMS=$ENV_GENERATION_PARAMS" >> $GITHUB_ENV
+          echo "module_ansible_dir=/module/ansible" >> $GITHUB_ENV
+          echo "module_inventory=${{ github.workspace }}/configuration/inventory.yaml" >> $GITHUB_ENV
+          echo "module_ansible_cfg=/module/ansible/ansible.cfg" >> $GITHUB_ENV
+          echo "module_config_default=/module/templates/defaults.yaml" >> $GITHUB_ENV
+
+      - name: Run Inventory Generation Script inside Docker
+        run: |
+          docker run --rm \
+            -v "$GITHUB_WORKSPACE:/repo" \
+            -w /repo \
+            -e CI_PROJECT_DIR="/repo" \
+            -e ENV_NAME="${ENV_NAME" \
+            -e CLUSTER_NAME="${CLUSTER_NAME:-}" \
+            -e ENV_GENERATION_PARAMS="${ENV_GENERATION_PARAMS:-}" \
+            -e module_ansible_dir="${module_ansible_dir:-}" \
+            -e module_inventory="${module_inventory:-}" \
+            -e module_ansible_cfg="${module_ansible_cfg:-}" \
+            -e module_config_default="${module_config_default:-}" \
+            ghcr.io/netcracker/qubership-build-gcip:main \
+            python3 /build_env/scripts/build_env/env_inventory_generation.py

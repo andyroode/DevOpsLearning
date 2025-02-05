@@ -3,6 +3,11 @@ name: Pipeline Execution
 on:
   workflow_dispatch:
     inputs:
+      DEPLOYMENT_TICKET_ID:
+        description: "Jira ticket"
+        required: true
+        default: "FAKE-0000"
+        type: string
       ENV_NAMES:
         description: 'Environment names (comma-separated)'
         required: true
@@ -31,6 +36,11 @@ on:
         description: 'Enable environment template test (true/false)'
         required: false
         default: 'false'
+      ENV_INVENTORY_INIT:
+        description: "Whether to generate new env inventory, possible values - true/false"
+        required: true
+        default: "false"
+        type: boolean
       IS_OFFSITE:
         description: 'Is offsite deployment (true/false)'
         required: false
@@ -39,6 +49,26 @@ on:
         description: 'Path to JSON schemas directory'
         required: false
         default: '/module/schemas'
+      SD_SOURCE_TYPE:
+        description: "Source of the SD ('artifact' specified by SD_VERSION or 'json' given in SD_DATA)"
+        required: true
+        default: "json"
+        type: string
+      SD_DATA:
+        description: "SD in JSON string"
+        required: true
+        default: '{ "version": 2.2, "type": "deploy" }'
+        type: string
+      SD_DELTA:
+        description: "true OR false"
+        required: true
+        default: "false"
+        type: boolean
+      SD_VERSION:
+        description: "Version of the artifact with SD"
+        required: true
+        default: "ETBSS_Onsite_Infra:release-ph1_cd1-20240628.092133-120"
+        type: string
 
 jobs:
   run-script-in-docker:
@@ -60,6 +90,12 @@ jobs:
           echo "IS_OFFSITE=${{ github.event.inputs.IS_OFFSITE }}" >> $GITHUB_ENV
           echo "JSON_SCHEMAS_DIR=${{ github.event.inputs.JSON_SCHEMAS_DIR }}" >> $GITHUB_ENV
           echo "CI_COMMIT_REF_NAME=${{ github.ref_name }}" >> $GITHUB_ENV
+          echo "SD_SOURCE_TYPE=${{ github.event.inputs.SD_SOURCE_TYPE }}" >> $GITHUB_ENV
+          echo "SD_DATA=${{ github.event.inputs.SD_DATA }}" >> $GITHUB_ENV
+          echo "SD_DELTA=${{ github.event.inputs.SD_DELTA }}" >> $GITHUB_ENV
+          echo "SD_VERSION=${{ github.event.inputs.SD_VERSION }}" >> $GITHUB_ENV
+          echo "ENV_INVENTORY_INIT=${{ github.event.inputs.ENV_INVENTORY_INIT }}" >> $GITHUB_ENV
+          echo "DEPLOYMENT_TICKET_ID=${{ github.event.inputs.DEPLOYMENT_TICKET_ID }}" >> $GITHUB_ENV
 
       - name: Run main.py inside Docker container
         run: |
@@ -76,6 +112,11 @@ jobs:
             -e ENV_TEMPLATE_TEST="${ENV_TEMPLATE_TEST:-}" \
             -e IS_OFFSITE="${IS_OFFSITE:-}" \
             -e JSON_SCHEMAS_DIR="${JSON_SCHEMAS_DIR:-}" \
+            -e SD_SOURCE_TYPE="${SD_SOURCE_TYPE:-}" \
+            -e SD_DATA="${SD_DATA:-}" \
+            -e SD_DELTA="${SD_DELTA:-}" \
+            -e SD_VERSION="${SD_VERSION:-}" \
+            -e ENV_INVENTORY_INIT="${ENV_INVENTORY_INIT:-}" \
             -e CI_COMMIT_REF_NAME="${CI_COMMIT_REF_NAME:-}" \
             ghcr.io/netcracker/qubership-build-gcip:main \
             python /module/scripts/main.py generate_pipeline
