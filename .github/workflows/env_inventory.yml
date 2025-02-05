@@ -1,7 +1,7 @@
 name: Inventory Generation Pipeline
 
 on:
-  workflow_call:
+  workflow_dispatch:
 
 jobs:
   env_inventory_generation:
