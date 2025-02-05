@@ -72,8 +72,6 @@ jobs:
 
       - name: Run main.py inside Docker container
         run: |
-          docker run --rm ghcr.io/netcracker/qubership-build-gcip:latest gh --version
-
           docker run --rm \
             -v "$GITHUB_WORKSPACE:/repo" \
             -w /repo \
