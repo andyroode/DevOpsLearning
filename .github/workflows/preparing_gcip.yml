@@ -70,7 +70,9 @@ jobs:
 
   generate_inventory:
     runs-on: ubuntu-latest
-    needs: parameters_validation
+    needs:
+      - parameters_validation
+      - show_environment_variables
     strategy:
       fail-fast: false
       matrix:
