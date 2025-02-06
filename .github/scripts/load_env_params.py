@@ -13,7 +13,7 @@ def main():
         data = yaml.safe_load(f)
 
     for key, value in data.items():
-        print(f'{key}={value} >> $GITHUB_ENV')
+        print(f"{key}={value}")
 
 if __name__ == "__main__":
     main()

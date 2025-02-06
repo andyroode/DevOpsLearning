@@ -13,7 +13,7 @@ jobs:
 
       - name: Load environment variables from env_config.yaml
         run: |
-          python .github/scripts/load_env_params.py .github/config/env_config.yaml
+          python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
           
       - name: Debug environment variables
         run: |
