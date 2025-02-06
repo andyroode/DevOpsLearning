@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-CONTAINER_IMAGE=${1?Error: no container image specified. Usage: ./run_gcip.sh <container_image> <function>}
-FUNCTION=${2?Error: no function/command specified. Usage: ./run_gcip.sh <container_image> <function>}
-
 docker run --rm \
   -v "$GITHUB_WORKSPACE:/repo" \
   -w /repo \
@@ -19,5 +16,5 @@ docker run --rm \
   -e SD_VERSION="${SD_VERSION:-""}" \
   -e ENV_INVENTORY_INIT="${ENV_INVENTORY_INIT:-""}" \
   -e CI_COMMIT_REF_NAME="${CI_COMMIT_REF_NAME:-""}" \
-  "$CONTAINER_IMAGE" \
-  sh -c "$FUNCTION"
+  ghcr.io/netcracker/qubership-build-gcip:main \
+  python /module/scripts/github_actions.py validate_pipeline

@@ -2,6 +2,8 @@
 
 ENV_NAMES: 'anru-test-01/e01'
 ENV_BUILDER: 'false'
+GET_PASSPORT: 'false'
+CMDB_IMPORT: 'false'
 GENERATE_EFFECTIVE_SET: 'false'
 ENV_TEMPLATE_VERSION: ''
 ENV_TEMPLATE_TEST: 'false'
@@ -10,3 +12,53 @@ IS_OFFSITE: 'false'
 JSON_SCHEMAS_DIR: '/module/schemas'
 SD_DATA: '{ "version": 2.2, "type": "deploy" }'
 SD_VERSION: 'ETBSS_Onsite_Infra:release-ph1_cd1-20240628.092133-120'
+SD_SOURCE_TYPE: ''
+SD_DELTA: ''
+ENV_SPECIFIC_PARAMETERS: |
+  {
+    "clusterParams": {
+      "clusterEndpoint": "test-val.com",
+      "clusterToken": "updated"
+    },
+    "additionalTemplateVariables": {
+      "key": "value"
+    },
+    "cloudName": "test-val-01",
+    "envSpecificParamsets": {
+      "cloud": [
+        "cloud-specific",
+        "integrations",
+        "paramsetA"
+      ],
+      "main": [
+        "internal-base-ns",
+        "toms-params",
+        "paramsetB"
+      ]
+    },
+    "paramsets": {
+      "paramsetA": {
+        "version": 1,
+        "name": "paramsetA",
+        "parameters": {
+          "key1": "value2"
+        },
+        "applications": [
+          {
+            "appName": "Access-Control",
+            "parameters": {
+              "key1": "value2"
+            }
+          }
+        ]
+      },
+      "paramsetB": {
+        "version": 2,
+        "name": "paramsetB",
+        "parameters": {
+          "key1": "value2"
+        },
+        "applications": []
+      }
+    }
+  }

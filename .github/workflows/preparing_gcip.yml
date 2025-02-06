@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       env_matrix: ${{ steps.matrix-generator.outputs.env_matrix }}
+    env:
+      CI_COMMIT_REF_NAME: ${{ github.ref_name }}
+      CI_PROJECT_DIR: "/repo"
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -54,6 +57,9 @@ jobs:
       fail-fast: false
       matrix:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
+    env:
+      CI_COMMIT_REF_NAME: ${{ github.ref_name }}
+      CI_PROJECT_DIR: "/repo"
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -64,8 +70,8 @@ jobs:
           
       - name: EnvGene parameters validation
         run: |
-          chmod +x .github/scripts/execute_action_by_docker.sh
-          .github/scripts/execute_action_by_docker.sh ghcr.io/netcracker/qubership-build-gcip:main "python /module/scripts/github_actions.py validate_pipeline"
+          chmod +x .github/scripts/execute_parameters_validation.sh
+          .github/scripts/execute_parameters_validation.sh
           
 
   generate_inventory:
@@ -77,6 +83,9 @@ jobs:
       fail-fast: false
       matrix:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
+    env:
+      CI_COMMIT_REF_NAME: ${{ github.ref_name }}
+      CI_PROJECT_DIR: "/repo"
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -88,5 +97,5 @@ jobs:
       - name: Generate inventory
         run: |
           export ENV_NAME="${{ matrix.environment }}"
-          chmod +x .github/scripts/execute_action_by_docker.sh
-          .github/scripts/execute_action_by_docker.sh ghcr.io/netcracker/qubership-build-envgene:main "python3 /build_env/scripts/build_env/env_inventory_generation.py"       
+          chmod +x .github/scripts/execute_generate_inventory.sh
+          .github/scripts/execute_generate_inventory.sh  
