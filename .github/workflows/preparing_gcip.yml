@@ -6,6 +6,8 @@ on:
 jobs:
   show_environment_variables:
     runs-on: ubuntu-latest
+    outputs:
+      env_matrix: ${{ steps.matrix-generator.outputs.env_matrix }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -27,9 +29,31 @@ jobs:
           echo "SD_DATA = $SD_DATA"
           echo "SD_VERSION = $SD_VERSION"
 
+      - name: Convert ENV_NAMES to JSON array
+        id: matrix-generator
+        shell: bash
+        run: |
+          arr="["
+          first=1
+          for name in $(echo "$ENV_NAMES" | tr ',' ' '); do
+            if [ "$first" = 1 ]; then
+              first=0
+            else
+              arr="$arr,"
+            fi
+            arr="$arr\"$name\""
+          done
+          arr="$arr]"
+          
+          echo "env_matrix=$arr" >> $GITHUB_OUTPUT    
+
   parameters_validation:
     runs-on: ubuntu-latest
     needs: show_environment_variables
+    strategy:
+      fail-fast: false
+      matrix:
+        environment: ${{ fromJson(needs.prepare-matrix.outputs.env_matrix) }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -47,6 +71,10 @@ jobs:
   generate_inventory:
     runs-on: ubuntu-latest
     needs: parameters_validation
+    strategy:
+      fail-fast: false
+      matrix:
+        environment: ${{ fromJson(needs.prepare-matrix.outputs.env_matrix) }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -57,5 +85,6 @@ jobs:
 
       - name: Generate inventory
         run: |
+          export ENV_NAME="${{ matrix.environment }}"
           chmod +x .github/scripts/execute_action_by_docker.sh
           .github/scripts/execute_action_by_docker.sh ghcr.io/netcracker/qubership-build-envgene:main "python3 /build_env/scripts/build_env/env_inventory_generation.py"       
