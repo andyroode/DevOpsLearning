@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import yaml
+import json
 
 def main():
     if len(sys.argv) < 2:
@@ -13,7 +14,13 @@ def main():
         data = yaml.safe_load(f)
 
     for key, value in data.items():
-        print(f"{key}={value}")
+        if isinstance(value, dict):
+            json_file = f"/tmp/{key}.json"
+            with open(json_file, 'w', encoding='utf-8') as f:
+                json.dump(value, f, indent=2)
+            print(f"{key}_FILE={json_file}")  # Записываем путь в ENV
+        else:
+            print(f"{key}={value}")
 
 if __name__ == "__main__":
     main()
