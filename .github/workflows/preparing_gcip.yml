@@ -74,8 +74,6 @@ jobs:
           docker run --rm \
             -v "$GITHUB_WORKSPACE:/repo" \
             -w /repo \
-            -e GITHUB_ACTIONS="true" \
-            -e GITHUB_WORKSPACE="${GITHUB_WORKSPACE:-""}" \
             -e ENV_NAMES="${ENV_NAMES:-""}" \
             -e ENV_BUILDER="${ENV_BUILDER:-""}" \
             -e GENERATE_EFFECTIVE_SET="${GENERATE_EFFECTIVE_SET:-""}" \
