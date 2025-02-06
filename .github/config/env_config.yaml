@@ -1,0 +1,12 @@
+---
+
+ENV_NAMES: 'anru-test-01/e01'
+ENV_BUILDER: 'false'
+GENERATE_EFFECTIVE_SET: 'false'
+ENV_TEMPLATE_VERSION: ''
+ENV_TEMPLATE_TEST: 'false'
+ENV_INVENTORY_INIT: 'false'
+IS_OFFSITE: 'false'
+JSON_SCHEMAS_DIR: '/module/schemas'
+SD_DATA: '{ "version": 2.2, "type": "deploy" }'
+SD_VERSION: 'ETBSS_Onsite_Infra:release-ph1_cd1-20240628.092133-120'

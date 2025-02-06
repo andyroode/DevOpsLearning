@@ -2,49 +2,6 @@ name: EnvGene Execution
 
 on:
   workflow_dispatch:
-    inputs:
-      ENV_NAMES:
-        description: 'Environment names (comma-separated)'
-        required: true
-        default: 'dev,prod'
-      ENV_BUILDER:
-        description: 'Enable environment builder (true/false)'
-        required: false
-        default: 'false'
-      GENERATE_EFFECTIVE_SET:
-        description: 'Generate effective set (true/false)'
-        required: false
-        default: 'false'
-      ENV_TEMPLATE_VERSION:
-        description: 'Environment template version'
-        required: false
-        default: ''
-      ENV_TEMPLATE_TEST:
-        description: 'Enable environment template test (true/false)'
-        required: false
-        default: 'false'
-      ENV_INVENTORY_INIT:
-        description: "Whether to generate new env inventory, possible values - true/false"
-        required: true
-        default: "false"
-      IS_OFFSITE:
-        description: 'Is offsite deployment (true/false)'
-        required: false
-        default: 'false'
-      JSON_SCHEMAS_DIR:
-        description: 'Path to JSON schemas directory'
-        required: false
-        default: '/module/schemas'
-      SD_DATA:
-        description: "SD in JSON string"
-        required: true
-        default: '{ "version": 2.2, "type": "deploy" }'
-        type: string
-      SD_VERSION:
-        description: "Version of the artifact with SD"
-        required: true
-        default: "ETBSS_Onsite_Infra:release-ph1_cd1-20240628.092133-120"
-        type: string
 
 jobs:
   parameters_validation:
@@ -54,20 +11,9 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
-      - name: Set environment variables
+      - name: Load environment variables from env_config.yaml
         run: |
-          echo "ENV_NAMES=${{ github.event.inputs.ENV_NAMES }}" >> $GITHUB_ENV
-          echo "ENV_BUILDER=${{ github.event.inputs.ENV_BUILDER }}" >> $GITHUB_ENV
-          echo "GENERATE_EFFECTIVE_SET=${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}" >> $GITHUB_ENV
-          echo "ENV_TEMPLATE_VERSION=${{ github.event.inputs.ENV_TEMPLATE_VERSION }}" >> $GITHUB_ENV
-          echo "ENV_TEMPLATE_TEST=${{ github.event.inputs.ENV_TEMPLATE_TEST }}" >> $GITHUB_ENV
-          echo "IS_OFFSITE=${{ github.event.inputs.IS_OFFSITE }}" >> $GITHUB_ENV
-          echo "JSON_SCHEMAS_DIR=${{ github.event.inputs.JSON_SCHEMAS_DIR }}" >> $GITHUB_ENV
-          echo "CI_COMMIT_REF_NAME=${{ github.ref_name }}" >> $GITHUB_ENV
-          echo "SD_DATA=${{ github.event.inputs.SD_DATA }}" >> $GITHUB_ENV
-          echo "SD_VERSION=${{ github.event.inputs.SD_VERSION }}" >> $GITHUB_ENV
-          echo "ENV_INVENTORY_INIT=${{ github.event.inputs.ENV_INVENTORY_INIT }}" >> $GITHUB_ENV
-          echo "GH_TOKEN=${{ secrets.MY_GITHUB_TOKEN }}" >> $GITHUB_ENV
+          python .github/scripts/load_env_params.py env_config.yaml
           
       - name: EnvGene parameters validation
         run: |
