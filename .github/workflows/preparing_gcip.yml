@@ -53,7 +53,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        environment: ${{ fromJson(needs.prepare-matrix.outputs.env_matrix) }}
+        environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -74,7 +74,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        environment: ${{ fromJson(needs.prepare-matrix.outputs.env_matrix) }}
+        environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
