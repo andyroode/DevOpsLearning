@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+
+
 ENV_GENERATION_PARAMS="$(jq -nc \
   --arg sd_source_type "$SD_SOURCE_TYPE" \
   --arg sd_version "$SD_VERSION" \
@@ -31,7 +33,7 @@ docker run --rm \
   -v "$GITHUB_WORKSPACE:/repo" \
   -w /repo \
   -e CI_PROJECT_DIR="${CI_PROJECT_DIR:-""}" \
-  -e ENV_NAMES="${ENV_NAME:-""}" \
+  -e ENV_NAME="${ENV_NAME:-""}" \
   -e ENV_BUILDER="${ENV_BUILDER:-""}" \
   -e GENERATE_EFFECTIVE_SET="${GENERATE_EFFECTIVE_SET:-""}" \
   -e ENV_TEMPLATE_VERSION="${ENV_TEMPLATE_VERSION:-""}" \
