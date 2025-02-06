@@ -4,20 +4,18 @@ on:
   workflow_dispatch:
 
 jobs:
-  parameters_validation:
+  show_environment_variables:
     runs-on: ubuntu-latest
-
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
-      - name: Load environment variables from env_config.yaml
+      - name: Read environment variables
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
-          
-      - name: Debug environment variables
+
+      - name: Environment variables values
         run: |
-          echo "=== Debug Environment Variables ==="
           echo "ENV_NAMES = $ENV_NAMES"
           echo "ENV_BUILDER = $ENV_BUILDER"
           echo "GENERATE_EFFECTIVE_SET = $GENERATE_EFFECTIVE_SET"
@@ -29,6 +27,16 @@ jobs:
           echo "SD_DATA = $SD_DATA"
           echo "SD_VERSION = $SD_VERSION"
 
+  parameters_validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository Checkout
+        uses: actions/checkout@v4
+
+      - name: Read environment variables
+        run: |
+          python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
+          
       - name: EnvGene parameters validation
         run: |
           docker run --rm \
