@@ -13,8 +13,22 @@ jobs:
 
       - name: Load environment variables from env_config.yaml
         run: |
-          python .github/scripts/load_env_params.py env_config.yaml
+          python .github/scripts/load_env_params.py .github/config/env_config.yaml
           
+      - name: Debug environment variables
+        run: |
+          echo "=== Debug Environment Variables ==="
+          echo "ENV_NAMES = $ENV_NAMES"
+          echo "ENV_BUILDER = $ENV_BUILDER"
+          echo "GENERATE_EFFECTIVE_SET = $GENERATE_EFFECTIVE_SET"
+          echo "ENV_TEMPLATE_VERSION = $ENV_TEMPLATE_VERSION"
+          echo "ENV_TEMPLATE_TEST = $ENV_TEMPLATE_TEST"
+          echo "ENV_INVENTORY_INIT = $ENV_INVENTORY_INIT"
+          echo "IS_OFFSITE = $IS_OFFSITE"
+          echo "JSON_SCHEMAS_DIR = $JSON_SCHEMAS_DIR"
+          echo "SD_DATA = $SD_DATA"
+          echo "SD_VERSION = $SD_VERSION"
+
       - name: EnvGene parameters validation
         run: |
           docker run --rm \
