@@ -40,4 +40,5 @@ jobs:
           
       - name: EnvGene parameters validation
         run: |
+          chmod +x .github/scripts/execute_action_by_docker.sh
           .github/scripts/execute_action_by_docker.sh ghcr.io/netcracker/qubership-build-gcip:main validate_pipeline
