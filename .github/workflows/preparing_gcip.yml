@@ -96,6 +96,6 @@ jobs:
 
       - name: Generate inventory
         run: |
-          export ENV_NAME="${{ matrix.environment }}"
+          echo "ENV_NAME=${{ matrix.environment }}" >> $GITHUB_ENV
           chmod +x .github/scripts/execute_generate_inventory.sh
           .github/scripts/execute_generate_inventory.sh  

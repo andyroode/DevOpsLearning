@@ -7,7 +7,7 @@ ENV_GENERATION_PARAMS="$(jq -nc \
   --arg sd_data "$SD_DATA" \
   --arg sd_delta "$SD_DELTA" \
   --arg env_inventory_init "$ENV_INVENTORY_INIT" \
-  --arg env_specific_params "$ENV_SPECIFIC_PARAMS" \
+  --arg env_specific_params "$ENV_SPECIFIC_PARAMETERS" \
   --arg env_template_name "$ENV_TEMPLATE_NAME" \
   --arg env_template_version "$ENV_TEMPLATE_VERSION" \
   '{
