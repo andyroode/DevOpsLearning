@@ -41,4 +41,21 @@ jobs:
       - name: EnvGene parameters validation
         run: |
           chmod +x .github/scripts/execute_action_by_docker.sh
-          .github/scripts/execute_action_by_docker.sh ghcr.io/netcracker/qubership-build-gcip:main validate_pipeline
+          .github/scripts/execute_action_by_docker.sh ghcr.io/netcracker/qubership-build-gcip:main "python /module/scripts/github_actions.py validate_pipeline"
+          
+
+  generate_inventory:
+    runs-on: ubuntu-latest
+    needs: parameters_validation
+    steps:
+      - name: Repository Checkout
+        uses: actions/checkout@v4
+
+      - name: Read environment variables
+        run: |
+          python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
+
+      - name: Generate inventory
+        run: |
+          chmod +x .github/scripts/execute_action_by_docker.sh
+          .github/scripts/execute_action_by_docker.sh ghcr.io/netcracker/qubership-build-envgene:main "python3 /build_env/scripts/build_env/env_inventory_generation.py"       

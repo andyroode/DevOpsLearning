@@ -20,4 +20,4 @@ docker run --rm \
   -e ENV_INVENTORY_INIT="${ENV_INVENTORY_INIT:-""}" \
   -e CI_COMMIT_REF_NAME="${CI_COMMIT_REF_NAME:-""}" \
   "$CONTAINER_IMAGE" \
-  python /module/scripts/github_actions.py "$FUNCTION"
+  "$FUNCTION"
