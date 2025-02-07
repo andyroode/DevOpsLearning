@@ -115,6 +115,8 @@ jobs:
 
       - name: Commit files
         run: |
+          git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
+          git config --local user.name "${{ secrets.GIT_USER_NAME }}"
           git commit -a -m "Adding generated files to EnvGene repository."    
 
       - name: Commit changes
