@@ -5,7 +5,7 @@ docker run --rm \
   -v "$GITHUB_WORKSPACE:/repo" \
   -w /repo \
   -e CI_PROJECT_DIR="/repo" \
-  -e ENV_NAMES="${ENV_NAMES:-""}" \
+  -e ENV_NAMES="${ENV_NAME:-""}" \
   -e ENV_BUILDER="${ENV_BUILDER:-""}" \
   -e GENERATE_EFFECTIVE_SET="${GENERATE_EFFECTIVE_SET:-""}" \
   -e ENV_TEMPLATE_VERSION="${ENV_TEMPLATE_VERSION:-""}" \

@@ -78,6 +78,7 @@ jobs:
           
       - name: EnvGene parameters validation
         run: |
+          export ENV_NAME="${{ matrix.environment }}"
           chmod +x .github/scripts/execute_parameters_validation.sh
           .github/scripts/execute_parameters_validation.sh
           
