@@ -1,5 +1,8 @@
 name: EnvGene Execution
 
+permissions:
+  contents: write
+
 on:
   workflow_dispatch:
   push:
