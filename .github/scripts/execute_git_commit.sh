@@ -31,6 +31,9 @@ docker run --rm \
   -e GITHUB_ACTIONS="${GITHUB_ACTIONS:-""}" \
   -e GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-""}" \
   -e GITHUB_REF_NAME="${GITHUB_REF_NAME:-""}" \
+  -e GITHUB_USER_NAME: "${GITHUB_USER_NAME:-""}" \
+  -e GITHUB_USER_EMAIL: "${GITHUB_USER_EMAIL:-""}" \
+  -G GITHUB_TOKEN: "${GITHUB_TOKEN:-""}" \
   ghcr.io/netcracker/qubership-build-envgene:main \
   bash -c "
     set -e
