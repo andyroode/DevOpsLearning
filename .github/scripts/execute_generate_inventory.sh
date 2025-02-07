@@ -32,7 +32,7 @@ docker run --rm \
   -v "$GITHUB_WORKSPACE:/repo" \
   -w /repo \
   -e CI_PROJECT_DIR="${CI_PROJECT_DIR:-""}" \
-  -e ENV_NAME="${ENV_NAME:-""}" \
+  -e ENV_NAME="${ENVIRONMENT_NAME:-""}" \
   -e ENV_BUILDER="${ENV_BUILDER:-""}" \
   -e GENERATE_EFFECTIVE_SET="${GENERATE_EFFECTIVE_SET:-""}" \
   -e ENV_TEMPLATE_VERSION="${ENV_TEMPLATE_VERSION:-""}" \
