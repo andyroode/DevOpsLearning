@@ -127,5 +127,8 @@ jobs:
       - name: Git Commit
         run: |
           export ENV_NAME="${{ matrix.environment }}"
+          echo "GITHUB_USER_EMAIL=${{ secrets.GIT_USER_EMAIL }}" >> $GITHUB_ENV
+          echo "GITHUB_USER_NAME=${{ secrets.GIT_USER_NAME }}" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=${{ secrets.MY_GITHUB_TOKEN }}" >> $GITHUB_ENV
           chmod +x .github/scripts/execute_git_commit.sh
           .github/scripts/execute_git_commit.sh  
