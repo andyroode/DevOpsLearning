@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 set -e
 
-
-
 ENV_GENERATION_PARAMS="$(jq -nc \
   --arg sd_source_type "$SD_SOURCE_TYPE" \
   --arg sd_version "$SD_VERSION" \
@@ -25,6 +23,7 @@ ENV_GENERATION_PARAMS="$(jq -nc \
 )"
 
 CLUSTER_NAME=$(echo "$ENV_NAME" | cut -d'/' -f1)
+ENVIRONMENT_NAME=$(echo "$ENV_NAME" | cut -d'/' -f2 | xargs)
 
 export ENV_GENERATION_PARAMS
 export CLUSTER_NAME
