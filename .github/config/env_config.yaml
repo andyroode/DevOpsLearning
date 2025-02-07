@@ -62,3 +62,7 @@ ENV_SPECIFIC_PARAMETERS: |
       }
     }
   }
+
+GITHUB_USER_EMAIL: "{{ secrets.GIT_USER_EMAIL }}"
+GITHUB_USER_NAME: "{{ secrets.GIT_USER_NAME }}"
+GITHUB_TOKEN: "{{ secrets.MY_GITHUB_TOKEN }}"

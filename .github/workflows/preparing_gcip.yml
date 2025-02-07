@@ -112,10 +112,6 @@ jobs:
     env:
       CI_COMMIT_REF_NAME: ${{ github.ref_name }}
       CI_PROJECT_DIR: "/repo"
-      GITHUB_USER_NAME: ${{ secrets.GIT_USER_NAME }}
-      GITHUB_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
-      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
-
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
