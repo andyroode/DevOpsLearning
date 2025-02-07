@@ -113,7 +113,7 @@ jobs:
           git status
 
       - name: Commit changes
-        uses: ad-m/github-push-action@v0.6.0
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.MY_GITHUB_TOKEN }}
           branch: ${{ github.ref_name }}
