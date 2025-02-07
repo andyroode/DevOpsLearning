@@ -4,9 +4,14 @@ set -e
 CLUSTER_NAME=$(echo "$ENV_NAME" | cut -d'/' -f1)
 ENVIRONMENT_NAME=$(echo "$ENV_NAME" | cut -d'/' -f2)
 
+echo "GITHUB_USER_EMAIL=${{ secrets.GIT_USER_EMAIL }}" >> .env
+echo "GITHUB_USER_NAME=${{ secrets.GIT_USER_NAME }}" >> .env
+echo "GITHUB_TOKEN=${{ secrets.MY_GITHUB_TOKEN }}" >> .env
+
 docker run --rm \
   -v "$GITHUB_WORKSPACE:/repo" \
   -w /repo \
+  --env-file .env \
   -e CI_PROJECT_DIR="${CI_PROJECT_DIR:-""}" \
   -e ENV_NAME="${ENV_NAME:-""}" \
   -e ENV_BUILDER="${ENV_BUILDER:-""}" \
@@ -31,9 +36,6 @@ docker run --rm \
   -e GITHUB_ACTIONS="${GITHUB_ACTIONS:-""}" \
   -e GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-""}" \
   -e GITHUB_REF_NAME="${GITHUB_REF_NAME:-""}" \
-  -e GITHUB_USER_NAME: "${GITHUB_USER_NAME:-""}" \
-  -e GITHUB_USER_EMAIL: "${GITHUB_USER_EMAIL:-""}" \
-  -G GITHUB_TOKEN: "${GITHUB_TOKEN:-""}" \
   ghcr.io/netcracker/qubership-build-envgene:main \
   bash -c "
     set -e
