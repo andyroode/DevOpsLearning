@@ -2,6 +2,10 @@ name: EnvGene Execution
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/preparing_gcip.yml"
+      - ".github/config/env_config.yaml"
 
 jobs:
   show_environment_variables:
