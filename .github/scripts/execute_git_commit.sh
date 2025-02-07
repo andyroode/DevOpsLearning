@@ -22,9 +22,20 @@ docker run --rm \
   -e ENV_GENERATION_PARAMS="${ENV_GENERATION_PARAMS:-""}" \
   -e CLUSTER_NAME="${CLUSTER_NAME:-""}" \
   -e ENVIRONMENT_NAME="${ENVIRONMENT_NAME:-""}" \
+  -e module_ansible_dir="/module/ansible" \
+  -e module_inventory="${CI_PROJECT_DIR}/configuration/inventory.yaml" \
+  -e module_ansible_cfg="/module/ansible/ansible.cfg" \
+  -e module_config_default="/module/templates/defaults.yaml" \
+  -e GIT_STRATEGY="none" \
+  -e COMMIT_ENV="true" \
   ghcr.io/netcracker/qubership-build-envgene:main \
   bash -c "
     set -e
+
+    export ENV_NAME=\"$ENV_NAME\"
+    export ENV_NAME_SHORT=\$(echo \"\$ENV_NAME\" | awk -F '/' '{print \$NF}')
+    export ENVIRONMENT_NAME=\"$ENVIRONMENT_NAME\"
+
     echo 'Prepare git_commit job for \${ENVIRONMENT_NAME}...'
 
     echo 'Installing the certs if exist...'
@@ -37,7 +48,7 @@ docker run --rm \
       fi
     fi
 
-    echo
+
     /module/scripts/prepare.sh \"git_commit.yaml\"
 
     env_path=\$(sudo find \"\$CI_PROJECT_DIR/environments\" -type d -name \"\$ENV_NAME_SHORT\")
