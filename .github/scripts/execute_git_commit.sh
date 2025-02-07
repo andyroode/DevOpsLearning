@@ -28,6 +28,9 @@ docker run --rm \
   -e module_config_default="/module/templates/defaults.yaml" \
   -e GIT_STRATEGY="none" \
   -e COMMIT_ENV="true" \
+  -e GITHUB_ACTIONS="${GITHUB_ACTIONS:-""}" \
+  -e GITHUB_REPOSITORY="${GITHUB_REPOSITORY:-""}" \
+  -e GITHUB_REF_NAME="${GITHUB_REF_NAME:-""}" \
   ghcr.io/netcracker/qubership-build-envgene:main \
   bash -c "
     set -e
