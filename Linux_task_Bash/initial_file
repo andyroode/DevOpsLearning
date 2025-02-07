@@ -1,7 +1,0 @@
-| Hostname | Floating IP | Host type | Comment |
-| tmapp01 | 10.122.122.189 | toms_app | TOMS Applicaion |
-| tmapp02 | 10.122.122.190 | toms_app | TOMS Applicaion |
-| tmodb01 | 10.122.122.191 | toms_odb | TOMS ODB |
-| tbcdb01 | 10.122.122.168 | tbapi_couchbase | TBAPI Couchbase |
-| tbcdb02 | 10.122.122.177 | tbapi_couchbase | TBAPI Couchbase |
-| tbcdb03 | 10.122.122.178 | tbapi_couchbase | TBAPI Couchbase |

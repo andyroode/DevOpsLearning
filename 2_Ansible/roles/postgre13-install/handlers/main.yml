@@ -1,7 +1,0 @@
----
-# handlers file for postgre13-install
-
-- name: Restart Postgres13
-  service:
-   name: postgresql-13
-   state: restarted  
