@@ -2,6 +2,7 @@ name: EnvGene Execution
 
 permissions:
   contents: write
+  pull-requests: write
 
 on:
   workflow_dispatch:
@@ -111,6 +112,10 @@ jobs:
         run: |
           ls -R
           git status
+
+      - name: Commit files
+        run: |
+          git commit -a -m "Adding generated files to EnvGene repository."    
 
       - name: Commit changes
         uses: ad-m/github-push-action@master
