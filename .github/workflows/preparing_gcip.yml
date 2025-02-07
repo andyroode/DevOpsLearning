@@ -117,9 +117,11 @@ jobs:
         run: |
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
           git config --local user.name "${{ secrets.GIT_USER_NAME }}"
-          git commit -a -m "Adding generated files to EnvGene repository."    
+          git add .
+          git commit -m "Adding generated files to EnvGene repository."
+          git push origin main
 
-      - name: Commit changes
+      - name: Push the changes to repo
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.MY_GITHUB_TOKEN }}
