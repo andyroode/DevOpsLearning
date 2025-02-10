@@ -95,6 +95,7 @@ jobs:
     env:
       CI_COMMIT_REF_NAME: ${{ github.ref_name }}
       CI_PROJECT_DIR: "/repo"
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
