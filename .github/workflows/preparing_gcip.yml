@@ -121,6 +121,7 @@ jobs:
           git config --local user.name "${{ secrets.GIT_USER_NAME }}"
           git add .
           git commit -m "Adding generated files to EnvGene repository."
+          git pull --rebase
           git push origin main
 
  # git_commit:
