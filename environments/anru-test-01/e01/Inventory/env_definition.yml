@@ -7,10 +7,10 @@ envTemplate:
     key: value
   envSpecificParamsets:
     cloud:
-      - integrations
       - cloud-specific
+      - integrations
       - paramsetA
     main:
-      - internal-base-ns
       - toms-params
+      - internal-base-ns
       - paramsetB
