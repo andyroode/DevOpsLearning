@@ -84,10 +84,15 @@ jobs:
           chmod +x .github/scripts/execute_parameters_validation.sh
           .github/scripts/execute_parameters_validation.sh
 
-      - name: Save validated environments and original environment
+      - name: Read GAV data
         id: export-outputs
         run: |
-          echo "gav_variables=${{ matrix.environment }}" >> $GITHUB_OUTPUT    
+          if [ -f "/repo/gav_output.txt" ]; then
+            GAV_DATA=$(cat /repo/gav_output.txt)
+            echo "gav_variables=$GAV_DATA" >> $GITHUB_OUTPUT
+          else
+            echo "gav_variables=," >> $GITHUB_OUTPUT
+          fi    
           
 
   generate_inventory:
