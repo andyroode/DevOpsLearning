@@ -35,17 +35,17 @@ docker run --rm \
   -e GITHUB_USER_NAME="${GITHUB_USER_NAME:-""}" \
   -e GITHUB_TOKEN="${GITHUB_TOKEN:-""}" \
   ghcr.io/netcracker/qubership-build-envgene:main \
-  bash -c "
+  bash -c '
       set -e
 
-      export ENV_NAME=\"$ENV_NAME\"
-      export ENV_NAME_SHORT=\$(echo \"\$ENV_NAME\" | awk -F '/' '{print \$NF}')
-      export ENVIRONMENT_NAME=\"$ENVIRONMENT_NAME\"
+      export ENV_NAME="$ENV_NAME"
+      export ENV_NAME_SHORT=$(echo "$ENV_NAME" | awk -F "/" "{print \$NF}")
+      export ENVIRONMENT_NAME="$ENVIRONMENT_NAME"
 
       if [ -d "${CI_PROJECT_DIR}/configuration/certs" ]; then
-        cert_path=$(ls -A "${CI_PROJECT_DIR}/configuration/certs");
+        cert_path=$(ls -A "${CI_PROJECT_DIR}/configuration/certs")
         for path in $cert_path; do
-          . /module/scripts/update_ca_cert.sh ${CI_PROJECT_DIR}/configuration/certs/$path;
+          . /module/scripts/update_ca_cert.sh "${CI_PROJECT_DIR}/configuration/certs/$path"
         done
       fi
 
@@ -58,15 +58,15 @@ docker run --rm \
 
       if [ "$ENV_TEMPLATE_TEST" == "true" ]; then
         env_name=$(cat set_variable.txt)
-        sed -i "s|\\\"envgeneNullValue\\\"|\\\"test_value\\\"|g" "$CI_PROJECT_DIR/environments/$env_name/Credentials/credentials.yml"
+        sed -i "s|\\\"envgeneNullValue\\\"|\\\"test_value\\\"|g" "${CI_PROJECT_DIR}/environments/$env_name/Credentials/credentials.yml"
       else
-        export env_name=$(echo $ENV_NAME | awk -F '/' '{print $NF}')
+        export env_name=$(echo "$ENV_NAME" | awk -F "/" "{print \$NF}")
       fi
 
-      env_path=$(sudo find $CI_PROJECT_DIR/environments -type d -name "$env_name")
+      env_path=$(find "${CI_PROJECT_DIR}/environments" -type d -name "$env_name")
       for path in $env_path; do
         if [ -d "$path/Credentials" ]; then
-          sudo chmod ugo+rw $path/Credentials/*
+          chmod ugo+rw "$path/Credentials/"*
         fi
       done
-    "
+  '
