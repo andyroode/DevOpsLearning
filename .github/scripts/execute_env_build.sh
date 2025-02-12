@@ -42,7 +42,12 @@ docker run --rm \
       export ENV_NAME="$ENV_NAME"
       export ENV_NAME_SHORT=$(echo "$ENV_NAME" | awk -F "/" "{print \$NF}")
       export ENVIRONMENT_NAME="$ENVIRONMENT_NAME"
-      export ENV_TEMPLATE_TEST="ENV_TEMPLATE_TEST"
+      export ENV_TEMPLATE_TEST="$ENV_TEMPLATE_TEST"
+      export CLUSTER_NAME="$CLUSTER_NAME"
+      export CI_PROJECT_DIR="$CI_PROJECT_DIR"
+      export ENV_TEMPLATE_VERSION="$ENV_TEMPLATE_VERSION"
+      export GROUP_ID="$GROUP_ID"
+      export ARTIFACT_ID="$ARTIFACT_ID"
 
       if [ -d "${CI_PROJECT_DIR}/configuration/certs" ]; then
         cert_path=$(ls -A "${CI_PROJECT_DIR}/configuration/certs")
