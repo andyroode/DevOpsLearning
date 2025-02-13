@@ -7,4 +7,4 @@ myreg:
   proxyRepository: "https://site.com"
   releaseTemplateRepository: "https://site.com"
   snapshotTemplateRepository: "https://site.com"
-  stagingTemplateRepository: "https://site.com
+  stagingTemplateRepository: "https://site.com"
