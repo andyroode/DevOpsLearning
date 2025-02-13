@@ -1,6 +1,6 @@
 ---
 
-ENV_NAMES: 'anru-test-01/e01,anru-test-01/e02'
+ENV_NAMES: 'anru-test-01/e01'
 ENV_BUILDER: 'false'
 GET_PASSPORT: 'false'
 CMDB_IMPORT: 'false'
