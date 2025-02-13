@@ -30,6 +30,8 @@ docker run --rm \
   -e module_inventory="${CI_PROJECT_DIR}/configuration/inventory.yaml" \
   -e module_ansible_cfg="/module/ansible/ansible.cfg" \
   -e module_config_default="/module/templates/defaults.yaml" \
+  -e envgen_args=" -vv" \
+  -e envgen_debug="true" \
   -e GIT_STRATEGY="none" \
   -e COMMIT_ENV="true" \
   -e SECRET_KEY="${SECRET_KEY:-""}" \
