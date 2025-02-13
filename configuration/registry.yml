@@ -1,10 +1,10 @@
-temp:
-  username: somevalue.secret
-  password: somevalue.secret
-  releaseRepository: "https://site.com"
-  snapshotRepository: "https://site.com"
-  stagingRepository: "https://site.com"
-  proxyRepository: "https://site.com"
-  releaseTemplateRepository: "https://site.com"
-  snapshotTemplateRepository: "https://site.com"
-  stagingTemplateRepository: "https://site.com"
+maven-central:
+  username: ""
+  password: ""
+  releaseRepository: "https://repo.maven.apache.org/maven2"
+  snapshotRepository: "https://oss.sonatype.org/content/repositories/snapshots"
+  stagingRepository: "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+  proxyRepository: "https://repo.maven.apache.org/maven2"
+  releaseTemplateRepository: "https://repo.maven.apache.org/maven2"
+  snapshotTemplateRepository: "https://oss.sonatype.org/content/repositories/snapshots"
+  stagingTemplateRepository: "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
