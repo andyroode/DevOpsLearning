@@ -3,6 +3,7 @@ set -e
 
 CLUSTER_NAME=$(echo "$ENV_NAME" | cut -d'/' -f1)
 ENVIRONMENT_NAME=$(echo "$ENV_NAME" | cut -d'/' -f2 | xargs)
+CI_PROJECT_DIR=$(echo "$CI_PROJECT_DIR")
 
 docker run --rm \
   -v "$GITHUB_WORKSPACE:/repo" \
