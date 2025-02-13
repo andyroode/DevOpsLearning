@@ -20,3 +20,4 @@ envTemplate:
       group_id: "com.temp.deploy.custom-temp"
       artifact_id: "my_artifact"
       version: "temp-131627"
+    templateRepository: "temp"
