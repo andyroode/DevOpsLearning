@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
+CLUSTER_NAME=$(echo "$ENV_NAME" | cut -d'/' -f1)
+ENVIRONMENT_NAME=$(echo "$ENV_NAME" | cut -d'/' -f2 | xargs)
+
 docker run --rm \
   -v "$GITHUB_WORKSPACE:/repo" \
   -w /repo \
