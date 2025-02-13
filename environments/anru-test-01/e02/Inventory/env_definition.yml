@@ -7,3 +7,23 @@ inventory:
       group_id: "com.temp.deploy.custom-temp"
       artifact_id: "my_artifact"
       version: "temp-131627"
+envTemplate:
+  additionalTemplateVariables:
+    key: value
+  envSpecificParamsets:
+    cloud:
+      - cloud-specific
+      - integrations
+      - paramsetA
+    main:
+      - toms-params
+      - internal-base-ns
+      - paramsetB
+  templateArtifact:
+    registry: "temp"
+    repository: "temp"
+    artifact:
+      group_id: "com.temp.deploy.custom-temp"
+      artifact_id: "my_artifact"
+      version: "temp-131627"
+    templateRepository: "temp"
