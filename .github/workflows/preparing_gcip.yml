@@ -101,6 +101,7 @@ jobs:
       - show_environment_variables
     container:
       image: ghcr.io/netcracker/qubership-build-envgene:main
+      options: --user root
     strategy:
       fail-fast: false
       matrix:
@@ -163,8 +164,6 @@ jobs:
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
           git config --local user.name "${{ secrets.GIT_USER_NAME }}"
           
-          git config --global --add safe.directory ${{ github.workspace }}
-
           sudo chown -R $USER:$USER environments/
           sudo chmod -R +rw environments/
 
