@@ -162,12 +162,15 @@ jobs:
           
           ls -la $(pwd)
           
+          sudo chown -R $USER:$USER environments/
+          sudo chmod -R +rw environments/
+          
+          sudo chown -R $(id -u):$(id -g) .git
+          sudo chmod -R +rw .git
+          
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
           git config --local user.name "${{ secrets.GIT_USER_NAME }}"
           
-          sudo chown -R $USER:$USER environments/
-          sudo chmod -R +rw environments/
-
           git reset --hard
 
           git pull --rebase origin main || git reset --hard origin/main
