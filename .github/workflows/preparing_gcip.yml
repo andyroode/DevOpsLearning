@@ -75,6 +75,8 @@ jobs:
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
+        with:
+          path: repo
 
       - name: Read environment variables
         run: |
