@@ -112,7 +112,7 @@ jobs:
 
       - name: Generate inventory
         run: |
-          export ENV_NAME="$(echo "${{ matrix.environment }}" | cut -d'/' -f1 | xargs)"
+          export ENV_NAME="${{ matrix.environment }}"
           export ENV_GENERATION_PARAMS="$(jq -nc \
             --arg sd_source_type "${SD_SOURCE_TYPE:-""}" \
             --arg sd_version "${SD_VERSION:-""}" \
@@ -139,6 +139,9 @@ jobs:
           
           export CLUSTER_NAME
           export ENVIRONMENT_NAME
+          
+          echo $CLUSTER_NAME
+          echo $ENVIRONMENT_NAME
           
           python3 /build_env/scripts/build_env/env_inventory_generation.py
           
