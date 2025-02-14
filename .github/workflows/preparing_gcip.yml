@@ -157,6 +157,12 @@ jobs:
           export ENVIRONMENT_NAME
           
           python3 /build_env/scripts/build_env/env_inventory_generation.py
+      
+
+      - name: Debug the repo
+        run: |
+          ls -la ${{ github.workspace }}
+
 
       - name: Commit files
         working-directory: ${{ github.workspace }}
