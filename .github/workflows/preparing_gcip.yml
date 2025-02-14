@@ -59,6 +59,7 @@ jobs:
           echo "env_matrix=$arr" >> $GITHUB_OUTPUT    
 
   parameters_validation:
+    name: ${{ matrix.environment }}
     runs-on: ubuntu-latest
     needs: show_environment_variables
     container:
