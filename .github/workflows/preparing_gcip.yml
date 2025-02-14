@@ -154,7 +154,7 @@ jobs:
           
           python3 /build_env/scripts/build_env/env_inventory_generation.py
           
-          ls -la ${{ github.workspace }}
+          ls -la ${CI_PROJECT_DIR}
       
       - name: Commit files
         working-directory: ${{ github.workspace }}
