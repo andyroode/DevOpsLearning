@@ -1,0 +1,14 @@
+inventory:
+  clusterUrl: test-val.com
+envTemplate:
+  additionalTemplateVariables:
+    key: value
+  envSpecificParamsets:
+    cloud:
+      - cloud-specific
+      - integrations
+      - paramsetA
+    main:
+      - internal-base-ns
+      - toms-params
+      - paramsetB
