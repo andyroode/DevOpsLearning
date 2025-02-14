@@ -63,6 +63,7 @@ jobs:
     needs: show_environment_variables
     container:
       image: ghcr.io/netcracker/qubership-build-gcip:main
+      options: --user root
     strategy:
       fail-fast: false
       matrix:
