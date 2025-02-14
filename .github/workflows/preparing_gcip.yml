@@ -76,17 +76,9 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
-      - name: Print path
-        run: |
-          echo "GitHub workspace is: ${{ github.workspace }}"
-
       - name: Read environment variables
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
-
-      - name: Debug - List workspace
-        run: |
-          find /github/workspace -maxdepth 2 | sort
 
       - name: EnvGene parameters validation
         run: |
@@ -108,15 +100,11 @@ jobs:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
       CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
       CI_PROJECT_DIR: ${{ github.workspace }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
-
-      - name: Configure git safe directory
-        run: |
-          git config --global --add safe.directory ${{ github.workspace }}
 
       - name: Read environment variables
         run: |
@@ -124,7 +112,7 @@ jobs:
 
       - name: Generate inventory
         run: |
-          export ENV_NAME="${{ matrix.environment }}"
+          export ENV_NAME="$(echo "${{ matrix.environment }}" | cut -d'/' -f2 | xargs)"
           export ENV_GENERATION_PARAMS="$(jq -nc \
             --arg sd_source_type "${SD_SOURCE_TYPE:-""}" \
             --arg sd_version "${SD_VERSION:-""}" \
@@ -157,21 +145,8 @@ jobs:
 
       - name: Commit files
         run: |
-          pwd
-          
-          ls -la $(pwd)
-          
           sudo chown -R $(id -u):$(id -g) ${CI_PROJECT_DIR}
           sudo chmod -R +rw ${CI_PROJECT_DIR}
-          
-          sudo chown -R $USER:$USER environments/
-          sudo chmod -R +rw environments/
-          
-          echo "Current user: $(whoami)"
-          echo "Checking if .git exists:"
-          ls -la .git || echo ".git directory not found!"
-          echo "Checking if inside a Git repo:"
-          git status || echo "Not inside a Git repository!"
           
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
           git config --local user.name "${{ secrets.GIT_USER_NAME }}"
