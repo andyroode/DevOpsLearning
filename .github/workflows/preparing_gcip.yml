@@ -75,6 +75,10 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
+      - name: Print path
+        run: |
+          echo "GitHub workspace is: ${{ github.workspace }}"
+
       - name: Read environment variables
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
