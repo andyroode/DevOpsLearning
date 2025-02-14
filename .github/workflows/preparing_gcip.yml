@@ -122,10 +122,6 @@ jobs:
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
-      - name: Debug after generation
-        run: |
-          pwd
-
       - name: Generate inventory
         run: |
           export ENV_NAME="${{ matrix.environment }}"
@@ -157,13 +153,9 @@ jobs:
           export ENVIRONMENT_NAME
           
           python3 /build_env/scripts/build_env/env_inventory_generation.py
-      
-
-      - name: Debug the repo
-        run: |
+          
           ls -la ${{ github.workspace }}
-
-
+      
       - name: Commit files
         working-directory: ${{ github.workspace }}
         run: |
