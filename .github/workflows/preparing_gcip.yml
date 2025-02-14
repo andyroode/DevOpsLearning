@@ -158,6 +158,10 @@ jobs:
       
       - name: Commit files
         run: |
+          pwd
+          
+          ls -la $(pwd)
+          
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
           git config --local user.name "${{ secrets.GIT_USER_NAME }}"
           
