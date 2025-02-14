@@ -157,7 +157,7 @@ jobs:
           ls -la ${CI_PROJECT_DIR}
       
       - name: Commit files
-        working-directory: ${{ github.workspace }}
+        working-directory: ${CI_PROJECT_DIR}
         run: |
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
           git config --local user.name "${{ secrets.GIT_USER_NAME }}"
