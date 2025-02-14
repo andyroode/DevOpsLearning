@@ -80,6 +80,11 @@ jobs:
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
+      - name: Debug - List environments directory
+        run: |
+          ls -la /github/workspace/environments
+          ls -la /github/workspace/environments/anru-test-01
+
       - name: EnvGene parameters validation
         run: |
           export ENV_NAME="${{ matrix.environment }}"

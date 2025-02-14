@@ -5,20 +5,18 @@ import json
 import os
 
 def getenv_and_log(key, default=""):
-    """ Функция для получения переменной окружения с логированием """
     value = os.getenv(key, default)
-    print(f"{key}: {value}")  # Для отладки
+    print(f"{key}: {value}")
     return value
 
 def sanitize_json(value):
-    """ Преобразует многострочный YAML в JSON-строку """
     if isinstance(value, str):
         try:
-            return json.dumps(json.loads(value))  # Попытка загрузить как JSON и пересобрать
+            return json.dumps(json.loads(value))
         except json.JSONDecodeError:
-            return json.dumps(value)  # Если не JSON, просто в кавычки
+            return json.dumps(value)
     elif isinstance(value, dict):
-        return json.dumps(value)  # Если уже dict, просто превращаем в JSON строку
+        return json.dumps(value)
     return str(value)
 
 def main():
@@ -28,19 +26,16 @@ def main():
 
     config_file = sys.argv[1]
 
-    # Загружаем YAML
     with open(config_file, 'r', encoding='utf-8') as f:
         data = yaml.safe_load(f)
 
-    # Преобразуем в ENV-формат для GitHub Actions
     with open(os.getenv('GITHUB_ENV'), 'a', encoding='utf-8') as env_file:
         for key, value in data.items():
             if key == "ENV_SPECIFIC_PARAMETERS":
-                value = sanitize_json(value)  # Преобразуем в одну JSON-строку
+                value = sanitize_json(value)
 
-            env_file.write(f"{key}={value}\n")  # Записываем в переменные окружения
+            env_file.write(f"{key}={value}\n")
 
-        # ✅ Формируем ENV_GENERATION_PARAMS как JSON-объект для дальнейшего использования
         env_generation_params = {
             "SD_SOURCE_TYPE": data.get("SD_SOURCE_TYPE", ""),
             "SD_VERSION": data.get("SD_VERSION", ""),
@@ -52,7 +47,6 @@ def main():
             "ENV_TEMPLATE_VERSION": data.get("ENV_TEMPLATE_VERSION", "")
         }
 
-        # ✅ Записываем ENV_GENERATION_PARAMS в виде JSON-строки в ENV
         env_file.write(f'ENV_GENERATION_PARAMS={json.dumps(env_generation_params)}\n')
 
 if __name__ == "__main__":
