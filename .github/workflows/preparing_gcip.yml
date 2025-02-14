@@ -162,6 +162,9 @@ jobs:
           
           ls -la $(pwd)
           
+          sudo chown -R $(id -u):$(id -g)${CI_PROJECT_DIR}
+          sudo chmod -R +rw ${CI_PROJECT_DIR}
+          
           sudo chown -R $USER:$USER environments/
           sudo chmod -R +rw environments/
           
