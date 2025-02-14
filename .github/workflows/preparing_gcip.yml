@@ -159,6 +159,7 @@ jobs:
           python3 /build_env/scripts/build_env/env_inventory_generation.py
 
       - name: Commit files
+        working-directory: ${{ github.workspace }}
         run: |
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
           git config --local user.name "${{ secrets.GIT_USER_NAME }}"
