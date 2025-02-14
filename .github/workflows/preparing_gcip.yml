@@ -158,11 +158,6 @@ jobs:
           
           python3 /build_env/scripts/build_env/env_inventory_generation.py
 
-      - name: Debug after generation
-        run: |
-          ls -R
-          git status
-
       - name: Commit files
         run: |
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
