@@ -80,10 +80,9 @@ jobs:
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
-      - name: Debug - List environments directory
+      - name: Debug - List workspace
         run: |
-          ls -la /github/workspace/environments
-          ls -la /github/workspace/environments/anru-test-01
+          find /github/workspace -maxdepth 2 | sort
 
       - name: EnvGene parameters validation
         run: |
