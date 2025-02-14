@@ -115,7 +115,7 @@ jobs:
           
           export CLUSTER_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f1)
           export ENVIRONMENT_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f2 | xargs)
-          export ENV_NAME=$ENVIRONMENT_NAME"
+          export ENV_NAME=$ENVIRONMENT_NAME
           
           export ENV_GENERATION_PARAMS="$(jq -nc \
             --arg sd_source_type "${SD_SOURCE_TYPE:-""}" \
