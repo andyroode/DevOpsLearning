@@ -114,8 +114,7 @@ jobs:
       - name: Generate inventory
         run: |
           export ENV_NAME="${{ matrix.environment }}"
-          
-         export ENV_GENERATION_PARAMS="$(jq -nc \
+          export ENV_GENERATION_PARAMS="$(jq -nc \
             --arg sd_source_type "${SD_SOURCE_TYPE:-""}" \
             --arg sd_version "${SD_VERSION:-""}" \
             --arg sd_data "${SD_DATA:-"{}"}" \
