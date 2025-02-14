@@ -154,15 +154,14 @@ jobs:
           
           python3 /build_env/scripts/build_env/env_inventory_generation.py
           
-          ls -la ${CI_PROJECT_DIR}
-      
+
       - name: Commit files
         run: |
           pwd
           
           ls -la $(pwd)
           
-          sudo chown -R $(id -u):$(id -g)${CI_PROJECT_DIR}
+          sudo chown -R $(id -u):$(id -g) ${CI_PROJECT_DIR}
           sudo chmod -R +rw ${CI_PROJECT_DIR}
           
           sudo chown -R $USER:$USER environments/
