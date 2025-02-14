@@ -71,12 +71,10 @@ jobs:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
       CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-      CI_PROJECT_DIR: "/repo"
+      CI_PROJECT_DIR: "/github/workspace"
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
-        with:
-          path: repo
 
       - name: Read environment variables
         run: |
