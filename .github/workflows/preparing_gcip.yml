@@ -114,6 +114,10 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
+      - name: Configure git safe directory
+        run: |
+          git config --global --add safe.directory ${{ github.workspace }}
+
       - name: Read environment variables
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
