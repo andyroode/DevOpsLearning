@@ -165,8 +165,11 @@ jobs:
           sudo chown -R $USER:$USER environments/
           sudo chmod -R +rw environments/
           
-          sudo chown -R $(id -u):$(id -g) .git
-          sudo chmod -R +rw .git
+          echo "Current user: $(whoami)"
+          echo "Checking if .git exists:"
+          ls -la .git || echo ".git directory not found!"
+          echo "Checking if inside a Git repo:"
+          git status || echo "Not inside a Git repository!"
           
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
           git config --local user.name "${{ secrets.GIT_USER_NAME }}"
