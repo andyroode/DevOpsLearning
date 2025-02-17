@@ -167,13 +167,16 @@ jobs:
     needs:
       - generate_inventory
       - show_environment_variables
+    container:
+      image: ghcr.io/netcracker/qubership-build-envgene:main
+      options: --user root
     strategy:
       fail-fast: false
       matrix:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
       CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-      CI_PROJECT_DIR: "/repo"
+      CI_PROJECT_DIR: ${{ github.workspace }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
     steps:
       - name: Repository Checkout
@@ -186,11 +189,47 @@ jobs:
       - name: Build Env
         run: |
           export ENV_NAME="${{ matrix.environment }}"
-          chmod +x .github/scripts/execute_env_build.sh
-          .github/scripts/execute_env_build.sh  
-
-      
-
+          export CLUSTER_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f1)
+          export ENVIRONMENT_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f2 | xargs)
+          
+          export ENV_NAME="$ENV_NAME"
+          export ENV_NAME_SHORT=$(echo "$ENV_NAME" | awk -F "/" "{print \$NF}")
+          export ENVIRONMENT_NAME="$ENVIRONMENT_NAME"
+          export ENV_TEMPLATE_TEST="$ENV_TEMPLATE_TEST"
+          export CLUSTER_NAME="$CLUSTER_NAME"
+          export CI_PROJECT_DIR="$CI_PROJECT_DIR"
+          export ENV_TEMPLATE_VERSION="$ENV_TEMPLATE_VERSION"
+          export GROUP_ID="$GROUP_ID"
+          export ARTIFACT_ID="$ARTIFACT_ID"
+    
+          if [ -d "${CI_PROJECT_DIR}/configuration/certs" ]; then
+            cert_path=$(ls -A "${CI_PROJECT_DIR}/configuration/certs")
+            for path in $cert_path; do
+              . /module/scripts/update_ca_cert.sh "${CI_PROJECT_DIR}/configuration/certs/$path"
+            done
+          fi
+    
+          if [ "$ENV_TEMPLATE_VERSION" != "" ] && [ "$ENV_TEMPLATE_TEST" == "false" ]; then
+            /module/scripts/prepare.sh "set_template_version.yaml"
+            /module/scripts/prepare.sh "build_env.yaml"
+          else
+            /module/scripts/prepare.sh "build_env.yaml"
+          fi
+    
+          if [ "$ENV_TEMPLATE_TEST" == "true" ]; then
+            env_name=$(cat set_variable.txt)
+            sed -i "s|\\\"envgeneNullValue\\\"|\\\"test_value\\\"|g" "${CI_PROJECT_DIR}/environments/$env_name/Credentials/credentials.yml"
+          else
+            export env_name=$(echo "$ENV_NAME" | awk -F "/" "{print \$NF}")
+          fi
+    
+          env_path=$(find "${CI_PROJECT_DIR}/environments" -type d -name "$env_name")
+          for path in $env_path; do
+            if [ -d "$path/Credentials" ]; then
+              chmod ugo+rw "$path/Credentials/"*
+            fi
+          done
+          
       - name: Commit files
         run: |
           git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
