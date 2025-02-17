@@ -115,6 +115,10 @@ jobs:
           
           export CLUSTER_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f1)
           export ENVIRONMENT_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f2 | xargs)
+          
+          echo $CLUSTER_NAME
+          echo $ENVIRONMENT_NAME
+          
           export ENV_NAME=$ENVIRONMENT_NAME
           
           export ENV_GENERATION_PARAMS="$(jq -nc \
@@ -137,15 +141,6 @@ jobs:
               "ENV_TEMPLATE_VERSION": $env_template_version
             }'
           )"
-          
-          CLUSTER_NAME=$(echo "$ENV_NAME" | cut -d'/' -f1)
-          ENVIRONMENT_NAME=$(echo "$ENV_NAME" | cut -d'/' -f2 | xargs)
-          
-          export CLUSTER_NAME
-          export ENVIRONMENT_NAME
-          
-          echo $CLUSTER_NAME
-          echo $ENVIRONMENT_NAME
           
           python3 /build_env/scripts/build_env/env_inventory_generation.py
           
