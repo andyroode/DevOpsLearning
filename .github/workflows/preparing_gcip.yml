@@ -192,7 +192,6 @@ jobs:
           export CLUSTER_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f1)
           export ENVIRONMENT_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f2 | xargs)
           
-          export ENV_NAME="$ENV_NAME"
           export ENV_NAME_SHORT=$(echo "$ENV_NAME" | awk -F "/" "{print \$NF}")
           export ENVIRONMENT_NAME="$ENVIRONMENT_NAME"
           export ENV_TEMPLATE_TEST="$ENV_TEMPLATE_TEST"
@@ -201,6 +200,12 @@ jobs:
           export ENV_TEMPLATE_VERSION="$ENV_TEMPLATE_VERSION"
           export GROUP_ID="$GROUP_ID"
           export ARTIFACT_ID="$ARTIFACT_ID"
+          export module_ansible_dir="/module/ansible"
+          export module_inventory="$CI_PROJECT_DIR/configuration/inventory.yaml"
+          export module_ansible_cfg="/module/ansible/ansible.cfg"
+          export module_config_default="/module/templates/defaults.yaml"
+          export envgen_args=" -vvv"
+          export envgen_debug="true"
     
           if [ -d "${CI_PROJECT_DIR}/configuration/certs" ]; then
             cert_path=$(ls -A "${CI_PROJECT_DIR}/configuration/certs")
