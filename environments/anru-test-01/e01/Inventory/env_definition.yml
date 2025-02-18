@@ -2,6 +2,7 @@ inventory:
   environmentName: "e01"
   clusterUrl: test-val.com
 envTemplate:
+  name: consolidated
   additionalTemplateVariables:
     key: value
   envSpecificParamsets:
