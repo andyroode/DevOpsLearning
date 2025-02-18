@@ -130,9 +130,6 @@ jobs:
     needs:
       - generate_inventory
       - show_environment_variables
-    container:
-      image: ghcr.io/netcracker/qubership-build-envgene:main
-      options: --user root
     strategy:
       fail-fast: false
       matrix:
