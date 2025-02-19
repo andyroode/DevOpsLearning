@@ -1,9 +1,13 @@
 inventory:
   environmentName: "e01"
   clusterUrl: test-val.com
+  tenantName: "test-tenant"
+  deployer: "test-deployer"
+  cloudName: "test-cloud-name"
+  cloudPassport: "test-cloud-passport"
 envTemplate:
   #artifact: "test:0.0.0.2"
-  name: svt
+  name: dev
   additionalTemplateVariables:
     key: value
   envSpecificParamsets:
