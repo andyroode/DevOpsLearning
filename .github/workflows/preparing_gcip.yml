@@ -92,7 +92,7 @@ jobs:
       - parameters_validation
       - show_environment_variables
     container:
-      image: ghcr.io/netcracker/qubership-build-envgene:main
+      image: ghcr.io/netcracker/qubership-build-envgene:feature-build-pipeline
       options: --user root
     strategy:
       fail-fast: false
@@ -162,7 +162,7 @@ jobs:
       - generate_inventory
       - show_environment_variables
     container:
-      image: ghcr.io/netcracker/qubership-build-envgene:main
+      image: ghcr.io/netcracker/qubership-build-envgene:feature-build-pipeline
     strategy:
       fail-fast: false
       matrix:
