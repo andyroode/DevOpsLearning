@@ -25,5 +25,5 @@ envTemplate:
     artifact:
       group_id: "org.qubership"
       artifact_id: "qubership_envgene_templates"
-      version: "0.0.0.2"
+      version: "0.0.0.3"
     templateRepository: "releaseTemplateRepository"
