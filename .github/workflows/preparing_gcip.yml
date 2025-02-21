@@ -179,6 +179,7 @@ jobs:
       CI_COMMIT_REF_NAME: ${{ github.ref_name }}
       CI_PROJECT_DIR: ${{ github.workspace }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      FULL_ENV: ${{ matrix.environment }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -245,20 +246,12 @@ jobs:
             fi
           done
           
-      - name: Commit files
-        run: |
-          git config --local user.email "${{ secrets.GIT_USER_EMAIL }}"
-          git config --local user.name "${{ secrets.GIT_USER_NAME }}"
-
-          sudo chown -R $USER:$USER environments/
-          sudo chmod -R +rw environments/
-          git reset --hard
-          git pull --rebase origin main || git reset --hard origin/main
-
-          git add .
-          git commit -m "Adding generated files to EnvGene repository." || echo "No changes to commit"
-
-          git push origin main || (git pull --rebase origin main && git push origin main)        
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: environments
+          path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
+        if: ${{ always() }}
           
           
           
