@@ -1,5 +1,4 @@
-myvalue-cred:
+cloud-deploy-sa-token:
   data:
-    password: "val"
-    username: "val"
-  type: "usernamePassword"
+    secret: "val"
+  type: "secret"
