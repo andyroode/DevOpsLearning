@@ -194,7 +194,7 @@ jobs:
           echo "::set-output name=artifact_id::$LATEST_ARTIFACT_ID"
 
       - name: Download latest artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: environments
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
