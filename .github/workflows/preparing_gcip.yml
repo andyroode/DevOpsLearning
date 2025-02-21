@@ -146,7 +146,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: environments
+          name: generate_inventory
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
         if: ${{ always() }}
 
@@ -249,7 +249,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: environments
+          name: env_build
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
         if: ${{ always() }}
           
