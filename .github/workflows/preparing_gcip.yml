@@ -197,7 +197,7 @@ jobs:
       - name: Use artifacts
         run: |
           echo "Using downloaded artifacts..."
-          ls -R ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
+          ls -R ${CI_PROJECT_DIR}/environments/${{ env.FULL_ENV }}
 
       - name: Build Env
         run: |
