@@ -194,6 +194,11 @@ jobs:
           name: generate_inventory
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
 
+      - name: Use artifacts
+        run: |
+          echo "Using downloaded artifacts..."
+          ls -R ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
+
       - name: Build Env
         run: |
           export ENV_NAME_SHORT=$(echo "$ENV_NAME" | awk -F "/" "{print \$NF}")
