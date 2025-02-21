@@ -196,7 +196,6 @@ jobs:
       - name: Download latest artifact
         uses: actions/download-artifact@v4
         with:
-          name: environments
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
           github-token: ${{ github.token }}
           artifact-id: ${{ steps.get-artifact.outputs.artifact_id }}
