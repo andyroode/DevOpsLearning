@@ -288,9 +288,9 @@ jobs:
           "https://api.github.com/repos/${{ github.repository }}/actions/artifacts")
           
           LATEST_ARTIFACT_ID=$(echo "$ARTIFACTS_JSON" | jq -r '.artifacts | sort_by(.created_at) | last | .id')
-          
+
+          echo "artifact_id=$LATEST_ARTIFACT_ID" >> $GITHUB_OUTPUT
           echo "Latest artifact ID: $LATEST_ARTIFACT_ID"
-          echo "::set-output name=artifact_id::$LATEST_ARTIFACT_ID"
 
       - name: Download latest artifact
         run: |
@@ -299,7 +299,7 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
             "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ steps.get-artifact.outputs.artifact_id }}/zip"
           
-          unzip artifact.zip -d ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
+          unzip artifact.zip -d ${CI_PROJECT_DIR}/environments/${{ env.FULL_ENV }}
           rm artifact.zip  # Удаляем временный ZIP-файл
 
       - name: Git Commit
