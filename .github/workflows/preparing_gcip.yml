@@ -293,17 +293,14 @@ jobs:
           echo "::set-output name=artifact_id::$LATEST_ARTIFACT_ID"
 
       - name: Download latest artifact
-        uses: actions/download-artifact@v4
-        with:
-          path: ${{ github.workspace }}/temp_artifacts
-          github-token: ${{ github.token }}
-          artifact-id: ${{ steps.get-artifact.outputs.artifact_id }}
-
-      - name: Move artifacts to the correct path
         run: |
-          mkdir -p ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
-          mv ${{ github.workspace }}/temp_artifacts/* ${{ github.workspace }}/environments/${{ env.FULL_ENV }}/
-          rm -rf ${{ github.workspace }}/temp_artifacts
+          curl -L -o artifact.zip \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ steps.get-artifact.outputs.artifact_id }}/zip"
+          
+          unzip artifact.zip -d ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
+          rm artifact.zip  # Удаляем временный ZIP-файл
 
       - name: Git Commit
         run: |
