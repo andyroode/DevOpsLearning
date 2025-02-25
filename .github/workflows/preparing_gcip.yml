@@ -146,7 +146,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: generate_inventory_${{ matrix.environment }}
+          name: generate_inventory_$(echo "${{ matrix.environment }}" | sed 's|/|_|g')
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
         if: ${{ always() }}
 
@@ -181,7 +181,7 @@ jobs:
       - name: Get artifact ID that contains environment name
         id: get-artifact
         run: |
-          ENV_ARTIFACT_NAME="${{ matrix.environment }}"
+          ENV_ARTIFACT_NAME="$(echo "${{ matrix.environment }}" | sed 's|/|_|g')"
 
           ARTIFACTS_JSON=$(curl -s \
             -H "Authorization: Bearer ${{ github.token }}" \
