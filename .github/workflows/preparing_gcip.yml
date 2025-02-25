@@ -181,10 +181,14 @@ jobs:
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
+      - name: Sanitize environment name
+        run: |
+          echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
+
       - name: Get artifact ID that contains environment name
         id: get-artifact
         run: |
-          ENV_ARTIFACT_NAME="$(echo "${{ matrix.environment }}" | sed 's|/|_|g')"
+          ENV_ARTIFACT_NAME=${{ env.SANITIZED_NAME }}
 
           ARTIFACTS_JSON=$(curl -s \
             -H "Authorization: Bearer ${{ github.token }}" \
