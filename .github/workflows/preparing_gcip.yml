@@ -323,27 +323,51 @@ jobs:
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
 
-      - name: Get latest artifact ID
+      - name: Sanitize environment name
+        run: |
+          echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
+
+      - name: Get artifact ID that contains environment name
         id: get-artifact
         run: |
-          ARTIFACTS_JSON=$(curl -s -H "Authorization: Bearer ${{ github.token }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          "https://api.github.com/repos/${{ github.repository }}/actions/artifacts")
-          
-          LATEST_ARTIFACT_ID=$(echo "$ARTIFACTS_JSON" | jq -r '.artifacts | sort_by(.created_at) | last | .id')
+          ENV_ARTIFACT_NAME=${{ env.SANITIZED_NAME }}
 
-          echo "artifact_id=$LATEST_ARTIFACT_ID" >> $GITHUB_OUTPUT
-          echo "Latest artifact ID: $LATEST_ARTIFACT_ID"
-
-      - name: Download latest artifact
-        run: |
-          curl -L -o artifact.zip \
+          ARTIFACTS_JSON=$(curl -s \
             -H "Authorization: Bearer ${{ github.token }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ steps.get-artifact.outputs.artifact_id }}/zip"
-          
+            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts")
+
+          MATCHING_ARTIFACT_ID=$(echo "$ARTIFACTS_JSON" | jq -r --arg name "$ENV_ARTIFACT_NAME" '
+            .artifacts
+            | map(select(.name | contains($name)))
+            | sort_by(.created_at)
+            | last
+            | .id
+          ')
+
+          if [ "$MATCHING_ARTIFACT_ID" = "null" ] || [ -z "$MATCHING_ARTIFACT_ID" ]; then
+            echo "Не найден артефакт, в имени которого содержится: $ENV_ARTIFACT_NAME"
+            exit 1
+          fi
+
+          echo "artifact_id=$MATCHING_ARTIFACT_ID" >> $GITHUB_OUTPUT
+          echo "Found artifact ID: $MATCHING_ARTIFACT_ID (contains '$ENV_ARTIFACT_NAME' in its name)"
+
+      - name: Download & unzip artifact
+        run: |
+          ARTIFACT_URL="https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ steps.get-artifact.outputs.artifact_id }}/zip"
+
+          # Get the final redirect URL after following all redirects
+          REDIRECT_URL=$(curl -L -s -o /dev/null -w "%{url_effective}" \
+            -H "Authorization: Bearer ${{ github.token }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "$ARTIFACT_URL")
+
+          # Download the artifact using the obtained redirect URL (no auth needed here)
+          curl -L -o artifact.zip "$REDIRECT_URL"
+
           unzip -o artifact.zip -d ${CI_PROJECT_DIR}/environments/${{ env.FULL_ENV }}
-          rm artifact.zip  # Удаляем временный ZIP-файл
+          rm artifact.zip
 
       - name: Git Commit
         run: |
@@ -401,6 +425,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: generated_env
+          name: generated_env_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/git_envs
         if: ${{ always() }}
