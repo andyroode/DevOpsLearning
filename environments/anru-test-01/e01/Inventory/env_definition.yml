@@ -16,8 +16,8 @@ envTemplate:
       - integrations
       - paramsetA
     main:
-      - toms-params
       - internal-base-ns
+      - toms-params
       - paramsetB
   templateArtifact:
     registry: "maven-central"
@@ -27,3 +27,5 @@ envTemplate:
       artifact_id: "qubership_envgene_templates"
       version: "0.0.0.5"
     templateRepository: "releaseTemplateRepository"
+generatedVersions:
+  generateEnvironmentLatestVersion: "0.0.0.5"  # This value is automatically generated during job run.
