@@ -213,9 +213,9 @@ jobs:
 
           curl -L -o artifact.zip \
             -H "Authorization: Bearer ${{ github.token }}" \
-            -H "Accept: application/vnd.github.v3+json" \
+            -H "Accept: application/octet-stream" \
             "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ steps.get-artifact.outputs.artifact_id }}/zip"
-
+      
           unzip -o artifact.zip -d "${CI_PROJECT_DIR}/environments/${{ env.FULL_ENV }}"
           rm artifact.zip
 
