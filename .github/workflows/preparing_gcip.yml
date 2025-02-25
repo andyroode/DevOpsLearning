@@ -149,7 +149,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: generate_inventory_${SANITIZED_NAME}
+          name: generate_inventory_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
         if: ${{ always() }}
 
