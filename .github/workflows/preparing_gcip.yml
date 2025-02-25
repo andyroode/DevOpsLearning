@@ -213,11 +213,17 @@ jobs:
 
       - name: Download & unzip artifact
         run: |
-          curl -L -o artifact.zip \
+          ARTIFACT_URL="https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ steps.get-artifact.outputs.artifact_id }}/zip"
+
+          # Get the final redirect URL after following all redirects
+          REDIRECT_URL=$(curl -L -s -o /dev/null -w "%{url_effective}" \
             -H "Authorization: Bearer ${{ github.token }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ steps.get-artifact.outputs.artifact_id }}/zip"
-          
+            "$ARTIFACT_URL")
+
+          # Download the artifact using the obtained redirect URL (no auth needed here)
+          curl -L -o artifact.zip "$REDIRECT_URL"
+
           unzip -o artifact.zip -d ${CI_PROJECT_DIR}/environments/${{ env.FULL_ENV }}
           rm artifact.zip
 
