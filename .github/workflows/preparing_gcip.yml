@@ -288,7 +288,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: env_build_${{ matrix.environment }}
+          name: env_build_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
         if: ${{ always() }}
           
