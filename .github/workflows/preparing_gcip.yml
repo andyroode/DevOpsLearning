@@ -142,11 +142,14 @@ jobs:
           
           python3 /build_env/scripts/build_env/env_inventory_generation.py
 
+      - name: Sanitize environment name
+        run: |
+          echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: generate_inventory_$(echo "${{ matrix.environment }}" | sed 's|/|_|g')
+          name: generate_inventory_${SANITIZED_NAME}
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
         if: ${{ always() }}
 
