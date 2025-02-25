@@ -425,6 +425,6 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: generated_env_${{ env.SANITIZED_NAME }}
+          name: GENERATED_ENV_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/git_envs
         if: ${{ always() }}
