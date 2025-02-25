@@ -82,7 +82,7 @@ jobs:
 
       - name: EnvGene parameters validation
         run: |
-          export ENV_NAME="${{ matrix.environment }}"
+          export ENV_NAMES="${{ matrix.environment }}"
           python /module/scripts/github_actions.py validate_pipeline
 
   generate_inventory:
