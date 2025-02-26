@@ -1,7 +1,7 @@
 ---
 name: Docker build and publish
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       ref:
         description: "Branch name to create release from"
