@@ -10,21 +10,15 @@ on:
         description: 'Version'
 
 jobs:
-  checkout-repo:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Repository Checkout
-        uses: actions/checkout@v4
+  create_tag:
+    uses: netcracker/qubership-workflow-hub/.github/workflows/tag-creator.yml@main
+    with:
+      tag-name: v${{ github.event.inputs.version }}
 
-      - name: Create tag
-        uses: netcracker/qubership-workflow-hub/.github/workflows/tag-creator.yml@main
-        with:
-          tag-name: v${{ github.event.inputs.version }}
-
-      - name: Docker publish
-        uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
-        with:
-          dry-run: true
-          component: '[{"name": "test-name", "file": "./build/Dockerfile", "context": "."}]'
-          download-artifact: false
-          ref: v${{ github.event.inputs.version }}
+  docker_publish:
+    uses: netcracker/qubership-workflow-hub/.github/workflows/docker-publish.yml@main
+    with:
+      dry-run: true
+      component: '[{"name": "test-name", "file": "./build/Dockerfile", "context": "."}]'
+      download-artifact: false
+      ref: v${{ github.event.inputs.version }}
