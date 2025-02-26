@@ -26,5 +26,5 @@ jobs:
         with:
           dry-run: true
           component: '[{"name": "test-name", "file": "./build/Dockerfile", "context": "."}]'
-          download-artifact: "false"
+          download-artifact: false
           ref: v${{ github.event.inputs.version }}
