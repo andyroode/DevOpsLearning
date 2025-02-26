@@ -15,6 +15,7 @@ on:
         description: 'Dry run'
 permissions:
   contents: write
+  packages: write
 
 jobs:
   check-tag:
