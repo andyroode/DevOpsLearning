@@ -110,6 +110,11 @@ jobs:
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
+      - name: Prepare variables to work with artifacts
+        run: |
+          echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
+          echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
+
       - name: Generate inventory
         run: |
           
@@ -140,10 +145,6 @@ jobs:
           )"
           
           python3 /build_env/scripts/build_env/env_inventory_generation.py
-
-      - name: Sanitize environment name
-        run: |
-          echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -280,9 +281,10 @@ jobs:
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
-      - name: Sanitize environment name
+      - name: Prepare variables to work with artifacts
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
+          echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
           
 
       - name: Download artifact
