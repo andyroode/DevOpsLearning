@@ -54,5 +54,5 @@ runs:
 
         curl -L -o artifact.zip "$REDIRECT_URL"
 
-        unzip -o artifact.zip -d "${{ env.CI_PROJECT_DIR }}/environments/${{ inputs.full_env }}"
+        unzip -o artifact.zip -d "${{ github.workspace }}/environments/${{ inputs.full_env }}"
         rm artifact.zip
