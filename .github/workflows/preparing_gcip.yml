@@ -177,17 +177,17 @@ jobs:
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
-      - name: Sanitize environment name
+      - name: Prepare variables to download the artifacts
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
-          echo "$(pwd)"
+          echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
 
       - name: Download artifact
         uses: ./.github/actions/download_artifact
         with:
           sanitized_name: ${{ env.SANITIZED_NAME }}
           full_env: ${{ env.FULL_ENV }}
-          project_dir: ${{ env.CI_PROJECT_DIR }}
+          project_dir: ${{ env.PROJECT_DIR }}
 
       - name: Build Env
         run: |
