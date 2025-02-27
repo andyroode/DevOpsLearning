@@ -180,6 +180,7 @@ jobs:
       - name: Sanitize environment name
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
+          echo "$(pwd)"
 
       - name: Download artifact
         uses: ./.github/actions/download_artifact
@@ -282,7 +283,7 @@ jobs:
       - name: Sanitize environment name
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
-          echo "$(pwd)"
+          
 
       - name: Download artifact
         uses: ./.github/actions/download_artifact
