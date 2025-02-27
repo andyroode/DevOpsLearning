@@ -11,6 +11,10 @@ inputs:
     description: "Full environment name."
     required: true
     type: string
+  project_dir:
+    description: "Workspace."
+    required: true
+    type: string
 
 runs:
   using: "composite"
@@ -54,5 +58,5 @@ runs:
 
         curl -L -o artifact.zip "$REDIRECT_URL"
 
-        unzip -o artifact.zip -d "${{ github.workspace }}/environments/${{ inputs.full_env }}"
+        unzip -o artifact.zip -d "${{ inputs.project_dir }}/environments/${{ inputs.full_env }}"
         rm artifact.zip

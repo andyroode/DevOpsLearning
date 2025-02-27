@@ -186,6 +186,7 @@ jobs:
         with:
           sanitized_name: ${{ env.SANITIZED_NAME }}
           full_env: ${{ env.FULL_ENV }}
+          project_dir: ${{ env.CI_PROJECT_DIR }}
 
       - name: Build Env
         run: |
@@ -278,7 +279,6 @@ jobs:
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
-
       - name: Sanitize environment name
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
@@ -288,6 +288,7 @@ jobs:
         with:
           sanitized_name: ${{ env.SANITIZED_NAME }}
           full_env: ${{ env.FULL_ENV }}
+          project_dir: ${{ env.CI_PROJECT_DIR }}
 
       - name: Git Commit
         run: |
