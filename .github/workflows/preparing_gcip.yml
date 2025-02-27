@@ -11,14 +11,19 @@ on:
       - ".github/workflows/preparing_gcip.yml"
       - ".github/config/env_config.yaml"
 
+env:
+  CI_COMMIT_REF_NAME: ${{ github.ref_name }}
+  CI_PROJECT_DIR: ${{ github.workspace }}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  GITHUB_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
+  GITHUB_USER_NAME: ${{ secrets.GIT_USER_NAME }}
+  GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
 jobs:
   show_environment_variables:
     runs-on: ubuntu-latest
     outputs:
       env_matrix: ${{ steps.matrix-generator.outputs.env_matrix }}
-    env:
-      CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-      CI_PROJECT_DIR: ${{ github.workspace }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -69,9 +74,6 @@ jobs:
       fail-fast: false
       matrix:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
-    env:
-      CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-      CI_PROJECT_DIR: ${{ github.workspace }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -99,9 +101,6 @@ jobs:
       matrix:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
-      CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-      CI_PROJECT_DIR: ${{ github.workspace }}
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
       FULL_ENV: ${{ matrix.environment }}
     steps:
       - name: Repository Checkout
@@ -169,9 +168,6 @@ jobs:
       matrix:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
-      CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-      CI_PROJECT_DIR: ${{ github.workspace }}
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
       FULL_ENV: ${{ matrix.environment }}
     steps:
       - name: Repository Checkout
@@ -185,47 +181,11 @@ jobs:
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
 
-      - name: Get artifact ID that contains environment name
-        id: get-artifact
-        run: |
-          ENV_ARTIFACT_NAME=${{ env.SANITIZED_NAME }}
-
-          ARTIFACTS_JSON=$(curl -s \
-            -H "Authorization: Bearer ${{ github.token }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts")
-
-          MATCHING_ARTIFACT_ID=$(echo "$ARTIFACTS_JSON" | jq -r --arg name "$ENV_ARTIFACT_NAME" '
-            .artifacts
-            | map(select(.name | contains($name)))
-            | sort_by(.created_at)
-            | last
-            | .id
-          ')
-
-          if [ "$MATCHING_ARTIFACT_ID" = "null" ] || [ -z "$MATCHING_ARTIFACT_ID" ]; then
-            echo "Не найден артефакт, в имени которого содержится: $ENV_ARTIFACT_NAME"
-            exit 1
-          fi
-
-          echo "artifact_id=$MATCHING_ARTIFACT_ID" >> $GITHUB_OUTPUT
-          echo "Found artifact ID: $MATCHING_ARTIFACT_ID (contains '$ENV_ARTIFACT_NAME' in its name)"
-
-      - name: Download & unzip artifact
-        run: |
-          ARTIFACT_URL="https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ steps.get-artifact.outputs.artifact_id }}/zip"
-
-          # Get the final redirect URL after following all redirects
-          REDIRECT_URL=$(curl -L -s -o /dev/null -w "%{url_effective}" \
-            -H "Authorization: Bearer ${{ github.token }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "$ARTIFACT_URL")
-
-          # Download the artifact using the obtained redirect URL (no auth needed here)
-          curl -L -o artifact.zip "$REDIRECT_URL"
-
-          unzip -o artifact.zip -d ${CI_PROJECT_DIR}/environments/${{ env.FULL_ENV }}
-          rm artifact.zip
+      - name: Download artifact
+        uses: ./.github/actions/download_artifact
+        with:
+          sanitized_name: ${{ env.SANITIZED_NAME }}
+          full_env: ${{ env.FULL_ENV }}
 
       - name: Build Env
         run: |
@@ -309,13 +269,7 @@ jobs:
       matrix:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
-      CI_COMMIT_REF_NAME: ${{ github.ref_name }}
-      CI_PROJECT_DIR: ${{ github.workspace }}
-      SECRET_KEY: ${{ secrets.SECRET_KEY }}
       FULL_ENV: ${{ matrix.environment }}
-      GITHUB_USER_EMAIL: ${{ secrets.GIT_USER_EMAIL }}
-      GITHUB_USER_NAME: ${{ secrets.GIT_USER_NAME }}
-      GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -329,47 +283,11 @@ jobs:
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
 
-      - name: Get artifact ID that contains environment name
-        id: get-artifact
-        run: |
-          ENV_ARTIFACT_NAME=${{ env.SANITIZED_NAME }}
-
-          ARTIFACTS_JSON=$(curl -s \
-            -H "Authorization: Bearer ${{ github.token }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts")
-
-          MATCHING_ARTIFACT_ID=$(echo "$ARTIFACTS_JSON" | jq -r --arg name "$ENV_ARTIFACT_NAME" '
-            .artifacts
-            | map(select(.name | contains($name)))
-            | sort_by(.created_at)
-            | last
-            | .id
-          ')
-
-          if [ "$MATCHING_ARTIFACT_ID" = "null" ] || [ -z "$MATCHING_ARTIFACT_ID" ]; then
-            echo "Не найден артефакт, в имени которого содержится: $ENV_ARTIFACT_NAME"
-            exit 1
-          fi
-
-          echo "artifact_id=$MATCHING_ARTIFACT_ID" >> $GITHUB_OUTPUT
-          echo "Found artifact ID: $MATCHING_ARTIFACT_ID (contains '$ENV_ARTIFACT_NAME' in its name)"
-
-      - name: Download & unzip artifact
-        run: |
-          ARTIFACT_URL="https://api.github.com/repos/${{ github.repository }}/actions/artifacts/${{ steps.get-artifact.outputs.artifact_id }}/zip"
-
-          # Get the final redirect URL after following all redirects
-          REDIRECT_URL=$(curl -L -s -o /dev/null -w "%{url_effective}" \
-            -H "Authorization: Bearer ${{ github.token }}" \
-            -H "Accept: application/vnd.github.v3+json" \
-            "$ARTIFACT_URL")
-
-          # Download the artifact using the obtained redirect URL (no auth needed here)
-          curl -L -o artifact.zip "$REDIRECT_URL"
-
-          unzip -o artifact.zip -d ${CI_PROJECT_DIR}/environments/${{ env.FULL_ENV }}
-          rm artifact.zip
+      - name: Download artifact
+        uses: ./.github/actions/download_artifact
+        with:
+          sanitized_name: ${{ env.SANITIZED_NAME }}
+          full_env: ${{ env.FULL_ENV }}
 
       - name: Git Commit
         run: |
