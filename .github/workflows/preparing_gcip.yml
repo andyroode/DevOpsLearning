@@ -282,8 +282,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: [parameters_validation,show_environment_variables,generate_inventory,env_build]
     if: >-
-      ${{ needs.env_build.result == 'success' ||
-         needs.env_build.result == 'skipped' }}
+      ${{ 
+        needs.env_build.result == 'success' ||
+        needs.env_build.result == 'skipped' ||
+        needs.env_build.result == '' 
+      }}
     container:
       image: ghcr.io/netcracker/qubership-build-envgene:feature-build-pipeline
     strategy:
