@@ -204,6 +204,7 @@ jobs:
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
 
       - name: Download artifact
+        if: ${{ needs.show_environment_variables.outputs.ENV_TEMPLATE_TEST == 'true' && needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS != '{}' }}
         uses: ./.github/actions/download_artifact
         with:
           sanitized_name: ${{ env.SANITIZED_NAME }}
