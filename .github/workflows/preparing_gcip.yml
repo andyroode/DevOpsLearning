@@ -89,7 +89,7 @@ jobs:
 
   generate_inventory:
     name: ${{ matrix.environment }}
-    if: ${{ env.ENV_TEMPLATE_TEST == 'true' && env.ENV_GENERATION_PARAMS != '{}' }}
+    if: ${{ env.ENV_TEMPLATE_TEST == 'true' }}
     runs-on: ubuntu-latest
     needs:
       - parameters_validation
