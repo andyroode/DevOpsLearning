@@ -18,8 +18,8 @@ envTemplate:
       - paramsetA
     main:
       - internal-base-ns
-      - toms-params
       - paramsetB
+      - toms-params
   templateArtifact:
     registry: "temp"
     repository: "temp"
