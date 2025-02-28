@@ -1,5 +1,6 @@
 inventory:
   environmentName: "e02"
+  clusterUrl: test-val.com
   templateArtifact:
     registry: "temp"
     repository: "temp"
@@ -16,8 +17,8 @@ envTemplate:
       - integrations
       - paramsetA
     main:
-      - toms-params
       - internal-base-ns
+      - toms-params
       - paramsetB
   templateArtifact:
     registry: "temp"
