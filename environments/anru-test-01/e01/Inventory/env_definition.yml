@@ -12,8 +12,8 @@ envTemplate:
     key: value
   envSpecificParamsets:
     cloud:
-      - paramsetA
       - integrations
+      - paramsetA
       - cloud-specific
     main:
       - paramsetB
