@@ -284,6 +284,7 @@ jobs:
       - parameters_validation
       - show_environment_variables
       - generate_inventory
+      - env_build
     container:
       image: ghcr.io/netcracker/qubership-build-envgene:feature-build-pipeline
     strategy:
