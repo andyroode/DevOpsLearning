@@ -21,10 +21,18 @@ env:
 
 jobs:
   show_environment_variables:
+    name: "Read and check input variables"
     runs-on: ubuntu-latest
     outputs:
       env_matrix: ${{ steps.matrix-generator.outputs.env_matrix }}
+      ENV_BUILDER: ${{ steps.load_env.outputs.ENV_BUILDER }}
+      GET_PASSPORT: ${{ steps.load_env.outputs.GET_PASSPORT }}
+      CMDB_IMPORT: ${{ steps.load_env.outputs.CMDB_IMPORT }}
+      GENERATE_EFFECTIVE_SET: ${{ steps.load_env.outputs.GENERATE_EFFECTIVE_SET }}
       ENV_TEMPLATE_TEST: ${{ steps.load_env.outputs.ENV_TEMPLATE_TEST }}
+      ENV_INVENTORY_INIT: ${{ steps.load_env.outputs.ENV_INVENTORY_INIT }}
+      IS_OFFSITE: ${{ steps.load_env.outputs.IS_OFFSITE }}
+      ENV_SPECIFIC_PARAMETERS: ${{ steps.load_env.outputs.ENV_SPECIFIC_PARAMETERS }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -101,7 +109,7 @@ jobs:
 
   generate_inventory:
     name: ${{ matrix.environment }}
-    if: ${{ needs.show_environment_variables.outputs.ENV_TEMPLATE_TEST == 'true' }}
+    if: ${{ needs.show_environment_variables.outputs.ENV_TEMPLATE_TEST == 'true' && needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS != '{}' }}
     runs-on: ubuntu-latest
     needs:
       - parameters_validation

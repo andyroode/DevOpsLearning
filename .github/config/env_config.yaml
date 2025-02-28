@@ -1,14 +1,14 @@
 ---
 
 ENV_NAMES: 'anru-test-01/e01,anru-test-01/e02'
-ENV_BUILDER: 'false'
-GET_PASSPORT: 'false'
-CMDB_IMPORT: 'false'
-GENERATE_EFFECTIVE_SET: 'false'
+ENV_BUILDER: false
+GET_PASSPORT: false
+CMDB_IMPORT: false
+GENERATE_EFFECTIVE_SET: false
 ENV_TEMPLATE_VERSION: ''
 ENV_TEMPLATE_TEST: true
-ENV_INVENTORY_INIT: 'false'
-IS_OFFSITE: 'false'
+ENV_INVENTORY_INIT: false
+IS_OFFSITE: false
 JSON_SCHEMAS_DIR: '/module/schemas'
 SD_DATA: '{ "version": 2.2, "type": "deploy" }'
 SD_VERSION: 'app-ver-02'
