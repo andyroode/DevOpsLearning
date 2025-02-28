@@ -285,7 +285,7 @@ jobs:
       - show_environment_variables
       - generate_inventory
       - env_build
-    if: ${{ needs.env_build.result == 'skipped' }}
+    if: ${{ needs.env_build.result == 'neutral' }}
     container:
       image: ghcr.io/netcracker/qubership-build-envgene:feature-build-pipeline
     strategy:
