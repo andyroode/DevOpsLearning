@@ -64,6 +64,14 @@ jobs:
           
           echo "env_matrix=$arr" >> $GITHUB_OUTPUT    
 
+      - name: Debug ENV_TEMPLATE_TEST type
+        run: |
+          if [ "${{ steps.load_env.outputs.ENV_TEMPLATE_TEST }}" == "true" ]; then
+            echo "✅ ENV_TEMPLATE_TEST is correctly set to true"
+          else
+            echo "❌ ENV_TEMPLATE_TEST has an unexpected value: '${{ steps.load_env.outputs.ENV_TEMPLATE_TEST }}'"
+          fi      
+
   parameters_validation:
     name: ${{ matrix.environment }}
     runs-on: ubuntu-latest
@@ -88,13 +96,7 @@ jobs:
           export ENV_NAMES="${{ matrix.environment }}"
           python /module/scripts/github_actions.py validate_pipeline
 
-      - name: Debug ENV_TEMPLATE_TEST type
-        run: |
-          if [ "${{ steps.load_env.outputs.ENV_TEMPLATE_TEST }}" == "true" ]; then
-            echo "✅ ENV_TEMPLATE_TEST is correctly set to true"
-          else
-            echo "❌ ENV_TEMPLATE_TEST has an unexpected value: '${{ steps.load_env.outputs.ENV_TEMPLATE_TEST }}'"
-          fi    
+        
 
   generate_inventory:
     name: ${{ matrix.environment }}
