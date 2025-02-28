@@ -280,7 +280,11 @@ jobs:
 
   git_commit:
     runs-on: ubuntu-latest
-    if: ${{ needs.generate_inventory.result == 'success' || needs.env_build.result == 'success' }}
+    if: >-
+      ${{ needs.generate_inventory.result == 'success' || 
+          needs.generate_inventory.result == 'skipped' || 
+          needs.env_build.result == 'success' || 
+          needs.env_build.result == 'skipped' }}
     needs:
       - parameters_validation
       - show_environment_variables
