@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       env_matrix: ${{ steps.matrix-generator.outputs.env_matrix }}
+      ENV_TEMPLATE_TEST: ${{ steps.load_env.outputs.ENV_TEMPLATE_TEST }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
