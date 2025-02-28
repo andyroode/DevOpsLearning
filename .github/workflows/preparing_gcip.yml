@@ -304,8 +304,8 @@ jobs:
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
           
-
       - name: Download artifact
+        if: ${{ (needs.show_environment_variables.outputs.ENV_TEMPLATE_TEST == 'true' && needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS != '{}') || (needs.show_environment_variables.outputs.ENV_BUILDER == 'true') }}
         uses: ./.github/actions/download_artifact
         with:
           sanitized_name: ${{ env.SANITIZED_NAME }}
