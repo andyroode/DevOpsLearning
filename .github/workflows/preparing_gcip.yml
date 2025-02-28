@@ -278,42 +278,13 @@ jobs:
         if: ${{ always() }}
 
 
-  debug_job:
-    runs-on: ubuntu-latest
-    needs:
-      - parameters_validation
-      - show_environment_variables
-      - generate_inventory
-      - env_build
-    if: ${{ needs.env_build.result == 'neutral' }}
-    container:
-      image: ghcr.io/netcracker/qubership-build-envgene:feature-build-pipeline
-    strategy:
-      fail-fast: false
-      matrix:
-        environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
-    env:
-      FULL_ENV: ${{ matrix.environment }}
-    steps:
-      - name: Repository Checkout
-        uses: actions/checkout@v4
-
-      - name: Read environment variables
-        run: |
-          python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
-
-      - name: Debug previous job results
-        run: |
-          echo "generate_inventory result: ${{ needs.generate_inventory.result }}"
-          echo "env_build result: ${{ needs.env_build.result }}"    
-
   git_commit:
     runs-on: ubuntu-latest
     if: >-
       ${{ needs.generate_inventory.result == 'success' || 
-          needs.generate_inventory.result == 'skipped' || 
+          needs.generate_inventory.result == '' || 
           needs.env_build.result == 'success' || 
-          needs.env_build.result == 'skipped' }}
+          needs.env_build.result == '' }}
     needs:
       - parameters_validation
       - show_environment_variables
