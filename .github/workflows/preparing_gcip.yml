@@ -280,12 +280,10 @@ jobs:
 
   git_commit:
     runs-on: ubuntu-latest
-    if: ${{ needs.env_build.result != 'skipped' }}
-    needs:
-      - parameters_validation
-      - show_environment_variables
-      - generate_inventory
-      - env_build
+    needs: [parameters_validation,show_environment_variables,generate_inventory,env_build]
+    if: >-
+      ${{ needs.env_build.result == 'success' ||
+         needs.env_build.result == 'skipped' }}
     container:
       image: ghcr.io/netcracker/qubership-build-envgene:feature-build-pipeline
     strategy:
