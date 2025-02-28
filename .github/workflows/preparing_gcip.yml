@@ -310,7 +310,7 @@ jobs:
         with:
           sanitized_name: ${{ env.SANITIZED_NAME }}
           full_env: ${{ env.FULL_ENV }}
-          project_dir: ${{ env.CI_PROJECT_DIR }}
+          project_dir: ${{ env.PROJECT_DIR }}
 
       - name: Git Commit
         run: |
