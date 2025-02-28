@@ -282,7 +282,7 @@ jobs:
     runs-on: ubuntu-latest
     if: >-
       ${{ (needs.show_environment_variables.outputs.ENV_TEMPLATE_TEST == 'true' && needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS != '{}') || (needs.show_environment_variables.outputs.ENV_BUILDER == 'true') &&
-        ((needs.generate_inventory.result == 'skipped' || needs.generate_inventory.result == 'success') &&
+        ((needs.generate_inventory.result == 'skipped' || needs.generate_inventory.result == 'success') ||
         (needs.env_build.result == 'skipped' || needs.env_build.result == 'success')) }}
     needs:
       - parameters_validation
