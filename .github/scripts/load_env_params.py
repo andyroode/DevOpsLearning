@@ -10,6 +10,7 @@ def getenv_and_log(key, default=""):
     return value
 
 def sanitize_json(value):
+    """ Преобразует строку JSON в корректный JSON-объект """
     if isinstance(value, str):
         try:
             return json.dumps(json.loads(value))
@@ -18,6 +19,14 @@ def sanitize_json(value):
     elif isinstance(value, dict):
         return json.dumps(value)
     return str(value)
+
+def convert_to_github_env(value):
+    """ Преобразует значения в строковый формат для GitHub Actions """
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if isinstance(value, str) and value.lower() in ["true", "false"]:
+        return value.lower()
+    return value
 
 def main():
     if len(sys.argv) < 2:
@@ -29,25 +38,39 @@ def main():
     with open(config_file, 'r', encoding='utf-8') as f:
         data = yaml.safe_load(f)
 
-    with open(os.getenv('GITHUB_ENV'), 'a', encoding='utf-8') as env_file:
+    github_env_file = os.getenv('GITHUB_ENV')
+    github_output_file = os.getenv('GITHUB_OUTPUT')  # Для outputs
+
+    if not github_env_file or not github_output_file:
+        print("Error: GITHUB_ENV or GITHUB_OUTPUT variable is not set!")
+        sys.exit(1)
+
+    with open(github_env_file, 'a', encoding='utf-8') as env_file, \
+         open(github_output_file, 'a', encoding='utf-8') as output_file:
+
         for key, value in data.items():
             if key == "ENV_SPECIFIC_PARAMETERS":
                 value = sanitize_json(value)
+            else:
+                value = convert_to_github_env(value)
 
             env_file.write(f"{key}={value}\n")
+            output_file.write(f"{key}={value}\n")  # Дублируем в outputs
 
+        # Формируем JSON-объект для ENV_GENERATION_PARAMS
         env_generation_params = {
             "SD_SOURCE_TYPE": data.get("SD_SOURCE_TYPE", ""),
             "SD_VERSION": data.get("SD_VERSION", ""),
             "SD_DATA": data.get("SD_DATA", "{}"),
             "SD_DELTA": data.get("SD_DELTA", ""),
-            "ENV_INVENTORY_INIT": data.get("ENV_INVENTORY_INIT", ""),
-            "ENV_SPECIFIC_PARAMETERS": json.loads(data.get("ENV_SPECIFIC_PARAMETERS", "{}")),  # JSON
+            "ENV_INVENTORY_INIT": convert_to_github_env(data.get("ENV_INVENTORY_INIT", "")),
+            "ENV_SPECIFIC_PARAMETERS": json.loads(data.get("ENV_SPECIFIC_PARAMETERS", "{}")),
             "ENV_TEMPLATE_NAME": data.get("ENV_TEMPLATE_NAME", ""),
             "ENV_TEMPLATE_VERSION": data.get("ENV_TEMPLATE_VERSION", "")
         }
 
         env_file.write(f'ENV_GENERATION_PARAMS={json.dumps(env_generation_params)}\n')
+        output_file.write(f'ENV_GENERATION_PARAMS={json.dumps(env_generation_params)}\n')
 
 if __name__ == "__main__":
     main()
