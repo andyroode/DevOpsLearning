@@ -123,6 +123,8 @@ jobs:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
       FULL_ENV: ${{ matrix.environment }}
+    outputs:
+      successful_env: ${{ steps.set_output.outputs.successful_env }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -172,6 +174,11 @@ jobs:
         with:
           name: generate_inventory_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
+
+      - name: Set output if successful
+        id: set_output
+        if: ${{ success() }}
+        run: echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
   env_build:
     name: ${{ matrix.environment }}
@@ -284,10 +291,6 @@ jobs:
         if: ${{ success() }}
         run: echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
-      - name: show vars
-        run: |
-          echo "${{ matrix.environment }}"
-          echo "${{ needs.env_build.outputs.successful_env }}"
 
 
   git_commit:
