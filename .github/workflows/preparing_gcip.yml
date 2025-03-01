@@ -282,6 +282,11 @@ jobs:
         if: ${{ success() }}
         run: echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
+      - name: show vars
+        run: |
+          echo "${{ matrix.environment }}"
+          echo "${{ needs.env_build.outputs.successful_env }}"
+
 
   git_commit:
     runs-on: ubuntu-latest
