@@ -301,7 +301,12 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
-      - name: Fail the job if the previous action is failed for the entered environment.
+      - name: show vars
+        run: |
+          echo "${{ matrix.environment }}"
+          echo "${{ needs.env_build.outputs.successful_env }}"
+      
+       - name: Fail the job if the previous action is failed for the entered environment.
         if: ${{ matrix.environment == needs.env_build.outputs.successful_env }}
         run: |
           exit 1
