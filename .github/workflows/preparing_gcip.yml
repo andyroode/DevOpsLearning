@@ -189,6 +189,8 @@ jobs:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
       FULL_ENV: ${{ matrix.environment }}
+    outputs:
+      successful_env: ${{ steps.set_output.outputs.successful_env }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
