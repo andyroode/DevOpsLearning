@@ -172,7 +172,6 @@ jobs:
         with:
           name: generate_inventory_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
-        if: ${{ always() }}
 
   env_build:
     name: ${{ matrix.environment }}
@@ -276,12 +275,12 @@ jobs:
         with:
           name: env_build_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
-        if: ${{ always() }}
+    
 
       - name: Set output if successful
         id: set_output
         if: ${{ success() }}
-        run: echo "::set-output name=successful_env::${{ matrix.environment }}"
+        run: echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
 
   git_commit:
@@ -303,7 +302,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Fail the job if the previous action is failed for the entered environment.
-        if: ${{ matrix.environment != needs.env_build.outputs.successful_env }}
+        if: ${{ matrix.environment == needs.env_build.outputs.successful_env }}
         run: |
           exit 1
       
@@ -382,4 +381,3 @@ jobs:
         with:
           name: GENERATED_ENV_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/git_envs
-        if: ${{ always() }}
