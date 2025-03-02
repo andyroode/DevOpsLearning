@@ -20,7 +20,7 @@ envTemplate:
       - toms-params
       - internal-base-ns
   templateArtifact:
-    registry: "test"
+    registry: "maven-central"
     repository: "releaseRepository"
     artifact:
       group_id: "org.qubership"
