@@ -334,6 +334,11 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
+      - name: Fail the job if the previous action is failed for the entered environment.
+        if: ${{ matrix.environment != needs.env_build.outputs.successful_env }}
+        run: |
+          exit 1
+
       - name: Read environment variables
         run: |
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
