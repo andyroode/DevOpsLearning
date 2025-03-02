@@ -107,7 +107,7 @@ jobs:
 
 
   generate_inventory:
-    name: ${{ matrix.environment }}
+    name: "${{ matrix.environment }} - Generate Inventory"
     if: |
       ${{ 
         always() && (
@@ -189,7 +189,7 @@ jobs:
         run: echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
   env_build:
-    name: ${{ matrix.environment }}
+    name: "${{ matrix.environment }} - Env Build"
     if: ${{ always() && needs.generate_inventory.result != 'failure' && (needs.show_environment_variables.outputs.ENV_BUILDER == 'true') }}
     runs-on: ubuntu-latest
     needs:
@@ -302,6 +302,7 @@ jobs:
 
 
   git_commit:
+    name: "${{ matrix.environment }} - Git Commit"
     runs-on: ubuntu-latest
     needs: [parameters_validation,show_environment_variables,generate_inventory,env_build]
     if: >-
