@@ -6,8 +6,8 @@ GET_PASSPORT: false
 CMDB_IMPORT: false
 GENERATE_EFFECTIVE_SET: false
 ENV_TEMPLATE_VERSION: '0.0.0.5'
-ENV_TEMPLATE_TEST: true
-ENV_INVENTORY_INIT: false
+ENV_TEMPLATE_TEST: false
+ENV_INVENTORY_INIT: true
 IS_OFFSITE: false
 JSON_SCHEMAS_DIR: '/module/schemas'
 SD_DATA: '{ "version": 2.2, "type": "deploy" }'
