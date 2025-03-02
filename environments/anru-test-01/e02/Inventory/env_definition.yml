@@ -1,13 +1,11 @@
 inventory:
   environmentName: "e02"
   clusterUrl: test-val.com
-  templateArtifact:
-    registry: "temp"
-    repository: "temp"
-    artifact:
-      group_id: "com.temp.deploy.custom-temp"
-      artifact_id: "my_artifact"
-      version: "temp-131627"
+  tenantName: "test-tenant"
+  deployer: "test-deployer"
+  cloudName: "anru-test-01"
+  cloudPassport: "anru-test-01"
+
 envTemplate:
   additionalTemplateVariables:
     key: value
@@ -21,10 +19,10 @@ envTemplate:
       - paramsetB
       - toms-params
   templateArtifact:
-    registry: "temp"
-    repository: "temp"
+    registry: "maven-central"
+    repository: "releaseRepository"
     artifact:
-      group_id: "com.temp.deploy.custom-temp"
-      artifact_id: "my_artifact"
-      version: "temp-131627"
-    templateRepository: "temp"
+      group_id: "org.qubership"
+      artifact_id: "qubership_envgene_templates"
+      version: "0.0.0.5"
+    templateRepository: "releaseTemplateRepository"
