@@ -183,7 +183,7 @@ jobs:
         if: ${{ success() }}
         run: | 
           echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
-          echo "inventory_artifact_uploaded=${{ matrix.environment }} >> $GITHUB_OUTPUT
+          echo "inventory_artifact_uploaded=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
   env_build:
     name: "${{ matrix.environment }} - Env Build"
@@ -302,7 +302,7 @@ jobs:
         if: ${{ success() }}
         run: |
           echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
-          echo "env_gene_artifact_uploaded=${{ matrix.environment }} >> $GITHUB_OUTPUT
+          echo "env_gene_artifact_uploaded=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
   generate_effective_set:
     name: "${{ matrix.environment }} - Generate Effective Set"
