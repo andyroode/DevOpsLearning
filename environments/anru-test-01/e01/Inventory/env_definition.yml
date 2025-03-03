@@ -12,9 +12,9 @@ envTemplate:
     key: "value"
   envSpecificParamsets:
     cloud:
-      - "cloud-specific"
-      - "paramsetA"
       - "integrations"
+      - "paramsetA"
+      - "cloud-specific"
     main:
       - "internal-base-ns"
       - "paramsetB"
