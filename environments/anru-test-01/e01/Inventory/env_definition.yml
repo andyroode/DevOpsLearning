@@ -7,7 +7,6 @@ inventory:
   cloudPassport: "anru-test-01"
 envTemplate:
   #artifact: "test:0.0.0.2"
-  artifact: "test:0.0.0.5"
   name: "dev"
   additionalTemplateVariables:
     key: "value"
