@@ -8,8 +8,6 @@ GENERATE_EFFECTIVE_SET: true
 ENV_TEMPLATE_VERSION: ''
 ENV_TEMPLATE_TEST: false
 ENV_INVENTORY_INIT: false
-IS_OFFSITE: false
-JSON_SCHEMAS_DIR: '/module/schemas'
 SD_DATA: '{ "version": 2.2, "type": "deploy" }'
 SD_VERSION: 'app-ver-02'
 SD_SOURCE_TYPE: ''
