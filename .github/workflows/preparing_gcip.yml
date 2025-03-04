@@ -6,10 +6,31 @@ permissions:
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/preparing_gcip.yml"
-      - ".github/config/env_config.yaml"
+    inputs:
+      ENV_NAMES:
+        description: "Environment Names"
+        required: true
+        default: "anru-test-01/e01"
+      ENV_BUILDER:
+        description: "Build Environment?"
+        type: boolean
+        default: false
+      GET_PASSPORT:
+        description: "Get cloud passport?"
+        type: boolean
+        default: false
+      CMDB_IMPORT:
+        description: "Import to CMDB?"
+        type: boolean
+        default: false
+      GENERATE_EFFECTIVE_SET:
+        description: "Generate effective set?"
+        type: boolean
+        default: false
+      ENV_TEMPLATE_VERSION:
+        description: "Environment template version"
+        required: false
+        default: ""
 
 env:
   CI_COMMIT_REF_NAME: ${{ github.ref_name }}
