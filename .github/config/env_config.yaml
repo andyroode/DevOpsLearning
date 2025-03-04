@@ -1,11 +1,5 @@
 ---
 
-ENV_NAMES: 'anru-test-01/e01'
-ENV_BUILDER: true
-GET_PASSPORT: false
-CMDB_IMPORT: false
-GENERATE_EFFECTIVE_SET: true
-ENV_TEMPLATE_VERSION: ''
 ENV_TEMPLATE_TEST: false
 ENV_INVENTORY_INIT: false
 SD_DATA: '{ "version": 2.2, "type": "deploy" }'
