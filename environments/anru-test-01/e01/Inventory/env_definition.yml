@@ -12,13 +12,13 @@ envTemplate:
     key: "value"
   envSpecificParamsets:
     cloud:
-      - "paramsetA"
       - "integrations"
       - "cloud-specific"
+      - "paramsetA"
     main:
+      - "internal-base-ns"
       - "toms-params"
       - "paramsetB"
-      - "internal-base-ns"
   templateArtifact:
     registry: "maven-central"
     repository: "releaseRepository"
