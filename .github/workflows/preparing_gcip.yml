@@ -218,7 +218,7 @@ jobs:
 
   env_build:
     name: "${{ matrix.environment }} - Env Build"
-    if: ${{ always() && needs.generate_inventory.result != 'failure' && (needs.show_environment_variables.outputs.ENV_BUILDER == 'true') }}
+    if: ${{ always() && needs.generate_inventory.result != 'failure' && (github.event.inputs.ENV_BUILDER == 'true') }}
     runs-on: ubuntu-latest
     needs:
       - parameters_validation
@@ -340,7 +340,7 @@ jobs:
     if: |
       ${{ 
         always() && (
-          needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true'
+          github.event.inputs.GENERATE_EFFECTIVE_SET == 'true'
         )
       }}
     runs-on: ubuntu-latest
