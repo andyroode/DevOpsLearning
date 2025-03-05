@@ -16,9 +16,9 @@ envTemplate:
       - "cloud-specific"
       - "integrations"
     main:
-      - "toms-params"
       - "internal-base-ns"
       - "paramsetB"
+      - "toms-params"
   templateArtifact:
     registry: "maven-central"
     repository: "releaseRepository"
