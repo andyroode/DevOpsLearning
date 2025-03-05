@@ -17,8 +17,8 @@ envTemplate:
       - "integrations"
     main:
       - "toms-params"
-      - "paramsetB"
       - "internal-base-ns"
+      - "paramsetB"
   templateArtifact:
     registry: "maven-central"
     repository: "releaseRepository"
