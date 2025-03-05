@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       env_matrix: ${{ steps.matrix-generator.outputs.env_matrix }}
-      ENV_BUILDER: ${{ steps.load_env.outputs.ENV_BUILDER }}
+      ENV_BUILDER: ${{ github.event.inputs.ENV_BUILDER }}
       GET_PASSPORT: ${{ steps.load_env.outputs.GET_PASSPORT }}
       CMDB_IMPORT: ${{ steps.load_env.outputs.CMDB_IMPORT }}
       GENERATE_EFFECTIVE_SET: ${{ steps.load_env.outputs.GENERATE_EFFECTIVE_SET }}
