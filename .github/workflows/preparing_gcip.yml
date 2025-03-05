@@ -12,19 +12,19 @@ on:
         required: true
         default: "anru-test-01/e01"
       ENV_BUILDER:
-        description: "Build Environment?"
+        description: "Build Environment"
         type: boolean
         default: false
       GET_PASSPORT:
-        description: "Get cloud passport?"
+        description: "Get cloud passport"
         type: boolean
         default: false
       CMDB_IMPORT:
-        description: "Import to CMDB?"
+        description: "Import to CMDB"
         type: boolean
         default: false
       GENERATE_EFFECTIVE_SET:
-        description: "Generate effective set?"
+        description: "Generate effective set"
         type: boolean
         default: false
       ENV_TEMPLATE_VERSION:
