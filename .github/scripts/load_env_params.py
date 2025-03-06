@@ -78,22 +78,22 @@ def main():
     validated_data = {}
 
     for key, validator in validators.items():
-       raw_value = data.get(key, "")
+        raw_value = data.get(key, "")
 
-       if validator == validate_boolean:
-           if isinstance(raw_value, bool):
-               validated_data[key] = convert_to_github_env(raw_value)
-           elif isinstance(raw_value, str) and raw_value.lower() in ["true", "false"]:
-               validated_data[key] = raw_value.lower()
-           else:
-               raise ValueError(f"{key} should be boolean (true/false). Got: {raw_value}")
-       elif validator == validate_json:
-           if not raw_value:
-               validated_data[key] = "{}"
-           else:
-               validated_data[key] = validate_json(raw_value, key)
-       else:  # string
-           validated_data[key] = validate_string(raw_value, key)
+        if validator == validate_boolean:
+            if isinstance(raw_value, bool):
+                validated_data[key] = convert_to_github_env(raw_value)
+            elif isinstance(raw_value, str) and raw_value.lower() in ["true", "false"]:
+                validated_data[key] = raw_value.lower()
+            else:
+                raise ValueError(f"{key} should be boolean (true/false). Got: {raw_value}")
+        elif validator == validate_json:
+            if not raw_value:
+                validated_data[key] = "{}"
+            else:
+                validated_data[key] = validate_json(raw_value, key)
+        else:  # string
+            validated_data[key] = validate_string(raw_value, key)
 
     with open(github_env_file, 'a', encoding='utf-8') as env_file, \
             open(github_output_file, 'a', encoding='utf-8') as output_file:
