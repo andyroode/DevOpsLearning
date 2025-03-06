@@ -1,7 +1,7 @@
 ---
 
-ENV_TEMPLATE_TEST: false #boolean - only true or false
-ENV_INVENTORY_INIT: false #boolean - only true or false
+ENV_TEMPLATE_TEST: False #boolean - only true or false
+ENV_INVENTORY_INIT: False #boolean - only true or false
 ENV_TEMPLATE_NAME: '' #string - add the value or keep ''
 SD_DATA: '{}' #json - add the dict or keep {} as empty
 SD_VERSION: '' #string - add the value or keep ''
