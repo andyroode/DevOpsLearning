@@ -46,11 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       env_matrix: ${{ steps.matrix-generator.outputs.env_matrix }}
-      ENV_BUILDER: ${{ github.event.inputs.ENV_BUILDER }}
-      GET_PASSPORT: ${{ github.event.inputs.GET_PASSPORT }}
-      CMDB_IMPORT: ${{ github.event.inputs.CMDB_IMPORT }}
-      GENERATE_EFFECTIVE_SET: ${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}
-      ENV_TEMPLATE_VERSION: ${{ github.event.inputs.ENV_TEMPLATE_VERSION }}
       ENV_TEMPLATE_TEST: ${{ steps.load_env.outputs.ENV_TEMPLATE_TEST }}
       ENV_INVENTORY_INIT: ${{ steps.load_env.outputs.ENV_INVENTORY_INIT }}
       IS_OFFSITE: ${{ steps.load_env.outputs.IS_OFFSITE }}
@@ -60,17 +55,14 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Read input variables
-        run: |
-          echo "ENV_NAMES=${{ github.event.inputs.ENV_NAMES }}" >> $GITHUB_ENV
-          echo "ENV_BUILDER=${{ github.event.inputs.ENV_BUILDER }}" >> $GITHUB_ENV
-          echo "GET_PASSPORT=${{ github.event.inputs.GET_PASSPORT }}" >> $GITHUB_ENV
-          echo "CMDB_IMPORT=${{ github.event.inputs.CMDB_IMPORT }}" >> $GITHUB_ENV
-          echo "GENERATE_EFFECTIVE_SET=${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}" >> $GITHUB_ENV
-          echo "ENV_TEMPLATE_VERSION=${{ github.event.inputs.ENV_TEMPLATE_VERSION }}" >> $GITHUB_ENV
-
-      - name: Read additional variables from input file.
-        id: load_env
-        run: |
+        env:
+          ENV_NAMES: ${{ github.event.inputs.ENV_NAMES }}"
+          ENV_BUILDER: ${{ github.event.inputs.ENV_BUILDER }}"
+          GET_PASSPORT: ${{ github.event.inputs.GET_PASSPORT }}"
+          CMDB_IMPORT: ${{ github.event.inputs.CMDB_IMPORT }}"
+          GENERATE_EFFECTIVE_SET: ${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}"
+          ENV_TEMPLATE_VERSION: ${{ github.event.inputs.ENV_TEMPLATE_VERSION }}"
+        run:
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
       - name: Environment variables values
