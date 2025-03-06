@@ -135,7 +135,7 @@ jobs:
     if: |
       ${{ 
         (
-          needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'True'
+          env.ENV_INVENTORY_INIT == 'True'
         )
       }}
     runs-on: ubuntu-latest
