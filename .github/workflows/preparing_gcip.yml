@@ -79,18 +79,18 @@ jobs:
         run: |
           echo "ENV_NAMES = $ENV_NAMES"
           echo "ENV_BUILDER = $ENV_BUILDER"
-          echo "GET_PASSPORT = GET_PASSPORT"
-          echo "CMDB_IMPORT = CMDB_IMPORT"
+          echo "GET_PASSPORT = $GET_PASSPORT"
+          echo "CMDB_IMPORT = $CMDB_IMPORT"
           echo "GENERATE_EFFECTIVE_SET = $GENERATE_EFFECTIVE_SET"
           echo "ENV_TEMPLATE_VERSION = $ENV_TEMPLATE_VERSION"
           echo "ENV_TEMPLATE_TEST = $ENV_TEMPLATE_TEST"
           echo "ENV_INVENTORY_INIT = $ENV_INVENTORY_INIT"
-          echo "ENV_TEMPLATE_NAME = ENV_TEMPLATE_NAME"
+          echo "ENV_TEMPLATE_NAME = $ENV_TEMPLATE_NAME"
           echo "SD_DATA = $SD_DATA"
           echo "SD_VERSION = $SD_VERSION"
-          echo "SD_SOURCE_TYPE = SD_SOURCE_TYPE"
-          echo "SD_DELTA = SD_DELTA"
-          echo "ENV_SPECIFIC_PARAMETERS = ENV_SPECIFIC_PARAMETERS"
+          echo "SD_SOURCE_TYPE = $SD_SOURCE_TYPE"
+          echo "SD_DELTA = $SD_DELTA"
+          echo "ENV_SPECIFIC_PARAMETERS = $ENV_SPECIFIC_PARAMETERS"
           
 
       - name: Convert ENV_NAMES to JSON array
