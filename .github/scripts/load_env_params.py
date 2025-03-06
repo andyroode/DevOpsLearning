@@ -77,13 +77,24 @@ def main():
 
     validated_data = {}
 
-    for key, validator in validators.items():
-        raw_value = data.get(key, "")
-        try:
-            validated_data[key] = validators[key](raw_env_specific_params := raw_env_specific_params if (raw_env_specific_params := data.get(key)) else "{}", key)
-        except ValueError as e:
-            print(f"Validation error for '{key}': {e}")
-            sys.exit(1)
+   for key, validator in validators.items():
+       raw_value = data.get(key, "")
+
+       if validator == validate_boolean:
+           if isinstance(raw_value, bool):
+               validated_data[key] = convert_to_github_env(raw_value)
+           elif isinstance(raw_value, str):
+               if raw_value.lower() in ["true", "false"]:
+                   validated_data[key] = raw_value.lower()
+               else:
+                   raise ValueError(f"{key} should be a boolean (true/false). Got: {raw_value}")
+       elif validator == validate_json:
+           if not raw_value:
+               validated_data[key] = "{}"
+           else:
+               validated_data[key] = validate_json(raw_value, key)
+       else:  # string
+           validated_data[key] = validate_string(raw_value, key)
 
     with open(github_env_file, 'a', encoding='utf-8') as env_file, \
             open(github_output_file, 'a', encoding='utf-8') as output_file:
