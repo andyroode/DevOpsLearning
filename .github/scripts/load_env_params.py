@@ -62,9 +62,13 @@ def main():
                 output_file.write(f"{key}={converted_value}\n")
 
         # Обработка ENV_SPECIFIC_PARAMETERS для ENV_GENERATION_PARAMS
-        try:
-            env_specific_params = json.loads(data.get("ENV_SPECIFIC_PARAMETERS", "{}") or "{}")
-        except json.JSONDecodeError:
+        raw_env_specific_params = data.get("ENV_SPECIFIC_PARAMETERS", "")
+        if raw_env_specific_params:
+            try:
+                env_specific_params = json.loads(raw_env_specific_params)
+            except json.JSONDecodeError:
+                env_specific_params = {}
+        else:
             env_specific_params = {}
 
         env_generation_params = {
