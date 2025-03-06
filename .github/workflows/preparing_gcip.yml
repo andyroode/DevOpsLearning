@@ -47,7 +47,7 @@ jobs:
     outputs:
       env_matrix: ${{ steps.matrix-generator.outputs.env_matrix }}
       ENV_TEMPLATE_TEST: ${{ steps.load_env.outputs.ENV_TEMPLATE_TEST }}
-      ENV_INVENTORY_INIT: ${{ steps.load_env.outputs.ENV_INVENTORY_INIT }}
+      ENV_INVENTORY_INIT: ${{ env.ENV_INVENTORY_INIT }}
       IS_OFFSITE: ${{ steps.load_env.outputs.IS_OFFSITE }}
       ENV_SPECIFIC_PARAMETERS: ${{ steps.load_env.outputs.ENV_SPECIFIC_PARAMETERS }}
     steps:
