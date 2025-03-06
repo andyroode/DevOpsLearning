@@ -39,7 +39,7 @@ def main():
         data = yaml.safe_load(f)
 
     github_env_file = os.getenv('GITHUB_ENV')
-    github_output_file = os.getenv('GITHUB_OUTPUT')  # Для outputs
+    github_output_file = os.getenv('GITHUB_OUTPUT')
 
     if not github_env_file or not github_output_file:
         print("Error: GITHUB_ENV or GITHUB_OUTPUT variable is not set!")
@@ -50,21 +50,30 @@ def main():
 
         for key, value in data.items():
             if key == "ENV_SPECIFIC_PARAMETERS":
-                value = sanitize_json(value)
+                if not value:  # Проверяем на пустоту или None
+                    sanitized_value = "{}"
+                else:
+                    sanitized_value = sanitize_json(value)
+                env_file.write(f"{key}={sanitized_value}\n")
+                output_file.write(f"{key}={sanitized_value}\n")
             else:
-                value = convert_to_github_env(value)
+                converted_value = convert_to_github_env(value)
+                env_file.write(f"{key}={converted_value}\n")
+                output_file.write(f"{key}={converted_value}\n")
 
-            env_file.write(f"{key}={value}\n")
-            output_file.write(f"{key}={value}\n")  # Дублируем в outputs
+        # Обработка ENV_SPECIFIC_PARAMETERS для ENV_GENERATION_PARAMS
+        try:
+            env_specific_params = json.loads(data.get("ENV_SPECIFIC_PARAMETERS", "{}") or "{}")
+        except json.JSONDecodeError:
+            env_specific_params = {}
 
-        # Формируем JSON-объект для ENV_GENERATION_PARAMS
         env_generation_params = {
             "SD_SOURCE_TYPE": data.get("SD_SOURCE_TYPE", ""),
             "SD_VERSION": data.get("SD_VERSION", ""),
             "SD_DATA": data.get("SD_DATA", "{}"),
             "SD_DELTA": data.get("SD_DELTA", ""),
             "ENV_INVENTORY_INIT": convert_to_github_env(data.get("ENV_INVENTORY_INIT", "")),
-            "ENV_SPECIFIC_PARAMETERS": json.loads(data.get("ENV_SPECIFIC_PARAMETERS", "{}")),
+            "ENV_SPECIFIC_PARAMETERS": env_specific_params,
             "ENV_TEMPLATE_NAME": data.get("ENV_TEMPLATE_NAME", ""),
             "ENV_TEMPLATE_VERSION": data.get("ENV_TEMPLATE_VERSION", "")
         }
