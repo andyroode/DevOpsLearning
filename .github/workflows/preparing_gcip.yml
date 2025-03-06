@@ -56,12 +56,12 @@ jobs:
 
       - name: Read input variables
         env:
-          ENV_NAMES: ${{ github.event.inputs.ENV_NAMES }}"
-          ENV_BUILDER: ${{ github.event.inputs.ENV_BUILDER }}"
-          GET_PASSPORT: ${{ github.event.inputs.GET_PASSPORT }}"
-          CMDB_IMPORT: ${{ github.event.inputs.CMDB_IMPORT }}"
-          GENERATE_EFFECTIVE_SET: ${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}"
-          ENV_TEMPLATE_VERSION: ${{ github.event.inputs.ENV_TEMPLATE_VERSION }}"
+          ENV_NAMES: ${{ github.event.inputs.ENV_NAMES }}
+          ENV_BUILDER: ${{ github.event.inputs.ENV_BUILDER }}
+          GET_PASSPORT: ${{ github.event.inputs.GET_PASSPORT }}
+          CMDB_IMPORT: ${{ github.event.inputs.CMDB_IMPORT }}
+          GENERATE_EFFECTIVE_SET: ${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}
+          ENV_TEMPLATE_VERSION: ${{ github.event.inputs.ENV_TEMPLATE_VERSION }}
         run:
           python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
 
@@ -95,8 +95,6 @@ jobs:
           arr="$arr]"
           
           echo "env_matrix=$arr" >> $GITHUB_OUTPUT    
-
-         
 
   parameters_validation:
     name: "${{ matrix.environment }} - Parameters Validation"
