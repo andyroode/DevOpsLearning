@@ -77,17 +77,16 @@ def main():
 
     validated_data = {}
 
-   for key, validator in validators.items():
+    for key, validator in validators.items():
        raw_value = data.get(key, "")
 
        if validator == validate_boolean:
            if isinstance(raw_value, bool):
                validated_data[key] = convert_to_github_env(raw_value)
-           elif isinstance(raw_value, str):
-               if raw_value.lower() in ["true", "false"]:
-                   validated_data[key] = raw_value.lower()
-               else:
-                   raise ValueError(f"{key} should be a boolean (true/false). Got: {raw_value}")
+           elif isinstance(raw_value, str) and raw_value.lower() in ["true", "false"]:
+               validated_data[key] = raw_value.lower()
+           else:
+               raise ValueError(f"{key} should be boolean (true/false). Got: {raw_value}")
        elif validator == validate_json:
            if not raw_value:
                validated_data[key] = "{}"
