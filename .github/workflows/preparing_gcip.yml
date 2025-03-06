@@ -123,6 +123,7 @@ jobs:
   generate_inventory:
     name: "${{ matrix.environment }} - Generate Inventory"
     runs-on: ubuntu-latest
+    if: env.ENV_INVENTORY_INIT == 'true'
     needs:
       - parameters_validation
       - show_environment_variables
