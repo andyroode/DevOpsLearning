@@ -4,29 +4,48 @@ import yaml
 import json
 import os
 
+
 def getenv_and_log(key, default=""):
     value = os.getenv(key, default)
     print(f"{key}: {value}")
     return value
 
+
 def sanitize_json(value):
-    """ Преобразует строку JSON в корректный JSON-объект """
-    if isinstance(value, str):
-        try:
-            return json.dumps(json.loads(value))
-        except json.JSONDecodeError:
-            return json.dumps(value)
-    elif isinstance(value, dict):
-        return json.dumps(value)
-    return str(value)
+    try:
+        json_object = json.loads(value)
+        return json.dumps(json_object)
+    except (json.JSONDecodeError, TypeError):
+        raise ValueError(f"Invalid JSON provided: {value}")
+
 
 def convert_to_github_env(value):
-    """ Преобразует значения в строковый формат для GitHub Actions """
     if isinstance(value, bool):
         return "true" if value else "false"
     if isinstance(value, str) and value.lower() in ["true", "false"]:
         return value.lower()
     return value
+
+
+def validate_boolean(value, key):
+    if isinstance(value, bool) or (isinstance(value, str) and value.lower() in ["true", "false"]):
+        return convert_to_github_env(value)
+    raise ValueError(f"{key} should be a boolean (true/false). Got: {value}")
+
+
+def validate_json(value, key):
+    try:
+        json.loads(value)
+        return value
+    except (json.JSONDecodeError, TypeError):
+        raise ValueError(f"{key} must be a valid JSON object")
+
+
+def validate_string(value, key):
+    if isinstance(value, str):
+        return value
+    raise ValueError(f"{key} must be a string. Got {type(value).__name__}")
+
 
 def main():
     if len(sys.argv) < 2:
@@ -45,45 +64,48 @@ def main():
         print("Error: GITHUB_ENV or GITHUB_OUTPUT variable is not set!")
         sys.exit(1)
 
+    validators = {
+        "ENV_TEMPLATE_TEST": validate_boolean,
+        "ENV_INVENTORY_INIT": validate_boolean,
+        "ENV_TEMPLATE_NAME": validate_string,
+        "SD_DATA": validate_json,
+        "SD_VERSION": validate_string,
+        "SD_SOURCE_TYPE": validate_string,
+        "SD_DELTA": validate_string,
+        "ENV_SPECIFIC_PARAMETERS": validate_json,
+    }
+
+    validated_data = {}
+
+    for key, validator in validators.items():
+        raw_value = data.get(key, "")
+        try:
+            validated_data[key] = validators[key](raw_env_specific_params := raw_env_specific_params if (raw_env_specific_params := data.get(key)) else "{}", key)
+        except ValueError as e:
+            print(f"Validation error for '{key}': {e}")
+            sys.exit(1)
+
     with open(github_env_file, 'a', encoding='utf-8') as env_file, \
-         open(github_output_file, 'a', encoding='utf-8') as output_file:
+            open(github_output_file, 'a', encoding='utf-8') as output_file:
 
-        for key, value in data.items():
-            if key == "ENV_SPECIFIC_PARAMETERS":
-                if not value:  # Проверяем на пустоту или None
-                    sanitized_value = "{}"
-                else:
-                    sanitized_value = sanitize_json(value)
-                env_file.write(f"{key}={sanitized_value}\n")
-                output_file.write(f"{key}={sanitized_value}\n")
-            else:
-                converted_value = convert_to_github_env(value)
-                env_file.write(f"{key}={converted_value}\n")
-                output_file.write(f"{key}={converted_value}\n")
-
-        # Обработка ENV_SPECIFIC_PARAMETERS для ENV_GENERATION_PARAMS
-        raw_env_specific_params = data.get("ENV_SPECIFIC_PARAMETERS", "")
-        if raw_env_specific_params:
-            try:
-                env_specific_params = json.loads(raw_env_specific_params)
-            except json.JSONDecodeError:
-                env_specific_params = {}
-        else:
-            env_specific_params = {}
+        for key, value in validated_data.items():
+            env_file.write(f"{key}={convert_to_github_env(value)}\n")
+            output_file.write(f"{key}={convert_to_github_env(value)}\n")
 
         env_generation_params = {
-            "SD_SOURCE_TYPE": data.get("SD_SOURCE_TYPE", ""),
-            "SD_VERSION": data.get("SD_VERSION", ""),
-            "SD_DATA": data.get("SD_DATA", "{}"),
-            "SD_DELTA": data.get("SD_DELTA", ""),
-            "ENV_INVENTORY_INIT": convert_to_github_env(data.get("ENV_INVENTORY_INIT", "")),
-            "ENV_SPECIFIC_PARAMETERS": env_specific_params,
+            "SD_SOURCE_TYPE": validated_data["SD_SOURCE_TYPE"],
+            "SD_VERSION": validated_data["SD_VERSION"],
+            "SD_DATA": validated_data["SD_DATA"],
+            "SD_DELTA": validated_data["SD_DELTA"],
+            "ENV_INVENTORY_INIT": validated_data["ENV_INVENTORY_INIT"],
+            "ENV_SPECIFIC_PARAMETERS": json.loads(validated_data["ENV_SPECIFIC_PARAMETERS"]),
             "ENV_TEMPLATE_NAME": data.get("ENV_TEMPLATE_NAME", ""),
             "ENV_TEMPLATE_VERSION": data.get("ENV_TEMPLATE_VERSION", "")
         }
 
         env_file.write(f'ENV_GENERATION_PARAMS={json.dumps(env_generation_params)}\n')
         output_file.write(f'ENV_GENERATION_PARAMS={json.dumps(env_generation_params)}\n')
+
 
 if __name__ == "__main__":
     main()

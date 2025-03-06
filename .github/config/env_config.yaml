@@ -1,9 +1,10 @@
 ---
 
-ENV_TEMPLATE_TEST: false
-ENV_INVENTORY_INIT: false
-SD_DATA: ''
-SD_VERSION: ''
-SD_SOURCE_TYPE: ''
-SD_DELTA: ''
-ENV_SPECIFIC_PARAMETERS: ''
+ENV_TEMPLATE_TEST: false #boolean - only true or false
+ENV_INVENTORY_INIT: false #boolean - only true or false
+ENV_TEMPLATE_NAME: '' #string - add the value or keep ''
+SD_DATA: '{}' #json - add the dict or keep {} as empty
+SD_VERSION: '' #string - add the value or keep ''
+SD_SOURCE_TYPE: '' #string - add the value or keep ''
+SD_DELTA: '' #string - add the value or keep ''
+ENV_SPECIFIC_PARAMETERS: '{}' #json - add the dict or keep {} as empty

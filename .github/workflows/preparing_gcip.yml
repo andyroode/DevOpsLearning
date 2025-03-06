@@ -137,9 +137,9 @@ jobs:
         always() && (
           needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true' ||
           needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS != '{}' ||
-          needs.show_environment_variables.outputs.ENV_TEMPLATE_NAME != '{}' ||
+          needs.show_environment_variables.outputs.ENV_TEMPLATE_NAME != '' ||
           needs.show_environment_variables.outputs.SD_DATA != '{}' ||
-          needs.show_environment_variables.outputs.SD_VERSION != '{}'
+          needs.show_environment_variables.outputs.SD_VERSION != ''
         )
       }}
     runs-on: ubuntu-latest
