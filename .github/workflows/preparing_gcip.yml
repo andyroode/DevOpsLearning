@@ -134,7 +134,7 @@ jobs:
     name: "${{ matrix.environment }} - Generate Inventory"
     if: |
       ${{ 
-        always() && (
+        (
           needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true' ||
           needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS != '{}' ||
           needs.show_environment_variables.outputs.ENV_TEMPLATE_NAME != '' ||
