@@ -236,6 +236,11 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
+      - name: Show the output
+        run: |
+          echo "${{ needs.generate_inventory.outputs.successful_env }}"
+          echo "${{ matrix.environment }}"
+
       - name: Fail the job if the previous action is failed for the entered environment.
         if: matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true'
         run: |
