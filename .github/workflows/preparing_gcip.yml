@@ -356,7 +356,6 @@ jobs:
       - name: Fail the job if the previous action is failed for the entered environment.
         if: |
           ${{ 
-            matrix.environment != needs.generate_inventory.outputs.successful_env ||
             matrix.environment != needs.env_build.outputs.successful_env
           }}
         run: |
