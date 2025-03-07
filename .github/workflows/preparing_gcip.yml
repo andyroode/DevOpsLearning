@@ -332,6 +332,10 @@ jobs:
           echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
           echo "env_gene_artifact_uploaded=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
+      - name: Show the output
+        run: |
+          echo "${{ steps.set_output.outputs.successful_env }}"
+
   generate_effective_set:
     name: "${{ matrix.environment }} - Generate Effective Set"
     if: always() && needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true'
@@ -352,6 +356,10 @@ jobs:
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
+
+      - name: Show the output
+        run: |
+          echo "${{ needs.env_build.outputs.successful_env }}"
 
       - name: Fail the job if the previous action is failed for the entered environment.
         if: |
