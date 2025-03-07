@@ -138,7 +138,7 @@ jobs:
   generate_inventory:
     name: "${{ matrix.environment }} - Generate Inventory"
     runs-on: ubuntu-latest
-    if: always() && (needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true' || needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS != '{}' || needs.show_environment_variables.outputs.ENV_TEMPLATE_NAME != '')
+    if: always() && (needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true' || needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS != '{}' || length(needs.show_environment_variables.outputs.ENV_TEMPLATE_NAME)>0)
     needs:
       - parameters_validation
       - show_environment_variables
