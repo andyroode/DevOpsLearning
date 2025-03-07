@@ -236,7 +236,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Fail the job if the previous action is failed for the entered environment.
-        if: ${{ matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true' }}
+        if: matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true'
         run: |
           exit 1
 
@@ -363,7 +363,7 @@ jobs:
           echo "${{ matrix.environment }}"
 
       - name: Fail the job if the previous action is failed for the entered environment.
-        if: matrix.environment != needs.env_build.outputs.successful_env
+        if: (matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true') || (matrix.environment != needs.env_build.outputs.successful_env && needs.show_environment_variables.outputs.ENV_BUILDER == 'true')
         run: |
           exit 1
 
@@ -461,12 +461,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Fail the job if the previous action is failed for the entered environment.
-        if: | 
-          ${{ 
-            ((matrix.environment != needs.generate_inventory.outputs.successful_env) && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true') ||
-            ((matrix.environment != needs.env_build.outputs.successful_env) && needs.show_environment_variables.outputs.ENV_BUILDER == 'true') ||
-            ((matrix.environment != needs.generate_effective_set.outputs.successful_env) && needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true')
-          }}
+        if: (matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true') || (matrix.environment != needs.env_build.outputs.successful_env && needs.show_environment_variables.outputs.ENV_BUILDER == 'true') || (matrix.environment != needs.generate_effective_set.outputs.successful_env && needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true')
         run: |
           exit 1
       
