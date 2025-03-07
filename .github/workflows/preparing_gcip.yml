@@ -360,6 +360,7 @@ jobs:
       - name: Show the output
         run: |
           echo "${{ needs.env_build.outputs.successful_env }}"
+          echo "${{ matrix.environment }}"
 
       - name: Fail the job if the previous action is failed for the entered environment.
         if: |
