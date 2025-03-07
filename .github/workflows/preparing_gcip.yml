@@ -363,7 +363,7 @@ jobs:
           echo "${{ matrix.environment }}"
 
       - name: Fail the job if the previous action is failed for the entered environment.
-        if: trim(matrix.environment) != trim(needs.env_build.outputs.successful_env)
+        if: matrix.environment != needs.env_build.outputs.successful_env
         run: |
           exit 1
 
