@@ -11,6 +11,10 @@ on:
         description: "Environment Names"
         required: true
         default: "anru-test-01/e01"
+      ENV_INVENTORY_INIT:
+        description: "Generate inventory"
+        type: boolean
+        default: false
       ENV_BUILDER:
         description: "Build Environment"
         type: boolean
@@ -68,6 +72,7 @@ jobs:
       - name: Read input variables
         run: |
           echo "ENV_NAMES=${{ github.event.inputs.ENV_NAMES }}" >> $GITHUB_ENV
+          echo "ENV_INVENTORY_INIT=${{ github.event.inputs.ENV_INVENTORY_INIT }}" >> $GITHUB_ENV
           echo "ENV_BUILDER=${{ github.event.inputs.ENV_BUILDER }}" >> $GITHUB_ENV
           echo "GET_PASSPORT=${{ github.event.inputs.GET_PASSPORT }}" >> $GITHUB_ENV
           echo "CMDB_IMPORT=${{ github.event.inputs.CMDB_IMPORT }}" >> $GITHUB_ENV

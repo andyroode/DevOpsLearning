@@ -66,7 +66,6 @@ def main():
 
     validators = {
         "ENV_TEMPLATE_TEST": validate_boolean,
-        "ENV_INVENTORY_INIT": validate_boolean,
         "ENV_TEMPLATE_NAME": validate_string,
         "SD_DATA": validate_json,
         "SD_VERSION": validate_string,
@@ -107,7 +106,6 @@ def main():
             "SD_VERSION": validated_data["SD_VERSION"],
             "SD_DATA": validated_data["SD_DATA"],
             "SD_DELTA": validated_data["SD_DELTA"],
-            "ENV_INVENTORY_INIT": validated_data["ENV_INVENTORY_INIT"],
             "ENV_SPECIFIC_PARAMETERS": json.loads(validated_data["ENV_SPECIFIC_PARAMETERS"]),
             "ENV_TEMPLATE_NAME": data.get("ENV_TEMPLATE_NAME", ""),
             "ENV_TEMPLATE_VERSION": data.get("ENV_TEMPLATE_VERSION", "")
