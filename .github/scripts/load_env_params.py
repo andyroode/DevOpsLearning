@@ -4,10 +4,12 @@ import yaml
 import json
 import os
 
+
 def getenv_and_log(key, default=""):
     value = os.getenv(key, default)
     print(f"{key}: {value}")
     return value
+
 
 def sanitize_json(value):
     try:
@@ -16,6 +18,7 @@ def sanitize_json(value):
     except (json.JSONDecodeError, TypeError):
         raise ValueError(f"Invalid JSON provided: {value}")
 
+
 def convert_to_github_env(value):
     if isinstance(value, bool):
         return "true" if value else "false"
@@ -23,10 +26,12 @@ def convert_to_github_env(value):
         return value.lower()
     return value
 
+
 def validate_boolean(value, key):
     if isinstance(value, bool) or (isinstance(value, str) and value.lower() in ["true", "false"]):
         return convert_to_github_env(value)
     raise ValueError(f"{key} should be a boolean (true/false). Got: {value}")
+
 
 def validate_json(value, key):
     try:
@@ -35,10 +40,12 @@ def validate_json(value, key):
     except (json.JSONDecodeError, TypeError):
         raise ValueError(f"{key} must be a valid JSON object")
 
+
 def validate_string(value, key):
     if isinstance(value, str):
-        return value if value else "null"
+        return value
     raise ValueError(f"{key} must be a string. Got {type(value).__name__}")
+
 
 def main():
     if len(sys.argv) < 2:
@@ -81,7 +88,10 @@ def main():
             else:
                 raise ValueError(f"{key} should be boolean (true/false). Got: {raw_value}")
         elif validator == validate_json:
-            validated_data[key] = validate_json(raw_value, key) if raw_value else "null"
+            if not raw_value:
+                validated_data[key] = "{}"
+            else:
+                validated_data[key] = validate_json(raw_value, key)
         else:  # string
             validated_data[key] = validate_string(raw_value, key)
 
@@ -98,13 +108,14 @@ def main():
             "SD_DATA": validated_data["SD_DATA"],
             "SD_DELTA": validated_data["SD_DELTA"],
             "ENV_INVENTORY_INIT": validated_data["ENV_INVENTORY_INIT"],
-            "ENV_SPECIFIC_PARAMETERS": json.loads(validated_data["ENV_SPECIFIC_PARAMETERS"]) if validated_data["ENV_SPECIFIC_PARAMETERS"] != "null" else None,
-            "ENV_TEMPLATE_NAME": validated_data["ENV_TEMPLATE_NAME"],
-            "ENV_TEMPLATE_VERSION": validate_string(data.get("ENV_TEMPLATE_VERSION", ""), "ENV_TEMPLATE_VERSION")
+            "ENV_SPECIFIC_PARAMETERS": json.loads(validated_data["ENV_SPECIFIC_PARAMETERS"]),
+            "ENV_TEMPLATE_NAME": data.get("ENV_TEMPLATE_NAME", ""),
+            "ENV_TEMPLATE_VERSION": data.get("ENV_TEMPLATE_VERSION", "")
         }
 
         env_file.write(f'ENV_GENERATION_PARAMS={json.dumps(env_generation_params)}\n')
         output_file.write(f'ENV_GENERATION_PARAMS={json.dumps(env_generation_params)}\n')
+
 
 if __name__ == "__main__":
     main()
