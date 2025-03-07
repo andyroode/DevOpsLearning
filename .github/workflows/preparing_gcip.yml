@@ -272,6 +272,7 @@ jobs:
           export ARTIFACT_ID="$ARTIFACT_ID"
           export GROUP_ID=""
           export ARTIFACT_ID=""
+          export CI_PLATFORM="github"
           export INSTANCES_DIR="${CI_PROJECT_DIR}/environments"
           export module_ansible_dir="/module/ansible"
           export module_inventory="${CI_PROJECT_DIR}/configuration/inventory.yaml"
@@ -333,7 +334,11 @@ jobs:
 
   generate_effective_set:
     name: "${{ matrix.environment }} - Generate Effective Set"
-    if: always() && needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true'
+    if: |
+      ${{ 
+        (matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true') ||
+        (matrix.environment != needs.env_build.outputs.successful_env && needs.show_environment_variables.outputs.ENV_BUILDER == 'true')) 
+      }}
     runs-on: ubuntu-latest
     needs: [parameters_validation,show_environment_variables,generate_inventory,env_build]
     container:
@@ -453,9 +458,9 @@ jobs:
       - name: Fail the job if the previous action is failed for the entered environment.
         if: | 
           ${{ 
-            (matrix.environment != needs.generate_inventory.outputs.successful_env) ||
-            (matrix.environment != needs.env_build.outputs.successful_env) ||
-            (matrix.environment != needs.generate_effective_set.outputs.successful_env)
+            (matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true') ||
+            (matrix.environment != needs.env_build.outputs.successful_env && needs.show_environment_variables.outputs.ENV_BUILDER == 'true')) ||
+            (matrix.environment != needs.generate_effective_set.outputs.successful_env && needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true'))
           }}
         run: |
           exit 1
