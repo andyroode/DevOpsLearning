@@ -210,12 +210,12 @@ jobs:
         id: set_output
         if: ${{ success() }}
         run: | 
-          echo "successful_env_${{ matrix.environment }}=True" >> $GITHUB_OUTPUT
+          echo "successful_env_${{ env.SANITIZED_NAME }}=True" >> $GITHUB_OUTPUT
           echo "inventory_artifact_uploaded=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
       - name: Environment variables values
         run: |
-          echo "successful_env = $successful_env_${{ matrix.environment }}"
+          echo "successful_env = ${{ steps.set_output.outputs.successful_env_${{ env.SANITIZED_NAME }} }}"
 
   env_build:
     name: "${{ matrix.environment }} - Env Build"
