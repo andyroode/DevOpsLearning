@@ -157,7 +157,7 @@ jobs:
     env:
       FULL_ENV: ${{ matrix.environment }}
     outputs:
-      successful_env: ${{ steps.collect_success.outputs.successful_env }}
+      successful_envs: ${{ steps.collect_success.outputs.successful_envs }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -220,15 +220,6 @@ jobs:
           fi
 
           echo "successful_envs=$success_envs" >> $GITHUB_OUTPUT   
-      
-
-      - name: Set output if successful
-        id: set_output
-        if: ${{ success() }}
-        run: | 
-          echo "successful_env_${{ env.SANITIZED_NAME }}=True" >> $GITHUB_OUTPUT
-          echo "inventory_artifact_uploaded=${{ matrix.environment }}" >> $GITHUB_OUTPUT
-
 
   env_build:
     name: "${{ matrix.environment }} - Env Build"
