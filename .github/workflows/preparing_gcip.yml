@@ -253,7 +253,21 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
+      - name: Check if the job should be executed for current env.
+        id: check_env
+        run: |
+          success_envs='${{ needs.generate_inventory.outputs.successful_envs }}'
+          current_env='${{ matrix.environment }}'
+          
+          if echo "$success_envs" | jq -e --arg e "$current_env" '.[] | select(. == $e)' > /dev/null; then
+            echo "envFound=True" >> $GITHUB_OUTPUT
+          else
+            echo "envFound=False" >> $GITHUB_OUTPUT
+          fi
 
+      - name: Print result
+        run: |
+          echo "envFound for '${{ matrix.environment }}' is ${{ steps.check_env.outputs.envFound }}"
 
       - name: Prepare variables to download the artifacts
         run: |
