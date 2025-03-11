@@ -157,8 +157,7 @@ jobs:
     env:
       FULL_ENV: ${{ matrix.environment }}
     outputs:
-      successful_env: ${{ steps.set_output.outputs.successful_env }}
-      inventory_artifact_uploaded: ${{ steps.set_output.outputs.inventory_artifact_uploaded }}
+      successful_env: ${{ steps.collect_success.outputs.successful_env }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -167,7 +166,6 @@ jobs:
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
-
       - name: Generate inventory
         run: |
           
@@ -206,6 +204,24 @@ jobs:
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
 
 
+      - name: Accumulate successful env
+        if: ${{ success() }}
+        run: |
+          echo "${{ matrix.environment }}" >> success_list.txt
+
+      - name: Collect success
+        id: collect_success
+        if: always()
+        run: |
+          if [ -f success_list.txt ] && [ -s success_list.txt ]; then
+            success_envs=$(cat success_list.txt | jq -R -s -c 'split("\n") | map(select(length>0))')
+          else
+            success_envs="[]"
+          fi
+
+          echo "::set-output name=successful_envs::$success_envs"    
+      
+
       - name: Set output if successful
         id: set_output
         if: ${{ success() }}
@@ -213,9 +229,6 @@ jobs:
           echo "successful_env_${{ env.SANITIZED_NAME }}=True" >> $GITHUB_OUTPUT
           echo "inventory_artifact_uploaded=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
-      - name: Environment variables values
-        run: |
-          echo "successful_env = ${{ steps.set_output.outputs.successful_env_${{ env.SANITIZED_NAME }} }}"
 
   env_build:
     name: "${{ matrix.environment }} - Env Build"
@@ -240,20 +253,17 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
-      - name: Show the output
-        run: |
-          echo "${{ needs.generate_inventory.outputs.successful_env }}"
-          echo "${{ matrix.environment }}"
 
-      - name: Fail the job if the previous action is failed for the entered environment.
-        if: matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true'
-        run: |
-          exit 1
 
       - name: Prepare variables to download the artifacts
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
+
+      - name: Fail the job if the previous action is failed for the entered environment.
+        if: matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true'
+        run: |
+          exit 1    
 
       - name: Download artifact
         if: ${{ matrix.environment == needs.generate_inventory.outputs.inventory_artifact_uploaded }}
