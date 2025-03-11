@@ -219,7 +219,7 @@ jobs:
             success_envs="[]"
           fi
 
-          echo "::set-output name=successful_envs::$success_envs"    
+          echo "successful_envs=$success_envs" >> $GITHUB_OUTPUT   
       
 
       - name: Set output if successful
