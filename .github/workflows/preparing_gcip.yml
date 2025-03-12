@@ -441,7 +441,7 @@ jobs:
         if: needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true' || needs.show_environment_variables.outputs.ENV_BUILDER == 'true' || needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true'
         uses: ./.github/actions/download_artifact
         with:
-          sanitized_name: ${{ env.SANITIZED_NAME }}
+          sanitized_name: ${{ env.artifact_name }}
           full_env: ${{ env.FULL_ENV }}
           project_dir: ${{ env.PROJECT_DIR }}
 
