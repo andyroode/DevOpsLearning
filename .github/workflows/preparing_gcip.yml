@@ -218,9 +218,6 @@ jobs:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
       FULL_ENV: ${{ matrix.environment }}
-    outputs:
-      successful_env: ${{ steps.set_output.outputs.successful_env }}
-      env_gene_artifact_uploaded: ${{ steps.set_output.outputs.env_gene_artifact_uploaded }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
@@ -229,12 +226,16 @@ jobs:
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
+          if [ "${{ needs.show_environment_variables.outputs.ENV_INVENTORY_INIT }}" = "true" ]; then
+            echo "artifact_name=generate_inventory_$SANITIZED_NAME" >> $GITHUB_ENV
+          fi
+          
  
       - name: Download artifact
         if: needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true'
         uses: ./.github/actions/download_artifact
         with:
-          sanitized_name: generate_inventory_${{ env.SANITIZED_NAME }}
+          sanitized_name: ${{ env.artifact_name }}
           full_env: ${{ env.FULL_ENV }}
           project_dir: ${{ env.PROJECT_DIR }}
 
@@ -304,14 +305,7 @@ jobs:
         with:
           name: env_build_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
-    
 
-      - name: Set output if successful
-        id: set_output
-        if: ${{ success() }}
-        run: |
-          echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
-          echo "env_gene_artifact_uploaded=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
 
   generate_effective_set:
@@ -328,32 +322,27 @@ jobs:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
       FULL_ENV: ${{ matrix.environment }}
-    outputs:
-      successful_env: ${{ steps.set_output.outputs.successful_env }}
-      effective_set_artifact_uploaded: ${{ steps.set_output.outputs.effective_set_artifact_uploaded }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
-      - name: Fail the job if the previous action is failed for the entered environment.
-        if: (matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true') || (matrix.environment != needs.env_build.outputs.successful_env && needs.show_environment_variables.outputs.ENV_BUILDER == 'true')
-        run: |
-          exit 1
 
       - name: Prepare variables to work with artifacts
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
+          if [ "${{ needs.show_environment_variables.outputs.ENV_INVENTORY_INIT }}" = "true" ]; then
+            echo "artifact_name=generate_inventory_$SANITIZED_NAME" >> $GITHUB_ENV
+          fi
+          if [ "${{ needs.show_environment_variables.outputs.ENV_BUILDER == 'true' }}" = "true" ]; then
+            echo "artifact_name=env_build_$SANITIZED_NAME" >> $GITHUB_ENV
+          fi
 
       - name: Download artifact
-        if: |
-          ${{ 
-            (matrix.environment == needs.generate_inventory.outputs.inventory_artifact_uploaded) ||
-            (matrix.environment == needs.env_build.outputs.env_gene_artifact_uploaded)
-          }}
+        if: needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true' || needs.show_environment_variables.outputs.ENV_BUILDER == 'true'
         uses: ./.github/actions/download_artifact
         with:
-          sanitized_name: ${{ env.SANITIZED_NAME }}
+          sanitized_name: ${{ env.artifact_name }}
           full_env: ${{ env.FULL_ENV }}
           project_dir: ${{ env.PROJECT_DIR }}
 
@@ -405,12 +394,6 @@ jobs:
           name: generate_effective_set_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/environments/${{ env.FULL_ENV }}
 
-      - name: Set output if successful
-        id: set_output
-        if: ${{ success() }}
-        run: |
-          echo "successful_env=${{ matrix.environment }}" >> $GITHUB_OUTPUT
-          echo "effective_set_artifact_uploaded=${{ matrix.environment }}" >> $GITHUB_OUTPUT
 
   git_commit:
     name: "${{ matrix.environment }} - Git Commit"
@@ -429,23 +412,22 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
-      - name: Fail the job if the previous action is failed for the entered environment.
-        if: (matrix.environment != needs.generate_inventory.outputs.successful_env && needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true') || (matrix.environment != needs.env_build.outputs.successful_env && needs.show_environment_variables.outputs.ENV_BUILDER == 'true') || (matrix.environment != needs.generate_effective_set.outputs.successful_env && needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true')
-        run: |
-          exit 1
-      
       - name: Prepare variables to work with artifacts
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
+          if [ "${{ needs.show_environment_variables.outputs.ENV_INVENTORY_INIT }}" = "true" ]; then
+            echo "artifact_name=generate_inventory_$SANITIZED_NAME" >> $GITHUB_ENV
+          fi
+          if [ "${{ needs.show_environment_variables.outputs.ENV_BUILDER == 'true' }}" = "true" ]; then
+            echo "artifact_name=env_build_$SANITIZED_NAME" >> $GITHUB_ENV
+          fi
+          if [ "${{ needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true' }}" = "true" ]; then
+            echo "artifact_name=generate_effective_set_$SANITIZED_NAME" >> $GITHUB_ENV
+          fi
           
       - name: Download artifact
-        if: |
-          ${{ 
-            (matrix.environment == needs.generate_inventory.outputs.inventory_artifact_uploaded) ||
-            (matrix.environment == needs.env_build.outputs.env_gene_artifact_uploaded) ||
-            (matrix.environment == needs.generate_effective_set.outputs.effective_set_artifact_uploaded)
-          }}
+        if: needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true' || needs.show_environment_variables.outputs.ENV_BUILDER == 'true' || needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true'
         uses: ./.github/actions/download_artifact
         with:
           sanitized_name: ${{ env.SANITIZED_NAME }}
