@@ -234,11 +234,6 @@ jobs:
             echo "artifact_name=generate_inventory_${{ env.SANITIZED_NAME }}" >> $GITHUB_ENV
           fi
 
-      - name: Check the naming
-        run: |
-          echo "${{ env.artifact_name }}"
-             
- 
       - name: Download artifact
         if: needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true'
         uses: ./.github/actions/download_artifact
