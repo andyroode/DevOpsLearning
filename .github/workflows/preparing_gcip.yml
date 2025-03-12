@@ -160,6 +160,15 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
+      - name: Do something
+        id: run_step
+        run: |
+          echo "Running on env: ${{ matrix.environment }}"
+          if [ "${{ matrix.environment }}" = "anru-test-01/e02" ]; then
+            echo "Simulating error"
+            exit 1
+          fi
+
       - name: Prepare variables to work with artifacts
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
