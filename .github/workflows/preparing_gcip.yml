@@ -227,10 +227,17 @@ jobs:
         run: |
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
+
+      - name: Create the naming for artifact
+        run: |
           if [ "${{ needs.show_environment_variables.outputs.ENV_INVENTORY_INIT }}" = "true" ]; then
-            echo "artifact_name=generate_inventory_${SANITIZED_NAME}" >> $GITHUB_ENV
+            echo "artifact_name=generate_inventory_${{ env.SANITIZED_NAME }}" >> $GITHUB_ENV
           fi
-          
+
+      - name: Check the naming
+        run: |
+          echo "${{ env.artifact_name }}"
+             
  
       - name: Download artifact
         if: needs.show_environment_variables.outputs.ENV_INVENTORY_INIT == 'true'
