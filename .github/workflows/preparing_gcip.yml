@@ -227,7 +227,7 @@ jobs:
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
           if [ "${{ needs.show_environment_variables.outputs.ENV_INVENTORY_INIT }}" = "true" ]; then
-            echo "artifact_name=generate_inventory_$SANITIZED_NAME" >> $GITHUB_ENV
+            echo "artifact_name=generate_inventory_${{ env.SANITIZED_NAME }}" >> $GITHUB_ENV
           fi
           
  
@@ -332,10 +332,10 @@ jobs:
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
           if [ "${{ needs.show_environment_variables.outputs.ENV_INVENTORY_INIT }}" = "true" ]; then
-            echo "artifact_name=generate_inventory_$SANITIZED_NAME" >> $GITHUB_ENV
+            echo "artifact_name=generate_inventory_${{ env.SANITIZED_NAME }}" >> $GITHUB_ENV
           fi
-          if [ "${{ needs.show_environment_variables.outputs.ENV_BUILDER == 'true' }}" = "true" ]; then
-            echo "artifact_name=env_build_$SANITIZED_NAME" >> $GITHUB_ENV
+          if [ "${{ needs.show_environment_variables.outputs.ENV_BUILDER }}" = "true" ]; then
+            echo "artifact_name=env_build_${{ env.SANITIZED_NAME }}" >> $GITHUB_ENV
           fi
 
       - name: Download artifact
@@ -417,13 +417,13 @@ jobs:
           echo "SANITIZED_NAME=$(echo "${{ matrix.environment }}" | sed 's|/|_|g')" >> $GITHUB_ENV
           echo "PROJECT_DIR=$(pwd)" >> $GITHUB_ENV
           if [ "${{ needs.show_environment_variables.outputs.ENV_INVENTORY_INIT }}" = "true" ]; then
-            echo "artifact_name=generate_inventory_$SANITIZED_NAME" >> $GITHUB_ENV
+            echo "artifact_name=generate_inventory_${{ env.SANITIZED_NAME }}" >> $GITHUB_ENV
           fi
-          if [ "${{ needs.show_environment_variables.outputs.ENV_BUILDER == 'true' }}" = "true" ]; then
-            echo "artifact_name=env_build_$SANITIZED_NAME" >> $GITHUB_ENV
+          if [ "${{ needs.show_environment_variables.outputs.ENV_BUILDER }}" = "true" ]; then
+            echo "artifact_name=env_build_${{ env.SANITIZED_NAME }}" >> $GITHUB_ENV
           fi
-          if [ "${{ needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET == 'true' }}" = "true" ]; then
-            echo "artifact_name=generate_effective_set_$SANITIZED_NAME" >> $GITHUB_ENV
+          if [ "${{ needs.show_environment_variables.outputs.GENERATE_EFFECTIVE_SET }}" = "true" ]; then
+            echo "artifact_name=generate_effective_set_${{ env.SANITIZED_NAME }}" >> $GITHUB_ENV
           fi
           
       - name: Download artifact
