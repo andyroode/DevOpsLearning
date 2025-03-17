@@ -81,6 +81,7 @@ jobs:
           echo "CMDB_IMPORT=${{ github.event.inputs.CMDB_IMPORT }}" >> $GITHUB_ENV
           echo "GENERATE_EFFECTIVE_SET=${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}" >> $GITHUB_ENV
           echo "ENV_TEMPLATE_VERSION=${{ github.event.inputs.ENV_TEMPLATE_VERSION }}" >> $GITHUB_ENV
+          echo "COMMIT_MESSAGE=${{ github.event.inputs.commit_message }}" >> $GITHUB_ENV
           python .github/scripts/load_env_params.py .github/vars.yaml >> $GITHUB_ENV
 
       - name: Input Parameters
@@ -98,7 +99,8 @@ jobs:
           echo "SD_VERSION = $SD_VERSION"
           echo "SD_SOURCE_TYPE = $SD_SOURCE_TYPE"
           echo "SD_DELTA = $SD_DELTA"
-          echo "ENV_SPECIFIC_PARAMETERS = $ENV_SPECIFIC_PARAMETERS"
+          echo "ENV_SPECIFIC_PARAMETERS = $ENV_SPECIFIC_PARAMETERS"\
+          echo "COMMIT_MESSAGE = $COMMIT_MESSAGE"
           
 
       - name: Prepare Parameters
