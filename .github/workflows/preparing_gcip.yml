@@ -1,4 +1,4 @@
-name: EnvGene Execution_${{ github.actor }}
+name: "EnvGene Execution_${{ github.actor }}"
 
 permissions:
   contents: write
