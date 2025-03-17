@@ -1,4 +1,6 @@
-name: "EnvGene Execution "
+name: "EnvGene Execution"
+
+run-name: Deploy by @${{ github.actor }}
 
 permissions:
   contents: write
