@@ -78,7 +78,7 @@ jobs:
           echo "CMDB_IMPORT=${{ github.event.inputs.CMDB_IMPORT }}" >> $GITHUB_ENV
           echo "GENERATE_EFFECTIVE_SET=${{ github.event.inputs.GENERATE_EFFECTIVE_SET }}" >> $GITHUB_ENV
           echo "ENV_TEMPLATE_VERSION=${{ github.event.inputs.ENV_TEMPLATE_VERSION }}" >> $GITHUB_ENV
-          python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
+          python .github/scripts/load_env_params.py .github/vars.yaml >> $GITHUB_ENV
 
       - name: Environment variables values
         run: |
@@ -133,7 +133,7 @@ jobs:
 
       - name: Read environment variables
         run: |
-          python .github/scripts/load_env_params.py .github/config/env_config.yaml >> $GITHUB_ENV
+          python .github/scripts/load_env_params.py .github/vars.yaml >> $GITHUB_ENV
 
       - name: EnvGene parameters validation
         run: |
@@ -510,5 +510,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: GENERATED_ENV_${{ env.SANITIZED_NAME }}
+          name: git_commit_${{ env.SANITIZED_NAME }}
           path: ${{ github.workspace }}/git_envs
