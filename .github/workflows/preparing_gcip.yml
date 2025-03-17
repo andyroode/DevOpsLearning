@@ -72,14 +72,10 @@ jobs:
       - name: Repository Checkout
         uses: actions/checkout@v4
 
-      - name: Update Workflow Run Name
+      - name: Log Commit Message in UI
+        run: echo "::notice title=Commit Message::$COMMIT_MESSAGE"
         env:
-          COMMIT_MESSAGE: ${{ github.event.inputs.commit_message || 'Manual Run' }}
-        run: |
-          curl -X PATCH -H "Authorization: token $GITHUB_TOKEN" \
-               -H "Accept: application/vnd.github.v3+json" \
-               "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \
-               -d "{\"name\":\"EnvGene Execution - $COMMIT_MESSAGE\"}"
+          COMMIT_MESSAGE: ${{ github.event.inputs.commit_message }}
 
       - name: Read input variables
         run: |
