@@ -1,4 +1,4 @@
-name: "EnvGene Execution_${{ github.actor }}"
+name: "EnvGene Execution_${{ steps.timestamp.outputs.time }}"
 
 permissions:
   contents: write
@@ -68,6 +68,10 @@ jobs:
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
+
+      - name: Set timestamp
+        id: timestamp
+        run: echo "time=$(date +'%Y-%m-%d_%H-%M-%S')" >> $GITHUB_ENV
 
       - name: Read input variables
         run: |
