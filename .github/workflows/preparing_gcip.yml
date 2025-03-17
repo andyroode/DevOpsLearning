@@ -1,4 +1,4 @@
-name: EnvGene Execution
+name: EnvGene Execution_${{ github.actor }}
 
 permissions:
   contents: write
@@ -46,7 +46,7 @@ env:
 
 jobs:
   show_environment_variables:
-    name: "Read and check input variables"
+    name: "Input Parameters Processing"
     runs-on: ubuntu-latest
     outputs:
       env_matrix: ${{ steps.matrix-generator.outputs.env_matrix }}
@@ -80,7 +80,7 @@ jobs:
           echo "ENV_TEMPLATE_VERSION=${{ github.event.inputs.ENV_TEMPLATE_VERSION }}" >> $GITHUB_ENV
           python .github/scripts/load_env_params.py .github/vars.yaml >> $GITHUB_ENV
 
-      - name: Environment variables values
+      - name: Input Parameters
         run: |
           echo "ENV_NAMES = $ENV_NAMES"
           echo "ENV_BUILDER = $ENV_BUILDER"
@@ -98,7 +98,7 @@ jobs:
           echo "ENV_SPECIFIC_PARAMETERS = $ENV_SPECIFIC_PARAMETERS"
           
 
-      - name: Convert ENV_NAMES to JSON array
+      - name: Prepare Parameters
         id: matrix-generator
         shell: bash
         run: |
@@ -130,10 +130,6 @@ jobs:
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
-
-      - name: Read environment variables
-        run: |
-          python .github/scripts/load_env_params.py .github/vars.yaml >> $GITHUB_ENV
 
       - name: EnvGene parameters validation
         run: |
