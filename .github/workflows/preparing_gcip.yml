@@ -66,15 +66,10 @@ jobs:
       SD_SOURCE_TYPE: ${{ env.SD_SOURCE_TYPE }}
       SD_DELTA: ${{ env.SD_DELTA }}
       ENV_SPECIFIC_PARAMETERS: ${{ env.ENV_SPECIFIC_PARAMETERS }}
-      timestamp: ${{ steps.timestamp.outputs }}
 
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
-
-      - name: Set Timestamp
-        id: timestamp
-        run: echo "TIMESTAMP=$(date +"%Y%m%d%H%M%S")" >> $GITHUB_ENV
 
       - name: Read input variables
         run: |
