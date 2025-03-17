@@ -1,4 +1,4 @@
-name: "EnvGene Execution - ${{ github.event.inputs.commit_message || 'Manual Run' }}"
+name: "EnvGene Execution "
 
 permissions:
   contents: write
@@ -71,6 +71,15 @@ jobs:
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
+
+      - name: Update Workflow Run Name
+        env:
+          COMMIT_MESSAGE: ${{ github.event.inputs.commit_message || 'Manual Run' }}
+        run: |
+          curl -X PATCH -H "Authorization: token $GITHUB_TOKEN" \
+               -H "Accept: application/vnd.github.v3+json" \
+               "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID" \
+               -d "{\"name\":\"EnvGene Execution - $COMMIT_MESSAGE\"}"
 
       - name: Read input variables
         run: |
