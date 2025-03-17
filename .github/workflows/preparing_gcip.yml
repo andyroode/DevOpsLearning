@@ -1,6 +1,6 @@
 name: "EnvGene Execution"
 
-run-name: ${{ github.event.inputs.commit_message }}
+run-name: EnvGene Execution - ${{ inputs.ENV_NAMES }} - ${{ github.actor }}
 
 permissions:
   contents: write
@@ -9,9 +9,6 @@ permissions:
 on:
   workflow_dispatch:
     inputs:
-      commit_message:
-        description: "Commit message"
-        required: true
       ENV_NAMES:
         description: "Environment Names"
         required: true
