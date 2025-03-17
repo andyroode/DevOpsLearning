@@ -80,6 +80,10 @@ jobs:
                -H "Accept: application/vnd.github.v3+json" \
                "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID"
 
+      - name: Log Commit Message
+        run: |
+          echo "🔹 Workflow started from commit: ${{ github.event.head_commit.message }}"
+
       - name: Update Workflow Run Name
         run: |
           COMMIT_MSG=$(git log -1 --pretty=%s)
