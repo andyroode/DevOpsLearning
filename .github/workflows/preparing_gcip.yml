@@ -1,4 +1,4 @@
-name: "EnvGene Execution"
+name: "EnvGene Execution - ${{ github.event.inputs.commit_message || 'Manual Run' }}"
 
 permissions:
   contents: write
