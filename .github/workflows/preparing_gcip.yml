@@ -1,6 +1,6 @@
 name: "EnvGene Execution"
 
-run-name: EnvGene Execution - ${{ inputs.ENV_NAMES }} - ${{ github.actor }} - ${TIMESTAMP}
+run-name: EnvGene Execution - ${{ inputs.ENV_NAMES }} - ${{ github.actor }} - ${{ show_environment_variables.outputs.timestamp }}
 
 permissions:
   contents: write
