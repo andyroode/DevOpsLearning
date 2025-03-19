@@ -1,6 +1,6 @@
 name: "EnvGene Execution"
 
-run-name: "Environments: ${{ inputs.ENV_NAMES }}. Launched by: ${{ github.actor }}"
+run-name: "Environments: ${{ inputs.ENV_NAMES }}"
 
 permissions:
   contents: write
