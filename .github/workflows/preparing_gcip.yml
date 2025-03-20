@@ -259,7 +259,6 @@ jobs:
           export CLUSTER_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f1)
           export ENVIRONMENT_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f2 | xargs)
           export ENV_NAME=$ENVIRONMENT_NAME
-          
           export CI_PROJECT_DIR="$CI_PROJECT_DIR"
           export ENV_TEMPLATE_VERSION="$ENV_TEMPLATE_VERSION"
           export GROUP_ID="$GROUP_ID"
