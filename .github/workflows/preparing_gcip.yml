@@ -221,7 +221,7 @@ jobs:
       - show_environment_variables
       - generate_inventory
     container:
-      image: ghcr.io/netcracker/qubership-envgene:develop
+      image: ghcr.io/netcracker/qubership-envgene:feature-add_env_version_input
     strategy:
       fail-fast: false
       matrix:
