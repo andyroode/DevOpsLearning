@@ -107,8 +107,7 @@ def main():
             "SD_DATA": validated_data["SD_DATA"],
             "SD_DELTA": validated_data["SD_DELTA"],
             "ENV_SPECIFIC_PARAMETERS": json.loads(validated_data["ENV_SPECIFIC_PARAMETERS"]),
-            "ENV_TEMPLATE_NAME": data.get("ENV_TEMPLATE_NAME", ""),
-            "ENV_TEMPLATE_VERSION": data.get("ENV_TEMPLATE_VERSION", "")
+            "ENV_TEMPLATE_NAME": data.get("ENV_TEMPLATE_NAME", "")
         }
 
         env_file.write(f'ENV_GENERATION_PARAMS={json.dumps(env_generation_params)}\n')
