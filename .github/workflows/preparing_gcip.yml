@@ -253,7 +253,7 @@ jobs:
 
       - name: Build Env
         run: |
-          echo "$ENV_TEMPLATE_VERSION"
+          echo $ENV_TEMPLATE_VERSION
           
           export ENV_NAMES=${{ matrix.environment }}
           export ENV_NAME_SHORT=$(echo "$ENV_NAME" | awk -F "/" "{print \$NF}")
@@ -262,7 +262,7 @@ jobs:
           export ENVIRONMENT_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f2 | xargs)
           export ENV_NAME=$ENVIRONMENT_NAME
           export CI_PROJECT_DIR="$CI_PROJECT_DIR"
-          export ENV_TEMPLATE_VERSION="$ENV_TEMPLATE_VERSION"
+          export ENV_TEMPLATE_VERSION=$ENV_TEMPLATE_VERSION
           export GROUP_ID="$GROUP_ID"
           export ARTIFACT_ID="$ARTIFACT_ID"
           export CI_PLATFORM="github"
