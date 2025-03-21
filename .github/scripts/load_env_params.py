@@ -36,8 +36,9 @@ def validate_boolean(value, key):
 def validate_json(value, key):
     try:
         if isinstance(value, str):
-            value = ' '.join(value.split())
-        return json.dumps(json.loads(value))
+            value = value.strip().replace('\n', ' ')
+        parsed_json = json.loads(value)
+        return json.dumps(parsed_json)
     except (json.JSONDecodeError, TypeError):
         raise ValueError(f"{key} must be a valid JSON object")
 

@@ -6,7 +6,7 @@ SD_DATA: '{ "version": 2.2, "type": "deploy" }'
 SD_VERSION: 'app-ver-02'
 SD_SOURCE_TYPE: 'json'
 SD_DELTA: False
-ENV_SPECIFIC_PARAMETERS: >
+ENV_SPECIFIC_PARAMETERS: |
   {
     "clusterParams": {
       "clusterEndpoint": "test-val.com",
