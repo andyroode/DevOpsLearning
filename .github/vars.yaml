@@ -4,6 +4,6 @@ ENV_TEMPLATE_TEST: False #boolean - only true or false
 ENV_TEMPLATE_NAME: ''
 SD_DATA: '{ "version": 2.2, "type": "deploy" }'
 SD_VERSION: 'app-ver-02'
-SD_SOURCE_TYPE: ''
+SD_SOURCE_TYPE: 'json'
 SD_DELTA: ''
 ENV_SPECIFIC_PARAMETERS: '{}'
