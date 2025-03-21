@@ -156,18 +156,17 @@ jobs:
         environment: ${{ fromJson(needs.show_environment_variables.outputs.env_matrix) }}
     env:
       FULL_ENV: ${{ matrix.environment }}
+      SD_SOURCE_TYPE: ${{ needs.show_environment_variables.outputs.SD_SOURCE_TYPE }}
+      SD_VERSION: ${{ needs.show_environment_variables.outputs.SD_VERSION }}
+      SD_DATA: ${{ needs.show_environment_variables.outputs.SD_DATA }}
+      SD_DELTA: ${{ needs.show_environment_variables.outputs.SD_DELTA }}
+      ENV_INVENTORY_INIT: ${{ needs.show_environment_variables.outputs.ENV_INVENTORY_INIT }}
+      ENV_SPECIFIC_PARAMETERS: ${{ needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS }}
+      ENV_TEMPLATE_NAME: ${{ needs.show_environment_variables.outputs.ENV_TEMPLATE_NAME }}
+      ENV_TEMPLATE_VERSION: ${{ needs.show_environment_variables.outputs.ENV_TEMPLATE_VERSION }}
     steps:
       - name: Repository Checkout
         uses: actions/checkout@v4
-
-      - name: Do something
-        id: run_step
-        run: |
-          echo "Running on env: ${{ matrix.environment }}"
-          if [ "${{ matrix.environment }}" = "anru-test-01/e02" ]; then
-            echo "Simulating error"
-            exit 1
-          fi
 
       - name: Prepare variables to work with artifacts
         run: |
@@ -179,7 +178,6 @@ jobs:
           
           export CLUSTER_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f1)
           export ENVIRONMENT_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f2 | xargs)
-          
           export ENV_NAME=$ENVIRONMENT_NAME
           
           export ENV_GENERATION_PARAMS="$(jq -nc \
