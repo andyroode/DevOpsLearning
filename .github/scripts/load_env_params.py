@@ -70,7 +70,7 @@ def main():
         "SD_DATA": validate_json,
         "SD_VERSION": validate_string,
         "SD_SOURCE_TYPE": validate_string,
-        "SD_DELTA": validate_string,
+        "SD_DELTA": validate_boolean,
         "ENV_SPECIFIC_PARAMETERS": validate_json,
     }
 
