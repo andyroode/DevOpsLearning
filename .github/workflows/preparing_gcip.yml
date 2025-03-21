@@ -183,14 +183,14 @@ jobs:
           export ENV_NAME=$ENVIRONMENT_NAME
           
           export ENV_GENERATION_PARAMS="$(jq -nc \
-            --arg sd_source_type "${SD_SOURCE_TYPE:-""}" \
-            --arg sd_version "${SD_VERSION:-""}" \
-            --arg sd_data "${SD_DATA:-"{}"}" \
-            --arg sd_delta "${SD_DELTA:-""}" \
-            --arg env_inventory_init "${ENV_INVENTORY_INIT:-""}" \
-            --arg env_specific_params "${ENV_SPECIFIC_PARAMETERS:-""}" \
-            --arg env_template_name "${ENV_TEMPLATE_NAME:-""}" \
-            --arg env_template_version "${ENV_TEMPLATE_VERSION:-""}" \
+            --arg sd_source_type "${{ needs.show_environment_variables.outputs.SD_SOURCE_TYPE:-"" }}" \
+            --arg sd_version "${{ needs.show_environment_variables.outputs.SD_VERSION:-"" }}" \
+            --arg sd_data "${{ needs.show_environment_variables.outputs.SD_DATA:-"{}" }}" \
+            --arg sd_delta "${{ needs.show_environment_variables.outputs.SD_DELTA:-"" }}" \
+            --arg env_inventory_init "${{ needs.show_environment_variables.outputs.ENV_INVENTORY_INIT:-"" }}" \
+            --arg env_specific_params "${{ needs.show_environment_variables.outputs.ENV_SPECIFIC_PARAMETERS:-"" }}" \
+            --arg env_template_name "${{ needs.show_environment_variables.outputs.ENV_TEMPLATE_NAME:-"" }}" \
+            --arg env_template_version "${{ needs.show_environment_variables.outputs.ENV_TEMPLATE_VERSION:-"" }}" \
             '{
               "SD_SOURCE_TYPE": $sd_source_type,
               "SD_VERSION": $sd_version,
@@ -255,7 +255,7 @@ jobs:
         run: |
           export ENV_NAMES=${{ matrix.environment }}
           export ENV_NAME_SHORT=$(echo "$ENV_NAME" | awk -F "/" "{print \$NF}")
-          export ENV_TEMPLATE_TEST="$ENV_TEMPLATE_TEST"
+          export ENV_TEMPLATE_TEST=${{ needs.show_environment_variables.outputs.ENV_TEMPLATE_TEST }}
           export CLUSTER_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f1)
           export ENVIRONMENT_NAME=$(echo "${{ matrix.environment }}" | cut -d'/' -f2 | xargs)
           export ENV_NAME=$ENVIRONMENT_NAME
