@@ -5,5 +5,5 @@ ENV_TEMPLATE_NAME: ''
 SD_DATA: '{ "version": 2.2, "type": "deploy" }'
 SD_VERSION: 'app-ver-02'
 SD_SOURCE_TYPE: 'json'
-SD_DELTA: ''
+SD_DELTA: False
 ENV_SPECIFIC_PARAMETERS: '{}'
