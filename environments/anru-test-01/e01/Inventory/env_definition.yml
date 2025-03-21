@@ -1,7 +1,17 @@
 inventory:
   environmentName: e01
+  clusterUrl: test-val.com
 envTemplate:
   artifact: ''
   name: 'true'
-  envSpecificParamsets: {}
-  additionalTemplateVariables: {}
+  envSpecificParamsets:
+    cloud:
+      - cloud-specific
+      - integrations
+      - paramsetA
+    main:
+      - internal-base-ns
+      - toms-params
+      - paramsetB
+  additionalTemplateVariables:
+    key: value
