@@ -108,7 +108,7 @@ def main():
             "SD_VERSION": validated_data["SD_VERSION"],
             "SD_DATA": validated_data["SD_DATA"],
             "SD_DELTA": validated_data["SD_DELTA"],
-            "ENV_SPECIFIC_PARAMETERS": json.loads(validated_data["ENV_SPECIFIC_PARAMETERS"]),
+             "ENV_SPECIFIC_PARAMETERS": json.loads(validated_data.get("ENV_SPECIFIC_PARAMETERS", "{}"),
             "ENV_TEMPLATE_NAME": data.get("ENV_TEMPLATE_NAME", "")
         }
 
