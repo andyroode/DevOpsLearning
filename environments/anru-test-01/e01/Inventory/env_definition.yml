@@ -15,3 +15,11 @@ envTemplate:
       - paramsetB
   additionalTemplateVariables:
     key: value
+  templateArtifact:
+    registry: "maven-central"
+    repository: "releaseRepository"
+    artifact:
+      group_id: "org.qubership"
+      artifact_id: "qubership_envgene_templates"
+      version: "0.0.0.5"
+    templateRepository: "releaseTemplateRepository"
