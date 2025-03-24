@@ -1,23 +1,23 @@
 inventory:
-  environmentName: e01
-  clusterUrl: test-val.com
+  environmentName: "e01"
+  clusterUrl: "test-val.com"
   tenantName: "test-tenant"
   deployer: "test-deployer"
   cloudName: "anru-test-01"
   cloudPassport: "anru-test-01"
 envTemplate:
-  name: 'dev'
+  name: "dev"
   envSpecificParamsets:
     cloud:
-      - cloud-specific
-      - integrations
-      - paramsetA
+      - "cloud-specific"
+      - "integrations"
+      - "paramsetA"
     main:
-      - internal-base-ns
-      - toms-params
-      - paramsetB
+      - "internal-base-ns"
+      - "toms-params"
+      - "paramsetB"
   additionalTemplateVariables:
-    key: value
+    key: "value"
   templateArtifact:
     registry: "maven-central"
     repository: "releaseRepository"
@@ -26,3 +26,5 @@ envTemplate:
       artifact_id: "qubership_envgene_templates"
       version: "0.0.0.5"
     templateRepository: "releaseTemplateRepository"
+generatedVersions:
+  generateEnvironmentLatestVersion: "0.0.0.5"  # This value is automatically generated during job run.
