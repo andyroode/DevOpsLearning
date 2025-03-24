@@ -6,7 +6,7 @@ inventory:
   cloudName: "anru-test-01"
   cloudPassport: "anru-test-01"
 envTemplate:
-  name: 'true'
+  name: 'dev'
   envSpecificParamsets:
     cloud:
       - cloud-specific
