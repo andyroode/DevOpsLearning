@@ -1,7 +1,0 @@
-version: 2.2
-type: deploy
-applications:
-  - version: temp1:1.32.6-pg14-20240531.092603-2-RELEASE
-    deployPostfix: bss
-  - version: temp2-service:1.32.6-pg14-20240531.092603-2-RELEASE
-    deployPostfix: core
