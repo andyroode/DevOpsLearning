@@ -3,5 +3,5 @@ type: deploy
 applications:
   - version: postgres:1.32.6-pg14-20240531.092603-2-RELEASE
     deployPostfix: toms
-  - version: postgres-service:1.32.6-pg14-20240531.092603-2-RELEASE
+  - version: postgres:1.32.6-pg14-20240531.092603-2-RELEASE
     deployPostfix: bss
