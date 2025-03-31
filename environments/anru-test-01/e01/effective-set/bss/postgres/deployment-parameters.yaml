@@ -17,3 +17,4 @@ TBAPI_URL: "http://test" # from cloud level
 TRACING_UI_URL: "https://anru-test-01.managed.temp.cloud" # from cloud level
 VALUE: "true" # from cloud level
 key1: "value2" # from cloud level
+test_parameter: "e01-bss" # from namespace level
