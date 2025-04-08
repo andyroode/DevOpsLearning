@@ -219,7 +219,7 @@ jobs:
       - show_environment_variables
       - generate_inventory
     container:
-      image: ghcr.io/netcracker/qubership-envgene:bugfix-update_generate_namespace_role
+      image: ghcr.io/netcracker/qubership-envgene:bugfix-ss_fix_issue_with_default
     strategy:
       fail-fast: false
       matrix:
