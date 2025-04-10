@@ -242,6 +242,15 @@ applications:
   - version: "aap-datahub-core:release-2024.4-005-RELEASE"
     alias: "aap-datahub-core:datahub"
     deployPostfix: "datahub"
+  - version: "aap-datahub-core:release-2024.4-005-RELEASE"
+    alias: "aap-datahub-core:datahub"
+    deployPostfix: "TEST_VAL_TEST"
+  - version: "aap-datahub-core:release-2024.4-005-RELEASE"
+    alias: "aap-datahub-core:datahub"
+    deployPostfix: "TEST_VAL_TEST"
+  - version: "Cloud-Core:release-2024.4-9.8.0-20250317.170940-58-RELEASE"
+    alias: "Cloud-Core:datahub"
+    deployPostfix: "TESTY"
 cmdbConfigs:
   - "etbss-app-gav-configuration:release-ph1-cd1-SNAPSHOT"
 userData:
