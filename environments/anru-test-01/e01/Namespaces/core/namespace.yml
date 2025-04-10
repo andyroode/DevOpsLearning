@@ -14,9 +14,17 @@ profile:
   baseline: "dev"
 deployParameters:
   BSS_NAMESPACE: "e01-bss"
+
   CORE_NAMESPACE: "e01-core"
   ENVGENE_CONFIG_REF_NAME: "main"
   ENVGENE_CONFIG_TAG: ""
+  test_parameter: "bla bla bla"
+
+  test_parameter_3: "e01-data-mng"
+
+
+  test_parameter_5: "release-2025.1-application-20250402.023419-9-RELEASE"
+
 e2eParameters: {}
 technicalConfigurationParameters:
   BSS_NAMESPACE: "e01-bss"
