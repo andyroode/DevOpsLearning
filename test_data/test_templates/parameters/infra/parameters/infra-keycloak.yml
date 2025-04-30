@@ -11,7 +11,7 @@ parameters:
   ENABLE_MONITORING: "true"
   INSTALL_GRAFANA_DASHBOARD: "true"
   INFRA_KEYCLOAK_ADMIN_USER_NAME: admin
-  INFRA_KEYCLOAK_ADMIN_username: "tmp_password"
+  INFRA_KEYCLOAK_ADMIN_password: "tmp_password"
   DB_HOST: "pg-patroni.${namespace_postgresql_platform}"
   DB_PORT: "5432"
   DB_NAME: dbaas_bss_pg_infra_keycloak

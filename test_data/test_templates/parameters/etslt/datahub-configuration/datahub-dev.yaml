@@ -42,7 +42,7 @@ applications:
       sparkOperator.minio.user: "admin"
       sparkOperator.minio.pass: "admin123"
       kafka.secure.sasl.username: "tmp_user"
-      kafka.secure.sasl.username: "tmp_password"
+      kafka.secure.sasl.password: "tmp_password"
   - appName: "prj-datahub-etl"
     parameters:
       securityContexts:

@@ -2,17 +2,17 @@ cdc-streaming-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"
 cm-kafka-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"
 cm-postgresql-rw-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"
 consul-admin-cred:
   type: "secret"
   data:
@@ -21,12 +21,12 @@ cse-graylog-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"
 dbaas-cluster-dba-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"
 deploy-sa-token:
   type: "secret"
   data:
@@ -35,24 +35,24 @@ maas-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"
 oss-streaming-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"
 smtp-server-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"
 ssm-cmdb-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"
 storage-cred:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    username: "tmp_password"
+    password: "tmp_password"

@@ -7,7 +7,7 @@ deployParameters:
   BEOC_SMARTPLUG_ENABLED: "true"     # paramset: data-management-configuration version: 1 source: template
   BEOC_STORAGE_PASSWORD: "${creds.get(\"common-minio-cred\").password}" # paramset: data-management-configuration version: 1 source: template
   BEOC_STORAGE_USERNAME: "${creds.get(\"common-minio-cred\").username}" # paramset: data-management-configuration version: 1 source: template
-  MONITORING_QUERY_username: "tmp_password" # paramset: data-management-wa version: 23.3 source: template
+  MONITORING_QUERY_password: "tmp_password" # paramset: data-management-wa version: 23.3 source: template
   MONITORING_QUERY_URL: "http://vmsingle-k8s.platform-monitoring:8429" # paramset: data-management-configuration version: 1 source: template
   MONITORING_QUERY_USER: "admin" # paramset: data-management-wa version: 23.3 source: template
   STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.com" # paramset: data-management-configuration version: 1 source: template
