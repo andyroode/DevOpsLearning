@@ -11,7 +11,7 @@ Shared-default-dbaas:
 consul-token:
   type: "secret"
   data:
-    secret: "consul_token"
+    secret: "tmp_secret"
 
 
 k8s-apps15-service-admin:
