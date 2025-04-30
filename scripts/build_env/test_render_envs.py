@@ -6,7 +6,7 @@ from main import render_environment
 from envgenehelper import *
 
 test_data = [
-      ("anru-test-01", "e01", "0.0.5")
+      ("sample-cloud-name", "composite-full", "composite-full-version-from-tests")
 ]
 g_templates_dir = getAbsPath("../../test_data/test_templates")
 g_inventory_dir = getAbsPath("../../test_data/test_environments")
