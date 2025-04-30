@@ -1,0 +1,31 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "aap-datahub-base"
+deployParameters:
+  datahubDefaultEnv.DATAHUB__dfs_default_file_format: "orc" # paramset: datahub-dev version: 1 source: template
+  greenplumDb.rdb.fetchsize: "100" # paramset: datahub-dev version: 1 source: template
+  kafka.secure.sasl.password: "admin" # paramset: datahub-dev version: 1 source: template
+  kafka.secure.sasl.username: "admin" # paramset: datahub-dev version: 1 source: template
+  oracleDb.rdb.fetchsize: "100" # paramset: datahub-dev version: 1 source: template
+  scheduler.logGroomerSidecar.retentionDays: "2" # paramset: datahub-dev version: 1 source: template
+  securityContexts: # paramset: datahub-dev version: 1 source: template
+    containers:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - "ALL"
+    pod:
+      fsGroup: null
+      runAsNonRoot: true
+      runAsUser: null
+      seccompProfile:
+        type: "RuntimeDefault"
+  sparkOperator.k8s.token: "${creds.get(\"cloud-deploy-sa-token\").secret}" # paramset: datahub-dev version: 1 source: template
+  sparkOperator.minio.pass: "admin123" # paramset: datahub-dev version: 1 source: template
+  sparkOperator.minio.url: "minio.minio.svc:9000" # paramset: datahub-dev version: 1 source: template
+  sparkOperator.minio.user: "admin" # paramset: datahub-dev version: 1 source: template
+  sparkOperator.spark.metastoreUrl: "thrift://hive-metastore.hive-metastore:9083" # paramset: datahub-dev version: 1 source: template
+  workers.logGroomerSidecar.retentionDays: "2" # paramset: datahub-dev version: 1 source: template
+  workers.persistence.enabled: "true" # paramset: datahub-dev version: 1 source: template
+technicalConfigurationParameters: {}

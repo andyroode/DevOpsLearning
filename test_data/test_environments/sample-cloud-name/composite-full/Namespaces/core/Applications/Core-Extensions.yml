@@ -1,0 +1,7 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Core-Extensions"
+deployParameters:
+  DICTIONARIES_SECURITY_ROLES: "ROLE_metamodel-provider-backend,ROLE_metamodel-sample,ROLE_cim-core-service,ROLE_party-interaction-core-service,ROLE_account-mgmt-core,ROLE_payment-method-mgmt-core,ROLE_csrd-fragment-cim-api,ROLE_cpm-core-service,ROLE_external_Cpq_Product_Anonymous_Customer,ROLE_Cpq_Product_Anonymous_Customer,ROLE_TENANT-ADMIN,ROLE_M2M,ROLE_Customer,ROLE_CSR,ROLE_DS_Sales_Agent,ROLE_DS_Sales_Manager,ROLE_DS_SuperUser" # paramset: common version: 23.1 source: template
+technicalConfigurationParameters: {}

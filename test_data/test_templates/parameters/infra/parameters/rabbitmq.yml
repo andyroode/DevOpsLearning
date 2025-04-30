@@ -1,0 +1,32 @@
+version: 23.4
+name: rabbitmq
+parameters:
+  DEPLOY_W_HELM: true
+  DISABLE_CRD: false
+  ESCAPE_SEQUENCE: true
+  loglevel: "DEBUG"
+  name: "rabbitmq-service"
+  rabbitmq:
+    tls:
+      secretName: '""'
+    auto_reboot: true
+    custom_params:
+      rabbitmq_default_password: "${creds.get(\"rabbitmq-admin-cred\").password}"
+      rabbitmq_default_user: "${creds.get(\"rabbitmq-admin-cred\").username}"
+      rabbitmq_vm_memory_high_watermark: "80%"
+    hostpath_configuration: false
+    ingress:
+      enabled: true
+    replicas: "3"
+    resources:
+      limits:
+        cpu: "1"
+        memory: "2Gi"
+      requests:
+        cpu: "300m"
+        memory: "2Gi"
+      storage: "5Gi"
+      storageclass: "${STORAGE_RWO_CLASS}"
+    validate_state: true
+  rabbitmqPrometheusMonitoring: true
+applications: []

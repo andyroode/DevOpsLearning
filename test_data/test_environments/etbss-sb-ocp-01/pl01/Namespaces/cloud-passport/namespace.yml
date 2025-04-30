@@ -1,0 +1,49 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "pl01-cloud-passport"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-pl01"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  cmdb: # paramset: cloud-passport version: 23.4 source: template
+    install: true
+    token: "${creds.get(\"cloud-passport-cmdb-token\").secret}"
+    url: "https://app-deployer.apps."
+    user: "admin"
+  core: # paramset: cloud-passport version: 23.4 source: template
+    install: true
+    repo_name: "sd.etslt_bss.mvn.group"
+  dns:
+    cloud_private_host: "apps."
+    cloud_public_host: "apps."
+  graylog: # paramset: cloud-passport version: 23.4 source: template
+    install: true
+    url: "https://graylog.fqdn"
+  maas: # paramset: cloud-passport version: 23.4 source: template
+    install: true
+  monitoring: # paramset: cloud-passport version: 23.4 source: template
+    install: true
+  smtp: # paramset: cloud-passport version: 23.4 source: template
+    install: false
+  storage: # paramset: cloud-passport version: 23.4 source: template
+    install: true
+    password: "${creds.get(\"minio-admin\").username}"
+    provide: "s3"
+    region: "us-west-2"
+    rwo_class: "${STORAGE_RWO_CLASS}"
+    url: "https://s3.fqdn"
+    username: "${creds.get(\"minio-admin\").username}"
+  vault: # paramset: cloud-passport version: 23.4 source: template
+    install: false
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

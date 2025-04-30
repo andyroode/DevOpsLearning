@@ -1,0 +1,15 @@
+---
+tenant: "{{ templates_dir }}/env_templates/prj-dev/tenant.yml.j2"
+cloud: "{{ templates_dir }}/env_templates/prj-dev/cloud.yml.j2"
+namespaces:
+  - name: "{env}-core"
+    template_path: "{{ templates_dir }}/env_templates/prj-dev/Namespaces/core.yml.j2"
+  - name: "{env}-bss"
+    template_path: "{{ templates_dir }}/env_templates/prj-dev/Namespaces/bss.yml.j2"
+  - name: "{env}-data-management"
+    template_path: "{{ templates_dir }}/env_templates/prj-dev/Namespaces/data-management.yml.j2"
+  - name: "{env}-datahub"
+    template_path: "{{ templates_dir }}/env_templates/prj-dev/Namespaces/datahub.yml.j2"
+  - name: "{env}-data-migration"
+    template_path: "{{ templates_dir }}/env_templates/prj-dev/Namespaces/data-migration.yml.j2"
+parametersets: []

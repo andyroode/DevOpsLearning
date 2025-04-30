@@ -1,0 +1,30 @@
+version: 1
+name: data-migration
+parameters: 
+  CDM_BSS_NAMESPACE: "${BSS_NAMESPACE}"
+applications: 
+  - appName: "Cloud-Core"
+    parameters:
+      # config for ETBSS-13558
+      DBAAS_ON_MICROSERVICES_PHYSDB_RULE: "[\n{\n\t\t\"type\": \"postgresql\",\n\t\t\
+      \"rules\": [{\n\t\t\t\"label\": \"datamigration_balancing_rule=postgresql-datamigration\"\
+      \n\t\t}],\n\t\t\"microservices\": [\n\t\t\t\"config-server\", \"control-plane\"\
+      , \"site-management\", \"cloud-data-migration-nifi\", \"cloud-data-migration-nifi-registry\"\
+      \n\t]}\n\t\t]"
+  - appName: "prj-migration-airflow"
+    parameters:
+      # config for ETBSS-27716
+      securityContexts: 
+        pod: 
+          runAsNonRoot: true
+          runAsUser: null
+          fsGroup: null
+          seccompProfile: 
+            type: RuntimeDefault
+        containers: 
+          capabilities: 
+            drop: 
+              - ALL
+          allowPrivilegeEscalation: false
+      ESCAPE_SEQUENCE: "true"
+      DEPLOY_W_HELM: "true" 

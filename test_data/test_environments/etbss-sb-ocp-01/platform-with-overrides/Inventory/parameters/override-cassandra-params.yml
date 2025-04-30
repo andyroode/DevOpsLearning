@@ -1,0 +1,13 @@
+version: 23.4
+name: override-cassandra-params
+parameters:
+  cassandra: 
+    secretName: "override-from-env-specific"
+    newStruct: 
+      newKey:
+      - newVal1
+      - newVal2
+      newCred:
+        username: ${creds.get("cassandra-override-cred").username}
+        password: ${creds.get("cassandra-override-cred").password}
+applications: []

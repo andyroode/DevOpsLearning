@@ -1,0 +1,85 @@
+version: 23.4
+name: cassandra
+parameters:
+  DEPLOY_W_HELM: true
+  DISABLE_CRD: false
+  operator:
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+  cassandra:
+    install: true
+    resources:
+      requests:
+        cpu: "150m"
+        memory: "2Gi"
+      limits:
+        cpu: "2000m"
+        memory: "2Gi"
+    smoketestKeyspace: "smoke_test"
+    deploymentSchema:
+      dataCenters:
+        - name: "dc1"
+          replicas: 3
+          seeds: 1
+          storage:
+            storageClasses:
+              - "${STORAGE_RWO_CLASS}"
+            size: "40Gi"
+  dbaas:
+    install: true
+    pdb: false
+    resources:
+      requests:
+        cpu: "150m"
+        memory: "1000Mi"
+      limits:
+        cpu: "600m"
+        memory: "1000Mi"
+    adapter:
+      username: "${creds.get(\"dbaas-adapter-cred\").username}"
+      password: "${creds.get(\"dbaas-adapter-cred\").password}"
+    aggregator:
+      username: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
+      password: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
+      secretName: "dbaas-aggregator-credentials"
+  backupDaemon:
+    install: false
+    pdb: false
+    username: "backup"
+    password: "backup"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "1000Mi"
+      limits:
+        cpu: "200m"
+        memory: "1000Mi"
+    storage:
+      storageClasses:
+        - "${STORAGE_RWO_CLASS}"
+      size: "10Gi"
+    backupSchedule: "0 0 * * *"
+    evictionPolicy: "0/1h,3d/7d,1m/1m,1y/delete"
+    granularEvictionPolicy: "7d/delete"
+  monitoringAgent:
+    install: true
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "128Mi"
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+    monitoringInterval: "60s"
+    collectionJitter: "0s"
+    flushInterval: "60s"
+    flushJitter: "5s"
+    jolokiaDebug: false
+  robotTests:
+    install: false
+applications: []

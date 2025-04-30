@@ -1,0 +1,27 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "dpt"
+deployParameters:
+  DPT_ACTION_ENABLE_TENANTS: "true" # paramset: data-management version: 23.1 source: template
+  DPT_CDC_STREAMING_PARTITIONS_NUMBER: 3 # paramset: data-management version: 23.1 source: template
+  DPT_CDC_STREAMING_REPLICATION_FACTOR: 3 # paramset: data-management version: 23.1 source: template
+  DPT_CDC_STREAMING_RETENTION_POLICY: 7200000 # paramset: data-management version: 23.1 source: template
+  DPT_DB_SCHEMA_PARTITIONS_NUMBER: 3 # paramset: data-management version: 23.1 source: template
+  DPT_DB_SCHEMA_REPLICATION_FACTOR: 3 # paramset: data-management version: 23.1 source: template
+  DPT_DB_SCHEMA_RETENTION_POLICY: 7200000 # paramset: data-management version: 23.1 source: template
+  DPT_JOB_PROGRESS_PARTITIONS_NUMBER: 3 # paramset: data-management version: 23.1 source: template
+  DPT_JOB_PROGRESS_REPLICATION_FACTOR: 3 # paramset: data-management version: 23.1 source: template
+  DPT_JOB_PROGRESS_RETENTION_POLICY: 7200000 # paramset: data-management version: 23.1 source: template
+  DPT_NAV_LINKS: "{ \"DPT_REPORTING_NAV_LINK\": \"https://reporting-superset-ext-${NAMESPACE}.${CLOUD_PUBLIC_HOST}\",\"DPT_LOG_SYSTEM_NAV_LINK\": \"${GRAYLOG_UI_URL}\",\"DPT_MONITORING_NAV_LINK\": \"${GRAFANA_UI_URL}\"\
+    \ }" # paramset: data-management version: 23.1 source: template
+  global.secrets.streamingPlatform.kafkaAuthPassword: "${KAFKA_PASSWORD}" # paramset: data-management version: 23.1 source: template
+  global.secrets.streamingPlatform.kafkaAuthUsername: "${KAFKA_USERNAME}" # paramset: data-management version: 23.1 source: template
+  global.secrets.streamingPlatform.password: "${KAFKA_PASSWORD}" # paramset: data-management version: 23.1 source: template
+  global.secrets.streamingPlatform.username: "${KAFKA_USERNAME}" # paramset: data-management version: 23.1 source: template
+  streamingPlatform.bootstrapServers: "${KAFKA_BOOTSTRAP_SERVER}" # paramset: data-management version: 23.1 source: template
+technicalConfigurationParameters:
+  dpt_package.CLOUD_NAME: "${CLOUD_PUBLIC_HOST}" # paramset: data-management-tech version: 23.1 source: template
+  dpt_package.COM_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 23.1 source: template
+  dpt_package.ESO_NAMESPACE: "${OSS_NAMESPACE}" # paramset: data-management-tech version: 23.1 source: template
+  dpt_package.NAMESPACE: "${NAMESPACE}" # paramset: data-management-tech version: 23.1 source: template

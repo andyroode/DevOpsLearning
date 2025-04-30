@@ -1,0 +1,13 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "collections-manager"
+deployParameters:
+  CA_BUNDLE_CERTIFICATE: "${CLOUD_CA_BUNDLE_CERTIFICATE}" # paramset: billing version: 23.1 source: template
+  CM_DIGITALBILLS_ENDPOINT: "/api/digitalbills/v2023.1.0" # paramset: billing version: 23.1 source: template
+  CM_TENANT_NAME: "${CPQ_TENANT_ID}" # paramset: billing version: 23.1 source: template
+  CM_UIM_ENDPOINT: "/api/cmuim/v2023.2.0/notifications" # paramset: billing version: 23.1 source: template
+  CM_UIM_PREFER_GRPC: "false" # paramset: billing version: 23.1 source: template
+  cm.integrations: "{ \"om\":{ \"enabled\":true, \"url\":\"http://om-order-lifecycle-manager.${BSS_NAMESPACE}:8080\" }, \"uim\":{ \"enabled\":true, \"topicName\":\"uimNotificationRequests\", \"url\":\"\
+    http://uim.${BSS_NAMESPACE}:8080\" }}" # paramset: billing version: 23.1 source: template
+technicalConfigurationParameters: {}

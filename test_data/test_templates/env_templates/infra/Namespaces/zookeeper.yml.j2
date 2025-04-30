@@ -1,0 +1,24 @@
+---
+name: "{{ current_env.environmentName }}-zookeeper"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  global:
+    secrets:
+      zooKeeper:
+        adminUsername: "${creds.get(\"zookeeper-admin-cred\").username}"
+        adminPassword: "${creds.get(\"zookeeper-admin-cred\").password}"
+        clientUsername: "${creds.get(\"zookeeper-client-cred\").username}"
+        clientPassword: "${creds.get(\"zookeeper-client-cred\").password}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - zookeeper
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

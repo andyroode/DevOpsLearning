@@ -1,0 +1,13 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "nc-diagnostic-agent"
+deployParameters:
+  ESC_COLLECTOR_HOST: "${tenant.cloud.CLOUD_ESC_COLLECTOR_HOST}" # paramset: common version: 23.1 source: template
+  ESC_COLLECTOR_NS: "${tenant.cloud.CLOUD_ESC_COLLECTOR_NS}" # paramset: common version: 23.1 source: template
+  ESC_COLLECTOR_PORT: "1715"  # paramset: common version: 23.1 source: template
+  ESC_STATIC_HOST: "${tenant.cloud.CLOUD_ESC_STATIC_HOST}" # paramset: common version: 23.1 source: template
+  ESC_STATIC_PORT: "8080" # paramset: common version: 23.1 source: template
+  JAEGER_COLLECTOR_HOST: "${tenant.cloud.CLOUD_JAEGER_COLLECTOR_HOST}" # paramset: common version: 23.1 source: template
+  ZIPKIN_COLLECTOR_HOST: "${tenant.cloud.CLOUD_JAEGER_COLLECTOR_HOST}" # paramset: common version: 23.1 source: template
+technicalConfigurationParameters: {}

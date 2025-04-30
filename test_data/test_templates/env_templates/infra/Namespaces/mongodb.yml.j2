@@ -1,0 +1,22 @@
+---
+name: "{{ current_env.environmentName }}-mongodb"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  dbaas:
+    dbaasAggregatorPhysicalDatabaseIdentifier: "mongodb.{{ current_env.environmentName }}-mongodb" 
+  mongodb:
+    rootUser: "${creds.get(\"mongodb-root-cred\").username}"
+    rootPassword: "${creds.get(\"mongodb-root-cred\").password}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - mongodb
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

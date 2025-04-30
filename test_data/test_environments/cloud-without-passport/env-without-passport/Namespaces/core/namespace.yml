@@ -1,0 +1,141 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "env-without-passport-core"
+credentialsId: "core-namespace-token"
+isServerSideMerge: false
+labels:
+  - "solutionInstance-env-without-passport"
+  - "solution-CODETOPROD"
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: "dev_core_override"
+  baseline: "dev"
+deployParameters:
+  CONSUL_ENABLED: "true" # paramset: common version: 23.1 source: template
+  GATEWAYS_ALLOWED_ORIGIN: "*.qubership.com,*.qubership.com:*,*.qubership.cloud:*,*.prj.nu:*,*.np-nuuazure.dk,*.np-nuuazure.dk:*"  # paramset: common version: 23.1 source: template
+  GLOBAL_RESOURCE_PROFILE: |-
+    '{
+        "ftpd_dev": {
+            "cloud-integration-platform-systems-catalog": {
+              "#inherit": "dev_az11",
+              "_comment": "For egress-gateway-gateway.",
+              "EGRESS_GATEWAY_MEMORY": "128Mi"
+            },
+            "content-delivery-manager": {
+              "#inherit": "dev_az11",
+              "CPU_REQUEST": "50m",
+              "MEMORY_REQUEST": "75Mi",
+              "CPU_LIMIT": "1",
+              "MEMORY_LIMIT": "75Mi"
+            },
+            "nifi-config-service": {
+              "#inherit": "dev_az11",
+              "CPU_REQUEST": "100m",
+              "MEMORY_REQUEST": "140Mi",
+              "CPU_LIMIT": "1000m",
+              "MEMORY_LIMIT": "356Mi"
+            },
+            "cpm-core-service": {
+              "#inherit": "dev",
+              "_comment": "For cloudbss-cpm-gateway.",
+              "COMPOSITE_GATEWAY_CPU_REQUEST": "100m",
+              "COMPOSITE_GATEWAY_MEMORY_REQUEST": "35Mi",
+              "COMPOSITE_GATEWAY_MEMORY_LIMIT": "128Mi"
+            },
+            "bss-configuration-service": {
+              "#inherit": "dev_az11",
+              "_comment": "For bsscs-composite-gateway.",
+              "COMPOSITE_GATEWAY_MEMORY_REQUEST": "100Mi",
+              "COMPOSITE_GATEWAY_MEMORY_LIMIT": "100Mi"
+            },
+            "geo-site-core": {
+              "#inherit": "dev_az11",
+              "_comment": "For geo-site-core-composite-gateway.",
+              "COMPOSITE_GATEWAY_MEMORY_REQUEST": "124Mi",
+              "COMPOSITE_GATEWAY_MEMORY_LIMIT": "124Mi"
+            },
+            "cdc-nifi-integrations": {
+              "#inherit": "dev_az11",
+              "CPU_REQUEST": "100m",
+              "MEMORY_REQUEST": "200Mi",
+              "CPU_LIMIT": "1000m",
+              "MEMORY_LIMIT": "200Mi"
+            },
+            "tenant-manager": {
+              "#inherit": "dev_az11",
+              "CPU_REQUEST": "30m",
+              "MEMORY_REQUEST": "500Mi",
+              "CPU_LIMIT": "1500m",
+              "MEMORY_LIMIT": "500Mi"
+            },
+            "dumps-cleanup-service": {
+              "#inherit": "dev_az11",
+              "DUMPS_CLEANUP_SERVICE_CPU_REQUEST": "20m",
+              "DUMPS_CLEANUP_SERVICE_MEMORY_REQUEST": "100Mi",
+              "DUMPS_CLEANUP_SERVICE_CPU_LIMIT": "100m",
+              "DUMPS_CLEANUP_SERVICE_MEMORY_LIMIT": "150Mi"
+            },
+            "frontend-gateway": {
+              "#inherit": "dev_az11",
+              "INTERNAL_GW_MEMORY_LIMIT": "200Mi",
+              "INTERNAL_GW_MEMORY_REQUEST": "200Mi",
+              "INTERNAL_GW_CPU_LIMIT": "500m",
+              "PRIVATE_GW_MEMORY_LIMIT": "100Mi",
+              "PRIVATE_GW_MEMORY_REQUEST": "100Mi",
+              "PRIVATE_GW_CPU_LIMIT": "100m",
+              "CPU_REQUEST": "30m"
+            },
+            "bss-cloud-portal-proxy": {
+              "#inherit": "dev_az11",
+              "MEMORY_LIMIT": "48Mi"
+            },
+            "bss-config-manager-frontend": {
+              "#inherit": "dev_az11",
+              "MEMORY_LIMIT": "48Mi",
+              "MEMORY_REQUEST": "48Mi"
+            },
+            "cloudbss-workplaces-configuration": {
+              "#inherit": "dev_az11",
+              "MEMORY_LIMIT": "48Mi"
+            },
+            "nifi-config-proxy-service": {
+              "#inherit": "dev",
+              "MEMORY_REQUEST": "48Mi"
+            },
+            "pim-frontend-srv": {
+              "#inherit": "dev_az11",
+              "MEMORY_LIMIT": "48Mi",
+              "MEMORY_REQUEST": "48Mi"
+            },
+            "uim": {
+              "#inherit": "dev",
+              "COMPOSITE_GATEWAY_MEMORY_LIMIT": "96Mi",
+              "CPU_REQUEST": "200m",
+              "MEMORY_REQUEST": "1254Mi",
+              "CPU_LIMIT": "1",
+              "MEMORY_LIMIT": "1254Mi",
+    		  "PREDEPLOY_MEMORY_LIMIT" : "1024Mi",
+              "PREDEPLOY_MEMORY_REQUEST" : "1024Mi"
+            },
+            "access-control": {
+              "#inherit": "dev",
+              "MEMORY_REQUEST": "550Mi",
+              "MEMORY_LIMIT": "550Mi"
+            },
+            "facade-operator": {
+              "#inherit": "dev",
+              "_comment": "This memory limit only applies to those gateways whose service does not have an explicitly defined FacadeService. If the service has an explicitly defined FacadeService, then the parameter COMPOSITE_GATEWAY_MEMORY_LIMIT must be passed to this service.",
+              "FACADE_GATEWAY_MEMORY_LIMIT": "96Mi"
+            }
+          }
+    }'
+   # paramset: common version: 23.1 source: template
+  NC_DIAGNOSTIC_MODE: "prod" # paramset: common version: 23.1 source: template
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

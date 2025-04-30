@@ -1,0 +1,20 @@
+# The contents of this file is generated from template artifact: demo-bss-env-template.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "static_core_gw"
+version: 0
+baseline: "dev"
+description: "Temp profile until PSUPCLFRM-7489 will be fixed"
+applications:
+  - name: "Cloud-Core"
+    version: "release-2023.4-8.9.0-20231117.131809-9-RELEASE"
+    sd: ""
+    services:
+      - name: "static-core-gateway"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "512Mi"
+      - name: "key-manager"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "75Mi"

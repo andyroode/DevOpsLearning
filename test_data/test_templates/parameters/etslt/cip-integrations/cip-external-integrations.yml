@@ -1,0 +1,7 @@
+version: 1
+name: cip-external-integrations
+parameters: {}
+applications:
+  - appName: "prj-cip-integration-chains"
+    parameters:
+      ODS_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibco/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689/integration"

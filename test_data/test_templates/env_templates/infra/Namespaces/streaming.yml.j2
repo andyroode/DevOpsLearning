@@ -1,0 +1,20 @@
+---
+name: "{{ current_env.environmentName }}-streaming"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  streamingPlatform:
+    ingress:
+      host: "streaming-platform-{{ current_env.environmentName }}-streaming.apps.{{ current_env.cluster.cloud_public_url }}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - streaming
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

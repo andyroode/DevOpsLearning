@@ -1,0 +1,12 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CloudBSS-CPQBE"
+deployParameters:
+  ENTITLEMENTS_ENABLED_IBS: "true"  # paramset: bss version: 1 source: template
+technicalConfigurationParameters:
+  bss.index.events.reindex.create-index-alias: "true" # paramset: bss-tech version: 23.1 source: template
+  bss.index.events.reindex.delete-previous-indices: "true" # paramset: bss-tech version: 23.1 source: template
+  cpq.install-base-service.events.on-change-notifications-enabled: "true" # paramset: bss-tech version: 23.1 source: template
+  cpq.install-base-service.kafka.enabled: "true" # paramset: bss-tech version: 23.1 source: template
+  cpq.submission-handler.steps.skip-processing-prepare-for-submit-event: "true"  # paramset: bss-tech version: 23.1 source: template

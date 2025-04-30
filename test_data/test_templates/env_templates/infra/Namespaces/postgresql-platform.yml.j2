@@ -1,0 +1,23 @@
+---
+name: "{{ current_env.environmentName }}-postgresql-platform"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  dbaas:
+    labels:
+      rep_balancing_rule: postgresql-platform
+  postgresPassword: "${creds.get(\"postgresql-platform-cred\").password}"
+  postgresUser: "${creds.get(\"postgresql-platform-cred\").username}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - postgresql-common
+  - postgresql-dbaas
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

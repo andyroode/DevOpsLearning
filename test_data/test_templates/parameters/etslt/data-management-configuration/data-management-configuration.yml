@@ -1,0 +1,55 @@
+version: 1
+name: data-management-configuration
+parameters:
+  # config for ETBSS-2017
+  global.secrets.streamingPlatform.username: ${creds.get("dpt-streaming-platform-cred").username}
+  global.secrets.streamingPlatform.password: ${creds.get("dpt-streaming-platform-cred").password}
+  streamingPlatform.bootstrapServers: ${COMMON_KAFKA_SERVER}  #ETBSS-7839
+  global.secrets.streamingPlatform.kafkaAuthUsername: ${creds.get("dpt-streaming-kafka-cred").username}
+  global.secrets.streamingPlatform.kafkaAuthPassword: ${creds.get("dpt-streaming-kafka-cred").password}
+applications:
+  - appName: "beoc"
+    parameters:
+      # ETBSS-5251
+      MONITORING_QUERY_URL: "http://vmsingle-k8s.platform-monitoring:8429"
+      # ETBSS-12250
+      BEOC_MODE: "dev"
+      # ETBSS-12983
+      STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.com"
+      BEOC_STORAGE_USERNAME: ${creds.get("common-minio-cred").username}
+      BEOC_STORAGE_PASSWORD: ${creds.get("common-minio-cred").password}
+      BEOC_SMARTPLUG_ENABLED: "true"
+  - appName: "dpt" #ETBSS-9212
+    parameters:
+      feature-flags.prometheus-metrics-enabled: "true"
+      PUSHGATEWAY_ENABLED: "true"
+      #ETBSS-28695
+      DPT_ACTION_ENABLE_TENANTS: "true"
+  - appName: "prj-dm-cdc-components-configuration" #ETBSS-22563
+    parameters:
+      INSTALL_DEFAULT_COMPONENT: "{\r\n	\"acm\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"adtl\": {\r\n		\"enabled\": false,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"agm\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"bc\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"bis\": {\r\n		\"enabled\": false,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"cim\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"com\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"cpm\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"cpq\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\",\r\n		\"dbClassifier\": \"\"\r\n	},\r\n	\"csrd\": {\r\n		\"enabled\": false,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"dictionaryProvider\": {\r\n		\"enabled\": false,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"dpt\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"ees\": {\r\n		\"enabled\": false,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"eps\": {\r\n		\"enabled\": false,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"gsm\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"ibs\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\",\r\n		\"dbClassifier\": \"\"\r\n	},\r\n	\"opportunityManagement\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"orgChart\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"pim\": {\r\n		\"enabled\": true,\r\n		\"standaloneTransformerName\": \"\"\r\n	},\r\n	\"pmwp\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"pnl\": {\r\n		\"enabled\": false,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"salesLeadManagement\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"salesQuotaManagement\": {\r\n		\"enabled\": false,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"utm\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"voms\": {\r\n		\"enabled\": false,\r\n		\"componentName\": \"\"\r\n	},\r\n	\"worklog\": {\r\n		\"enabled\": true,\r\n		\"componentName\": \"\"\r\n	}\r\n}"
+      BSS_SERVICES_NAMESPACE: "${BSS_NAMESPACE}"
+      REPORTING_ODS_ADDRESS: "0.0.0.0:0000"
+      REPORTING_ODS_DATABASE: "DBG195"
+      REPORTING_ODS_PASSWORD: "ODS_PH1"
+      REPORTING_ODS_SCHEMA: "ODS_PH1"
+      REPORTING_ODS_USER: "ODS_PH1"
+  - appName: "Core-Extensions" #ETBSS-12615
+    parameters:
+      CONFIG_MAP_ROLLOUT_TIMEOUT_SEC: "3600"
+  - appName: "cloud-reporting" #ETBSS-20251
+    parameters:
+      SMTP_SERVER_URL: "testmail.qubership.com"
+      SMTP_SERVER_PORT: "25"
+      SMTP_SERVER_USERNAME: ""
+      SMTP_SERVER_PASSWORD: ""
+  - appName: "Cloud-Core"
+    parameters:
+      # config for ETBSS-13558
+      DBAAS_ON_MICROSERVICES_PHYSDB_RULE: "[\n{\n\t\t\"type\": \"postgresql\",\n\t\t\
+      \"rules\": [{\n\t\t\t\"label\": \"rep_balancing_rule=postgresql-reporting\"\n\
+      \t\t}],\n\t\t\"microservices\": [\n\t\t\t\"config-server\", \"control-plane\"\
+      , \"site-management\", \"cdc-control\", \"cdc-reportingdb-provider\", \"reporting-superset-ext\"\
+      , \"dictionaries-provider-backend\", \"metamodel-provider-backend\", \"samples-repository\"\
+      , \"smartplug\", \"tenant-self-service-backend\", \"datamarts-airflow\", \"\
+      dpt-data-access\"\n\t]}\n\t\t]"

@@ -1,0 +1,25 @@
+version: 23.3
+name: cse-toolset-wa
+parameters:
+  # WA For ETBSS-234
+  PAAS_PLATFORM: OPENSHIFT
+  # WA For ETBSS-234
+  NIFI_IMPORT_SCRIPTS: import
+  # WA For ETBSS-234
+  NIFI_ENABLE_START_PG: "true"
+  # WA For ETBSS-234
+  DST_STORAGE_BUCKET: dst-bucket
+  # WA For ETBSS-419
+  # MONITORING_EXT_MONITORING_QUERY_URL: http://vmsingle-k8s.platform-monitoring:8429
+  # MONITORING_QUERY_URL: http://vmsingle-k8s.platform-monitoring:8429
+applications:
+  - appName: "log-exporter"
+    parameters:
+      # WA for ETBSS-419
+      VICTORIA_HOST: http://vmagent-k8s.platform-monitoring:8429
+  - appName: "cow"
+    parameters:
+      # WA for ETBSS-419
+      # MONITORING_QUERY_URL: http://vmsingle-k8s.platform-monitoring.svc.cluster.local:8429
+      # WA for ETBSS-520
+      COW_COMMON_NAMESPACES: "jaeger|.+ops|cse-toolset|app-monitoring|maas|kafka|rabbitmq|dbaas|prometheus-monitoring|cloud-diagnostic-toolset|cdt|infra-keycloak|zookeeper|consul|app-deployer|logging|velero|design-time"

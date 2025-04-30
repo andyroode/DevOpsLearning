@@ -1,0 +1,6 @@
+version: 23.3
+name: oss-env-specific
+parameters:
+    SYSLOG_LISTENER_NODE_IP: 0.0.0.0
+    TRAP_LISTENER_NODE_IP: 0.0.0.0
+applications: []

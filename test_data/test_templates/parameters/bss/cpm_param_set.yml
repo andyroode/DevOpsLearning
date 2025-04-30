@@ -1,0 +1,7 @@
+---
+name: "cpm_param_set"
+parameters:
+  '#creds{IMWS_EMAIL_USERNAME, IMWS_EMAIL_PASSWORD}': "ims-cpm-storage-creds-release"
+  '#creds{SMTP_SERVER_USERNAME, SMTP_SERVER_PASSWORD}': "ims-cpm-storage-creds-release"
+  BSS_CPM_SAMPLE_CONFIGURATION_INSTALL: "true"
+applications: []

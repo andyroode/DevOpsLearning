@@ -1,0 +1,11 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CloudBSS-SPS"
+deployParameters:
+  STORAGE_ACCESS_KEY: "${STORAGE_USERNAME}" # paramset: bss version: 1 source: template
+  STORAGE_ENDPOINT: "${tenant.cloud.STORAGE_SERVER_URL}" # paramset: bss version: 1 source: template
+  STORAGE_PERSISTENT_BUCKET_NAME: "${tenant.cloud.DOC_STORAGE_PERSISTENT_BUCKET_NAME}" # paramset: bss version: 1 source: template
+  STORAGE_SECRET_KEY: "${STORAGE_PASSWORD}" # paramset: bss version: 1 source: template
+  STORAGE_TEMPORARY_BUCKET_NAME: "${tenant.cloud.DOC_STORAGE_TEMPORARY_BUCKET_NAME}" # paramset: bss version: 1 source: template
+technicalConfigurationParameters: {}

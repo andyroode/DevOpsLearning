@@ -1,0 +1,12 @@
+app-deployer-username-cred:
+  type: secret
+  data:
+    # admin
+    secret: admin
+
+app-deployer-token-cred:
+  type: secret
+  data:
+    # admin
+    secret: fake_cred
+

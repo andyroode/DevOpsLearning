@@ -1,0 +1,18 @@
+---
+name: "{{current_env.environmentName}}-data-management"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+- "solutionInstance-{{env}}"
+- "solution-{{tenant}}"
+cleanInstallApprovalRequired: {{ current_env.additionalTemplateVariables.cleanInstallApprovalRequired | default('false') }}
+mergeDeployParametersAndE2EParameters: false
+deployParameters: {}
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "data-management"
+e2eParameterSets: []
+technicalConfigurationParameterSets:
+- "data-management-tech"
+

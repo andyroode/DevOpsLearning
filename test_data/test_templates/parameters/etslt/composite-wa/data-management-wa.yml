@@ -1,0 +1,40 @@
+version: 23.3
+name: data-management-wa
+parameters:
+  # config for ETBSS-5970
+  # PAAS_VERSION_CUSTOM: "1.25" 
+  # WA for ETBSS-243
+  NIFI_NAMESPACE: ${BSS_NAMESPACE}
+  ESO_CORE_NAMESPACE: ${OSS_NAMESPACE}
+  DBAAS_AGENT_NAMESPACE_ISOLATION_ENABLED: "false"
+  # WA for ETBSS-1315
+  USE_TLS: "false"
+applications:
+  - appName: "Cloud-CDC"
+    parameters:
+      # WA for ETBSS-722
+      global.secrets.streamingPlatform.username: ${creds.get("cdc-streaming-cred").username}
+      global.secrets.streamingPlatform.password: ${creds.get("cdc-streaming-cred").password}
+      # ETBSS-22789
+      CONSUMER_OVERRIDE_MAX_PARTITION_FETCH_BYTES: "2500000"
+  - appName: "streaming-service"
+    parameters:
+      # WA for ETBSS-722
+      global.secrets.streamingPlatform.username: ${creds.get("cdc-streaming-cred").username}
+      global.secrets.streamingPlatform.password: ${creds.get("cdc-streaming-cred").password}
+      global.operatorOnly: "true"
+  - appName: "Cloud-Core"
+    parameters:
+      # Added as per ETBSS-599
+      DBAAS_AGENT_NAMESPACE_ISOLATION_ENABLED: "false"
+  - appName: "beoc"
+    parameters:
+      # Added as WA for ETBSS-3604, should be removed after fixing the application
+      MONITORING_QUERY_USER: "admin"
+      MONITORING_QUERY_PASSWORD: "admin"
+  - appName: "prj-bss-pim"
+    parameters:
+      # Config for ETBSS-6766
+      CDC_NOTIFICATION: "true"
+      CPQ_IMPORT: "false"
+

@@ -1,0 +1,23 @@
+---
+name: "{{ current_env.environmentName }}-cdt"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  CASSANDRA_HOST: "cassandra.${namespace_cassandra_cse}.svc"
+  CASSANDRA_PORT: "9042"
+  CASSANDRA_KEYSPACE: "{{ current_env.environmentName | replace("-", "_") }}_cdtmain"
+  CASSANDRA_USERNAME: "${creds.get(\"cassandra-cse-cred\").username}"
+  CASSANDRA_PASSWORD: "${creds.get(\"cassandra-cse-cred\").password}"
+  DIAG_PV_HOURS_ARCHIVE_AFTER: "2"
+  DIAG_PV_DAYS_DELETE_AFTER: "14"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

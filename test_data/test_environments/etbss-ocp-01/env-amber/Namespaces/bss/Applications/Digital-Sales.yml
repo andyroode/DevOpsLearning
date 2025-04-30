@@ -1,0 +1,8 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Digital-Sales"
+deployParameters: {}
+technicalConfigurationParameters:
+  lead-management-core-service/lms.application.duplicate-check.enable-elastic: "false" # paramset: bss-internal-integrations-tech version: 1 source: template
+  lead-management-core-service/lms.application.elasticsearch.drop-index.enabled: "false"  # paramset: bss-internal-integrations-tech version: 1 source: template

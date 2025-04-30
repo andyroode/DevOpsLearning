@@ -1,0 +1,11 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "oss.orchestration.core"
+deployParameters:
+  INTEGRATION_LOGS_TOPIC: "${NAMESPACE}_logs" # paramset: oss version: 23.1 source: template
+  RENDERER_ENVIRONMENT: "API_GATEWAY_URL = http://internal-gateway-service:8080; ESO_MANAGER_URL = http://eso-manager:8080; SERVICE_REQUESTS_URL = http://service-requests:8080; USER_TASK_MANAGER_URL = http://user-task-manager:8080;\
+    \ MONITORING_CONSOLE_URL = http://monitoring-console:8080; NDO_API_GATEWAY_URL = http://internal-gateway-service:8080; CM_GATEWAY_URL = http://cm-gateway:8080; SERVICE_MANAGER_URL = http://service-manager:8080;\
+    \ NDO_PATH_COMPUTATION_ENGINE_URL = http://path-computation-engine:8080; AM_URL = http://allocation-manager:8080" # paramset: oss version: 23.1 source: template
+  ZOOKEEPER_URL: "${tenant.cloud.ZOOKEEPER_ADDRESS}" # paramset: oss version: 23.1 source: template
+technicalConfigurationParameters: {}

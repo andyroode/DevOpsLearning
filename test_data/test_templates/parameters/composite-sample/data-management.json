@@ -1,0 +1,169 @@
+{
+  "name" : "data-management",
+  "version" : 23.1,
+  "parameters" : {
+    "BILLING_NAMESPACE" : "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-billing\")}",
+    "OSS_NAMESPACE" : "${NAMESPACE.replaceFirst(/-data-management$/, \"-oss\")}",
+    "BSS_NAMESPACE" : "${NAMESPACE.replaceFirst(/-data-management$/, \"-bss\")}",
+    "NIFI_NAMESPACE" : "${NAMESPACE.replaceFirst(/-data-management$/, \"-bss\")}",
+    "STRUCTURED_GLOBAL_RESOURCE_PROFILE" : {
+      "ftpd_dev" : {
+        "cdc-nifi-integrations" : {
+          "CPU_REQUEST" : "100m",
+          "MEMORY_REQUEST" : "200Mi",
+          "CPU_LIMIT" : "1000m",
+          "#inherit" : "dev_az11",
+          "MEMORY_LIMIT" : "200Mi"
+        },
+        "frontend-gateway" : {
+          "INTERNAL_GW_MEMORY_REQUEST" : "200Mi",
+          "INTERNAL_GW_CPU_LIMIT" : "500m",
+          "PRIVATE_GW_MEMORY_REQUEST" : "100Mi",
+          "INTERNAL_GW_MEMORY_LIMIT" : "200Mi",
+          "PRIVATE_GW_CPU_LIMIT" : "100m",
+          "PRIVATE_GW_MEMORY_LIMIT" : "100Mi",
+          "CPU_REQUEST" : "30m",
+          "#inherit" : "dev_az11"
+        },
+        "facade-operator" : {
+          "FACADE_GATEWAY_MEMORY_LIMIT" : "96Mi",
+          "#inherit" : "dev",
+          "_comment" : "This memory limit only applies to those gateways whose service does not have an explicitly defined FacadeService. If the service has an explicitly defined FacadeService, then the parameter COMPOSITE_GATEWAY_MEMORY_LIMIT must be passed to this service."
+        },
+        "tenant-manager" : {
+          "CPU_REQUEST" : "30m",
+          "MEMORY_REQUEST" : "500Mi",
+          "CPU_LIMIT" : "1500m",
+          "#inherit" : "dev_az11",
+          "MEMORY_LIMIT" : "500Mi"
+        },
+        "tenant-self-service-frontend" : {
+          "#inherit" : "dev_az11",
+          "MEMORY_LIMIT" : "64Mi"
+        },
+        "paas-mediation" : {
+          "#inherit" : "dev",
+          "MEMORY_LIMIT" : "100Mi"
+        },
+        "access-control" : {
+          "#inherit" : "dev",
+          "MEMORY_LIMIT" : "550Mi",
+          "MEMORY_REQUEST" : "550Mi"
+        }
+      }
+    },
+    "GLOBAL_RESOURCE_PROFILE" : "${STRUCTURED_GLOBAL_RESOURCE_PROFILE}"
+  },
+  "applications" : [ {
+    "parameters" : {
+      "MONITORING_ENABLED" : "true",
+      "BSS_KAFKA_PASSWORD" : "${KAFKA_PASSWORD}",
+      "NIFI_NAMESPACE" : "${BSS_NAMESPACE}",
+      "streamingPlatform.metricStorageTopic" : "${NAMESPACE}_cdc_streaming_service_metric",
+      "global.secrets.streamingPlatform.kafkaAuthUsername" : "${CDC_KAFKA_USER}",
+      "streamingPlatform.groupId" : "${NAMESPACE}_cdc_streaming_service",
+      "global.secrets.streamingPlatform.password" : "${CDC_STREAMING_PLATFORM_USERNAME}",
+      "BSS_KAFKA_USER" : "${KAFKA_USERNAME}",
+      "streamingPlatform.offsetStorageTopic" : "${NAMESPACE}_cdc_streaming_service_offset",
+      "global.secrets.streamingPlatform.username" : "${CDC_STREAMING_PLATFORM_PASSWORD}",
+      "BSS_KAFKA_BOOTSTRAP_SERVERS" : "${KAFKA_BOOTSTRAP_SERVER}",
+      "streamingPlatform.configStorageTopic" : "${NAMESPACE}_cdc_streaming_service_config",
+      "streamingPlatform.statusStorageTopic" : "${NAMESPACE}_cdc_streaming_service_status",
+      "global.secrets.streamingPlatform.kafkaAuthPassword" : "${CDC_KAFKA_PASSWORD}",
+      "streamingPlatform.bootstrapServers" : "${CDC_KAFKA_BOOTSTRAP_SERVERS}"
+    },
+    "appName" : "Cloud-CDC"
+  }, {
+    "parameters" : {
+      "BSS_SERVICES_NAMESPACE" : "${BSS_NAMESPACE}",
+      "INSTALL_DEFAULT_COMPONENT" : "{\n  \"cpq\": {\n    \"enabled\": true,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"ibs\": {\n    \"enabled\": true,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"cim\": {\n    \"enabled\": true,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"acm\": {\n    \"enabled\": true,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"agm\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"cpm\": {\n    \"enabled\": true,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"pim\": {\n    \"enabled\": true,\n    \"transformerName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"gsm\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"com\": {\n    \"enabled\": true,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"utm\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"orgChart\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"worklog\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"dictionaryProvider\": {\n    \"enabled\": true,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"adtl\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"csrd\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"salesLeadManagement\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"salesQuotaManagement\": {\n    \"enabled\": true,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"voms\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"eps\": {\n    \"enabled\": false,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes\"\n  },\n  \"dpt\": {\n    \"enabled\": true,\n    \"componentName\": \"\",\n    \"useDefaultDatasink\": true,\n    \"startStream\": \"yes-without-snapshot\"\n  }\n\n}",
+      "NIFI_NAMESPACE" : "${BSS_NAMESPACE}",
+      "CDC_DEFAULT_TARGET_DBCLASSIFIER" : "{\n      \"microserviceName\": \"cdc-control\",\n      \"namespace\": \"${NAMESPACE}\",\n      \"scope\": \"tenant\",\n      \"sinkName\": \"reporting-database\",\n      \"description\": \"Reporting Database\",\n      \"tenantId\": \"uuid\"\n}"
+    },
+    "appName" : "Cloud-CDC-Packages"
+  }, {
+    "parameters" : {
+      "COMPOSITE_PLATFORM" : "true"
+    },
+    "appName" : "Cloud-Core"
+  }, {
+    "parameters" : {
+      "BEOC_STORAGE_PREFIX" : "remote-data-requestor/beoc",
+      "BEOC_MODE" : "prod"
+    },
+    "appName" : "beoc"
+  }, {
+    "parameters" : {
+      "NIFI_NAMESPACE" : "${BSS_NAMESPACE}"
+    },
+    "appName" : "cloud-hds"
+  }, {
+    "parameters" : {
+      "REPORTING_STORAGE_BUCKET" : "future-requests.ready-for-processing/${NIFI_NAMESPACE}",
+      "superset_config.cache_type" : "kafka",
+      "supersetNode.connections.broker_url" : "kafka://${CDC_KAFKA_USER}:${CDC_KAFKA_PASSWORD}@${CDC_KAFKA_BOOTSTRAP_SERVERS}",
+      "superset_config.smtp_ssl" : "false",
+      "DEFAULT_TENANT_NAME" : "${tenant.cloud.DEFAULT_TENANT_NAME}"
+    },
+    "appName" : "cloud-reporting"
+  }, {
+    "parameters" : {
+      "OPENSEARCH_USERNAME" : "${OPENSEARCH_USER}",
+      "DST_SESSION_EVENTS_ENABLED" : "true",
+      "OPENSEARCH_PASSWORD" : "${OPENSEARCH_PASS}",
+      "DAT_ENABLED" : "true",
+      "TENANT_LEVEL_ROLES" : "ROLE_DST-ADMIN ROLE_DST-EXPORT-USER ROLE_DST-IMPORT-USER"
+    },
+    "appName" : "data-slicing"
+  }, {
+    "parameters" : {
+      "dbaas.pg.cdc.classifier" : "{\"microserviceName\": \"cdc-control\", \"namespace\": \"${NAMESPACE}\", \"scope\": \"tenant\", \"sinkName\": \"reporting-database\", \"tenantId\": \"${CPQ_TENANT_ID}\"}"
+    },
+    "appName" : "datamarts-engine"
+  }, {
+    "parameters" : {
+      "DPC_EXECUTION_REPORT_ENABLED" : "true",
+      "SMARTPLUG_ENABLED" : "false"
+    },
+    "appName" : "dpc"
+  }, {
+    "parameters" : {
+      "global.secrets.streamingPlatform.kafkaAuthUsername" : "${KAFKA_USERNAME}",
+      "DPT_ACTION_ENABLE_TENANTS" : "true",
+      "global.secrets.streamingPlatform.password" : "${KAFKA_PASSWORD}",
+      "global.secrets.streamingPlatform.username" : "${KAFKA_USERNAME}",
+      "global.secrets.streamingPlatform.kafkaAuthPassword" : "${KAFKA_PASSWORD}",
+      "DPT_NAV_LINKS" : "{ \"DPT_REPORTING_NAV_LINK\": \"https://reporting-superset-ext-${NAMESPACE}.${CLOUD_PUBLIC_HOST}\",\"DPT_LOG_SYSTEM_NAV_LINK\": \"${GRAYLOG_UI_URL}\",\"DPT_MONITORING_NAV_LINK\": \"${GRAFANA_UI_URL}\" }",
+      "streamingPlatform.bootstrapServers" : "${KAFKA_BOOTSTRAP_SERVER}",
+      "DPT_CDC_STREAMING_PARTITIONS_NUMBER" : 3,
+      "DPT_CDC_STREAMING_RETENTION_POLICY" : 7200000,
+      "DPT_CDC_STREAMING_REPLICATION_FACTOR" : 3,
+      "DPT_DB_SCHEMA_PARTITIONS_NUMBER" : 3,
+      "DPT_DB_SCHEMA_RETENTION_POLICY" : 7200000,
+      "DPT_JOB_PROGRESS_REPLICATION_FACTOR" : 3,
+      "DPT_DB_SCHEMA_REPLICATION_FACTOR" : 3,
+      "DPT_JOB_PROGRESS_RETENTION_POLICY" : 7200000,
+      "DPT_JOB_PROGRESS_PARTITIONS_NUMBER" : 3
+    },
+    "appName" : "dpt"
+  }, {
+    "parameters" : {
+      "CLOUD_GRAYLOG_URL" : "${GRAYLOG_UI_URL}"
+    },
+    "appName" : "remote-data-requestor"
+  }, {
+    "parameters" : {
+      "streamingPlatform.install" : "true",
+      "monitoring.install" : "false",
+      "global.operatorOnly" : "true",
+      "global.monitoringType" : "prometheus",
+      "global.installDashboard" : "true",
+      "DEPLOY_W_HELM" : "false",
+      "DISABLE_FORCE_APPLY" : "false",
+      "streamingPlatform.bootstrapServers" : "${CDC_KAFKA_BOOTSTRAP_SERVERS}",
+      "monitoring.installRules" : "false",
+      "DISABLE_CRD" : "false"
+    },
+    "appName" : "streaming-service"
+  } ]
+}

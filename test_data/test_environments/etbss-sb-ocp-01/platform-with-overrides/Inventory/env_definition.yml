@@ -1,0 +1,25 @@
+inventory:
+  environmentName: "platform-with-overrides"
+  tenantName: "Infrastructure"
+  cloudName: "etbss-sb-ocp-01"
+  description: ""
+  owners: ""
+  deployer: "app-deployer"
+  config:
+    updateRPOverrideNameWithEnvName: false
+    updateCredIdsWithEnvName: true
+envTemplate:
+  name: "etbss_platform"
+  additionalTemplateVariables: {}
+  envSpecificParamsets:
+    cassandra:
+      - "override-cassandra-params"
+  templateArtifact:
+    registry: "artifactorycn"
+    repository: "stagingRepository"
+    artifact:
+      group_id: "com.qubership.deploy.product"
+      artifact_id: "prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project"
+      version: "master_20231222-073448"
+generatedVersions:
+  generateEnvironmentLatestVersion: "etbss-sb-ocp-01-platform-with-overrides-version-from-tests"  # This value is automatically generated during job run.

@@ -1,0 +1,60 @@
+version: 23.4
+name: redis
+parameters:
+  DEPLOY_W_HELM: true
+  DISABLE_CRD: false
+  DISABLE_FORCE_APPLY: false
+  ESCAPE_SEQUENCE: true
+  name: "dbaas-redis-service"
+  operator:
+    resources:
+      requests:
+        cpu: "150m"
+        memory: "120Mi"
+      limits:
+        cpu: "250m"
+        memory: "250Mi"
+  serviceAccountName: "dbaas-redis-operator"
+  dbaas:
+    install: true
+    adapter:
+      username: "${creds.get(\"dbaas-adapter-cred\").username}"
+      password: "${creds.get(\"dbaas-adapter-cred\").password}"
+      secretName: dbaas-adapter-credentials
+    aggregator:
+      username: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
+      password: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
+      secretName: "dbaas-aggregator-credentials"
+      address: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+      physicalDatabaseIdentifier: "redis"
+      dbaasAggregatorRegistrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+      credential-list-users:
+        - "${creds.get(\"postgresql-cred-list-cred-1\").username}"
+        - "${creds.get(\"postgresql-cred-list-cred-2\").username}"
+      credential-list-password:
+        - "${creds.get(\"postgresql-cred-list-cred-1\").password}"
+        - "${creds.get(\"postgresql-cred-list-cred-2\").password}"
+  redis:
+    maxmem: "200mb"
+    password: "${creds.get(\"redis-password-cred\").secret}"
+    secretName: "redis-credentials"
+    parameters:
+      label: "redis-dbaas-adapter"
+    resources:
+      requests:
+        cpu: "150m"
+        memory: "256Mi"
+      limits:
+        cpu: "250m"
+        memory: "1024Mi"
+  monitoringAgent:
+    install: true
+    resources:
+      requests:
+        cpu: "150m"
+        memory: "120Mi"
+      limits:
+        cpu: "250m"
+        memory: "250Mi"
+    monitoringInterval: "20s"
+applications: []

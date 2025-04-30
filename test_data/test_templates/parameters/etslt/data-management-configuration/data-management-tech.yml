@@ -1,0 +1,14 @@
+version: 1
+name: data-management-tech
+parameters:
+  # config for ETBSS-466
+  dpt_package.NAMESPACE: ${DATA_MANAGEMENT_NAMESPACE}
+  dpt_package.COM_NAMESPACE: ${BSS_NAMESPACE}
+  dpt_package.CIP_NAMESPACE: ${BSS_NAMESPACE}
+  dpt_package.ESO_NAMESPACE: ${OSS_NAMESPACE}
+  # config for ETBSS-1560
+  beoc_package.CIM_NAMESPACE: ${BSS_NAMESPACE}
+  beoc_package.COM_NAMESPACE: ${BSS_NAMESPACE}
+  beoc_package.CPQ_NAMESPACE: ${BSS_NAMESPACE}
+  beoc_package.BSCS_NAMESPACE: ${BSS_NAMESPACE}  #ETBSS-18016
+applications: []

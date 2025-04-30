@@ -1,0 +1,25 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Cloud-Core"
+deployParameters:
+  DBAAS_AGENT_NAMESPACE_ISOLATION_ENABLED: "false" # paramset: common version: 23.1 source: template
+  DEFAULT_TENANT_NAME: "${tenant.cloud.DEFAULT_TENANT_NAME}" # paramset: common version: 23.1 source: template
+  GW_INGRESS_ANNOTATIONS: |-
+    nginx.ingress.kubernetes.io/proxy-body-size: '400m'
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: '2000'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '2000'
+    nginx.ingress.kubernetes.io/proxy-send-timeout: '2000'
+   # paramset: common version: 23.1 source: template
+  TENANT_LEVEL_ROLES: "PRODUCT-MANAGER TENANT-ADMIN CUSTOMER-SALES-REPRESENTATIVE CONTENT-MANAGER CUSTOMER-SUPPORT-AGENT GLOBAL-CUSTOMER-SALES-REPRESENTATIVE PORTFOLIO-MANAGER ROLE_READ-ONLY-USER ROLE_CAMPAIGN-AGENT\
+    \ ROLE_CAMPAIGN-MANAGER ROLE_CONTACT-POLICY-MANAGER ROLE_ADMINISTRATOR ROLE_CJM-USER ROLE_CJM-ADMINISTRATOR ROLE_CJM-READ-ONLY-USER ROLE_Security_Admin ROLE_Customer ROLE_CSR ROLE_Salesint_Prod_Admin\
+    \ ROLE_GRAPHQL_USER ROLE_BIS_RO ROLE_BIS_RW ROLE_Cpq_Admin ROLE_Cpq_Product_Sales_Partner ROLE_Cpq_Product_Pre_Sales ROLE_Cpq_Product_Sales_Manager ROLE_Cpq_Product_Director ROLE_Cpq_Product_VP ROLE_Cpq_Product_Commercial_Director\
+    \ ROLE_Cpq_Product_CEO_CFO ROLE_Cpq_Product_Reporting ROLE_Cpq_Product_Anonymous_Customer ROLE_UTM_EXECUTOR ROLE_UTM_SUPERVISOR ROLE_UTM_ADMINISTRATOR ROLE_ORGCHART_ADMINISTRATOR ROLE_ORGCHART_MANAGER\
+    \ ROLE_ORGCHART_TEAM_LEAD ROLE_BC_ADMINISTRATOR ROLE_PIM-ADMIN AM-ADMIN AM-STOCK-USER ROLE_UIM-USER ROLE_cloud-om-ui-read-all ROLE_cloud-om-ui-write-all ROLE_cloud-om-catalog-read-all ROLE_cloud-om-catalog-write-all\
+    \ ROLE_cloud-om-read-product-order ROLE_cloud-om-submit-product-order ROLE_cloud-om-read-service-order ROLE_cloud-om-submit-service-order ROLE_cloud-om-update-order ROLE_cloud-om-read-product-offering-qualification\
+    \ ROLE_cloud-om-submit-product-offering-qualification ROLE_DS_SuperUser ROLE_DS_Sales_Agent ROLE_DS_Sales_Manager ROLE_DS_Administrator ROLE_RTD-READ-ONLY-USER ROLE_RTD-ADMINISTRATOR ROLE_RTC-D-EXT-CLIENT\
+    \ ROLE_CPM_Admin ROLE_cdc_control_superuser ROLE_cdc_control_viewer ROLE_cdc_test_db_superuser ROLE_cdc_control_executor ROLE_cdc_control_importer ROLE_CIP_ADMIN ROLE_BSSCM-ADMIN ROLE_CLOUD-HDS-ADMIN\
+    \ ROLE_CLOUD-HDS-USER ROLE_DPC_USER ROLE_DPC_CONFIGURATOR ROLE_DPC_ADMIN ROLE_RCW-ADMIN ROLE_SCT-ADMIN ROLE_billing-eca-api-access ROLE_CIP_DEV ROLE_CIP_CUSTOMER ROLE_CLOUD-ADMIN ROLE_ID_INTERACTIONS_READ_ONLY_USER\
+    \ ROLE_ID_INTERACTIONS_USER ROLE_ID_DOCUMENTS_READ_ONLY_USER ROLE_ID_DOCUMENTS_USER ROLE_ID_ADMINISTRATOR ROLE_ID_READ_ONLY_USER ROLE_ID_USER ROLE_CDN-ADMIN ROLE_DST-ADMIN ROLE_DST-EXPORT-USER ROLE_DST-EXPORT-ADMIN\
+    \ ROLE_DST-IMPORT-USER ROLE_DFT_USER ROLE_DFT_VIEW ROLE_DFT_ADMIN ROLE_GMS_MOBILE_APP_USER ROLE_DPT_USER ROLE_DPT_ADMIN ROLE_ea_user" # paramset: common version: 23.1 source: template
+technicalConfigurationParameters: {}

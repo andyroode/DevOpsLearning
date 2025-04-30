@@ -1,0 +1,77 @@
+---
+name: "dev_dm_override"
+version: 0
+baseline: "dev"
+description: "Override for dev-profile for data-management namespace"
+applications:
+  - name: "Cloud-Core"
+    version: "release-2023.3-8.4.0-20231103.225817-60-RELEASE"
+    sd: ""
+    services:
+      - name: "key-manager"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "100Mi"
+      - name: "facade-operator"
+        parameters:
+          - name: "FACADE_GATEWAY_MEMORY_LIMIT"
+            value: "96Mi"
+          - name: "FACADE_GATEWAY_CPU_REQUEST"
+            value: "50m"
+      - name: "config-server"
+        parameters:
+          - name: "MEM_ARGS"
+            value: "-XX:+UseSerialGC -XX:+UnlockExperimentalVMOptions -Xms256m -Xmx256m\
+            \ -Xss256k -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -XX:MaxDirectMemorySize=10m\
+            \ -XX:ReservedCodeCacheSize=32M -XX:CompressedClassSpaceSize=32M -XX:MinMetaspaceExpansion=1M\
+            \ -XX:MaxMetaspaceExpansion=8M -XX:CodeCacheExpansionSize=256k -XX:MinHeapFreeRatio=20\
+            \ -XX:MaxHeapFreeRatio=40 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90"
+          - name: "MEMORY_LIMIT"
+            value: "768Mi"      
+  - name: "Core-Extensions"
+    version: "release-2023.3-11.17.0-20231107.113613-36-RELEASE"
+    sd: ""
+    services:
+      - name: "core-extensions-gateway-config"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "96Mi"
+          - name: "MEMORY_REQUEST"
+            value: "96Mi"
+          - name: "CPU_REQUEST"
+            value: "50m"
+  - name: "datamarts-engine"
+    version: "release-2024-1-004-RELEASE"
+    sd: ""
+    services:
+    - name: "datamarts-engine"
+      parameters:
+      - name: "workers.resources.requests.cpu"
+        value: "100m"
+  - name: "cloud-reporting"
+    version: "release-2024-1-1.03.013-RELEASE"
+    sd: ""
+    services:
+      - name: "reporting-superset-ext"
+        parameters:
+          - name: "CPU_REQUEST"
+            value: "100m"
+          - name: "CPU_LIMIT"
+            value: "2"
+          - name: "MEMORY_REQUEST"
+            value: "8Gi"
+          - name: "MEMORY_LIMIT"
+            value: "8Gi"
+          - name: "supersetCeleryBeat.resources.requests.cpu"
+            value: "10m"
+          - name: "supersetCeleryBeat.resources.limits.cpu"
+            value: "300m"
+          - name: "supersetCeleryBeat.resources.requests.memory"
+            value: "256Mi"
+          - name: "supersetCeleryBeat.resources.limits.memory"
+            value: "256Mi"
+          - name: "REPORTING_SQLALCHEMY_POOL_SIZE"
+            value: "40"
+          - name: "REPORTING_SQLALCHEMY_POOL_TIMEOUT"
+            value: "60"
+

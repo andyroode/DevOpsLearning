@@ -1,0 +1,29 @@
+inventory:
+  environmentName: "composite-with-creds"
+  tenantName: "CODETOPROD"
+  deployer: "cloud-deployer"
+  cloudPassport: "cloud-passport-sample"
+  description: "Sample template for composite environment with credentials in parameters"
+  owners: "Evgenii A. Popov, Viktor Solovev"
+  config:
+    updateRPOverrideNameWithEnvName: false
+    updateCredIdsWithEnvName: true
+envTemplate:
+  name: "composite-dev"
+  envSpecificE2EParamsets:
+    cloud: ["argocd-configuration-env-specific-e2e"]
+  additionalTemplateVariables:
+    GLOBAL_LEVEL_PARAM1: global-level-value1
+    CLOUD_LEVEL_PARAM1: cloud-level-value2
+    mergeDeployE2eParameters: true
+    additinalVarInstanceDir: "test1"
+    additinalVarParentDir: "test2"
+  templateArtifact:
+    registry: "artifactorycn"
+    repository: "snapshotRepository"
+    artifact:
+      group_id: "com.qubership.deploy.product"
+      artifact_id: "prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project"
+      version: "master_20231005-131627"
+generatedVersions:
+  generateEnvironmentLatestVersion: "composite-with-creds-version-from-tests"  # This value is automatically generated during job run.

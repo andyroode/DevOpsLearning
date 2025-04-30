@@ -1,0 +1,20 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-license-server"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  LICENSE_SERVER_CREATE_CLUSTER_ROLE_AND_BINDING: true
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

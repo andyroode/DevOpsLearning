@@ -1,0 +1,17 @@
+---
+name: "{{current_env.environmentName}}-network-adapters"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+- "solutionInstance-{{env}}"
+- "solution-{{tenant}}"
+cleanInstallApprovalRequired: {{ current_env.additionalTemplateVariables.cleanInstallApprovalRequired | default('false') }}
+mergeDeployParametersAndE2EParameters: false
+deployParameters: {}
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "network-adapters"
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

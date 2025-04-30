@@ -1,0 +1,58 @@
+cdc-streaming-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+cm-kafka-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+cm-postgresql-rw-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+consul-admin-cred:
+  type: "secret"
+  data:
+    secret: "consul_token"
+cse-graylog-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+dbaas-cluster-dba-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+deploy-sa-token:
+  type: "secret"
+  data:
+    secret: "secretText"
+maas-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+oss-streaming-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+smtp-server-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+ssm-cmdb-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+storage-cred:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"

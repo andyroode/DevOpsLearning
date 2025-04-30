@@ -1,0 +1,40 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "nrm-operator"
+deployParameters:
+  DEPLOY_W_HELM: "true"  # paramset: billing version: 23.1 source: template
+  ESCAPE_SEQUENCE: "true" # paramset: billing version: 23.1 source: template
+  IGNORE_MERGE_CONFLICTS: "true" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.apiExplorer.resources.limits.cpu: "0.6" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.apiExplorer.resources.limits.memory: "256Mi" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.apiExplorer.resources.requests.cpu: "0.3" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.apiExplorer.resources.requests.memory: "128Mi" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.databases.dbAdmins: |-
+    '
+    - name: pgadmin
+
+      url:
+    ${tenant.cloud.get("nrm.db.url")}/postgres?sslmode=disable
+    - name: udm
+
+      url: ${tenant.cloud.get("nrm.cassandra.url")}/system
+
+    '
+   # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.security.additionalCertificatesYaml.cert: "${CLOUD_CDN_STORAGE_CA_BUNDLE.replace(\"    \", \"\").replace(\"|\", \"\").replaceFirst(\"\\n\",\"\")}" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.security.additionalCertificatesYaml.endpoints: "${STORAGE_PROVIDER}://${STORAGE_USERNAME}:${STORAGE_PASSWORD}@${STORAGE_SERVER_URL.replaceFirst(\"https\\\\://\", \"\")}" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.security.securityRoles: |-
+    '
+    - anonymous: true
+      name: anonymous
+      rules:
+        - apiGroups:
+            - operator.api.nrm.qubership.com
+          resources:
+            - "*"
+          verbs:
+            - "*"
+    '
+   # paramset: billing version: 23.1 source: template
+technicalConfigurationParameters: {}

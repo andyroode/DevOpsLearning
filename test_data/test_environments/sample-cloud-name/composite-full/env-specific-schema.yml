@@ -1,0 +1,187 @@
+# Cloud passport parameters validation
+cloudPassport:
+  # list of white listed parameters, 
+  # contains the list of parameters that can be defined on cloud passport level 
+  # during passport generation we will go thorough parameters 
+  # and check that all of them are present and no other parameters are present. 
+  # If no env_builder job will fail
+  whiteList:
+    version: 
+      type: "number"
+      regexpPattern: "1.5"
+    cloud:
+      CLOUD_API_HOST: "string"
+      CLOUD_API_PORT: "number"
+      CLOUD_DEPLOY_TOKEN: "string"
+      CLOUD_PUBLIC_HOST: "string"
+      CLOUD_PRIVATE_HOST: "string"
+      CLOUD_DASHBOARD_URL: 
+        type: "string"
+        regexpPattern: "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$"
+      CLOUD_PROTOCOL: "string"
+      PRODUCTION_MODE: "boolean"
+      GRAYLOG_UI_URL: "string"
+      TRACING_UI_URL: "string"
+      GRAFANA_UI_URL: "string"
+      CMDB_URL: "string"
+    dbaas:
+      API_DBAAS_ADDRESS: 
+        type: "string"
+        regexpPattern: "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$"
+      DBAAS_AGGREGATOR_ADDRESS: "string"
+      DBAAS_CLUSTER_DBA_CREDENTIALS_USERNAME: "string"
+      DBAAS_CLUSTER_DBA_CREDENTIALS_PASSWORD: "string"
+    maas:
+      MAAS_INTERNAL_ADDRESS: "string"
+      MAAS_SERVICE_ADDRESS: "string"
+      MAAS_CREDENTIALS_USERNAME: "string"
+      MAAS_CREDENTIALS_PASSWORD: "string"
+    consul:
+      CONSUL_URL: "string"
+      CONSUL_ENABLED: "boolean"
+      CONSUL_PUBLIC_URL: "string"
+      CONSUL_ADMIN_TOKEN: "string"
+    zookeeper:
+      ZOOKEEPER_URL: "string"
+      ZOOKEEPER_ADDRESS: "string"
+    vault:
+      #PUBLIC_VAULT_URL: # TODO: not in WIKI page
+      VAULT_ADDR: "string"
+      VAULT_AUTH_ROLE_ID: "string"
+      VAULT_AUTH_SECRET_ID: "string"
+      VAULT_AUTH_PATH: "string"
+      VAULT_AUTH_NAMESPACE: "string"
+    smtp:
+      SMTP_SERVER_URL: "string"
+      SMTP_SERVER_PORT: "number"
+      SMTP_SERVER_USERNAME: "string"
+      SMTP_SERVER_PASSWORD: "string"
+    storage:
+      STORAGE_SERVER_URL: "string"
+      STORAGE_PROVIDER: "string"
+      STORAGE_REGION: 
+        type: "string"
+        allowNone: true
+      STORAGE_USERNAME: "string"
+      STORAGE_PASSWORD: "string"
+      CDN_STORAGE_SERVER_URL: "string"
+      CDN_STORAGE_PROVIDER: "string"
+      CDN_STORAGE_REGION: "string"
+      CDN_STORAGE_USERNAME: "string"
+      CDN_STORAGE_PASSWORD: "string"
+      DOC_STORAGE_SERVER_URL: "string"
+      DOC_STORAGE_PROVIDER: "string"
+      DOC_STORAGE_REGION: "string"
+      DOC_STORAGE_USERNAME: "string"
+      DOC_STORAGE_PASSWORD: "string"
+      STORAGE_RWO_CLASS: "string"
+      STORAGE_RWX_CLASS: "string"
+    core:
+      DEFAULT_TENANT_NAME: "string"
+      DEFAULT_TENANT_ADMIN_LOGIN: "string"
+      MAVEN_REPO_URL: "string"
+      MAVEN_REPO_NAME: "string"
+      MAVEN_REPO_STAGING_NAME: "string"
+      MAVEN_REPO_DEV_NAME: "string"
+    global:
+      MONITORING_ENABLED: "boolean"
+      TRACING_ENABLED: "boolean"
+      TRACING_HOST: "string"
+    bss:
+      DOC_STORAGE_TEMPORARY_BUCKET_NAME: "string"
+      DOC_STORAGE_PERSISTENT_BUCKET_NAME: "string"
+    billing:
+      nrm.kafka.url: "string"
+      nrm.cassandra.url: "string"
+      nrm.postgresql.rw.address: "string"
+      nrm.postgresql.ro.address: "string"
+      nrm.postgresql.username: "string"
+      nrm.postgresql.password: "string"
+      CM_POSTGRESQL_RW_USERNAME: "string"
+      CM_POSTGRESQL_RW_PASSWORD: "string"
+      CM_POSTGRESQL_RW_SERVER: "string"
+      CM_KAFKA_BOOTSTRAP_SERVERS: "string"
+      CM_KAFKA_CLIENT_PASSWORD: "string"
+      CM_KAFKA_CLIENT_USERNAME: "string"
+    oss:
+      OSS_STREAMING_PLATFORM_URL: "string"
+      OSS_STREAMING_PLATFORM_USERNAME: "string"
+      OSS_STREAMING_PLATFORM_PASSWORD: "string"
+    cse:
+      DST_STORAGE_BUCKET: "string"
+      DST_STORAGE_USERNAME: "string"
+      DST_STORAGE_PASSWORD: "string"
+      DAT_STORAGE_BUCKET: "string"
+      DAT_STORAGE_USERNAME: "string"
+      DAT_STORAGE_PASSWORD: "string"
+      DFT_STORAGE_BUCKET: "string"
+      DFT_STORAGE_USERNAME: "string"
+      DFT_STORAGE_PASSWORD: "string"
+      DPC_STORAGE_REGION: "string"
+      DPC_STORAGE_BUCKET: "string"
+      DPC_STORAGE_USERNAME: "string"
+      DPC_STORAGE_PASSWORD: "string"
+      SSM_CMDB_USER: "string"
+      SSM_CMDB_TOKEN: "string"
+      CSE_GRAYLOG_USER: "string"
+      CSE_GRAYLOG_PASSWORD: "string"
+      MONITORING_NAMESPACE: "string"
+      MONITORING_TYPE: "string"
+      MONITORING_EXT_MONITORING_QUERY_URL: 
+        type: "string"
+        allowNone: true
+      CSE_EXTERNAL_MONITORING_USER: 
+        type: "string"
+        allowNone: true
+      CSE_EXTERNAL_MONITORING_PASSWORD: 
+        type: "string"
+        allowNone: true
+      OPS_IDP_URL: 
+        type: "string"
+        allowNone: true
+      BEOC_STORAGE_BUCKET: "string"
+      BEOC_STORAGE_USERNAME: "string"
+      BEOC_STORAGE_PASSWORD: "string"
+      HDS_STORAGE_USERNAME: "string"
+      HDS_STORAGE_PASSWORD: "string"
+      HDS_STORAGE_SERVER_URL: "string"
+      HDS_STORAGE_PROVIDER: "string"
+      HDS_STORAGE_BUCKET: "string"
+      HDS_STORAGE_REGION: "string"
+    cdc:
+      CDC_NIFI_NAMESPACE: 
+        type: "string"
+        allowNone: true
+      CDC_STREAMING_PLATFORM_USERNAME: "string"
+      CDC_STREAMING_PLATFORM_PASSWORD: "string"
+envSpecific:
+  # list of white listed parameters, that can be present on environment specific level
+  # during environment specific parameters generation we will go thorough parameters 
+  # and check that all of them are present and no other parameters are present. 
+  # If no env_builder job will fail
+  whiteList:
+    cloud:
+      e2eParameters:
+        CLOUD_LEVEL_PARAM_1: "string"
+    namespaces:
+      bss:
+        technicalConfigurationParameters:
+          TECHNICAL_PARAM_1: "string"
+        applications:
+          TELUS-NOTIFICATION:
+            deployParameters: 
+              CPQ_QUOTE_NOTIFICATION_TOPIC: "string"
+              TELUS_IBS_NOTIFICATION_SERVICE_TOPIC: "string"
+              OM_TELUS_ORDER_NOTIFICATION_TOPIC:
+                type: "string"
+                allowNone: true
+  # list of black listed parameters, that can be present on environment specific level
+  # if they will be present in the result of generation on any level, than env_builder job will fail
+  blackList:
+    deployParameters:
+      - "key8"
+      - "key9"
+    e2eParameters:
+      - "key10"
+    technicalConfigurationParameters: []
+    

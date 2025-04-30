@@ -1,0 +1,19 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Cloud-Core"
+deployParameters:
+  DBAAS_AGENT_NAMESPACE_ISOLATION_ENABLED: "false"  # paramset: data-management-wa version: 23.3 source: template
+  DBAAS_ON_MICROSERVICES_PHYSDB_RULE: |-
+    [
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "rep_balancing_rule=postgresql-reporting"
+    		}],
+    		"microservices": [
+    			"config-server", "control-plane", "site-management", "cdc-control", "cdc-reportingdb-provider", "reporting-superset-ext", "dictionaries-provider-backend", "metamodel-provider-backend", "samples-repository", "smartplug", "tenant-self-service-backend", "datamarts-airflow", "dpt-data-access"
+    	]}
+    		]
+   # paramset: data-management-configuration version: 1 source: template
+technicalConfigurationParameters: {}

@@ -1,0 +1,5 @@
+"ims-cpm-storage-creds-release":
+  type: "usernamePassword"
+  data:
+    username: ims-cpm-user
+    password: ims-cpm-password

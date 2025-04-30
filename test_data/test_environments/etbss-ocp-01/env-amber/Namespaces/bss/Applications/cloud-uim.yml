@@ -1,0 +1,14 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cloud-uim"
+deployParameters:
+  UIM_PLUGINS_CONFIGS: "'{\"plugins\": {\"deliveryPlugins\": [{\"defaultPluginConfig\": {\"pluginSpecificConfigs\": {\"connection_pool.size.max\": \"\\\\$(UIM_PLUGIN_SMTP_CONNECTION_POOL_SIZE_MAX)\", \"\
+    host\": \"\\\\$(SMTP_SERVER_URL)\", \"password\": \"\\\\$(SMTP_SERVER_PASSWORD)\", \"port\": \"\\\\$(SMTP_SERVER_PORT)\", \"thread_pool.size\": \"\\\\$(UIM_PLUGIN_SMTP_THREAD_POOL_SIZE)\", \"username\"\
+    : \"\\\\$(SMTP_SERVER_USERNAME)\"}}, \"implementationConfig\": {\"oobPluginReference\": \"E_MAIL\"}, \"pluginInstanceId\": \"E_MAIL\"}, {\"defaultPluginConfig\": {\"pluginSpecificConfigs\": {\"cnsEndpoint\"\
+    : \"\\\\$(cnsEndpoint)\", \"cnsPassword\": \"\\\\$(CNS_PASSWORD)\", \"cnsUrl\": \"\\\\$(cnsUrl)\", \"cnsUsername\": \"\\\\$(CNS_USERNAME)\", \"connection_pool.size.max\": \"\\\\$(UIM_PLUGIN_SMTP_CONNECTION_POOL_SIZE_MAX)\"\
+    , \"host\": \"\\\\$(SMTP_SERVER_URL)\", \"password\": \"\\\\$(SMTP_SERVER_PASSWORD)\", \"port\": \"\\\\$(SMTP_SERVER_PORT)\", \"thread_pool.size\": \"\\\\$(UIM_PLUGIN_SMTP_THREAD_POOL_SIZE)\", \"username\"\
+    : \"\\\\$(SMTP_SERVER_USERNAME)\"}}, \"implementationConfig\": {\"plugPoint\": \"asyncDeliveryPlugPointV2\", \"smartplugQualifier\": \"EsltCnsPlugin\"}, \"pluginInstanceId\": \"CNS\"}]}}'"  # paramset: bss-common version: 1 source: template
+  UIM_PLUGINS_MAPPING: "'{\"pluginsMapping\":[{\"filters\":[{\"mediumType\":\"CALENDAR_EVENT\"}],\"pluginInstanceId\":\"E_MAIL\"},{\"filters\":[{\"mediumType\":\"E_MAIL\"},{\"mediumType\":\"SMS\"}],\"pluginInstanceId\"\
+    :\"CNS\"}]}'" # paramset: bss-common version: 1 source: template
+technicalConfigurationParameters: {}

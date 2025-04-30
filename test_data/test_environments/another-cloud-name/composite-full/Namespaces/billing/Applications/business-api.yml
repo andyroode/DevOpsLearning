@@ -1,0 +1,18 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "business-api"
+deployParameters:
+  ACCESS_CONTROL_ENABLED: "true" # paramset: billing version: 23.1 source: template
+  ACCESS_CONTROL_URL: "http://access-control:8080" # paramset: billing version: 23.1 source: template
+  CATALOG_TARGET: "catalog:8080" # paramset: billing version: 23.1 source: template
+  DBP_TARGET: "formatter:8080" # paramset: billing version: 23.1 source: template
+  ECA2_TARGET: "eca2:8080" # paramset: billing version: 23.1 source: template
+  ESCAPE_SEQUENCE: "true" # paramset: billing version: 23.1 source: template
+  GRAYLOG_ENABLED: "true" # paramset: billing version: 23.1 source: template
+  GRAYLOG_HOST: "${tenant.cloud.GRAYLOG_UI_URL}" # paramset: billing version: 23.1 source: template
+  GRPC_TLS_ENABLED: "false" # paramset: billing version: 23.1 source: template
+  IDENTITY_PROVIDER_URL: "http://identity-provider:8080" # paramset: billing version: 23.1 source: template
+  PROVIDER_ISSUER_URL: "https://public-gateway-${NAMESPACE}.${CLOUD_PUBLIC_HOST}/auth/realms/${CPQ_TENANT_ID}" # paramset: billing version: 23.1 source: template
+  RTB_TARGET: "realtime-bills:8080" # paramset: billing version: 23.1 source: template
+technicalConfigurationParameters: {}

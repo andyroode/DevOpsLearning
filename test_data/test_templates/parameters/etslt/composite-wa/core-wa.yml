@@ -1,0 +1,15 @@
+version: 23.3
+name: core-wa
+parameters:
+  #config for ETBSS-927
+  IDP_KAFKA_EVENTS_ENABLED: "true"
+  # config for ETBSS-5970
+  # PAAS_VERSION_CUSTOM: "1.25"
+applications:
+  - appName: "Cloud-Core"
+    parameters:
+      # config for ETBSS-13558
+      DBAAS_ON_MICROSERVICES_PHYSDB_RULE: "[\n{\n\t\t\"type\": \"postgresql\",\n\t\t\
+      \"rules\": [{\n\t\t\t\"label\": \"core_balancing_rule=postgresql-core\"\n\t\t\
+      }],\n\t\t\"microservices\": [\n\t\t\t\"config-server\", \"control-plane\", \"\
+      identity-provider\", \"site-management\", \"tenant-manager\"\n\t]}\n\t\t]"

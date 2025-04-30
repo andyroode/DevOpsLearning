@@ -1,0 +1,134 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "ovverride_cloud_name"
+apiUrl: "sample-cloud-name.k8s.sdntest.qubership.com" # cloud passport: sample-cloud-name version: 1.5
+apiPort: 6443 # cloud passport: sample-cloud-name version: 1.5
+privateUrl: "dev-1.k8s-private.sdntest.qubership.com" # cloud passport: sample-cloud-name version: 1.5
+publicUrl: "dev-1.k8s.sdntest.qubership.com" # cloud passport: sample-cloud-name version: 1.5
+dashboardUrl: "https://dev-1.k8s.sdntest.qubership.com" # cloud passport: sample-cloud-name version: 1.5
+labels: []
+defaultCredentialsId: "deploy-sa-token" # cloud passport: sample-cloud-name version: 1.5
+protocol: "https" # cloud passport: sample-cloud-name version: 1.5
+dbMode: "db"
+databases: []
+mergeDeployParametersAndE2EParameters: false
+maasConfig:
+  credentialsId: "maas-cred" # cloud passport: sample-cloud-name version: 1.5
+  enable: true  # cloud passport: sample-cloud-name version: 1.5
+  maasUrl: "https://maas-service-maas.${CLOUD_PRIVATE_HOST}" # cloud passport: sample-cloud-name version: 1.5
+  maasInternalAddress: "http://maas-service.maas:8080" # cloud passport: sample-cloud-name version: 1.5
+vaultConfig:
+  credentialsId: ""  # cloud passport: sample-cloud-name version: 1.5
+  enable: false # cloud passport: sample-cloud-name version: 1.5
+  url: "" # cloud passport: sample-cloud-name version: 1.5
+dbaasConfigs:
+  - credentialsId: "dbaas-cluster-dba-cred" # cloud passport: sample-cloud-name version: 1.5
+    enable: true # cloud passport: sample-cloud-name version: 1.5
+    apiUrl: "http://dbaas-aggregator.dbaas:8080" # cloud passport: sample-cloud-name version: 1.5
+    aggregatorUrl: "https://aggregator-dbaas.${CLOUD_PRIVATE_HOST}" # cloud passport: sample-cloud-name version: 1.5
+consulConfig:
+  tokenSecret: "consul-admin-cred" # cloud passport: sample-cloud-name version: 1.5
+  enabled: false # cloud passport: sample-cloud-name version: 1.5
+  publicUrl: "http://consul-consul.${CLOUD_PRIVATE_HOST}" # cloud passport: sample-cloud-name version: 1.5
+  internalUrl: "consul.consul" # cloud passport: sample-cloud-name version: 1.5
+deployParameters:
+  BEOC_STORAGE_BUCKET: "beoc-bucket" # cloud passport: sample-cloud-name version: 1.5
+  BEOC_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: sample-cloud-name version: 1.5
+  BEOC_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: sample-cloud-name version: 1.5
+  CDC_NIFI_NAMESPACE: null # cloud passport: sample-cloud-name version: 1.5
+  CDC_STREAMING_PLATFORM_PASSWORD: "${cmdb.creds.get(\"cdc-streaming-cred\").password}" # cloud passport: sample-cloud-name version: 1.5
+  CDC_STREAMING_PLATFORM_USERNAME: "${cmdb.creds.get(\"cdc-streaming-cred\").username}" # cloud passport: sample-cloud-name version: 1.5
+  CDN_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: sample-cloud-name version: 1.5
+  CDN_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # cloud passport: sample-cloud-name version: 1.5
+  CDN_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: sample-cloud-name version: 1.5
+  CDN_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: sample-cloud-name version: 1.5
+  CDN_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: sample-cloud-name version: 1.5
+  CLOUD_DASHBOARD_URL: "https://dev-1.k8s.sdntest.qubership.com" # cloud passport: sample-cloud-name version: 1.5
+  CMDB_URL: "https://cloud-deployer.qubership.com" # cloud passport: sample-cloud-name version: 1.5
+  CM_KAFKA_BOOTSTRAP_SERVERS: "kafka.kafka:9092" # cloud passport: sample-cloud-name version: 1.5
+  CM_KAFKA_CLIENT_PASSWORD: "${cmdb.creds.get(\"cm-kafka-cred\").username}" # cloud passport: sample-cloud-name version: 1.5
+  CM_KAFKA_CLIENT_USERNAME: "${cmdb.creds.get(\"cm-kafka-cred\").password}" # cloud passport: sample-cloud-name version: 1.5
+  CM_POSTGRESQL_RW_PASSWORD: "${cmdb.creds.get(\"cm-postgresql-rw-cred\").password}" # cloud passport: sample-cloud-name version: 1.5
+  CM_POSTGRESQL_RW_SERVER: "pg-patroni.postgresql-billing:5432" # cloud passport: sample-cloud-name version: 1.5
+  CM_POSTGRESQL_RW_USERNAME: "${cmdb.creds.get(\"cm-postgresql-rw-cred\").username}" # cloud passport: sample-cloud-name version: 1.5
+  CONSUL_ENABLED: "false" # cloud passport: sample-cloud-name version: 1.5
+  CSE_EXTERNAL_MONITORING_PASSWORD: null # cloud passport: sample-cloud-name version: 1.5
+  CSE_EXTERNAL_MONITORING_USER: null # cloud passport: sample-cloud-name version: 1.5
+  CSE_GRAYLOG_PASSWORD: "${cmdb.creds.get(\"cse-graylog-cred\").password}" # cloud passport: sample-cloud-name version: 1.5
+  CSE_GRAYLOG_USER: "${cmdb.creds.get(\"cse-graylog-cred\").username}" # cloud passport: sample-cloud-name version: 1.5
+  DAT_STORAGE_BUCKET: "dat-bucket" # cloud passport: sample-cloud-name version: 1.5
+  DAT_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: sample-cloud-name version: 1.5
+  DAT_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: sample-cloud-name version: 1.5
+  DEFAULT_TENANT_ADMIN_LOGIN: "cpq@qubership.com" # cloud passport: sample-cloud-name version: 1.5
+  DEFAULT_TENANT_NAME: "cpq" # cloud passport: sample-cloud-name version: 1.5
+  DFT_STORAGE_BUCKET: "dft-bucket" # cloud passport: sample-cloud-name version: 1.5
+  DFT_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: sample-cloud-name version: 1.5
+  DFT_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: sample-cloud-name version: 1.5
+  DOC_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: sample-cloud-name version: 1.5
+  DOC_STORAGE_PERSISTENT_BUCKET_NAME: "storage-proxy-permanent-bucket" # cloud passport: sample-cloud-name version: 1.5
+  DOC_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # cloud passport: sample-cloud-name version: 1.5
+  DOC_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: sample-cloud-name version: 1.5
+  DOC_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: sample-cloud-name version: 1.5
+  DOC_STORAGE_TEMPORARY_BUCKET_NAME: "storage-proxy-temporary-bucket" # cloud passport: sample-cloud-name version: 1.5
+  DOC_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: sample-cloud-name version: 1.5
+  DPC_STORAGE_BUCKET: "discrepancy-detector-reports" # cloud passport: sample-cloud-name version: 1.5
+  DPC_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: sample-cloud-name version: 1.5
+  DPC_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: sample-cloud-name version: 1.5
+  DPC_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: sample-cloud-name version: 1.5
+  DST_STORAGE_BUCKET: "dst-bucket" # cloud passport: sample-cloud-name version: 1.5
+  DST_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: sample-cloud-name version: 1.5
+  DST_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: sample-cloud-name version: 1.5
+  GRAFANA_UI_URL: "https://grafana-platform-monitoring.${CLOUD_PUBLIC_HOST}" # cloud passport: sample-cloud-name version: 1.5
+  GRAYLOG_UI_URL: "https://graylog-service.ops-logging:12201" # cloud passport: sample-cloud-name version: 1.5
+  HDS_STORAGE_BUCKET: "hds_data" # cloud passport: sample-cloud-name version: 1.5
+  HDS_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: sample-cloud-name version: 1.5
+  HDS_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # cloud passport: sample-cloud-name version: 1.5
+  HDS_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: sample-cloud-name version: 1.5
+  HDS_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: sample-cloud-name version: 1.5
+  HDS_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: sample-cloud-name version: 1.5
+  INSTANCES_LEVEL_VAR_CLOUD: "cloud-level-value2"
+  INSTANCES_LEVEL_VAR_GLOBAL: "global-level-value1"
+  MAVEN_REPO_DEV_NAME: "${MAVEN_REPO_NAME}" # cloud passport: sample-cloud-name version: 1.5
+  MAVEN_REPO_NAME: "pd.saas.mvn.group" # cloud passport: sample-cloud-name version: 1.5
+  MAVEN_REPO_STAGING_NAME: "${MAVEN_REPO_NAME}" # cloud passport: sample-cloud-name version: 1.5
+  MAVEN_REPO_URL: "https://artifactorycn.qubership.com/" # cloud passport: sample-cloud-name version: 1.5
+  MONITORING_ENABLED: true # cloud passport: sample-cloud-name version: 1.5
+  MONITORING_EXT_MONITORING_QUERY_URL: null # cloud passport: sample-cloud-name version: 1.5
+  MONITORING_NAMESPACE: "platform-monitoring" # cloud passport: sample-cloud-name version: 1.5
+  MONITORING_TYPE: "VictoriaDB" # cloud passport: sample-cloud-name version: 1.5
+  OPS_IDP_URL: "https://idp-infra.${CLOUD_PUBLIC_HOST}" # cloud passport: sample-cloud-name version: 1.5
+  OSS_STREAMING_PLATFORM_PASSWORD: "${cmdb.creds.get(\"oss-streaming-cred\").password}" # cloud passport: sample-cloud-name version: 1.5
+  OSS_STREAMING_PLATFORM_URL: "streaming-platform.streaming:8083" # cloud passport: sample-cloud-name version: 1.5
+  OSS_STREAMING_PLATFORM_USERNAME: "${cmdb.creds.get(\"oss-streaming-cred\").username}" # cloud passport: sample-cloud-name version: 1.5
+  PRODUCTION_MODE: false # cloud passport: sample-cloud-name version: 1.5
+  SMTP_SERVER_PASSWORD: "${cmdb.creds.get(\"smtp-server-cred\").password}" # cloud passport: sample-cloud-name version: 1.5
+  SMTP_SERVER_PORT: 25 # cloud passport: sample-cloud-name version: 1.5
+  SMTP_SERVER_URL: "testmail.qubership.com" # cloud passport: sample-cloud-name version: 1.5
+  SMTP_SERVER_USERNAME: "${cmdb.creds.get(\"smtp-server-cred\").username}" # cloud passport: sample-cloud-name version: 1.5
+  SSM_CMDB_TOKEN: "${cmdb.creds.get(\"ssm-cmdb-cred\").password}" # cloud passport: sample-cloud-name version: 1.5
+  SSM_CMDB_USER: "${cmdb.creds.get(\"ssm-cmdb-cred\").username}" # cloud passport: sample-cloud-name version: 1.5
+  STORAGE_PASSWORD: "${cmdb.creds.get(\"storage-cred\").password}" # cloud passport: sample-cloud-name version: 1.5
+  STORAGE_PROVIDER: "s3" # cloud passport: sample-cloud-name version: 1.5
+  STORAGE_REGION: null # cloud passport: sample-cloud-name version: 1.5
+  STORAGE_RWO_CLASS: "csi-cinder-sc-retain" # cloud passport: sample-cloud-name version: 1.5
+  STORAGE_RWX_CLASS: "nfs-sc" # cloud passport: sample-cloud-name version: 1.5
+  STORAGE_SERVER_URL: "https://s3.qubership.com" # cloud passport: sample-cloud-name version: 1.5
+  STORAGE_USERNAME: "${cmdb.creds.get(\"storage-cred\").username}" # cloud passport: sample-cloud-name version: 1.5
+  TRACING_ENABLED: false # cloud passport: sample-cloud-name version: 1.5
+  TRACING_HOST: "nc-diagnostic-agent" # cloud passport: sample-cloud-name version: 1.5
+  TRACING_UI_URL: "${CLOUD_PROTOCOL}://jaeger.${CLOUD_PUBLIC_HOST}" # cloud passport: sample-cloud-name version: 1.5
+  ZOOKEEPER_ADDRESS: "zookeeper.zookeeper:2181" # cloud passport: sample-cloud-name version: 1.5
+  ZOOKEEPER_URL: "${ZOOKEEPER_ADDRESS}" # cloud passport: sample-cloud-name version: 1.5
+  nrm.cassandra.url: "cassandra://admin:admin@cassandra.cassandra:9042" # cloud passport: sample-cloud-name version: 1.5
+  nrm.kafka.url: "kafka://admin:admin@kafka.kafka:9092" # cloud passport: sample-cloud-name version: 1.5
+  nrm.postgresql.password: "tmp_user" # cloud passport: sample-cloud-name version: 1.5
+  nrm.postgresql.ro.address: "pg-patroni-ro.postgresql-billing:5432" # cloud passport: sample-cloud-name version: 1.5
+  nrm.postgresql.rw.address: "pg-patroni.postgresql-billing:5432" # cloud passport: sample-cloud-name version: 1.5
+  nrm.postgresql.username: "tmp_password" # cloud passport: sample-cloud-name version: 1.5
+e2eParameters:
+  CLOUD_LEVEL_PARAM_1: "cloud-level-value-1" # paramset: cloud-level-paramset version: 23.1 source: instance
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []

@@ -1,0 +1,53 @@
+cloud-deploy-sa-token:
+  type: "secret"
+  data:
+    secret: "tmp_secret"
+cmdb:
+  type: "usernamePassword"
+  data:
+    username: "tmp_user"
+    password: "tmp_password"
+consul:
+  type: "secret"
+  data:
+    secret: "tmp_secret"
+coreexternal:
+  type: "usernamePassword"
+  data:
+    username: "tmp_user"
+    password: "tmp_password!"
+dbaas:
+  type: "usernamePassword"
+  data:
+    username: "tmp_user"
+    password: "tmp_password"
+graylog:
+  type: "usernamePassword"
+  data:
+    username: "tmp_user"
+    password: "tmp_password"
+maasexternal:
+  type: "usernamePassword"
+  data:
+    username: "tmp_user"
+    password: "tmp_password"
+minio-storage-cred:
+  type: "usernamePassword"
+  data:
+    username: "tmp_user"
+    password: "tmp_password"
+ssm-cmdb-cred:
+  type: "usernamePassword"
+  data:
+    username: "tmp_user"
+    password: "tmp_password"
+storage:
+  type: "usernamePassword"
+  data:
+    username: "tmp_user"
+    password: "tmp_password"
+streaming:
+  type: "usernamePassword"
+  data:
+    username: "tmp_user"
+    password: "tmp_password"

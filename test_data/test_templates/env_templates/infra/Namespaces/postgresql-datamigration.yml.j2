@@ -1,0 +1,23 @@
+---
+name: "{{ current_env.environmentName }}-postgresql-datamigration"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  dbaas:
+    labels:
+      datamigration_balancing_rule: postgresql-datamigration"
+  postgresPassword: "${creds.get(\"postgresql-datamigration-cred\").password}"
+  postgresUser: "${creds.get(\"postgresql-datamigration-cred\").username}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - postgresql-common
+  - postgresql-dbaas
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

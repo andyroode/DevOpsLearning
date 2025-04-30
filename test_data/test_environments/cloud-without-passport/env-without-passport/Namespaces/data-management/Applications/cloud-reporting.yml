@@ -1,0 +1,11 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cloud-reporting"
+deployParameters:
+  DEFAULT_TENANT_NAME: "${tenant.cloud.DEFAULT_TENANT_NAME}" # paramset: data-management version: 23.1 source: template
+  REPORTING_STORAGE_BUCKET: "future-requests.ready-for-processing/${NIFI_NAMESPACE}" # paramset: data-management version: 23.1 source: template
+  supersetNode.connections.broker_url: "kafka://${CDC_KAFKA_USER}:${CDC_KAFKA_PASSWORD}@${CDC_KAFKA_BOOTSTRAP_SERVERS}" # paramset: data-management version: 23.1 source: template
+  superset_config.cache_type: "kafka" # paramset: data-management version: 23.1 source: template
+  superset_config.smtp_ssl: "false" # paramset: data-management version: 23.1 source: template
+technicalConfigurationParameters: {}

@@ -1,0 +1,32 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "env-amber-core"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-env-amber"
+  - "solution-Applications"
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: "dev_core_override_hawk"
+  baseline: "dev"
+deployParameters:
+  BSS_NAMESPACE: "env-amber-bss"
+  CDN_STORAGE_SERVER_URL: "http://minio.minio:9000" # paramset: ETBSS-10239 version: 1 source: instance
+  CONSUL_ENABLED: "true"
+  CORE_NAMESPACE: "env-amber-core"
+  DATA_MANAGEMENT_NAMESPACE: "env-amber-data-management"
+  DBAAS_LODB_PER_NAMESPACE_AUTOBALANCE_RULES: "postgresql=>postgresql:postgres"
+  IDP_KAFKA_EVENTS_ENABLED: "true"  # paramset: core-wa version: 23.3 source: template
+  OSS_NAMESPACE: "env-amber-oss"
+  # ETBSS-2100
+e2eParameters:
+  PROFILE: "dev" # paramset: core-e2e-wa version: 23.3 source: template
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+tenantName: "Applications"
+

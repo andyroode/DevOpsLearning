@@ -1,0 +1,105 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-cassandra-cse"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true  # paramset: cassandra version: 23.4 source: template
+  DISABLE_CRD: false # paramset: cassandra version: 23.4 source: template
+  backupDaemon: # paramset: cassandra version: 23.4 source: template
+    backupSchedule: "0 0 * * *"
+    evictionPolicy: "0/1h,3d/7d,1m/1m,1y/delete"
+    granularEvictionPolicy: "7d/delete"
+    install: false
+    password: "backup"
+    pdb: false
+    resources:
+      limits:
+        cpu: "200m"
+        memory: "1000Mi"
+      requests:
+        cpu: "100m"
+        memory: "1000Mi"
+    storage:
+      size: "10Gi"
+      storageClasses:
+        - "${STORAGE_RWO_CLASS}"
+    username: "backup"
+  cassandra: # paramset: cassandra version: 23.4 source: template
+    deploymentSchema:
+      dataCenters:
+        - name: "dc1"
+          replicas: 3
+          seeds: 1
+          storage:
+            size: "40Gi"
+            storageClasses:
+              - "${STORAGE_RWO_CLASS}"
+    install: true
+    password: "${creds.get(\"cassandra-cse-cred\").password}"
+    resources:
+      limits:
+        cpu: "2000m"
+        memory: "2Gi"
+      requests:
+        cpu: "150m"
+        memory: "2Gi"
+    smoketestKeyspace: "smoke_test"
+    username: "${creds.get(\"cassandra-cse-cred\").username}"
+  dbaas: # paramset: cassandra version: 23.4 source: template
+    adapter:
+      password: "${creds.get(\"dbaas-adapter-cred\").password}"
+      username: "${creds.get(\"dbaas-adapter-cred\").username}"
+    aggregator:
+      address: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+      dbaasAggregatorRegistrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+      password: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
+      physicalDatabaseIdentifier: "platform-with-overrides-cassandra-cse"
+      secretName: "dbaas-aggregator-credentials"
+      username: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
+    install: true
+    pdb: false
+    resources:
+      limits:
+        cpu: "600m"
+        memory: "1000Mi"
+      requests:
+        cpu: "150m"
+        memory: "1000Mi"
+  monitoringAgent: # paramset: cassandra version: 23.4 source: template
+    collectionJitter: "0s"
+    flushInterval: "60s"
+    flushJitter: "5s"
+    install: true
+    jolokiaDebug: false
+    monitoringInterval: "60s"
+    resources:
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+      requests:
+        cpu: "200m"
+        memory: "128Mi"
+  operator: # paramset: cassandra version: 23.4 source: template
+    resources:
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+      requests:
+        cpu: "200m"
+        memory: "256Mi"
+  robotTests: # paramset: cassandra version: 23.4 source: template
+    install: false
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

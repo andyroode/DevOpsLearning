@@ -1,0 +1,20 @@
+---
+name: "{{ current_env.environmentName }}-rabbitmq"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  rabbitmq:
+    ingress:
+      host: "rabbitmq-${namespace_rabbitmq}.apps.{{ current_env.cluster.cloud_public_url }}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - rabbitmq
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

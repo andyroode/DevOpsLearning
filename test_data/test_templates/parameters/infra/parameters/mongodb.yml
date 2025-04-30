@@ -1,0 +1,58 @@
+version: 23.4
+name: mongodb
+parameters:
+  DEPLOY_W_HELM: true
+  DISABLE_CRD: false
+  ESCAPE_SEQUENCE: true
+  schemaSettings:
+    schemaType: "ha"
+    cnfReplicaSize: "3"
+    dataReplicaSize: "3"
+    shardCount: "3"
+  mongodb:
+    cnfResources:
+      limits:
+        memory: "512Mi"
+        cpu: "300m"
+      requests:
+        memory: "128Mi"
+        cpu: "100m"
+    dataResources:
+      limits:
+        memory: "512Mi"
+        cpu: "500m"
+      requests:
+        memory: "256Mi"
+        cpu: "100m"
+    install: true
+    storage:
+      size: "10Gi"
+      storageClasses: 
+        - "${STORAGE_RWO_CLASS}"
+  waitSeconds: "400"
+  recycler:
+    install: false
+  dbaas:
+    install: true
+    apiVersion: "v2"
+    multiUsers: true
+    dbaasAggregatorRegistrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+    dbaasAggregatorRegistrationUser: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
+    dbaasAggregatorRegistrationPassword: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
+    dbaasResources:
+      limits:
+        memory: "64Mi"
+        cpu: "200m"
+      requests:
+        memory: "32Mi"
+        cpu: "200m"
+  prometheusExporter:
+    install: true
+  backup:
+    install: false
+    backupSchedule: "0 0 * * *"
+    storage:
+      size: "5Gi"
+      storageClasses: 
+        - "${STORAGE_RWO_CLASS}"
+applications: []

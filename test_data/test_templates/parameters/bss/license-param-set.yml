@@ -1,0 +1,5 @@
+---
+name: "license-param-set"
+parameters:
+  LS_URL: "http://license-server.license-server.svc:80"
+applications: []

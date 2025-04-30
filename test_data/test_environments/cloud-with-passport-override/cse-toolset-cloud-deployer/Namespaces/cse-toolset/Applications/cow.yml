@@ -1,0 +1,7 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cow"
+deployParameters:
+  COW_COMMON_NAMESPACES: "jaeger|.+ops|cse-toolset|app-monitoring|maas|kafka|rabbitmq|dbaas|prometheus-monitoring|cloud-diagnostic-toolset|cdt|infra-keycloak|zookeeper|consul|app-deployer|logging|velero|design-time" # paramset: cse-toolset-wa version: 23.3 source: template
+technicalConfigurationParameters: {}

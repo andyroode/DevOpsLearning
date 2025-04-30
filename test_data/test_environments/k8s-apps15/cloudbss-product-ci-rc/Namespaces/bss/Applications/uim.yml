@@ -1,0 +1,49 @@
+# The contents of this file is generated from template artifact: demo-bss-env-template.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "uim"
+deployParameters:
+  HELM_RESOURCE_TIMEOUT: "10m" # paramset: uim_param_set version: n/a
+  UIM_PLUGINS_CONFIGS: |-
+    '{
+      "plugins": {
+        "deliveryPlugins": [
+          {
+            "defaultPluginConfig": {
+              "pluginSpecificConfigs": {
+                "host": "fake.smsc",
+                "password": "smpp_password",
+                "port": "1234",
+                "reconnect.interval.millis": "30000",
+                "submit.timeout": "10000",
+                "system.id": "smpp_user",
+                "window": "1"
+              }
+            },
+            "implementationConfig": {
+              "oobPluginReference": "SMS"
+            },
+            "pluginInstanceId": "SMS"
+          },
+          {
+            "defaultPluginConfig": {
+              "pluginSpecificConfigs": {
+                "host": "testmail.qubership.com",
+                "password": "Nuud@y123",
+                "port": "25",
+                "transport_strategy": "SMTP",
+                "username": "test-prj@testmail.qubership.com"
+              }
+            },
+            "implementationConfig": {
+              "oobPluginReference": "E_MAIL"
+            },
+            "pluginInstanceId": "E_MAIL"
+          }
+        ]
+      }
+    }'
+   # paramset: uim_param_set version: n/a
+  UIM_PLUGINS_MAPPING: "'{\"pluginsMapping\":[{\"filters\":[{\"mediumType\":\"E_MAIL\"},{\"mediumType\":\"CALENDAR_EVENT\"}],\"pluginInstanceId\":\"E_MAIL\"},{\"filters\":[{\"mediumType\":\"SMS\"}],\"pluginInstanceId\"\
+    :\"SMS\"}]}'" # paramset: uim_param_set version: n/a
+technicalConfigurationParameters: {}

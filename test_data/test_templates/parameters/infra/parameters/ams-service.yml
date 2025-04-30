@@ -1,0 +1,23 @@
+version: 23.4
+name: ams-service
+parameters:
+  ams:
+    config:
+      quarkus:
+        datasource:
+          db-kind: postgresql
+          usernameSecret:
+            name: ams-postgres-credentials
+            key: username
+          passwordSecret:
+            name: ams-postgres-credentials
+            key: password
+      ams:
+        alerting:
+          enabled: true
+        remote-tsdb:
+          prometheus:
+            - name: victoriametrics
+              url: http://vmsingle-k8s.${MONITORING_NAMESPACE}:8429
+
+applications: []

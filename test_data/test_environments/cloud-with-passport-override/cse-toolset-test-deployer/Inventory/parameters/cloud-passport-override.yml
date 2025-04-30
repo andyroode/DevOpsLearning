@@ -1,0 +1,7 @@
+version: 24.2
+name: cloud-passport-override
+parameters: 
+    CONSUL_ENABLED: false
+    DOC_STORAGE_PROVIDER: override_value
+    CSE_GRAYLOG_PASSWORD: ${creds.get("override-creds").password}
+applications: []

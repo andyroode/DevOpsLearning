@@ -1,0 +1,51 @@
+---
+name: "uim_param_set"
+parameters: {}
+applications:
+- name: "uim"
+  parameters:
+    HELM_RESOURCE_TIMEOUT: "10m"
+    UIM_PLUGINS_CONFIGS: "'{\n  \"plugins\": {\n    \"deliveryPlugins\": [\n     \
+      \ {\n        \"defaultPluginConfig\": {\n          \"pluginSpecificConfigs\"\
+      : {\n            \"host\": \"fake.smsc\",\n            \"password\": \"smpp_password\"\
+      ,\n            \"port\": \"1234\",\n            \"reconnect.interval.millis\"\
+      : \"30000\",\n            \"submit.timeout\": \"10000\",\n            \"system.id\"\
+      : \"smpp_user\",\n            \"window\": \"1\"\n          }\n        },\n \
+      \       \"implementationConfig\": {\n          \"oobPluginReference\": \"SMS\"\
+      \n        },\n        \"pluginInstanceId\": \"SMS\"\n      },\n      {\n   \
+      \     \"defaultPluginConfig\": {\n          \"pluginSpecificConfigs\": {\n \
+      \           \"host\": \"testmail.qubership.com\",\n            \"password\"\
+      : \"Nuud@y123\",\n            \"port\": \"25\",\n            \"transport_strategy\"\
+      : \"SMTP\",\n            \"username\": \"test-prj@testmail.qubership.com\"\
+      \n          }\n        },\n        \"implementationConfig\": {\n          \"\
+      oobPluginReference\": \"E_MAIL\"\n        },\n        \"pluginInstanceId\":\
+      \ \"E_MAIL\"\n      }\n    ]\n  }\n}'"
+    UIM_PLUGINS_MAPPING: "'{\"pluginsMapping\":[{\"filters\":[{\"mediumType\":\"E_MAIL\"\
+      },{\"mediumType\":\"CALENDAR_EVENT\"}],\"pluginInstanceId\":\"E_MAIL\"},{\"\
+      filters\":[{\"mediumType\":\"SMS\"}],\"pluginInstanceId\":\"SMS\"}]}'"
+- name: "cloud-uim"
+  parameters:
+    PREDEPLOY_MEMORY_LIMIT: "512Mi"
+    PREDEPLOY_MEMORY_REQUEST: "256Mi"
+    KAFKA_CLIENT_USERNAME: "client"
+    KAFKA_CLIENT_PASSWORD: "client"
+    maas_username: "uim_username"
+    maas_password: "uim_password12345"
+    UIM_PLUGINS_MAPPING: "'{\"pluginsMapping\":[{\"filters\":[{\"mediumType\":\"E_MAIL\"\
+      },{\"mediumType\":\"CALENDAR_EVENT\"}],\"pluginInstanceId\":\"E_MAIL\"},{\"\
+      filters\":[{\"mediumType\":\"SMS\"}],\"pluginInstanceId\":\"SMS\"}]}'"
+    UIM_PLUGINS_CONFIGS: "'{\n  \"plugins\": {\n    \"deliveryPlugins\": [\n     \
+      \ {\n        \"defaultPluginConfig\": {\n          \"pluginSpecificConfigs\"\
+      : {\n            \"host\": \"fake.smsc\",\n            \"password\": \"smpp_password\"\
+      ,\n            \"port\": \"1234\",\n            \"reconnect.interval.millis\"\
+      : \"30000\",\n            \"submit.timeout\": \"10000\",\n            \"system.id\"\
+      : \"smpp_user\",\n            \"window\": \"1\"\n          }\n        },\n \
+      \       \"implementationConfig\": {\n          \"oobPluginReference\": \"SMS\"\
+      \n        },\n        \"pluginInstanceId\": \"SMS\"\n      },\n      {\n   \
+      \     \"defaultPluginConfig\": {\n          \"pluginSpecificConfigs\": {\n \
+      \           \"host\": \"testmail.qubership.com\",\n            \"password\"\
+      : \"Nuud@y123\",\n            \"port\": \"25\",\n            \"transport_strategy\"\
+      : \"SMTP\",\n            \"username\": \"test-prj@testmail.qubership.com\"\
+      \n          }\n        },\n        \"implementationConfig\": {\n          \"\
+      oobPluginReference\": \"E_MAIL\"\n        },\n        \"pluginInstanceId\":\
+      \ \"E_MAIL\"\n      }\n    ]\n  }\n}'"

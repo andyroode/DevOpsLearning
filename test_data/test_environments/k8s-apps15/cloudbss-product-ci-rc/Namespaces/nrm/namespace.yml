@@ -1,0 +1,202 @@
+# The contents of this file is generated from template artifact: demo-bss-env-template.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cloudbss-product-ci-rc-nrm"
+credentialsId: "k8s-apps15-service-admin"
+isServerSideMerge: false
+
+labels:
+  - "DEV"
+  - "solutionInstance-cloudbss-product-ci-rc"
+  - "solution-DEVOPSBP-TESTS"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: "static_core_gw"
+  baseline: "dev"
+deployParameters:
+  BSS_NAMESPACE: "cloudbss-product-ci-rc"
+  BSS_TENANT: "bd9b0e7e-3a25-4221-88b5-737209587770"
+  CA_BUNDLE_CERTIFICATE: |-
+    -----BEGIN CERTIFICATE-----
+    tmp_cert
+    -----END CERTIFICATE-----
+  CA_BUNDLE_CERTIFICATE_COREIDP: |-
+    -----BEGIN CERTIFICATE-----
+    tmp_cert
+    -----END CERTIFICATE-----
+  CA_BUNDLE_CERTIFICATE_K8S_APPS2: |-
+    -----BEGIN CERTIFICATE-----
+    tmp_cert
+    -----END CERTIFICATE-----
+  CA_BUNDLE_CERTIFICATE_OPENSHIFT: |-
+    -----BEGIN CERTIFICATE-----
+    tmp_cert
+    -----END CERTIFICATE-----
+  CDN_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # paramset: default-passport-set version: n/a
+  CDN_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # paramset: default-passport-set version: n/a
+  CDN_STORAGE_REGION: "${STORAGE_REGION}" # paramset: default-passport-set version: n/a
+  CDN_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # paramset: default-passport-set version: n/a
+  CDN_STORAGE_USERNAME: "${STORAGE_USERNAME}" # paramset: default-passport-set version: n/a
+  CONSUL_ENABLED: "true" # paramset: default-passport-set version: n/a
+  DBAAS_ADMIN_UI_ADDRESS: "https://dbass-admin-ui-pgadmin-dbaas-admin-ui.k8s-apps15.k8s.sdntest.qubership.com/" # paramset: default-passport-set version: n/a
+  DEFAULT_TENANT_ADMIN_LOGIN: "tmp_user" # paramset: default-passport-set version: n/a
+  DEFAULT_TENANT_NAME: "cpq" # paramset: default-passport-set version: n/a
+  DOC_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # paramset: default-passport-set version: n/a
+  DOC_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # paramset: default-passport-set version: n/a
+  DOC_STORAGE_REGION: "${STORAGE_REGION}" # paramset: default-passport-set version: n/a
+  DOC_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # paramset: default-passport-set version: n/a
+  DOC_STORAGE_USERNAME: "${STORAGE_USERNAME}" # paramset: default-passport-set version: n/a
+  ESCAPE_SEQUENCE: "true" # paramset: default-passport-set version: n/a
+  GRAYLOG_CLOUD_TM_SEARCH_NAMESPACE: "${NAMESPACE}"
+  GRAYLOG_CLOUD_TM_SEARCH_STREAM_ID: "000000000000000000000001"
+  GRAYLOG_DEFAULT_SEARCH_STREAM_ID: "000000000000000000000001"
+  KAFKA_BOOTSTRAP_SERVERS: "kafka.kafka:9092"
+  KAFKA_NAMESPACE: "kafka"
+  KAFKA_PASSWORD: "tmp_password"
+  KAFKA_USERNAME: "еtmp_user"
+  MAVEN_REPO_NAME: "pd.saas.mvn.group, pd.utm.mvn.group" # paramset: default-passport-set version: n/a
+  MAVEN_REPO_URL: "https://artifactorycn.qubership.com/" # paramset: default-passport-set version: n/a
+  MONITORING_ENABLED: "true"
+  NAMESPACE: "cloud-rbm-pg-1"
+  ORG_CHART_INTEGRATION_ENABLED: "true" # paramset: default-passport-set version: n/a
+  POSTGRESQL_PASSWORD: "tmp_password"
+  POSTGRESQL_URL: "pg-patroni.postgresql:5432"
+  POSTGRESQL_USER: "еtmp_user"
+  STORAGE_PASSWORD: "tmp_password" # paramset: default-passport-set version: n/a
+  STORAGE_PROVIDER: "s3" # paramset: default-passport-set version: n/a
+  STORAGE_REGION: "{}" # paramset: default-passport-set version: n/a
+  STORAGE_RWX_CLASS: "nfs-sc-projects"
+  STORAGE_SERVER_URL: "https://minio01cn.qubership.com" # paramset: default-passport-set version: n/a
+  STORAGE_USERNAME: "еtmp_user" # paramset: default-passport-set version: n/a
+  TENANT_LEVEL_ROLES: "PRODUCT-MANAGER TENANT-ADMIN CUSTOMER-SALES-REPRESENTATIVE CONTENT-MANAGER CUSTOMER-SUPPORT-AGENT GLOBAL-CUSTOMER-SALES-REPRESENTATIVE PORTFOLIO-MANAGER ROLE_READ-ONLY-USER ROLE_CAMPAIGN-AGENT\
+    \ ROLE_CAMPAIGN-MANAGER ROLE_CONTACT-POLICY-MANAGER ROLE_ADMINISTRATOR ROLE_CJM-USER ROLE_CJM-ADMINISTRATOR ROLE_CJM-READ-ONLY-USER ROLE_Security_Admin ROLE_Customer ROLE_CSR ROLE_Salesint_Prod_Admin\
+    \ ROLE_GRAPHQL_USER ROLE_BIS_RO ROLE_BIS_RW ROLE_Cpq_Admin ROLE_Cpq_Product_Sales_Partner ROLE_Cpq_Product_Pre_Sales ROLE_Cpq_Product_Sales_Manager ROLE_Cpq_Product_Director ROLE_Cpq_Product_VP ROLE_Cpq_Product_Commercial_Director\
+    \ ROLE_Cpq_Product_CEO_CFO ROLE_Cpq_Product_Reporting ROLE_Cpq_Product_Anonymous_Customer ROLE_UTM_EXECUTOR ROLE_UTM_SUPERVISOR ROLE_UTM_ADMINISTRATOR ROLE_ORGCHART_ADMINISTRATOR ROLE_ORGCHART_MANAGER\
+    \ ROLE_ORGCHART_TEAM_LEAD ROLE_BC_ADMINISTRATOR ROLE_PIM-ADMIN ROLE_PIM-VIEW AM-ADMIN AM-STOCK-USER ROLE_UIM-USER ROLE_cloud-om-ui-read-all ROLE_cloud-om-ui-write-all ROLE_cloud-om-catalog-read-all\
+    \ ROLE_cloud-om-catalog-write-all ROLE_cloud-om-read-product-order ROLE_cloud-om-submit-product-order ROLE_cloud-om-read-service-order ROLE_cloud-om-submit-service-order ROLE_cloud-om-update-order ROLE_cloud-om-read-product-offering-qualification\
+    \ ROLE_cloud-om-submit-product-offering-qualification ROLE_DS_SuperUser ROLE_DS_Sales_Agent ROLE_DS_Sales_Manager ROLE_DS_Administrator ROLE_RTD-READ-ONLY-USER ROLE_RTD-ADMINISTRATOR ROLE_RTC-D-EXT-CLIENT\
+    \ ROLE_RTD-SCRIPTS-ADMINISTRATOR ROLE_CPM_Admin ROLE_CDN-ADMIN ROLE_CIP_ADMIN ROLE_CIP_DEV ROLE_CIP_CUSTOMER ROLE_CLOUD-ADMIN ROLE_GMS_MOBILE_APP_USER ROLE_cdc_control_superuser ROLE_cdc_control_viewer\
+    \ ROLE_cdc_control_executor ROLE_cdc_control_importer ROLE_MARKETING_CLIENT ROLE_PNL_ADMIN ROLE_PROJECT_MANAGER_LEAD ROLE_CHOR_ADMIN WPP_ADMIN" # paramset: default-passport-set version: n/a
+  nrm:
+    apps:
+      dbp:
+        storage:
+          enabled: false
+      rb:
+        volumes:
+          input:
+            pvcName: "rb-input"
+          mf:
+            pvcName: "rb-mf"
+          outputs:
+            pvcName: "rb-logs"
+    identityProviders:
+      cjm-bss-dev-1:
+        url: "http://private-gateway-cjm-bss-dev-1.k8s-apps3.k8s.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      cjm-bss-dev-2:
+        url: "http://private-gateway-cjm-bss-dev-2.k8s-apps3.k8s.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      cloudbss-kube-csrd-dev-ci:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_K8S_APPS2}"
+        url: "https://private-gateway-cloudbss-kube-csrd-dev-ci.k8s-apps2.k8s.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      cloudbss-kube-csrd-dev2:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_COREIDP}"
+        url: "https://private-gateway-cloudbss-kube-csrd-dev2.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      cloudbss-kube-csrd-dev3:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_COREIDP}"
+        url: "https://private-gateway-cloudbss-kube-csrd-dev3.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      cloudbss-openshift-cert:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_OPENSHIFT}"
+        url: "http://private-gateway-cloudbss-openshift-cert.paas-apps13.openshift.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      cloudsspbe-kube-dev1:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_K8S_APPS2}"
+        url: "https://private-gateway-cloudsspbe-kube-dev1.k8s-apps2.k8s.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      cloudsspbe-kube-portal-dev-ci:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_COREIDP}"
+        url: "https://private-gateway-cloudsspbe-kube-portal-dev-ci.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      coreidp-eca:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_COREIDP}"
+        url: "https://private-gateway-cloudbss-coreidp-eca.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      cpq-dev3:
+        url: "http://private-gateway-cpq-dev3.k8s-apps14.k8s.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      cpq-dev4:
+        url: "http://private-gateway-cpq-dev4.k8s-apps14.k8s.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      local-idp:
+        url: "http://identity-provider:8080/auth/realms/cloud-common"
+        usedFor:
+          - "clientCredentials"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      rtcd-dev-ci:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_COREIDP}"
+        url: "https://private-gateway-rtcd-dev-ci.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      rtcd-dev02:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_COREIDP}"
+        url: "https://private-gateway-rtcd-dev02.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+      rtcd-dev03:
+        caBundle: "${CA_BUNDLE_CERTIFICATE_COREIDP}"
+        url: "https://private-gateway-rtcd-dev03.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common"
+        verifierConfig:
+          skipClientIdCheck: true
+          skipIssuerCheck: true
+    integrations:
+      collectionManager:
+        enabled: true
+        url: "cm-nrm-integration:8080"
+      streaming:
+        costedEvents:
+          enabled: true
+      uim:
+        enabled: true
+    kafka:
+      url: "kafka://${KAFKA_USERNAME}:${KAFKA_PASSWORD}@${KAFKA_BOOTSTRAP_SERVERS}"
+    postgresql:
+      rw:
+        url: "postgresql://${POSTGRESQL_USER}:${POSTGRESQL_PASSWORD}@${POSTGRESQL_URL}/postgres?sslmode=disable"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+applications: null
+dirty: false

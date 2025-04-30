@@ -1,0 +1,7 @@
+---
+name: "om_int_param_set"
+parameters:
+  OM_CIP_DEPLOYED_INTEGRATIONS: "'[\"som\",\"ibs\",\"uim\"]'"
+  OM_UIM_URL: "http://uim:8080"
+  ZOOKEEPER_ADDRESS: "zookeeper.zookeeper:2181"
+applications: []

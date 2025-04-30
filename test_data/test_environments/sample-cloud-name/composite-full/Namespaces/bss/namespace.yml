@@ -1,0 +1,45 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "override-env-name-bss"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-composite-full"
+  - "solution-CODETOPROD"
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  '#credscl{TEST_CREDS_CLOUD_LOGIN, TEST_CREDS_CLOUD_PASSWORD}': "test-cred-cloud" # paramset: test-deploy-creds version: 1 source: template
+  '#credsns{TEST_CREDS_NS_LOGIN, TEST_CREDS_NS_PASSWORD}': "test-cred-namespace" # paramset: test-deploy-creds version: 1 source: template
+  '#creds{TEST_CREDS_LOGIN, TEST_CREDS_PASSWORD}': "test-cred" # paramset: test-deploy-creds version: 1 source: template
+  BILLING_NAMESPACE: "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-billing\")}" # paramset: bss version: 1 source: template
+  CIP_NETSEASY_SECRET_KEY: "${creds.get('cip-netseasy-secret-key').secret}" # paramset: test-deploy-creds version: 1 source: template
+  OSS_NAMESPACE: "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-oss\")}" # paramset: bss version: 1 source: template
+  TEST_CMDB_CREDS_GET_PASSWORD_PASSWORD: "${cmdb.creds.get('cmdb-creds-get-password-cred').password}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CMDB_CREDS_GET_PASSWORD_USERNAME: "${cmdb.creds.get('cmdb-creds-get-username-cred').username}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CMDB_CREDS_GET_SECRET_PARAM: "${cmdb.creds.get('cmdb-creds-get-secret').secret}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CMDB_CREDS_GET_VAULT_NAMESPACE: "${cmdb.creds.get(   \"cmdb-creds-get-vault-cred-namespace\"  ).namespace}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CMDB_CREDS_GET_VAULT_PATH: "${cmdb.creds.get( \"cmdb-creds-get-vault-cred-path\" ).path}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CMDB_CREDS_GET_VAULT_ROLE: "${cmdb.creds.get(\"cmdb-creds-get-vault-cred-role\" ).roleId}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CMDB_CREDS_GET_VAULT_SECRET_ID: "${cmdb.creds.get( \"cmdb-creds-get-vault-cred-secret-id\").secretId}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CREDS_GET_PASSWORD_PASSWORD: "${cmdb.creds.get('creds-get-password-cred').password}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CREDS_GET_PASSWORD_USERNAME: "${cmdb.creds.get('creds-get-username-cred').username}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CREDS_GET_SECRET_PARAM: "${cmdb.creds.get('creds-get-secret').secret}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CREDS_GET_VAULT_NAMESPACE: "${cmdb.creds.get(   \"creds-get-vault-cred-namespace\"  ).namespace}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CREDS_GET_VAULT_PATH: "${cmdb.creds.get( \"creds-get-vault-cred-path\" ).path}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CREDS_GET_VAULT_ROLE: "${cmdb.creds.get(\"creds-get-vault-cred-role\").roleId}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_CREDS_GET_VAULT_SECRET_ID: "${cmdb.creds.get( \"creds-get-vault-cred-secret-id\").secretId}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_SHARED_CREDS_SERVICE_ACTIVATOR: "${cmdb.creds.get('service-activator-integration-cred').password}" # paramset: test-deploy-creds version: 1 source: template
+  TEST_SHARED_CREDS_TIBCO: "${cmdb.creds.get('tibco-integration-cred').username}" # paramset: test-deploy-creds version: 1 source: template
+  VMS_CERT_IN_BASE64: "${cmdb.creds.get( \"vms-cert\" ).secret}" # paramset: test-deploy-creds version: 1 source: template
+e2eParameters:
+  E2E_PARAM_1: "e2e-param-val-1"
+  E2E_PARAM_2: "e2e-param-val-2"
+
+technicalConfigurationParameters:
+  TECHNICAL_PARAM_1: "VALUE_TP_1" # paramset: env-specific-tech version: 23.1 source: instance
+  spring.kafka.properties.security.protocol: "SASL_PLAINTEXT" # paramset: bss-tech version: 23.1 source: template
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []

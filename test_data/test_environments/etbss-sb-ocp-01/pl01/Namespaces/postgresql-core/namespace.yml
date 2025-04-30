@@ -1,0 +1,93 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "pl01-postgresql-core"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-pl01"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true  # paramset: postgresql-common version: 23.4 source: template
+  DISABLE_CRD: false # paramset: postgresql-common version: 23.4 source: template
+  NC_DBAAS_ADAPTER_WAIT_TIMEOUT: "500s" # paramset: postgresql-common version: 23.4 source: template
+  backupDaemon: # paramset: postgresql-common version: 23.4 source: template
+    backupSchedule: "0 23 * * *"
+    evictionPolicy: "5d/delete"
+    install: false
+    resources:
+      limits:
+        cpu: "500m"
+        memory: "1512Mi"
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+    storage:
+      size: "20Gi"
+      storageClass: "${STORAGE_RWO_CLASS}"
+      type: "provisioned"
+  dbaas: # paramset: postgresql-dbaas version: 23.4 source: template
+    aggregator:
+      registrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+    apiVersion: "v2"
+    install: true
+    labels:
+      core_balancing_rule: "postgresql-core"
+    multiUsers: true
+    resources:
+      limits:
+        cpu: "1"
+        memory: "904Mi"
+      requests:
+        cpu: "250m"
+        memory: "904Mi"
+  metricCollector: # paramset: postgresql-common version: 23.4 source: template
+    applyGrafanaDashboard: true
+    install: true
+    metricsProfile: "prod"
+    prometheusMonitoring: true
+  patroni: # paramset: postgresql-common version: 23.4 source: template
+    install: true
+    postgreSQLParams:
+      - "max_connections: 2000"
+      - "wal_level: logical"
+      - "shared_preload_libraries: pg_stat_statements, pg_hint_plan, decoderbufs, pg_cron"
+    replicas: "2"
+    requests:
+      cpu: "500m"
+      memory: "1Gi"
+    resources:
+      limits:
+        cpu: "3"
+        memory: "3Gi"
+    storage:
+      size: "10Gi"
+      storageClass: "${STORAGE_RWO_CLASS}"
+      type: "provisioned"
+  policies: # paramset: postgresql-common version: 23.4 source: template
+    tolerations:
+      - effect: "NoExecute"
+        key: "node.kubernetes.io/unreachable"
+        operator: "Exists"
+        tolerationSeconds: 6000
+        value: "''"
+  postgresExporter: # paramset: postgresql-common version: 23.4 source: template
+    install: true
+    securityContext:
+      runAsUser: 1000890000
+  postgresPassword: "${creds.get(\"postgresql-core-cred\").password}"
+  postgresUser: "${creds.get(\"postgresql-core-cred\").username}"
+  tests: # paramset: postgresql-common version: 23.4 source: template
+    install: false
+    runTestScenarios: "basic"
+  vaultRegistration: # paramset: postgresql-common version: 23.4 source: template
+    url: "''"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

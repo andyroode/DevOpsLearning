@@ -1,0 +1,13 @@
+# The contents of this file is generated from template artifact: demo-bss-env-template.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "streaming-service"
+deployParameters:
+  CUSTOM_RESOURCE_NAME: "streaming" # paramset: streaming_param_set version: n/a
+  DEPLOY_W_HELM: "false" # paramset: streaming_param_set version: n/a
+  DISABLE_FORCE_APPLY: "false" # paramset: streaming_param_set version: n/a
+  global.installDashboard: "true" # paramset: streaming_param_set version: n/a
+  global.monitoringType: "prometheus" # paramset: streaming_param_set version: n/a
+  global.name: "streaming" # paramset: streaming_param_set version: n/a
+  global.operatorOnly: "true" # paramset: streaming_param_set version: n/a
+technicalConfigurationParameters: {}

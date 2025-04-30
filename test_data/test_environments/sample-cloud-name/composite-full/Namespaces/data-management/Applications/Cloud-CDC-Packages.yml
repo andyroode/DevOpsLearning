@@ -1,0 +1,143 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Cloud-CDC-Packages"
+deployParameters:
+  BSS_SERVICES_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management version: 23.1 source: template
+  CDC_DEFAULT_TARGET_DBCLASSIFIER: |-
+    {
+          "microserviceName": "cdc-control",
+          "namespace": "${NAMESPACE}",
+          "scope": "tenant",
+          "sinkName": "reporting-database",
+          "description": "Reporting Database",
+          "tenantId": "uuid"
+    }
+   # paramset: data-management version: 23.1 source: template
+  INSTALL_DEFAULT_COMPONENT: |-
+    {
+      "cpq": {
+        "enabled": true,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "ibs": {
+        "enabled": true,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "cim": {
+        "enabled": true,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "acm": {
+        "enabled": true,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "agm": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "cpm": {
+        "enabled": true,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "pim": {
+        "enabled": true,
+        "transformerName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "gsm": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "com": {
+        "enabled": true,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "utm": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "orgChart": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "worklog": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "dictionaryProvider": {
+        "enabled": true,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "adtl": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "csrd": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "salesLeadManagement": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "salesQuotaManagement": {
+        "enabled": true,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "voms": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "eps": {
+        "enabled": false,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes"
+      },
+      "dpt": {
+        "enabled": true,
+        "componentName": "",
+        "useDefaultDatasink": true,
+        "startStream": "yes-without-snapshot"
+      }
+
+    }
+   # paramset: data-management version: 23.1 source: template
+  NIFI_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management version: 23.1 source: template
+technicalConfigurationParameters: {}

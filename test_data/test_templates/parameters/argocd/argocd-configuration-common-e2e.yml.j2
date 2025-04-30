@@ -1,0 +1,29 @@
+version: 23.4
+name: argocd-configuration-common-e2e
+parameters:
+  # argocd
+{% if current_env.cloud_passport.cloud.CLOUD_PUBLIC_HOST is defined %}
+  DCL_CONFIG_ARGOCD_URL: "https://argocd-server.{{current_env.cloud_passport.cloud.CLOUD_PUBLIC_HOST}}"
+{% else %}
+  DCL_CONFIG_ARGOCD_URL: ""
+{% endif %}
+  DCL_CONFIG_ARGOCD_USER: ${creds.get("argocd-cred").username}
+  DCL_CONFIG_ARGOCD_PASSWORD: ${creds.get("argocd-cred").password}
+  # git
+  DCL_CONFIG_GITLAB_TOKEN: ${creds.get("dcl-gitlab-cred").password}
+  DCL_CONFIG_GITLAB_USER: ${creds.get("dcl-gitlab-cred").username}
+  # registry
+  DCL_CONFIG_REGISTRY_USER: ${creds.get("dcl-registry-cred").username}
+  DCL_CONFIG_REGISTRY_PASSWORD: ${creds.get("dcl-registry-cred").password}
+  # cmdb
+  DCL_CONFIG_CMDB_URL: {{current_env.cmdb_url}}
+  DCL_CONFIG_CMDB_USER: ${creds.get("deployer-cred").username}
+  DCL_CONFIG_CMDB_PASSWORD: ${creds.get("deployer-cred").username}
+  #DCL_CONFIG_CMDB_CREDENTIALS_ID: ${tenant.TENANTNAME}-${tenant.cloud.CLOUDNAME}-app-deployer-cmdb-cred
+  # pipeline parameters
+  DCL_CONFIG_TICKET_ID: ETBSS-32954
+  DCL_GIT_COMMIT_MESSAGE: "[ETBSS-32954] Update DCL configuration file for further deploy"
+  DCL_CONFIG_TECH_APP_NAME_VERSION: ach-kubernetes-agent:release-1.0.8-20240816.160656-3-RELEASE
+  DCL_CONFIG_CONF_ENGINE: local-kustomize
+  DCL_CONFIG_PROD_MODE: false
+applications: []

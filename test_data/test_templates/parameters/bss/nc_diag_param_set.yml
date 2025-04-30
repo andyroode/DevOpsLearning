@@ -1,0 +1,16 @@
+---
+name: "nc_diag_param_set"
+parameters:
+  ESC_COLLECTOR_HOST: "esc-collector-service.${ESC_COLLECTOR_NS}"
+  ESC_COLLECTOR_NS: "cdt"
+  ESC_COLLECTOR_PORT: "1715"
+  ESC_STATIC_HOST: "esc-static-service.${ESC_COLLECTOR_NS}"
+  ESC_STATIC_PORT: "8080"
+  JAEGER_AGENT_PORT: "14267"
+  JAEGER_COLLECTOR_HOST: "jaeger-collector.${JAEGER_NS}"
+  JAEGER_GRPC_PORT: "14250"
+  JAEGER_NS: "jaeger"
+  JAEGER_THRIFT_PORT: "14268"
+  ZIPKIN_COLLECTOR_HOST: "jaeger-collector.${JAEGER_NS}"
+  ZIPKIN_COLLECTOR_PORT: "9411"
+applications: []

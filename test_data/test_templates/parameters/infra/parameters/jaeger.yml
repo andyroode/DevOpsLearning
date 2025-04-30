@@ -1,0 +1,45 @@
+version: 23.4
+name: jaeger
+parameters:
+  DEPLOY_W_HELM: true
+  DISABLE_FORCE_APPLY: false
+  ESCAPE_SEQUENCE: true
+  DISABLE_CRD: false
+  jaeger:
+    storage:
+      type: "cassandra"
+  cassandraSchemaJob:
+    install: true
+    host: "cassandra.${namespace_cassandra_cse}"
+    port: "9042"
+    password: "${creds.get(\"cassandra-cse-cred\").password}"
+    username: "${creds.get(\"cassandra-cse-cred\").username}"
+    datacenter: "dc1"
+    mode: "prod"
+    ttl:
+      trace: "172800"
+      dependencies: "0"
+  query:
+    install: true
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "200Mi"
+      limits:
+        cpu: "400m"
+        memory: "400Mi"
+    ingress:
+      install: true
+  collector:
+    install: true
+    replicas: "2"
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "200Mi"
+      limits:
+        cpu: "400m"
+        memory: "400Mi"
+  prometheusMonitoring: true
+  prometheusMonitoringDashboard: true
+applications: []

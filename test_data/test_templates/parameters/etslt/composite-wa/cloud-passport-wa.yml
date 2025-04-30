@@ -1,0 +1,17 @@
+version: 23.3
+name: cloud-passport-wa
+parameters:
+    # Added to use OCP as k8s untill ticket CLDOREQ-928 is resolved
+    # Commented as per ETBSS-5526
+    # PAAS_VERSION_CUSTOM: "1.25"
+    # Added to use OCP as k8s untill
+    # Commented as per ETBSS-5526
+    #PAAS_PLATFORM_CUSTOM: "kubernetes"
+    # WA for ETBSS-547 while it's out of Cloud Passport
+    NC_DIAGNOSTIC_MODE: "off"
+    ESC_COLLECTOR_NS: cdt
+    # WA for NIFI_SENSITIVE_KEY while it's out of Cloud Passport, should be approved in 1.6 passsport version
+    # TODO: change to NIFI_SENSITIVE_KEY: ${creds.get("nifi-sensitive-key").secret}
+    NIFI_SENSITIVE_KEY: "secretkey1234"
+    NIFI_PREVIOUS_SENSITIVE_KEY: "secretkey"
+applications: []

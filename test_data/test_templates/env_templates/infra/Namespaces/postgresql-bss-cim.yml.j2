@@ -1,0 +1,24 @@
+---
+name: "{{ current_env.environmentName }}-postgresql-bss-cim"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  dbaas:
+    labels:
+      cim_balancing_rule: postgresql-bss-cim
+  postgresPassword: "${creds.get(\"postgresql-bss-cim-cred\").password}"
+  postgresUser: "${creds.get(\"postgresql-bss-cim-cred\").username}"
+
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - postgresql-common
+  - postgresql-dbaas
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

@@ -1,0 +1,20 @@
+"CP-ECOMM-AUTH-CLIENT-SECRET-CREDENTIALS-CLOUDBSS-RELEASE":
+  type: "usernamePassword"
+  data:
+    username: test_user
+    password: test_password
+"CP-ECOMM-AUTH-SECRET-CREDENTIALS-CLOUDBSS-RELEASE": 
+  type: "usernamePassword"
+  data:
+    username: test_user
+    password: test_password
+"CP-ECOMM-GOOGLE-MAP-KEY-SECRET-CREDENTIALS-CLOUDBSS-RELEASE": 
+  type: "usernamePassword"
+  data:
+    username: test_user
+    password: test_password
+"CP-ECOMM-SECRET-CREDENTIALS-CLOUDBSS-RELEASE": 
+  type: "usernamePassword"
+  data:
+    username: test_user
+    password: test_password

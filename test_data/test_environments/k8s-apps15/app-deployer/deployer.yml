@@ -1,0 +1,4 @@
+cloud-deployer:
+  username: envgen.creds.get('cloud-deployer-username-cred').secret
+  token: envgen.creds.get('cloud-deployer-token-cred').secret
+  deployerUrl: "https://cloud-deployer.qubership.com/"

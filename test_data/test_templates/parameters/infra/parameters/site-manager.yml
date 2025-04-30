@@ -1,0 +1,10 @@
+version: 23.4
+name: site-manager
+parameters:
+  crd:
+    install: true
+  tls:
+    generateCerts:
+      enabled: true
+      executor: "openshift"
+applications: []

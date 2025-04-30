@@ -1,0 +1,16 @@
+version: 23.4
+name: logging
+parameters:
+  fluentd:
+    install: true
+    securityContextPrivileged: true
+    securityResources:
+      install: true
+    resources:
+      limits:
+        cpu: 1
+        memory: "1Gi"
+  openshiftDeploy: true
+  createClusterAdminEntities: true
+  DEPLOY_W_HELM: true 
+applications: []

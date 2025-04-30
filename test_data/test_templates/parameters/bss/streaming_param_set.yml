@@ -1,0 +1,13 @@
+---
+name: "streaming_param_set"
+parameters: {}
+applications:
+- name: "streaming-service"
+  parameters:
+    CUSTOM_RESOURCE_NAME: "streaming"
+    DEPLOY_W_HELM: "false"
+    DISABLE_FORCE_APPLY: "false"
+    global.name: "streaming"
+    global.operatorOnly: "true"
+    global.monitoringType: "prometheus"
+    global.installDashboard: "true"

@@ -1,0 +1,24 @@
+version: 23.4
+name: dbaas
+parameters:
+  DBAAS_CLUSTER_DBA_CREDENTIALS_PASSWORD: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
+  DBAAS_CLUSTER_DBA_CREDENTIALS_USERNAME: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
+  DBAAS_PREMATURE_REGISTRATION_ADAPTER_ADDRESSES: "http://nc-dbaas-postgres-adapter.${namespace_postgresql_platform}:8080"
+  NODE_SELECTOR_DBAAS_KEY: "node-role.kubernetes.io/worker"
+  REGION_DBAAS: ""
+  POSTGRES_DBA_PASSWORD: "${creds.get(\"postgresql-platform-cred\").password}"
+  POSTGRES_DBA_USER: "${creds.get(\"postgresql-platform-cred\").username}"
+  POSTGRES_HOST: "pg-patroni.${namespace_postgresql_platform}"
+  MONITORING_ENABLED: true
+  dbaas:
+    install: true
+    aggregator:
+      registrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+    resources:
+      requests:
+        cpu: 250m
+        memory: 904Mi
+      limits:
+        cpu: "1"
+        memory: 904Mi
+applications: []

@@ -1,0 +1,33 @@
+---
+name: "{{ current_env.environmentName }}-opensearch"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  opensearch:
+    client:
+      ingress:
+        hosts: 
+          - "opensearch-{{ current_env.environmentName }}.apps.{{ current_env.cluster.cloud_public_url }}"
+    securityConfig:
+      authc:
+        basic:
+          password: "${creds.get(\"opensearch-basic-cred\").password}"
+          username: "${creds.get(\"opensearch-basic-cred\").username}"
+  dbaasAdapter:
+    dbaasAdapterAddress: "http://dbaas-opensearch-adapter.{{ current_env.environmentName }}-opensearch:8080"
+    dbaasAggregatorPhysicalDatabaseIdentifier: "opensearch.{{ current_env.environmentName }}-opensearch"
+    elasticsearchHost: "elasticsearch.{{ current_env.environmentName }}"
+    elasticsearchUsername: "${creds.get(\"opensearch-admin-cred\").username}"
+    elasticsearchPassword: "${creds.get(\"opensearch-admin-cred\").password}" 
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - opensearch
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

@@ -1,0 +1,73 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "env-without-passport-data-management"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-env-without-passport"
+  - "solution-CODETOPROD"
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: "dev_dm_override"
+  baseline: "dev"
+deployParameters:
+  BILLING_NAMESPACE: "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-billing\")}" # paramset: data-management version: 23.1 source: template
+  BSS_NAMESPACE: "${NAMESPACE.replaceFirst(/-data-management$/, \"-bss\")}" # paramset: data-management version: 23.1 source: template
+  GLOBAL_RESOURCE_PROFILE: "${STRUCTURED_GLOBAL_RESOURCE_PROFILE}" # paramset: data-management version: 23.1 source: template
+  NIFI_NAMESPACE: "${NAMESPACE.replaceFirst(/-data-management$/, \"-bss\")}" # paramset: data-management version: 23.1 source: template
+  OSS_NAMESPACE: "${NAMESPACE.replaceFirst(/-data-management$/, \"-oss\")}" # paramset: data-management version: 23.1 source: template
+  STRUCTURED_GLOBAL_RESOURCE_PROFILE: # paramset: data-management version: 23.1 source: template
+    ftpd_dev:
+      access-control:
+        '#inherit': "dev"
+        MEMORY_LIMIT: "550Mi"
+        MEMORY_REQUEST: "550Mi"
+      cdc-nifi-integrations:
+        '#inherit': "dev_az11"
+        CPU_LIMIT: "1000m"
+        CPU_REQUEST: "100m"
+        MEMORY_LIMIT: "200Mi"
+        MEMORY_REQUEST: "200Mi"
+      facade-operator:
+        '#inherit': "dev"
+        FACADE_GATEWAY_MEMORY_LIMIT: "96Mi"
+        _comment: "This memory limit only applies to those gateways whose service does not have an explicitly defined FacadeService. If the service has an explicitly defined FacadeService, then the parameter\
+          \ COMPOSITE_GATEWAY_MEMORY_LIMIT must be passed to this service."
+      frontend-gateway:
+        '#inherit': "dev_az11"
+        CPU_REQUEST: "30m"
+        INTERNAL_GW_CPU_LIMIT: "500m"
+        INTERNAL_GW_MEMORY_LIMIT: "200Mi"
+        INTERNAL_GW_MEMORY_REQUEST: "200Mi"
+        PRIVATE_GW_CPU_LIMIT: "100m"
+        PRIVATE_GW_MEMORY_LIMIT: "100Mi"
+        PRIVATE_GW_MEMORY_REQUEST: "100Mi"
+      paas-mediation:
+        '#inherit': "dev"
+        MEMORY_LIMIT: "100Mi"
+      tenant-manager:
+        '#inherit': "dev_az11"
+        CPU_LIMIT: "1500m"
+        CPU_REQUEST: "30m"
+        MEMORY_LIMIT: "500Mi"
+        MEMORY_REQUEST: "500Mi"
+      tenant-self-service-frontend:
+        '#inherit': "dev_az11"
+        MEMORY_LIMIT: "64Mi"
+e2eParameters: {}
+technicalConfigurationParameters:
+  BSS_NAMESPACE: "${NAMESPACE.replaceFirst(/-data-management$/, \"-bss\")}" # paramset: data-management-tech version: 23.1 source: template
+  OSS_NAMESPACE: "${NAMESPACE.replaceFirst(/-data-management$/, \"-oss\")}" # paramset: data-management-tech version: 23.1 source: template
+  beoc_package.BSCS_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 1 source: template
+  beoc_package.CIM_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 1 source: template
+  beoc_package.COM_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 1 source: template
+  beoc_package.CPQ_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 1 source: template
+  dpt_package.CIP_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 1 source: template
+  dpt_package.COM_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 1 source: template
+  dpt_package.ESO_NAMESPACE: "${OSS_NAMESPACE}" # paramset: data-management-tech version: 1 source: template
+  dpt_package.NAMESPACE: "${DATA_MANAGEMENT_NAMESPACE}" # paramset: data-management-tech version: 1 source: template
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []

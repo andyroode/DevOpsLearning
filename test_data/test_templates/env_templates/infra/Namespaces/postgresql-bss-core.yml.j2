@@ -1,0 +1,23 @@
+---
+name: "{{ current_env.environmentName }}-postgresql-bss-core"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  dbaas:
+    labels: 
+      bss_core_balancing_rule: postgresql-bss-core
+  postgresPassword: "${creds.get(\"postgresql-bss-core-cred\").password}"
+  postgresUser: "${creds.get(\"postgresql-bss-core-cred\").username}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - postgresql-common
+  - postgresql-dbaas
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

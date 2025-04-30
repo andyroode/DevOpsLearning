@@ -1,0 +1,25 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Applications"
+registryName: "default"
+description: ""
+owners: ""
+gitRepository: ""
+defaultBranch: ""
+credential: ""
+labels: []
+globalE2EParameters:
+  pipelineDefaultRecipients: ""
+  recipientsStrategy: "merge"
+  mergeTenantsAndE2EParameters: false
+  environmentParameters:
+    # ETBSS-1243
+    PROMOTE_CONFIG: "{\"PROJECT_APP_PREFIX\": \"etslt\", \"PROMOTE_JOB\": \"https://cloud-deployer.qubership.com/job/ETISALAT/job/regular.update.Promote\"}"
+    WEBEX_TOKEN: "MGE3MjYwNTQtZGE4My00MTlkLWIzN2MtZjU5YTg3NDA2Yzk0MzlmZmViZGUtYWY4_PF84_ba052c1a-a74c-48df-aead-18cddd1bffcc"
+    # ETBSS-5151
+    # INSTANSES_REPO: "SD.ETSLT/deployment-configuration/etslt-env-instances-rnd"
+    # ETBSS-22537
+deployParameters:
+  CMDB_SCHEME: "CLOUD_PER_ENV"  # Added as per ETBSS-1052
+

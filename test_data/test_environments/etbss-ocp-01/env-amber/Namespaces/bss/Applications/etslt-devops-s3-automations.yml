@@ -1,0 +1,24 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "etslt-devops-s3-automations"
+deployParameters:
+  BUCKET1_NAME: "${DOC_STORAGE_PERSISTENT_BUCKET_NAME}" # paramset: bss-common version: 1 source: template
+  BUCKET1_POLICY: "public" # paramset: bss-common version: 1 source: template
+  BUCKET1_PURGE: "false" # paramset: bss-common version: 1 source: template
+  BUCKET2_NAME: "${DOC_STORAGE_TEMPORARY_BUCKET_NAME}" # paramset: bss-common version: 1 source: template
+  BUCKET2_POLICY: "public" # paramset: bss-common version: 1 source: template
+  BUCKET2_PURGE: "false" # paramset: bss-common version: 1 source: template
+  BUCKET3_NAME: "${PROPOSAL_DOCUMENTS_BUCKET_NAME}" # paramset: bss-common version: 1 source: template
+  BUCKET3_POLICY: "public" # paramset: bss-common version: 1 source: template
+  BUCKET3_PURGE: "false" # paramset: bss-common version: 1 source: template
+  BUCKET4_NAME: "${ENV_NAME}-dgs-quote-info-documents" # paramset: bss-common version: 1 source: template
+  BUCKET4_POLICY: "public" # paramset: bss-common version: 1 source: template
+  BUCKET4_PURGE: "false" # paramset: bss-common version: 1 source: template
+  BUCKETS: "BUCKET1,BUCKET2,BUCKET3,BUCKET4" # paramset: bss-common version: 1 source: template
+  MINIO_ACCESSKEY: "${DOC_STORAGE_USERNAME}" # paramset: bss-common version: 1 source: template
+  MINIO_ALIAS: "etsltminio" # paramset: bss-common version: 1 source: template
+  MINIO_ENDPOINT: "${DOC_STORAGE_SERVER_URL}" # paramset: bss-common version: 1 source: template
+  MINIO_PORT: "443" # paramset: bss-common version: 1 source: template
+  MINIO_SECRETKEY: "${DOC_STORAGE_PASSWORD}" # paramset: bss-common version: 1 source: template
+technicalConfigurationParameters: {}

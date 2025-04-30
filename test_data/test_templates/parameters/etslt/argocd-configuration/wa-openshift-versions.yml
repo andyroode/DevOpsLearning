@@ -1,0 +1,6 @@
+version: 24.1
+name: wa-openshift-versions
+parameters: 
+  PAAS_PLATFORM: 'OPENSHIFT'
+  PAAS_VERSION: 'v4.12'
+applications: []

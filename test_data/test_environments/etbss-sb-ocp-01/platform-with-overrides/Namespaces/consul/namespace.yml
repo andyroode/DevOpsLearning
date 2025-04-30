@@ -1,0 +1,118 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-consul"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  CUSTOM_RESOURCE_NAME: "consul" # paramset: consul version: 23.4 source: template
+  DEPLOY_W_HELM: true # paramset: consul version: 23.4 source: template
+  DISABLE_CRD: false # paramset: consul version: 23.4 source: template
+  DISABLE_FORCE_APPLY: false # paramset: consul version: 23.4 source: template
+  ENABLE_PRIVILEGED_PSS: true # paramset: consul version: 23.4 source: template
+  ESCAPE_SEQUENCE: true # paramset: consul version: 23.4 source: template
+  backupDaemon: # paramset: consul version: 23.4 source: template
+    backupSchedule: "0 0 * * *"
+    enabled: false
+    evictionPolicy: "0/1d,7d/delete"
+    password: ""
+    resources:
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+      requests:
+        cpu: "25m"
+        memory: "64Mi"
+    storage: "10Gi"
+    storageClass: "${STORAGE_RWO_CLASS}"
+    username: ""
+  client: # paramset: consul version: 23.4 source: template
+    enabled: true
+    nodeSelector:
+      node-role.kubernetes.io/worker: ""
+    resources:
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+      requests:
+        cpu: "25m"
+        memory: "64Mi"
+  connectInject: # paramset: consul version: 23.4 source: template
+    enabled: false
+  consulAclConfigurator: # paramset: consul version: 23.4 source: template
+    consul:
+      port: "8500"
+    enabled: true
+    reconcilePeriod: "100"
+    serviceName: "consul-acl-configurator-reconcile"
+  dns: # paramset: consul version: 23.4 source: template
+    enabled: true
+  externalServers: # paramset: consul version: 23.4 source: template
+    enabled: false
+  global: # paramset: consul version: 23.4 source: template
+    acls:
+      manageSystemACLs: true
+    datacenter: "dc1"
+    enablePodSecurityPolicies: false
+    enabled: true
+    federation:
+      enabled: false
+    name: "consul"
+    openshift:
+      enabled: true
+    tls:
+      enabled: false
+  ingressGateways: # paramset: consul version: 23.4 source: template
+    enabled: false
+  integrationTests: # paramset: consul version: 23.4 source: template
+    install: true
+    secret:
+      aclToken: "${creds.get(\"consul-integrationtests-token-cred\").secret}"
+    tags: "crud"
+  meshGateway: # paramset: consul version: 23.4 source: template
+    enabled: false
+  monitoring: # paramset: consul version: 23.4 source: template
+    enabled: true
+    installDashboard: true
+    monitoringType: "prometheus"
+  server: # paramset: consul version: 23.4 source: template
+    connect: true
+    disruptionBudget:
+      enabled: true
+    enabled: true
+    extraConfig:
+      limits:
+        http_max_conns_per_client: 500
+    replicas: "3"
+    resources:
+      limits:
+        cpu: "400m"
+        memory: "1024M"
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+    storage: "10Gi"
+    storageClass: "${STORAGE_RWO_CLASS}"
+    updatePartition: "0"
+  terminatingGateways: # paramset: consul version: 23.4 source: template
+    enabled: false
+  ui: # paramset: consul version: 23.4 source: template
+    enabled: true
+    ingress:
+      enabled: true
+      hosts:
+        - host: "consul-platform-with-overrides.apps."
+    service:
+      enabled: true
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

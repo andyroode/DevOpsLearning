@@ -1,0 +1,25 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "composite-full-network-adapters"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-composite-full"
+  - "solution-CODETOPROD"
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  ATTACH_TO_NAMESPACE: "${NAMESPACE.replaceFirst(/-network-adapters$/, \"-bss\")}" # paramset: network-adapters version: 23.1 source: template
+  IS_PRODUCTION: "false" # paramset: network-adapters version: 23.1 source: template
+  LOG_LEVEL: "INFO" # paramset: network-adapters version: 23.1 source: template
+  OSS_NAMESPACE: "${NAMESPACE.replaceFirst(/-network-adapters$/, \"-oss\")}" # paramset: network-adapters version: 23.1 source: template
+  REPLICAS: "1" # paramset: network-adapters version: 23.1 source: template
+  SECURITY_PROFILE: "prod" # paramset: network-adapters version: 23.1 source: template
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

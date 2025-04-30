@@ -1,0 +1,42 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "dev_core_override"
+version: 0
+baseline: "dev"
+description: "Override for dev-profile for code namespace"
+applications:
+  - name: "Cloud-Core"
+    version: "release-2023.3-8.4.0-20231103.225817-60-RELEASE"  # from global-core-profile
+    sd: "" # from global-core-profile
+    services:
+      - name: "facade-operator"
+        parameters:
+          - name: "FACADE_GATEWAY_MEMORY_LIMIT"
+            value: "96Mi"  # from global-core-profile
+          - name: "FACADE_GATEWAY_CPU_REQUEST"
+            value: "50m"  # from global-core-profile
+      - name: "config-server"
+        parameters:
+          - name: "MEM_ARGS"
+            value: "-XX:+UseSerialGC -XX:+UnlockExperimentalVMOptions -Xms256m -Xmx256m -Xss256k -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -XX:MaxDirectMemorySize=10m -XX:ReservedCodeCacheSize=32M\
+              \ -XX:CompressedClassSpaceSize=32M -XX:MinMetaspaceExpansion=1M -XX:MaxMetaspaceExpansion=8M -XX:CodeCacheExpansionSize=256k -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:GCTimeRatio=4\
+              \ -XX:AdaptiveSizePolicyWeight=90"
+          - name: "MEMORY_LIMIT"
+            value: "768Mi"
+      - name: "tenant-manager"
+        parameters:
+          - name: "MEM_ARGS"
+            value: "-XX:+UseSerialGC -XX:+UnlockExperimentalVMOptions -XX:CICompilerCount=2 -Xms8m -Xmx128m -Xss256k -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -XX:ReservedCodeCacheSize=20M -XX:CompressedClassSpaceSize=32M\
+              \ -XX:MinMetaspaceExpansion=1M -XX:MaxMetaspaceExpansion=8M -XX:CodeCacheExpansionSize=256k -XX:MaxDirectMemorySize=20M -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90\
+              \ -Dserver.undertow.worker-threads=56 -Dserver.undertow.io-threads=7"
+          - name: "MEMORY_LIMIT"
+            value: "512Mi"
+      - name: "identity-provider"
+        parameters:
+          - name: "PG_MAX_POOL_SIZE"
+            value: "30"
+      - name: "key-manager"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "100Mi"

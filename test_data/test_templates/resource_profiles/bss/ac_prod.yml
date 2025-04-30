@@ -1,0 +1,14 @@
+---
+name: "ac_prod"
+baseline: "dev"
+description: ""
+applications:
+- name: "Access-Control"
+  version: "release-2023.3-5.19.0-20230915.094150-8-RELEASE"
+  sd: ""
+  services:
+  - name: "access-control"
+    parameters:
+    - name: "MEMORY_LIMIT"
+      value: "560Mi"
+version: 0

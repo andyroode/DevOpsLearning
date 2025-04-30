@@ -1,0 +1,77 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-opensearch"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true # paramset: opensearch version: 23.4 source: template
+  DISABLE_CRD: false # paramset: opensearch version: 23.4 source: template
+  ESCAPE_SEQUENCE: true # paramset: opensearch version: 23.4 source: template
+  dbaasAdapter: # paramset: opensearch version: 23.4 source: template
+    dbaasAdapterAddress: "http://dbaas-opensearch-adapter.platform-with-overrides-opensearch:8080"
+    dbaasAggregatorPhysicalDatabaseIdentifier: "opensearch.platform-with-overrides-opensearch"
+    dbaasAggregatorRegistrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+    dbaasPassword: "${creds.get(\"dbaas-adapter-cred\").username}"
+    dbaasUsername: "${creds.get(\"dbaas-adapter-cred\").password}"
+    elasticsearchClusterVersion: ""
+    elasticsearchHost: "elasticsearch.platform-with-overrides"
+    elasticsearchInstallationMode: "joint"
+    elasticsearchNodesCount: "3"
+    elasticsearchPassword: "${creds.get(\"opensearch-admin-cred\").password}"
+    elasticsearchPort: "9200"
+    elasticsearchRepo: "snapshots"
+    elasticsearchRepoRoot: "/usr/share/elasticsearch/snapshots"
+    elasticsearchUsername: "${creds.get(\"opensearch-admin-cred\").username}"
+    enabled: true
+    limits:
+      cpu: "200m"
+      memory: "32Mi"
+    qubershipElasticsearchClusterVersion: ""
+    registrationAuthPassword: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
+    registrationAuthUsername: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
+    requests:
+      cpu: "200m"
+      memory: "32Mi"
+  monitoring: # paramset: opensearch version: 23.4 source: template
+    enabled: true
+  opensearch: # paramset: opensearch version: 23.4 source: template
+    client:
+      ingress:
+        enabled: true
+        hosts:
+          - "opensearch-platform-with-overrides.apps."
+    fixMount:
+      enabled: true
+    master:
+      javaOpts: "-Xms718m -Xmx718m"
+      persistence:
+        size: "20Gi"
+        storageClass: "${STORAGE_RWO_CLASS}"
+      replicas: "3"
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "1536Mi"
+        requests:
+          cpu: "200m"
+          memory: "1536Mi"
+    securityConfig:
+      authc:
+        basic:
+          password: "${creds.get(\"opensearch-basic-cred\").password}"
+          username: "${creds.get(\"opensearch-basic-cred\").username}"
+    securityContextCustom:
+      fsGroup: 1000
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

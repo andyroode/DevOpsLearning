@@ -1,0 +1,35 @@
+---
+name: "{{current_env.environmentName}}-bss"
+credentialsId: "{{cluster_name}}-service-admin"
+labels:
+- "DEV"
+- "solutionInstance-{{current_env.name}}"
+- "solution-{{current_env.tenant}}"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters: {}
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "nrm_pg_1_param_set"
+- "om_int_param_set"
+- "cpm_param_set"
+- "uim_param_set"
+- "streaming_param_set"
+- "nifi_param_set"
+- "cdc-param-set"
+- "gms_param_set"
+- "others_params_set"
+- "cpq-param-set"
+- "default-passport-set"
+- "nc_diag_param_set"
+- "ui_metrics_tool_set"
+- "portal_ecomm_set"
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+profile:
+  name: "static_core_gw"
+  baseline: "dev"
+applications: null
+dirty: false
+isServerSideMerge: false

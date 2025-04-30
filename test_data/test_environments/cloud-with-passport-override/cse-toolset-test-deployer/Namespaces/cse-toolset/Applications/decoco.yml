@@ -1,0 +1,31 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "decoco"
+deployParameters:
+  DECOCO_CMDB_PASSWORD: "${creds.get(\"decoco-cmdb-cred\").password}" # paramset: cse-toolset-dev version: 1 source: template
+  DECOCO_CMDB_USERNAME: "${creds.get(\"decoco-cmdb-cred\").username}" # paramset: cse-toolset-dev version: 1 source: template
+  DECOCO_CUSTOM_CLOUDNAME: "${CLOUDNAME.replace(\"_cse_toolset\",\"\")}" # paramset: cse-toolset-dev version: 1 source: template
+  DECOCO_DEPLOYERS: |-
+    '[
+      {
+        "name": "${CMDB_URL}",
+        "username": "${DECOCO_CMDB_USERNAME}",
+        "password": "${DECOCO_CMDB_PASSWORD}"
+      }
+    ]'
+   # paramset: cse-toolset-dev version: 1 source: template
+  DECOCO_K8S_APIS: |-
+    '[
+      {
+        "name": "${DECOCO_CUSTOM_CLOUDNAME}",
+        "apiUrl": "${CLOUD_PROTOCOL}://${CLOUD_API_HOST}:${CLOUD_API_PORT}",
+        "token": "${DECOCO_K8S_API_TOKEN}"
+      }
+    ]'
+   # paramset: cse-toolset-dev version: 1 source: template
+  DECOCO_K8S_API_TOKEN: "${creds.get(\"decoco-k8s-api-token\").secret}" # paramset: cse-toolset-dev version: 1 source: template
+  DECOCO_STORAGE_PASSWORD: "${creds.get(\"common-minio-cred\").password}" # paramset: cse-toolset-dev version: 1 source: template
+  DECOCO_STORAGE_PREFIX: "${CLOUDNAME.replace(\"_cse_toolset\",\"\")}" # paramset: cse-toolset-dev version: 1 source: template
+  DECOCO_STORAGE_USERNAME: "${creds.get(\"common-minio-cred\").username}" # paramset: cse-toolset-dev version: 1 source: template
+technicalConfigurationParameters: {}

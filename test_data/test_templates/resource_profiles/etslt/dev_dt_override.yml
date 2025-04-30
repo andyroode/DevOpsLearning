@@ -1,0 +1,20 @@
+---
+name: "dev_dt_override"
+baseline: "dev"
+description: "Override for design-time-profile for design-time namespace"
+applications:
+  - name: "Cloud-Core"
+    version: "release-2023.3-8.4.0-20231103.225817-60-RELEASE"
+    sd: ""
+    services:
+      - name: "config-server"
+        parameters:
+          - name: "MEM_ARGS"
+            value: "-XX:+UseSerialGC -XX:+UnlockExperimentalVMOptions -Xms256m -Xmx256m\
+            \ -Xss256k -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=128m -XX:MaxDirectMemorySize=10m\
+            \ -XX:ReservedCodeCacheSize=32M -XX:CompressedClassSpaceSize=32M -XX:MinMetaspaceExpansion=1M\
+            \ -XX:MaxMetaspaceExpansion=8M -XX:CodeCacheExpansionSize=256k -XX:MinHeapFreeRatio=20\
+            \ -XX:MaxHeapFreeRatio=40 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90"
+          - name: "MEMORY_LIMIT" #ETBSS-3780
+            value: "768Mi" 
+version: 0

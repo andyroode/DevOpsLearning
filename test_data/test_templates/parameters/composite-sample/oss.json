@@ -1,0 +1,131 @@
+{
+  "name" : "oss",
+  "version" : 23.1,
+  "parameters" : {
+    "DM_NAMESPACE" : "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-data-management\")}",
+    "MUI_SKIP_FRAGMENT_DEPLOY_CHECK" : "true",
+    "NETWORK_ADAPTERS_NAMESPACE" : "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-network-adapters\")}",
+    "BSS_NAMESPACE" : "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-bss\")}",
+    "STRUCTURED_GLOBAL_RESOURCE_PROFILE" : {
+      "ftpd_dev" : {
+        "content-delivery-manager" : {
+          "CPU_REQUEST" : "50m",
+          "MEMORY_REQUEST" : "75Mi",
+          "CPU_LIMIT" : "1",
+          "#inherit" : "dev_az11",
+          "MEMORY_LIMIT" : "75Mi"
+        },
+        "frontend-gateway" : {
+          "INTERNAL_GW_MEMORY_REQUEST" : "200Mi",
+          "INTERNAL_GW_CPU_LIMIT" : "500m",
+          "PRIVATE_GW_MEMORY_REQUEST" : "100Mi",
+          "INTERNAL_GW_MEMORY_LIMIT" : "200Mi",
+          "PRIVATE_GW_CPU_LIMIT" : "100m",
+          "PRIVATE_GW_MEMORY_LIMIT" : "100Mi",
+          "CPU_REQUEST" : "30m",
+          "#inherit" : "dev_az11"
+        },
+        "facade-operator" : {
+          "FACADE_GATEWAY_MEMORY_LIMIT" : "96Mi",
+          "#inherit" : "dev",
+          "_comment" : "This memory limit only applies to those gateways whose service does not have an explicitly defined FacadeService. If the service has an explicitly defined FacadeService, then the parameter COMPOSITE_GATEWAY_MEMORY_LIMIT must be passed to this service."
+        },
+        "tenant-manager" : {
+          "CPU_REQUEST" : "30m",
+          "MEMORY_REQUEST" : "500Mi",
+          "CPU_LIMIT" : "1500m",
+          "#inherit" : "dev_az11",
+          "MEMORY_LIMIT" : "500Mi"
+        },
+        "tenant-self-service-frontend" : {
+          "#inherit" : "dev_az11",
+          "MEMORY_LIMIT" : "64Mi"
+        },
+        "paas-mediation" : {
+          "#inherit" : "dev",
+          "MEMORY_LIMIT" : "100Mi"
+        },
+        "dumps-cleanup-service" : {
+          "DUMPS_CLEANUP_SERVICE_MEMORY_REQUEST" : "100Mi",
+          "DUMPS_CLEANUP_SERVICE_CPU_LIMIT" : "100m",
+          "DUMPS_CLEANUP_SERVICE_CPU_REQUEST" : "20m",
+          "#inherit" : "dev_az11",
+          "DUMPS_CLEANUP_SERVICE_MEMORY_LIMIT" : "150Mi"
+        },
+        "access-control" : {
+          "#inherit" : "dev",
+          "MEMORY_LIMIT" : "550Mi",
+          "MEMORY_REQUEST" : "550Mi"
+        }
+      }
+    },
+    "GLOBAL_RESOURCE_PROFILE" : "${STRUCTURED_GLOBAL_RESOURCE_PROFILE}"
+  },
+  "applications" : [ {
+    "parameters" : {
+      "COMPOSITE_PLATFORM" : "true"
+    },
+    "appName" : "Cloud-Core"
+  }, {
+    "parameters" : {
+      "USE_POSTGRESQL_AS_DB" : "true",
+      "UUI_INITIAL_APP" : "uui/number-management",
+      "MONITORING_ENABLED" : "true",
+      "EXTERNAL_ROUTES_PROTOCOL" : "https",
+      "SUPERSET_EXTERNAL_URL" : "${EXTERNAL_ROUTES_PROTOCOL}://reporting-superset-ext-${DM_NAMESPACE}.${CLOUD_PUBLIC_HOST}"
+    },
+    "appName" : "oss.common.umbrella-ui"
+  }, {
+    "parameters" : {
+      "DUMPS_MONGODB_NAME" : "${NAMESPACE.replace(\"-\",\"_\")}_dumps",
+      "MISTRAL_PROJECT" : "http://wiremock-server-wiremock.svc:8080",
+      "--PARAMETERS_MISSING_IN_NOTES--" : "=====================",
+      "NE_MONGO_DB_NAME" : "${NAMESPACE.replace(\"-\",\"_\")}_ne"
+    },
+    "appName" : "oss.common.utils"
+  }, {
+    "parameters" : {
+      "RENDERER_ENVIRONMENT" : "API_GATEWAY_URL = http://internal-gateway-service:8080; ESO_MANAGER_URL = http://eso-manager:8080; SERVICE_REQUESTS_URL = http://service-requests:8080; USER_TASK_MANAGER_URL = http://user-task-manager:8080; MONITORING_CONSOLE_URL = http://monitoring-console:8080; NDO_API_GATEWAY_URL = http://internal-gateway-service:8080; CM_GATEWAY_URL = http://cm-gateway:8080; SERVICE_MANAGER_URL = http://service-manager:8080; NDO_PATH_COMPUTATION_ENGINE_URL = http://path-computation-engine:8080; AM_URL = http://allocation-manager:8080",
+      "ZOOKEEPER_URL" : "${tenant.cloud.ZOOKEEPER_ADDRESS}",
+      "INTEGRATION_LOGS_TOPIC" : "${NAMESPACE}_logs"
+    },
+    "appName" : "oss.orchestration.core"
+  }, {
+    "parameters" : {
+      "CAPACITY_MANAGEMENT_DATASOURCE" : "datamart-builder",
+      "KAFKA_SECURITY_ENABLED" : "${tenant.cloud.CLOUD_KAFKA_SECURITY_ENABLED}",
+      "MONITORING_ENABLED" : "true",
+      "REPORTING_POSTGRES_DB_NOSUPER_READ_ONLY_USERNAME" : "${NAMESPACE}_reporting_read_only_user",
+      "REPORTING_POSTGRES_DB_NOSUPER_PASSWORD" : "${POSTGRES_DB_PASSWORD}",
+      "DB_POSTGRES_DB_NAME" : "${NAMESPACE.replace(\"-\",\"_\")}_reporting",
+      "CDI_REPORTING_POSTGRES_DB_NAME" : "${NAMESPACE.replace(\"-\",\"_\")}_cdi_reporting",
+      "SPR_KAFKA_APPLICATION_ID" : "${NAMESPACE}_sink-processor-reporting",
+      "--PARAMETERS_MISSING_IN_NOTES--" : "=====================",
+      "REPORTING_POSTGRES_DB_NOSUPER_USERNAME" : "${POSTGRES_DB_USERNAME}"
+    },
+    "appName" : "platform.reporting"
+  }, {
+    "parameters" : {
+      "--PARAMETERS_MISSING_IN_NOTES--" : "=====================",
+      "DB_NAME_PREFIX" : "${NAMESPACE.replace(\"-\",\"_\")}",
+      "MONITORING_ENABLED" : "true"
+    },
+    "appName" : "resource-inventory.ip-address-management"
+  }, {
+    "parameters" : {
+      "IDP_TENANT" : "${tenant.cloud.DEFAULT_TENANT_NAME}",
+      "KAFKA_SECURITY_ENABLED" : "${tenant.cloud.CLOUD_KAFKA_SECURITY_ENABLED}",
+      "DB_NAME_PREFIX" : "${NAMESPACE.replace(\"-\",\"_\")}",
+      "MONITORING_ENABLED" : "true",
+      "####IDP_TOKEN_URL" : "http://identity-provider:8080/auth/realms/${IDP_TENANT}/protocol/openid-connect/token"
+    },
+    "appName" : "resource-inventory.phone-book"
+  }, {
+    "parameters" : {
+      "KAFKA_SECURITY_ENABLED" : "${tenant.cloud.CLOUD_KAFKA_SECURITY_ENABLED}",
+      "SIM_PROFILE_MANAGER_RELEASE_SCHEDULE_ENABLED" : "false",
+      "DB_NAME_PREFIX" : "${NAMESPACE.replace(\"-\",\"_\")}"
+    },
+    "appName" : "resource-inventory.sim-management"
+  } ]
+}

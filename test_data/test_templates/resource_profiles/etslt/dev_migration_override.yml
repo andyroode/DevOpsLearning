@@ -1,0 +1,6 @@
+---
+name: "dev_migration_override"
+version: 0
+baseline: "dev"
+description: "Override for SVT-profile for Migration namespace"
+applications: []

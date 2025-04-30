@@ -1,0 +1,18 @@
+inventory:
+  environmentName: "cloudbss-product-ci-rc"
+  tenantName: "DEVOPSBP-TESTS"
+  deployer: "cloud-deployer"
+  description: ""
+  owners: ""
+  config:
+    updateCredIdsWithEnvName: true
+envTemplate:
+  name: "bss-ci"
+  artifact: "demo-bss-env-template:release-bss-onboarding-SNAPSHOT"
+  sharedMasterCredentialFiles:
+    - shared-ecomm-creds
+    - shared-ims-cpm-creds
+  additionalTemplateVariables: {}
+  envSpecificParamsets: {}
+generatedVersions:
+  generateEnvironmentLatestVersion: "k8s-apps15-cloudbss-product-ci-rc-version-from-tests"  # This value is automatically generated during job run.

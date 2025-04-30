@@ -1,0 +1,43 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "pl01-maas"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-pl01"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  API_DBAAS_ADDRESS: "http://dbaas-aggregator.${namespace_dbaas}:8080" # paramset: maas version: 23.4 source: template
+  DBAAS_AGGREGATOR_ADDRESS: "http://dbaas-aggregator.${namespace_dbaas}:8080" # paramset: maas version: 23.4 source: template
+  DBAAS_CLUSTER_DBA_CREDENTIALS_PASSWORD: "${creds.get(\"dbaas-cluster-dba-cred\").password}" # paramset: maas version: 23.4 source: template
+  DBAAS_CLUSTER_DBA_CREDENTIALS_USERNAME: "${creds.get(\"dbaas-cluster-dba-cred\").username}" # paramset: maas version: 23.4 source: template
+  DBAAS_ENABLED: true # paramset: maas version: 23.4 source: template
+  ESCAPE_SEQUENCE: true # paramset: maas version: 23.4 source: template
+  GLOBAL_RESOURCE_PROFILE: "'{\"dev\":{\"maas-service\":{\"MEMORY_LIMIT\":\"800Mi\",\"CPU_LIMIT\":\"2000m\",\"CPU_REQUEST\":\"100m\",\"DB_POOL_SIZE\":40}}}'" # paramset: maas version: 23.4 source: template
+  MAAS_ACCOUNT_MANAGER_PASSWORD: "${creds.get(\"maas-account-manager-cred\").password}" # paramset: maas version: 23.4 source: template
+  MAAS_ACCOUNT_MANAGER_USERNAME: "${creds.get(\"maas-account-manager-cred\").username}" # paramset: maas version: 23.4 source: template
+  MAAS_DEPLOYER_CLIENT_PASSWORD: "${creds.get(\"maas-deployer-client-cred\").password}" # paramset: maas version: 23.4 source: template
+  MAAS_DEPLOYER_CLIENT_USERNAME: "${creds.get(\"maas-deployer-client-cred\").username}" # paramset: maas version: 23.4 source: template
+  MAAS_KAFKA_INSTANCE_BODY: "{\"default\":true,\"id\":\"kafka\",\"addresses\":{\"SASL_PLAINTEXT\":[\"kafka.${namespace_kafka}:9092\"]},\"maasProtocol\":\"SASL_PLAINTEXT\",\"credentials\":{\"admin\":[{\"\
+    type\":\"SCRAM\",\"username\":\"${_kafka_admin_user}\",\"password\":\"plain:${_kafka_admin_pass}\"}],\"client\":[{\"type\":\"SCRAM\",\"username\":\"${_kafka_client_user}\",\"password\":\"plain:${_kafka_client_pass}\"\
+    }]}}"                                                                                                                                                                                                                                                                                                                                                                                 # paramset: maas version: 23.4 source: template
+  MAAS_RABBIT_INSTANCE_BODY: "{\"apiUrl\":\"http://rabbitmq.${namespace_rabbitmq}:15672/api\",\"amqpUrl\":\"amqp://rabbitmq.${namespace_rabbitmq}:5672\",\"user\":\"${_rabbitmq_admin_user}\",\"password\"\
+    :\"${_rabbitmq_admin_pass}\",\"default\":true}"                                                                                                                                                                                     # paramset: maas version: 23.4 source: template
+  MONITORING_ENABLED: true # paramset: maas version: 23.4 source: template
+  SKIP_VALIDATION: true  # paramset: maas version: 23.4 source: template
+  _kafka_admin_pass: "${creds.get(\"kafka-admin-cred\").password}" # paramset: maas version: 23.4 source: template
+  _kafka_admin_user: "${creds.get(\"kafka-admin-cred\").username}" # paramset: maas version: 23.4 source: template
+  _kafka_client_pass: "${creds.get(\"kafka-client-cred\").password}" # paramset: maas version: 23.4 source: template
+  _kafka_client_user: "${creds.get(\"kafka-client-cred\").username}" # paramset: maas version: 23.4 source: template
+  _rabbitmq_admin_pass: "${creds.get(\"rabbitmq-admin-cred\").password}" # paramset: maas version: 23.4 source: template
+  _rabbitmq_admin_user: "${creds.get(\"rabbitmq-admin-cred\").username}" # paramset: maas version: 23.4 source: template
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

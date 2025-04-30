@@ -1,0 +1,9 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "resource-inventory.ip-address-management"
+deployParameters:
+  --PARAMETERS_MISSING_IN_NOTES--: "=====================" # paramset: oss version: 23.1 source: template
+  DB_NAME_PREFIX: "${NAMESPACE.replace(\"-\",\"_\")}" # paramset: oss version: 23.1 source: template
+  MONITORING_ENABLED: "true" # paramset: oss version: 23.1 source: template
+technicalConfigurationParameters: {}

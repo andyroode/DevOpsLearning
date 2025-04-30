@@ -1,0 +1,15 @@
+{
+	"name": "prod-shared",
+	"version": 23.1,
+	"parameters": {},
+	"applications": [
+		{
+			"appName": "TELUS-NOTIFICATION",
+			"parameters": {
+				"CPQ_QUOTE_NOTIFICATION_TOPIC": "DV.Customer.QuoteManagement.Quote",
+        		"TELUS_IBS_NOTIFICATION_SERVICE_TOPIC" : "DV.Product.ProductInventory.Product",
+        		"OM_TELUS_ORDER_NOTIFICATION_TOPIC" : "DV.Customer.ProductOrdering.ProductOrder"
+			}	
+		}
+	]
+}

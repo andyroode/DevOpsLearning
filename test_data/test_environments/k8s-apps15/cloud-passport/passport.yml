@@ -1,0 +1,34 @@
+version: 1.5
+cloud:
+  CLOUD_API_HOST: "k8s-apps15.k8s.sdntest.qubership.com"
+  CLOUD_API_PORT: "6443"
+  CLOUD_PUBLIC_HOST: "k8s-apps15.k8s.sdntest.qubership.com"
+  CLOUD_PRIVATE_HOST: "k8s-apps15.k8s.sdntest.qubership.com"
+  CLOUD_DEPLOY_TOKEN: "k8s-apps15-service-admin"
+  CLOUD_DASHBOARD_URL: https://dashboard.k8s-apps15.k8s.sdntest.qubership.com
+  CLOUD_PROTOCOL: "HTTPS"
+  PRODUCTION_MODE: "false"
+maas:
+  MAAS_ENABLE: true
+  MAAS_INTERNAL_ADDRESS: http://maas-service.maas:8080
+  MAAS_SERVICE_ADDRESS: http://maas-service-maas.k8s-apps15.k8s.sdntest.qubership.com
+  MAAS_CREDENTIALS_USERNAME: ${creds.get("MaaS-Default-Client").username}
+  MAAS_CREDENTIALS_PASSWORD: ${creds.get("MaaS-Default-Client").password}
+consul:
+  CONSUL_ENABLED: true
+  CONSUL_ADMIN_TOKEN: ${creds.get("consul-token").secret}
+  CONSUL_PUBLIC_URL: "https://consul.k8s-apps15.k8s.sdntest.qubership.com"
+  CONSUL_ENABLE: true
+  CONSUL_URL: consul.consul
+dbaas:
+  DBAAS_ENABLE: true
+  API_DBAAS_ADDRESS: http://dbaas-aggregator.dbaas:8080 
+  DBAAS_CLUSTER_DBA_CREDENTIALS_USERNAME: ${creds.get("Shared-default-dbaas").password}
+  DBAAS_AGGREGATOR_ADDRESS: https://aggregator-dbaas.k8s-apps15.k8s.sdntest.qubership.com
+  DBAAS_CLUSTER_DBA_CREDENTIALS_PASSWORD: ${creds.get("Shared-default-dbaas").username}
+vault:
+  VAULT_ADDR: 
+  VAULT_AUTH_ROLE_ID: ""
+  VAULT_AUTH_PATH: ""
+  VAULT_AUTH_NAMESPACE: ""
+  VAULT_AUTH_SECRET_ID: ""

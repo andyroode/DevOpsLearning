@@ -1,0 +1,160 @@
+---
+name: "{{current_env.environmentName}}-nrm"
+credentialsId: "{{cluster_name}}-service-admin"
+labels:
+- "DEV"
+- "solutionInstance-{{current_env.name}}"
+- "solution-{{current_env.tenant}}"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  ESCAPE_SEQUENCE: "true"
+  MONITORING_ENABLED: "true"
+  KAFKA_USERNAME: "tmp_user"
+  KAFKA_NAMESPACE: "kafka"
+  GRAYLOG_CLOUD_TM_SEARCH_STREAM_ID: "000000000000000000000001"
+  KAFKA_BOOTSTRAP_SERVERS: "kafka.kafka:9092"
+  GRAYLOG_DEFAULT_SEARCH_STREAM_ID: "000000000000000000000001"
+  KAFKA_PASSWORD: "tmp_password"
+  GRAYLOG_CLOUD_TM_SEARCH_NAMESPACE: "${NAMESPACE}"
+  BSS_NAMESPACE: "cloudbss-product-ci-rc"
+  BSS_TENANT: "bd9b0e7e-3a25-4221-88b5-737209587770"
+  POSTGRESQL_URL: "pg-patroni.postgresql:5432"
+  POSTGRESQL_USER: "tmp_user"
+  POSTGRESQL_PASSWORD: "tmp_password"
+  NAMESPACE: "cloud-rbm-pg-1"
+  nrm: 
+    kafka:
+        url: 'kafka://${KAFKA_USERNAME}:${KAFKA_PASSWORD}@${KAFKA_BOOTSTRAP_SERVERS}'
+    apps:
+        dbp:
+            storage:
+                enabled: false
+        rb:
+            volumes:
+                input:
+                    pvcName: rb-input
+                outputs:
+                    pvcName: rb-logs
+                mf:
+                    pvcName: rb-mf
+    integrations:
+        uim:
+            enabled: true
+        collectionManager:
+            enabled: true
+            url: 'cm-nrm-integration:8080'
+        streaming:
+            costedEvents:
+                enabled: true
+    postgresql:
+        rw:
+            url: 'postgresql://${POSTGRESQL_USER}:${POSTGRESQL_PASSWORD}@${POSTGRESQL_URL}/postgres?sslmode=disable'
+    identityProviders:
+        local-idp:
+            url: 'http://identity-provider:8080/auth/realms/cloud-common'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+            usedFor:
+                - clientCredentials
+        coreidp-eca:
+            url: 'https://private-gateway-cloudbss-coreidp-eca.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cloudbss-kube-csrd-dev2:
+            url: 'https://private-gateway-cloudbss-kube-csrd-dev2.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cloudsspbe-kube-portal-dev-ci:
+            url: 'https://private-gateway-cloudsspbe-kube-portal-dev-ci.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cloudbss-kube-csrd-dev-ci:
+            url: 'https://private-gateway-cloudbss-kube-csrd-dev-ci.k8s-apps2.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_K8S_APPS2}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cloudsspbe-kube-dev1:
+            url: 'https://private-gateway-cloudsspbe-kube-dev1.k8s-apps2.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_K8S_APPS2}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cloudbss-kube-csrd-dev3:
+            url: 'https://private-gateway-cloudbss-kube-csrd-dev3.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        rtcd-dev03:
+            url: 'https://private-gateway-rtcd-dev03.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        rtcd-dev02:
+            url: 'https://private-gateway-rtcd-dev02.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        rtcd-dev-ci:
+            url: 'https://private-gateway-rtcd-dev-ci.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cjm-bss-dev-2:
+            url: 'http://private-gateway-cjm-bss-dev-2.k8s-apps3.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cloudbss-openshift-cert:
+            url: 'http://private-gateway-cloudbss-openshift-cert.paas-apps13.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            caBundle: '${CA_BUNDLE_CERTIFICATE_OPENSHIFT}'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cjm-bss-dev-1:
+            url: 'http://private-gateway-cjm-bss-dev-1.k8s-apps3.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cpq-dev4:
+            url: 'http://private-gateway-cpq-dev4.k8s-apps14.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+        cpq-dev3:
+            url: 'http://private-gateway-cpq-dev3.k8s-apps14.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            verifierConfig:
+                skipClientIdCheck: true
+                skipIssuerCheck: true
+  CA_BUNDLE_CERTIFICATE: "-----BEGIN CERTIFICATE-----\ntmp_cert\n\
+    -----END CERTIFICATE-----"
+  CA_BUNDLE_CERTIFICATE_COREIDP: "-----BEGIN CERTIFICATE-----\ntmp_cert\n\
+    -----END CERTIFICATE-----"
+  STORAGE_RWX_CLASS: "nfs-sc-projects"
+  CA_BUNDLE_CERTIFICATE_OPENSHIFT: "-----BEGIN CERTIFICATE-----\ntmp_cert\n-----END CERTIFICATE-----"
+  CA_BUNDLE_CERTIFICATE_K8S_APPS2: "-----BEGIN CERTIFICATE-----\ntmp_cert\n\
+    -----END CERTIFICATE-----"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "default-passport-set"
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+profile:
+  name: "static_core_gw"
+  baseline: "dev"
+applications: null
+dirty: false
+isServerSideMerge: false

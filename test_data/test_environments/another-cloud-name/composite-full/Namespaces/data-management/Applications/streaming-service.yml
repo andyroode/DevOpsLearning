@@ -1,0 +1,16 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "streaming-service"
+deployParameters:
+  DEPLOY_W_HELM: "false" # paramset: data-management version: 23.1 source: template
+  DISABLE_CRD: "false" # paramset: data-management version: 23.1 source: template
+  DISABLE_FORCE_APPLY: "false" # paramset: data-management version: 23.1 source: template
+  global.installDashboard: "true" # paramset: data-management version: 23.1 source: template
+  global.monitoringType: "prometheus" # paramset: data-management version: 23.1 source: template
+  global.operatorOnly: "true" # paramset: data-management version: 23.1 source: template
+  monitoring.install: "false" # paramset: data-management version: 23.1 source: template
+  monitoring.installRules: "false" # paramset: data-management version: 23.1 source: template
+  streamingPlatform.bootstrapServers: "${CDC_KAFKA_BOOTSTRAP_SERVERS}" # paramset: data-management version: 23.1 source: template
+  streamingPlatform.install: "true"  # paramset: data-management version: 23.1 source: template
+technicalConfigurationParameters: {}

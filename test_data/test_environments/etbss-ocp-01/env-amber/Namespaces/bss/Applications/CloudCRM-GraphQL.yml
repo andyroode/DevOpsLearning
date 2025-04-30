@@ -1,0 +1,23 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CloudCRM-GraphQL"
+deployParameters:
+  GQL_EXTENSION_POINT_PROPERTIES: |-
+    bulk-balance-inquiry-path=/tibcoBscs/tmf678/extension/bulkBalanceInquiry
+    invoice-overview-inquiry-path=/tibcoBscs/integration/ericsson/v1/invoiceOverviewInquiry
+    code-endpoint-path=/tibcoCodeUnifieddunninginquiry/customerbillingcollectionmgmt/r/unifieddunninginquiry
+    get-crc-notes-path=/tibcoCodeFetchDunningDetails/customerbillingcollectionmgmt/r/fetchDunningDetails
+    update-crc-notes-path=/tibcoCodePostDunningDetails/customerbillingcollectionmgmt/cud/postdunningdetails
+    payment-endpoint-path=/tibcoCodeGetPayment/TMFC000/TMF676_PM/payment
+    generate-on-demand-bill=/tibcoBscs/tmf678/customerBillOnDemand
+    unbilled-charges-path=/tibcoBscs/integration/ericsson/v1/customerBill/getUnbilledCharges
+    bsa-linked-account-path=/tibcoBscs/bsa/linkedAccount
+    bsa-party-linked-account-path=/tibcoBscs/bsa/party/{partyId}/LinkedAccount
+    bsa-invoice-path=/tibcoBscs/bsa/invoice
+    bsa-invoice-details-path=/tibcoBscs/bsa/invoice/details
+    retrieve-customer-bill-path=/tibcoBscs/tmf678/customerBill
+    retrieve-customer-bill-by-account-id-path=/tibcoBscs/tmf678/customerBill
+    retrieve-customer-bill-with-summary-by-account-id-path=/tibcoBscs/tmf678/customerBill
+   # paramset: bss-common version: 1 source: template
+technicalConfigurationParameters: {}

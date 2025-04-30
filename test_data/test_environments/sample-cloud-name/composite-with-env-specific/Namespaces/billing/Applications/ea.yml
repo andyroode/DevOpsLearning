@@ -1,0 +1,87 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "ea"
+deployParameters:
+  ESCAPE_SEQUENCE: "true" # paramset: billing version: 23.1 source: template
+  eventaggregator.region.dbAdminSecret.key: "pgadmin" # paramset: billing version: 23.1 source: template
+  eventaggregator.region.dbAdminSecret.name: "admin-db-secret" # paramset: billing version: 23.1 source: template
+  eventaggregator.region.id: "1"  # paramset: billing version: 23.1 source: template
+  eventaggregator.region.kafkaConnection: "${tenant.cloud.get(\"nrm.kafka.url\")}" # paramset: billing version: 23.1 source: template
+  eventaggregator.region.rdb.dbname: "${NAMESPACE}-ea" # paramset: billing version: 23.1 source: template
+  eventaggregator.region.rdb.host: "${tenant.cloud.get(\"nrm.db.url\").split(\"@\")[1]}" # paramset: billing version: 23.1 source: template
+  eventaggregator.region.rdb.password: "${NAMESPACE}" # paramset: billing version: 23.1 source: template
+  eventaggregator.region.rdb.type: "postgresql" # paramset: billing version: 23.1 source: template
+  eventaggregator.region.rdb.user: "${NAMESPACE}" # paramset: billing version: 23.1 source: template
+  eventaggregator.security.identityProviders: |-
+    '
+    - name: cloud-common
+
+      url: http://identity-provider:8080/auth/realms/cloud-common
+
+      verifierConfig:
+
+        skipClientIdCheck: true
+
+        skipIssuerCheck: true
+
+    - name: cpq
+
+      url:
+    http://identity-provider:8080/auth/realms/${CPQ_TENANT_ID}
+
+      verifierConfig:
+
+        skipClientIdCheck: true
+
+        skipIssuerCheck: true
+
+    '
+   # paramset: billing version: 23.1 source: template
+  eventaggregator.security.securityRoles: |-
+    '
+    - name: anonymous
+      rules:
+        - verbs:
+            - "*"
+          apiGroups:
+            - reflection.api.nrm.qubership.com
+          resources:
+            - "*"
+      anonymous: true
+    - name: ROLE_eca_super_admin
+      rules:
+        - verbs:
+            - "*"
+          apiGroups:
+            - ea.api.nrm.qubership.com
+            - reflection.api.nrm.qubership.com
+          resources:
+            - "*"
+      anonymous: false
+    - name: ROLE_nrm_admin_qa_only_do_not_use_in_applications
+      rules:
+        - verbs:
+            - "*"
+          apiGroups:
+            - ea.api.nrm.qubership.com
+            - reflection.api.nrm.qubership.com
+          resources:
+            - "*"
+      anonymous: false
+    - anonymous: false
+      name: ROLE_cloud-graphql
+      rules:
+        - apiGroups:
+            - ea.api.nrm.qubership.com
+            - reflection.api.nrm.qubership.com
+          resources:
+            - "*"
+          verbs:
+            - "*"
+    '
+   # paramset: billing version: 23.1 source: template
+  eventaggregator.topicsPrefix: "${NAMESPACE}" # paramset: billing version: 23.1 source: template
+  nrm.apps.eap.dbName: "${NAMESPACE}-streamers" # paramset: billing version: 23.1 source: template
+  nrm.integrations.streaming.costedEvents.enabled: "true" # paramset: billing version: 23.1 source: template
+technicalConfigurationParameters: {}

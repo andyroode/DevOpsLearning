@@ -1,0 +1,21 @@
+---
+name: "{{ current_env.environmentName }}-minio"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters: 
+  ingress.hosts:
+    - "{{ current_env.environmentName }}-minio.apps.{{ current_env.cluster.cloud_public_url }}"
+  consoleIngress.hosts:
+    - "{{ current_env.environmentName }}-minio-console.apps.{{ current_env.cluster.cloud_public_url }}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - minio
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

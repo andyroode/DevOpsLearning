@@ -1,0 +1,76 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-mongodb"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true  # paramset: mongodb version: 23.4 source: template
+  DISABLE_CRD: false # paramset: mongodb version: 23.4 source: template
+  ESCAPE_SEQUENCE: true # paramset: mongodb version: 23.4 source: template
+  backup: # paramset: mongodb version: 23.4 source: template
+    backupSchedule: "0 0 * * *"
+    install: false
+    storage:
+      size: "5Gi"
+      storageClasses:
+        - "${STORAGE_RWO_CLASS}"
+  dbaas: # paramset: mongodb version: 23.4 source: template
+    apiVersion: "v2"
+    dbaasAggregatorPhysicalDatabaseIdentifier: "mongodb.platform-with-overrides-mongodb"
+    dbaasAggregatorRegistrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+    dbaasAggregatorRegistrationPassword: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
+    dbaasAggregatorRegistrationUser: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
+    dbaasResources:
+      limits:
+        cpu: "200m"
+        memory: "64Mi"
+      requests:
+        cpu: "200m"
+        memory: "32Mi"
+    install: true
+    multiUsers: true
+  mongodb: # paramset: mongodb version: 23.4 source: template
+    cnfResources:
+      limits:
+        cpu: "300m"
+        memory: "512Mi"
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+    dataResources:
+      limits:
+        cpu: "500m"
+        memory: "512Mi"
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+    install: true
+    rootPassword: "${creds.get(\"mongodb-root-cred\").password}"
+    rootUser: "${creds.get(\"mongodb-root-cred\").username}"
+    storage:
+      size: "10Gi"
+      storageClasses:
+        - "${STORAGE_RWO_CLASS}"
+  prometheusExporter: # paramset: mongodb version: 23.4 source: template
+    install: true
+  recycler: # paramset: mongodb version: 23.4 source: template
+    install: false
+  schemaSettings: # paramset: mongodb version: 23.4 source: template
+    cnfReplicaSize: "3"
+    dataReplicaSize: "3"
+    schemaType: "ha"
+    shardCount: "3"
+  waitSeconds: "400" # paramset: mongodb version: 23.4 source: template
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

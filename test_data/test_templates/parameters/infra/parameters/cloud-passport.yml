@@ -1,0 +1,30 @@
+version: 23.4
+name: cloud-passport
+parameters:
+  graylog:
+    install: true
+    url: "https://graylog.fqdn"
+  smtp:
+    install: false
+  storage:
+    install: true
+    provide: "s3"
+    region: "us-west-2"
+    url: "https://s3.fqdn"
+    username: "${creds.get(\"minio-admin\").username}"
+    password: "${creds.get(\"minio-admin\").username}"
+    rwo_class: "${STORAGE_RWO_CLASS}"
+  core:
+    install: true
+    repo_name: "sd.prj_bss.mvn.group"
+  cmdb:
+    install: true
+    token: "${creds.get(\"cloud-passport-cmdb-token\").secret}"
+    user: "admin"
+  vault:
+    install: false
+  maas:
+    install: true
+  monitoring:
+    install: true
+applications: []

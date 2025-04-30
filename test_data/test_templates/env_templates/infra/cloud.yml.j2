@@ -1,0 +1,54 @@
+---
+name: "{{ current_env.cloud }}"
+apiUrl: "{{ current_env.cluster.cloud_api_url }}"
+apiPort: "{{ current_env.cluster.cloud_api_port }}"
+privateUrl: ""
+publicUrl: "apps.{{ current_env.cluster.cloud_public_url }}"
+dashboardUrl: "https://console-openshift-console.apps.{{ current_env.cluster.cloud_public_url }}"
+labels: []
+defaultCredentialsId: "cloud-admin-token"
+protocol: "{{ current_env.cluster.cloud_api_protocol }}"
+mergeDeployParametersAndE2EParameters: false
+dbMode: "db"
+databases: []
+maasConfig:
+  credentialsId: ""
+  maasUrl: ""
+  maasInternalAddress: ""
+  enable: false
+vaultConfig:
+  url: ""
+  credentialsId: ""
+  enable: false
+dbaasConfigs:
+  - credentialsId: ""
+    apiUrl: ""
+    aggregatorUrl: ""
+    enable: false
+consulConfig:
+  tokenSecret: ""
+  publicUrl: ""
+  enabled: false
+  internalUrl: ""
+deployParameters:
+  PAAS_VERSION_CUSTOM: "1.27"
+  PAAS_VERSION: "1.27"
+  ESCAPE_SEQUENCE: "true"
+  INFRA_ENVIRONMENT_NAME: "{{ current_env.environmentName }}"
+  namespace_postgresql_bss: "{{ current_env.environmentName }}-postgresql-bss"
+  namespace_postgresql_platform: "{{ current_env.environmentName }}-postgresql-platform"
+  namespace_dbaas: "{{ current_env.environmentName }}-dbaas"
+  namespace_rabbitmq: "{{ current_env.environmentName }}-rabbitmq"
+  namespace_kafka: "{{ current_env.environmentName }}-kafka"
+  namespace_kafka_streaming: "{{ current_env.environmentName }}-kafka-streaming"
+  namespace_zookeeper: "{{ current_env.environmentName }}-zookeeper"
+  namespace_zookeeper_streaming: "{{ current_env.environmentName }}-zookeeper-streaming"
+  namespace_cassandra_cse: "{{ current_env.environmentName }}-cassandra-cse"
+{% if current_env.additionalTemplateVariables.cloudParameters is defined %}
+{{ current_env.additionalTemplateVariables.cloudParameters | ansible.builtin.to_nice_yaml | indent(2, true) }}
+{% endif %}
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []

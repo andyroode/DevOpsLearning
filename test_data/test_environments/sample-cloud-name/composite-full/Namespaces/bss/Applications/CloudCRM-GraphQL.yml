@@ -1,0 +1,10 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CloudCRM-GraphQL"
+deployParameters:
+  BSS_INTEGRATION_NRM_DOMAIN: "${BILLING_NAMESPACE}" # paramset: bss version: 1 source: template
+  BSS_INTEGRATION_NRM_MODE: "composite" # paramset: bss version: 1 source: template
+technicalConfigurationParameters:
+  eap.cred: "${cmdb.creds.get('eap-secret-cred').secret}" # paramset: bss-tech version: 23.1 source: template
+  eap.host: "ea-api-ea-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443" # paramset: bss-tech version: 23.1 source: template

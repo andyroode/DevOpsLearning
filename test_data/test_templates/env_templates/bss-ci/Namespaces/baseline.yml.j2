@@ -1,0 +1,22 @@
+---
+name: "{{current_env.environmentName}}-baseline"
+credentialsId: "{{cluster_name}}-service-admin"
+labels:
+- "DEV"
+- "solutionInstance-{{current_env.name}}"
+- "solution-{{current_env.tenant}}"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters: {}
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "default-passport-set"
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+profile:
+  name: "static_core_gw"
+  baseline: "dev"
+applications: null
+dirty: false
+isServerSideMerge: false

@@ -1,0 +1,56 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cloud_without_passport_env_without_passport"
+apiUrl: ""
+apiPort: ""
+privateUrl: ""
+publicUrl: ""
+dashboardUrl: "https://dashboard."
+labels: []
+defaultCredentialsId: "cloud-admin-token"
+protocol: ""
+dbMode: "db"
+databases: []
+mergeDeployParametersAndE2EParameters: false
+maasConfig:
+  credentialsId: "maas"
+  enable: true
+  maasUrl: "http://maas-service-maas."
+  maasInternalAddress: "http://maas-service.maas:8080"
+vaultConfig:
+  credentialsId: ""
+  enable: false
+  url: ""
+dbaasConfigs:
+  - credentialsId: "dbaas"
+    enable: true
+    apiUrl: "http://dbaas-aggregator.dbaas:8080"
+    aggregatorUrl: "https://aggregator-dbaas."
+consulConfig:
+  tokenSecret: "consul-token"
+  enabled: true
+  publicUrl: "https://consul."
+  internalUrl: "http://consul-server.consul:8500"
+
+deployParameters: {}
+e2eParameters:
+  DCL_CONFIG_ARGOCD_PASSWORD: "${creds.get(\"argocd-cred\").password}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_ARGOCD_URL: ""  # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_ARGOCD_USER: "${creds.get(\"argocd-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_CMDB_PASSWORD: "${creds.get(\"deployer-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_CMDB_URL: "https://cloud-deployer.qubership.com/" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_CMDB_USER: "${creds.get(\"deployer-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_CONF_ENGINE: "local-kustomize" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_GITLAB_TOKEN: "${creds.get(\"dcl-gitlab-cred\").password}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_GITLAB_USER: "${creds.get(\"dcl-gitlab-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_PROD_MODE: false # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_REGISTRY_PASSWORD: "${creds.get(\"dcl-registry-cred\").password}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_REGISTRY_USER: "${creds.get(\"dcl-registry-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_TECH_APP_NAME_VERSION: "ach-kubernetes-agent:release-1.0.8-20240816.160656-3-RELEASE" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_TICKET_ID: "ETBSS-32954" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_GIT_COMMIT_MESSAGE: "[ETBSS-32954] Update DCL configuration file for further deploy" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []

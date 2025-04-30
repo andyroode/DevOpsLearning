@@ -1,0 +1,179 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-kafka"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true  # paramset: kafka version: 23.4 source: template
+  DISABLE_CRD: false # paramset: kafka version: 23.4 source: template
+  akhq: # paramset: kafka version: 23.4 source: template
+    affinity:
+      podAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: "component"
+                    operator: "In"
+                    values:
+                      - "kafka"
+              topologyKey: "kubernetes.io/hostname"
+            weight: 100
+    enableAccessLog: false
+    ingress:
+      host: "akhq-${namespace_kafka}.apps."
+    install: true
+    kafkaPollTimeout: "10000"
+    resources:
+      limits:
+        cpu: "300m"
+        memory: "500Mi"
+      requests:
+        cpu: "50m"
+        memory: "400Mi"
+    schemaRegistryUrl: "\"\""
+  backupDaemon: # paramset: kafka version: 23.4 source: template
+    install: false
+    securityContext:
+      runAsGroup: 1000
+      runAsUser: 1000
+  global: # paramset: kafka version: 23.4 source: template
+    disasterRecovery:
+      mode: ""
+    installDashboard: true
+    monitoringType: "prometheus"
+    name: "kafka"
+    podReadinessTimeout: "300"
+    secrets:
+      akhq:
+        defaultPassword: "${creds.get(\"kafka-akhq-cred\").password}"
+        defaultUsername: "${creds.get(\"kafka-akhq-cred\").username}"
+      kafka:
+        adminPassword: "${creds.get(\"kafka-admin-cred\").password}"
+        adminUsername: "${creds.get(\"kafka-admin-cred\").username}"
+        clientPassword: "${creds.get(\"kafka-client-cred\").password}"
+        clientUsername: "${creds.get(\"kafka-client-cred\").username}"
+        disableSecurity: false
+        zookeeperClientPassword: "${creds.get(\"zookeeper-client-cred\").password}"
+        zookeeperClientUsername: "${creds.get(\"zookeeper-client-cred\").username}"
+      monitoring:
+        prometheusPassword: ""
+        prometheusUsername: ""
+    skipNamespaceValidation: true
+    waitForPodsReady: true
+  integrationTests: # paramset: kafka version: 23.4 source: template
+    install: false
+  kafka: # paramset: kafka version: 23.4 source: template
+    affinity:
+      podAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: "component"
+                    operator: "In"
+                    values:
+                      - "zookeeper"
+              topologyKey: "kubernetes.io/hostname"
+            weight: 100
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "component"
+                  operator: "In"
+                  values:
+                    - "kafka"
+            topologyKey: "kubernetes.io/hostname"
+    consulAclEnabled: false
+    consulDiscovery: false
+    disruptionBudget:
+      enabled: false
+    enableAuditLogs: false
+    getRacksFromNodeLabels: false
+    healthCheckTimeout: "30"
+    heapSize: "1024"
+    install: true
+    nodeLabelNameForRack: "zone"
+    oauth:
+      clockSkew: "10"
+      jwkSourceType: "jwks"
+      jwksConnectionTimeout: "1000"
+      jwksReadTimeout: "1000"
+      jwksSizeLimit: "51200"
+    racks:
+      - "rack-1"
+      - "rack-2"
+      - "rack-3"
+    registeredServiceName: "kafka.platform-with-overrides-kafka"
+    replicas: "3"
+    resources:
+      limits:
+        cpu: "1000m"
+        memory: "2Gi"
+      requests:
+        cpu: "150m"
+        memory: "2Gi"
+    rollbackTimeout: "3600"
+    storage:
+      className:
+        - "${STORAGE_RWO_CLASS}"
+      size: "20Gi"
+    terminationGracePeriod: "180"
+    zookeeperConnect: "zookeeper.${namespace_zookeeper}:2181"
+  mirrorMaker: # paramset: kafka version: 23.4 source: template
+    install: false
+  mirrorMakerMonitoring: # paramset: kafka version: 23.4 source: template
+    install: false
+  monitoring: # paramset: kafka version: 23.4 source: template
+    affinity:
+      podAffinity:
+        preferredDuringSchedulingIgnoredDuringExecution:
+          - podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                  - key: "component"
+                    operator: "In"
+                    values:
+                      - "kafka"
+              topologyKey: "kubernetes.io/hostname"
+            weight: 100
+    install: true
+    kafkaTotalBrokerCount: "3"
+    lagExporter:
+      enabled: true
+    monitoringCoreosGroup: false
+    resources:
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+  operator: # paramset: kafka version: 23.4 source: template
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "component"
+                  operator: "In"
+                  values:
+                    - "kafka-service-operator"
+            topologyKey: "kubernetes.io/hostname"
+    replicas: "1"
+  vaultSecretManagement: # paramset: kafka version: 23.4 source: template
+    enabled: false
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

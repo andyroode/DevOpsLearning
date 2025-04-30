@@ -1,0 +1,75 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "pl01-redis"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-pl01"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true  # paramset: redis version: 23.4 source: template
+  DISABLE_CRD: false # paramset: redis version: 23.4 source: template
+  DISABLE_FORCE_APPLY: false # paramset: redis version: 23.4 source: template
+  ESCAPE_SEQUENCE: true # paramset: redis version: 23.4 source: template
+  dbaas: # paramset: redis version: 23.4 source: template
+    adapter:
+      password: "${creds.get(\"dbaas-adapter-cred\").password}"
+      secretName: "dbaas-adapter-credentials"
+      username: "${creds.get(\"dbaas-adapter-cred\").username}"
+    aggregator:
+      address: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+      credential-list-password:
+        - "${creds.get(\"postgresql-cred-list-cred-1\").password}"
+        - "${creds.get(\"postgresql-cred-list-cred-2\").password}"
+      credential-list-users:
+        - "${creds.get(\"postgresql-cred-list-cred-1\").username}"
+        - "${creds.get(\"postgresql-cred-list-cred-2\").username}"
+      dbaasAggregatorRegistrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+      password: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
+      physicalDatabaseIdentifier: "redis"
+      secretName: "dbaas-aggregator-credentials"
+      username: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
+    install: true
+  monitoringAgent: # paramset: redis version: 23.4 source: template
+    install: true
+    monitoringInterval: "20s"
+    resources:
+      limits:
+        cpu: "250m"
+        memory: "250Mi"
+      requests:
+        cpu: "150m"
+        memory: "120Mi"
+  name: "dbaas-redis-service" # paramset: redis version: 23.4 source: template
+  operator: # paramset: redis version: 23.4 source: template
+    resources:
+      limits:
+        cpu: "250m"
+        memory: "250Mi"
+      requests:
+        cpu: "150m"
+        memory: "120Mi"
+  redis: # paramset: redis version: 23.4 source: template
+    maxmem: "200mb"
+    parameters:
+      label: "redis-dbaas-adapter"
+    password: "${creds.get(\"redis-password-cred\").secret}"
+    resources:
+      limits:
+        cpu: "250m"
+        memory: "1024Mi"
+      requests:
+        cpu: "150m"
+        memory: "256Mi"
+    secretName: "redis-credentials"
+  serviceAccountName: "dbaas-redis-operator" # paramset: redis version: 23.4 source: template
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

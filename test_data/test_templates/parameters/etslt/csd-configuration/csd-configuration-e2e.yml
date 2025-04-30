@@ -1,0 +1,16 @@
+version: 1
+name: csd-configuration-e2e
+parameters:
+  # ETBSS-20153
+  CSD_CONFIGURATION: |
+    '{"cse-toolset": {"DEFAULT_MAIN_SD_PREFIX": "prj-CSE-Toolset-SD", "DEFAULT_SD_PREFIX": ""}, "custom-operators": {"DEFAULT_MAIN_SD_PREFIX": "prj-Custom-Operators-SD", "DEFAULT_SD_PREFIX": ""}, "design-time": {"DEFAULT_MAIN_SD_PREFIX": "prj-Design-Time-SD", "DEFAULT_SD_PREFIX": ""}, "solution-deploy": {"DEFAULT_MAIN_SD_PREFIX": "prj-Product-SD", "DEFAULT_SD_PREFIX": "prj-Project-SD"}}'
+  PROMOTE_CONFIG: |
+    '{"PROJECT_APP_PREFIX": "prj", "PROMOTE_JOB": "https://cloud-deployer.qubership.com/job/prj/job/regular.update.Promote"}'
+  STABLE_ARTIFACTS_CONFIG: |
+    '[{"folder": "ETBSS_Product_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.prj/solution-descriptors/prj-stable-sd", "name": "prj-Product-SD"}, {"folder": "ETBSS_Project_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.prj/solution-descriptors/prj-stable-sd", "name": "prj-Project-SD"}, {"folder": "prj_env_templates_stable_builds", "git_branch": "release/ph1_cd1", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.prj/solution-descriptors/prj-stable-sd", "name": "prj-env-templates"}]'
+  MINIO_BINARY_FILE_URL: "https://artifactorycn.qubership.com/nc.thirdparty.files/minio/mc/linux-amd64/mc.RELEASE.2023-11-15T22-45-58Z"
+  ATP_PARAMS_GIT_URL: "https://git.qubership.com/SD.prj/devops/prj-atp-configuration.git"
+  ATP_PARAMS_GIT_BRANCH: "master"
+  ATP_PARAMS_FILE_PATH: "atp/atpJobsProperties.yaml"
+  ATP_DYNAMIC_PARAMETERS: "ROOT_PROJECT,ATP_JENKINS_URL,ATP_JENKINS_CREDS_ID,TEST_PLAN,TEST_SUITE,TA_TOOLS_GROUP,THREAD_COUNT,EMAIL,TEST_DATA_SCOPE"
+applications: []

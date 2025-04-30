@@ -1,0 +1,7 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cloudjpg-bis"
+deployParameters: {}
+technicalConfigurationParameters:
+  bss.index.bis-events.scheduling.streaming-processing-enabled: "true"  # paramset: bss-tech version: 23.1 source: template

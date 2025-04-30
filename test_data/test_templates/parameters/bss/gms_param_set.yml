@@ -1,0 +1,6 @@
+---
+name: "gms_param_set"
+parameters:
+  GMS_FCM_SENDER_ID: "485371624856"
+  GMS_FCM_SERVER_KEY: "AAAAcQJnPZg:APA91bE9Jq2L2HGDUHHHOa_tZqiQjk5jRwRRSUeM2gbo0TGIr3Sv_E9kpTyY2tXf63X456NqSnowgL7VFn-mVBfYFl1rDTcQYEY7UYVzW56KhGzcyPMda6E-T_spMsFulklawOuQ1Yv2"
+applications: []

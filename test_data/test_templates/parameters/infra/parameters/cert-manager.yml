@@ -1,0 +1,23 @@
+version: 23.4
+name: cert-manager
+parameters:
+  DEPLOY_W_HELM: true
+  global:
+    rbac:
+      create: true
+  serviceAccount:
+    create: true
+  startupapicheck:
+    enabled: false
+  dev-clusterissuer:
+    enabled: true
+  installCRDs: true
+  extraArgs: 
+    - '--enable-certificate-owner-ref=true'
+  VELERO_BACKUP_SECRETS:
+    secretContents:
+      cloud: |
+        [default]
+        aws_access_key_id = ${creds.get(\"velero-s3-cred\").username}
+        aws_secret_access_key = ${creds.get(\"velero-s3-cred\").password}
+applications: []

@@ -1,0 +1,59 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "nrm-operator-v2"
+deployParameters:
+  ESCAPE_SEQUENCE: "true" # paramset: billing version: 23.1 source: template
+  IGNORE_MERGE_CONFLICTS: "true" # paramset: billing version: 23.1 source: template
+  nrm.apps.rb.volumes.outputs.capacity: "1Gi" # paramset: billing version: 23.1 source: template
+  nrm.apps.rb.volumes.outputs.storageClass: "${tenant.cloud.STORAGE_RWX_CLASS}" # paramset: billing version: 23.1 source: template
+  nrm.cassandra.url: "${tenant.cloud.get(\"nrm.cassandra.url\")}/${NAMESPACE.replace(\"-\",\"\")}" # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cloud-common.url: "http://identity-provider:8080/auth/realms/cloud-common" # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cloud-common.verifierConfig.skipClientIdCheck: "true" # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cloud-common.verifierConfig.skipExpiryCheck: "false" # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cloud-common.verifierConfig.skipIssuerCheck: "true" # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cloud-common.verifierConfig.supportedSigningAlgs: |-
+    '
+    []
+    '
+   # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cpq.url: "http://identity-provider:8080/auth/realms/${CPQ_TENANT_ID}" # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cpq.verifierConfig.skipClientIdCheck: "true" # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cpq.verifierConfig.skipExpiryCheck: "false" # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cpq.verifierConfig.skipIssuerCheck: "true" # paramset: billing version: 23.1 source: template
+  nrm.identityProviders.cpq.verifierConfig.supportedSigningAlgs: |-
+    '
+    []
+    '
+   # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.apiExplorer.resources.limits.cpu: "0.6" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.apiExplorer.resources.requests.cpu: "0.6" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.databases.dbAdmins: |-
+    '
+    - name: pgadmin
+
+      url:
+    ${tenant.cloud.get("nrm.db.url")}/postgres?sslmode=disable
+    - name: udm
+
+      url: ${tenant.cloud.get("nrm.cassandra.url")}/system
+
+    '
+   # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.security.additionalCertificatesYaml.cert: "${CLOUD_CDN_STORAGE_CA_BUNDLE.replace(\"    \", \"\").replace(\"|\", \"\").replaceFirst(\"\\n\",\"\")}" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.security.additionalCertificatesYaml.endpoints: "${STORAGE_PROVIDER}://${STORAGE_USERNAME}:${STORAGE_PASSWORD}@${STORAGE_SERVER_URL.replaceFirst(\"https\\\\://\", \"\")}" # paramset: billing version: 23.1 source: template
+  nrm.operator.v4.security.securityRoles: |-
+    '
+    - anonymous: true
+      name: anonymous
+      rules:
+        - apiGroups:
+            - operator.api.nrm.qubership.com
+          resources:
+            - "*"
+          verbs:
+            - "*"
+    '
+   # paramset: billing version: 23.1 source: template
+  nrm.postgresql.rw.url: "${tenant.cloud.get(\"nrm.db.url\")}/postgres?sslmode=disable" # paramset: billing version: 23.1 source: template
+technicalConfigurationParameters: {}

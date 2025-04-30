@@ -1,0 +1,43 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "env-amber-bss"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-env-amber"
+  - "solution-Applications"
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: "dev_bss_override_hawk"
+  baseline: "dev"
+deployParameters:
+  BSSCRM_ROLLOUT_TARGETS: "BSSCS,ZK,ACCESS_CONTROL,DICTIONARIES_PROVIDER,METAMODEL_PROVIDER_DYNAMIC,METAMODEL_PROVIDER_STATIC,CUSTOMIZATION_MANAGER,CONFIG_SERVER,CONSUL,ACM,ACMBI,CIM" # paramset: bss-common version: 1 source: template
+  BSS_CPQ_CHAINS_CIP_DEPLOY_ACTION: "DEPLOY" # paramset: bss-common version: 1 source: template
+  BSS_NAMESPACE: "env-amber-bss"
+  CDN_STORAGE_SERVER_URL: "http://minio.minio:9000" # paramset: ETBSS-10239 version: 1 source: instance
+  COMPOSITE_PLATFORM: "true"
+  CONSUL_ENABLED: "true"
+  CORE_NAMESPACE: "env-amber-core"
+  DATA_MANAGEMENT_NAMESPACE: "env-amber-data-management"
+  DBAAS_LODB_PER_NAMESPACE_AUTOBALANCE_RULES: "postgresql=>postgresql:postgres"
+  IMWS_EMAIL_SUPPORT_TOPIC: "mail_watcher_topic" # paramset: bss-common version: 1 source: template
+  LINK_SCRIPT_MANAGER_INTEGRATION_ENABLE: "false"
+  OM_PRODUCT_INVENTORY_URL: "http://install-base-service:8080" # paramset: bss-common version: 1 source: template
+  OSS_NAMESPACE: "env-amber-oss"
+  # ETBSS-2100
+  PROPOSAL_DOCUMENTS_BUCKET_NAME: "${ENV_NAME}-proposal-documents" # paramset: bss-common version: 1 source: template
+  WP_CONFIGURATION_FILE_NAME: "etslt-bss-wp-configuration.zip" # paramset: bss-common version: 1 source: template
+  WP_CONFIGURATION_SERVICE_NAME: "etslt-bss-wp-configuration" # paramset: bss-common version: 1 source: template
+  WP_RUNTIME_MODE: "CACHE" # paramset: bss-common version: 1 source: template
+  rtd_integration_url: "https://rtcd-engine-service-v1-${BSS_NAMESPACE}.${CLOUD_PRIVATE_HOST}" # paramset: bss-common version: 1 source: template
+  wp_host_url: "wp-host-app-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/csr/dashboard/projects/project/details" # paramset: bss-common version: 1 source: template
+e2eParameters: {}
+technicalConfigurationParameters:
+  CONTENT_SECURITY_POLICY: "default-src *.qubership.cloud; script-src *.qubership.cloud; connect-src *.qubership.cloud; frame-src *.qubership.cloud; style-src *.qubership.cloud" # paramset: bss-wa-tech version: 23.3 source: template
+  org-chart-backend-app/ENABLE_SYNC_FOR_TEAMS: "true" # paramset: bss-wa-tech version: 23.3 source: template
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+tenantName: "Applications"

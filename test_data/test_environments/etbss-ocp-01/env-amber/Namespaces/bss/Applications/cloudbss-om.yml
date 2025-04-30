@@ -1,0 +1,28 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cloudbss-om"
+deployParameters:
+  OM_CIP_DEPLOYED_INTEGRATIONS: # paramset: bss-internal-integrations version: 1 source: template
+    - "som"
+    - "eso"
+    - "utm"
+    - "ibs"
+    - "uim"
+  OM_DECOMPOSITION_SOM_DEFAULT_NOTIFICATION_SUBSCRIPTIONS_URL: "http://om-notification-service.${BSS_NAMESPACE}:8080/serviceOrderingManagement/v2" # paramset: bss-internal-integrations version: 1 source: template
+  OM_DECOMPOSITION_SOM_DEFAULT_URL: "http://om-tmf641-integration-service:8080/serviceOrderingManagement/v2" # paramset: bss-internal-integrations version: 1 source: template
+  OM_DECOMPOSITION_SOM_URLS: # paramset: bss-internal-integrations version: 1 source: template
+    9f4d4ac0-c391-4667-97fc-1725440dfebc:
+      notificationsSubscriptionUrl: "http://om-notification-service.${BSS_NAMESPACE}:8080/serviceOrderingManagement/v2"
+      url: "http://om-tmf641-integration-service:8080/serviceOrderingManagement/v2"
+    a8758cad-4678-4709-a06f-3e9d249ef725:
+      notificationsSubscriptionUrl: "http://om-stub-service:8080/serviceOrderingManagement/v2"
+      url: "http://om-stub-service:8080/serviceOrderingManagement/v2"
+  OM_DEFAULT_PREPAYMENT_ALLOCATION_ENABLED: "false"  # paramset: bss-internal-integrations version: 1 source: template
+  OM_ESO_CALLBACK_URL: "http://cloud-integration-platform-engine.${BSS_NAMESPACE}:8080/routes" # paramset: bss-internal-integrations version: 1 source: template
+  OM_ESO_SERVICE_REQUESTS_URL: "http://service-requests.${OSS_NAMESPACE}:8080" # paramset: bss-internal-integrations version: 1 source: template
+  OM_ESO_URL: "http://eso-manager.${OSS_NAMESPACE}:8080" # paramset: bss-internal-integrations version: 1 source: template
+  OM_UIM_URL: "http://uim:8080"                      # paramset: bss-common version: 1 source: template
+  OM_UTM_CALLBACK_URL: "http://cloud-integration-platform-engine.${BSS_NAMESPACE}:8080/routes" # paramset: bss-internal-integrations version: 1 source: template
+  OM_UTM_URL: "http://internal-gateway-service:8080" # paramset: bss-internal-integrations version: 1 source: template
+technicalConfigurationParameters: {}

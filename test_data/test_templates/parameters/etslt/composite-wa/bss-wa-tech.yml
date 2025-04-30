@@ -1,0 +1,7 @@
+version: 23.3
+name: bss-wa-tech
+parameters: 
+  #WA for ETBSS-1043
+  CONTENT_SECURITY_POLICY: "default-src *.qubership.cloud; script-src *.qubership.cloud; connect-src *.qubership.cloud; frame-src *.qubership.cloud; style-src *.qubership.cloud"
+  org-chart-backend-app/ENABLE_SYNC_FOR_TEAMS: "true"
+applications: []

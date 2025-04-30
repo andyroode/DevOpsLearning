@@ -1,0 +1,13 @@
+version: 23.3
+name: cloud-configuration
+parameters:
+    # OSS + BSS
+    ESCAPE_SEQUENCE: "true"
+    # OSS
+    DISABLE_PARALLEL_EXECUTION: "true"
+    RUN_PARALLEL_EXECUTION: "false"
+    # prj do not use Arango DB
+    USE_POSTGRESQL_AS_DB: "true"
+    COMMON_KAFKA_SERVER: "kafka.kafka:9092" #ETBSS-7839
+    MAAS_CONFIG: "apiVersion: nc.maas.kafka/v2\nkind: instance-designator\nspec:\n  namespace: ${NAMESPACE}\n  defaultInstance: kafka" # config for ETBSS-13558
+applications: []

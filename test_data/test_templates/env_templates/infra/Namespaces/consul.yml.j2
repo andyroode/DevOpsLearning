@@ -1,0 +1,21 @@
+---
+name: "{{ current_env.environmentName }}-consul"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  ui:
+    ingress:
+      hosts:
+        - host: "consul-{{ current_env.environmentName }}.apps.{{ current_env.cluster.cloud_public_url }}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - consul
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

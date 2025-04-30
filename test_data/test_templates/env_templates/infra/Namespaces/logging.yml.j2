@@ -1,0 +1,32 @@
+---
+name: "{{ current_env.environmentName }}-logging"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  fluentd:
+    customFilterConf: |
+      <filter parsed.kubernetes.var.log.**>
+        @type record_transformer
+      <record>
+        cluster "{{ current_env.cloud }}"
+      </record>
+      </filter>
+      <filter parsed.kubernetes.var.log.**openshift-dns**>
+        @type grep
+          <exclude>
+            key log
+            pattern ^\[INFO\].*
+          </exclude>
+      </filter>
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - logging
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

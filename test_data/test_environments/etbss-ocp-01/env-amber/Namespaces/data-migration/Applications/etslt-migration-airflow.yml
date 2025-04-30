@@ -1,0 +1,20 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "etslt-migration-airflow"
+deployParameters:
+  DEPLOY_W_HELM: "true" # paramset: data-migration version: 1 source: template
+  ESCAPE_SEQUENCE: "true" # paramset: data-migration version: 1 source: template
+  securityContexts: # paramset: data-migration version: 1 source: template
+    containers:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - "ALL"
+    pod:
+      fsGroup: null
+      runAsNonRoot: true
+      runAsUser: null
+      seccompProfile:
+        type: "RuntimeDefault"
+technicalConfigurationParameters: {}

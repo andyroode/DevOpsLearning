@@ -1,0 +1,17 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CloudCRM-CBM"
+deployParameters:
+  BSS_INTEGRATION_NRM_DOMAIN: "${BILLING_NAMESPACE}" # paramset: bss version: 1 source: template
+  BSS_INTEGRATION_NRM_MODE: "composite" # paramset: bss version: 1 source: template
+  ECA2_LOGS: "true"  # paramset: bss version: 1 source: template
+technicalConfigurationParameters:
+  eca.catalog.host: "catalog-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443" # paramset: bss-tech version: 23.1 source: template
+  eca.catalog.sslcontext.enabled: "true" # paramset: bss-tech version: 23.1 source: template
+  eca.core.host: "eca2-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443" # paramset: bss-tech version: 23.1 source: template
+  eca.core.sslcontext.enabled: "true"  # paramset: bss-tech version: 23.1 source: template
+  eca.digital-bill-presentment.host: "formatter-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443" # paramset: bss-tech version: 23.1 source: template
+  eca.host: "eca2-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443" # paramset: bss-tech version: 23.1 source: template
+  eca.logs: "true" # paramset: bss-tech version: 23.1 source: template
+  eca.sslcontext.enabled: "true" # paramset: bss-tech version: 23.1 source: template

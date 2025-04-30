@@ -1,0 +1,8 @@
+version: 23.3
+name: oss-wa
+parameters: {}
+applications:
+- appName: "oss.orchestration.core"
+  parameters:
+    # ETBSS-13114
+    RENDERER_ENVIRONMENT: "CIP_URL = http://cloud-integration-platform-engine-v1.${BSS_NAMESPACE}:8080; BSS_PUBLIC_GW_URL = https://public-gateway-${BSS_NAMESPACE}.${CLOUD_PRIVATE_HOST}"

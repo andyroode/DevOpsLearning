@@ -1,0 +1,10 @@
+app-deployer-token-cred:
+  type: secret
+  data:
+    # 11a9266458d97790fefc756420e1b3a91e
+    secret: abc
+app-deployer-username-cred:
+  type: secret
+  data:
+    # admin
+    secret: cba

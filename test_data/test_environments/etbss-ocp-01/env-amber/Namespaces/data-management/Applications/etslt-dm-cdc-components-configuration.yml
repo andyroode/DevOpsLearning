@@ -1,0 +1,122 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "etslt-dm-cdc-components-configuration"
+deployParameters:
+  BSS_SERVICES_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-configuration version: 1 source: template
+  INSTALL_DEFAULT_COMPONENT: |-
+    {
+    	"acm": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"adtl": {
+    		"enabled": false,
+    		"componentName": ""
+    	},
+    	"agm": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"bc": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"bis": {
+    		"enabled": false,
+    		"componentName": ""
+    	},
+    	"cim": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"com": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"cpm": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"cpq": {
+    		"enabled": true,
+    		"componentName": "",
+    		"dbClassifier": ""
+    	},
+    	"csrd": {
+    		"enabled": false,
+    		"componentName": ""
+    	},
+    	"dictionaryProvider": {
+    		"enabled": false,
+    		"componentName": ""
+    	},
+    	"dpt": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"ees": {
+    		"enabled": false,
+    		"componentName": ""
+    	},
+    	"eps": {
+    		"enabled": false,
+    		"componentName": ""
+    	},
+    	"gsm": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"ibs": {
+    		"enabled": true,
+    		"componentName": "",
+    		"dbClassifier": ""
+    	},
+    	"opportunityManagement": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"orgChart": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"pim": {
+    		"enabled": true,
+    		"standaloneTransformerName": ""
+    	},
+    	"pmwp": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"pnl": {
+    		"enabled": false,
+    		"componentName": ""
+    	},
+    	"salesLeadManagement": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"salesQuotaManagement": {
+    		"enabled": false,
+    		"componentName": ""
+    	},
+    	"utm": {
+    		"enabled": true,
+    		"componentName": ""
+    	},
+    	"voms": {
+    		"enabled": false,
+    		"componentName": ""
+    	},
+    	"worklog": {
+    		"enabled": true,
+    		"componentName": ""
+    	}
+    }
+   # paramset: data-management-configuration version: 1 source: template
+  REPORTING_ODS_ADDRESS: "10.122.16.157:1539" # paramset: data-management-configuration version: 1 source: template
+  REPORTING_ODS_DATABASE: "DBG195" # paramset: data-management-configuration version: 1 source: template
+  REPORTING_ODS_PASSWORD: "ODS_PH1" # paramset: data-management-configuration version: 1 source: template
+  REPORTING_ODS_SCHEMA: "ODS_PH1" # paramset: data-management-configuration version: 1 source: template
+  REPORTING_ODS_USER: "ODS_PH1" # paramset: data-management-configuration version: 1 source: template
+technicalConfigurationParameters: {}

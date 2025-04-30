@@ -1,0 +1,9 @@
+---
+name: "nrm_pg_1_param_set"
+parameters:
+  BSS_INTEGRATION_NRM_DOMAIN: "cloud-rbm-pg-1"
+  BSS_INTEGRATION_NRM_MODE: "composite"
+  BSS_INTEGRATION_NRM_PORT: "8080"
+  BSS_INTEGRATION_NRM_PROTOCOL: "http"
+  eca.logs: "false"
+applications: []

@@ -1,0 +1,97 @@
+version: 1
+name: cse-toolset-dev
+parameters: 
+    PGADMIN_CONFIG_SESSION_COOKIE_DOMAIN: ""
+    DBAAS_ADMIN_UI_ADDRESS: ""
+applications:
+  - appName: "composite-status-metrics-producer"
+    parameters:
+      # config for ETBSS-419
+      NAMESPACE_LIST: "postgresql,postgresql-billing,postgresql-dbaas,postgresql-design,postgresql-oss,postgresql-reporting,dbaas,maas,kafka,kafka-service,kafka-streaming,logging,minio,cse-toolset,env.*,earth.*,mars.*,moon.*,saturn.*,sun.*"
+  - appName: "log-exporter"
+    parameters:
+      # config for ETBSS-520
+      ERROR_COUNT_METRICS_ENABLED: "true"
+      OUT_OF_MEMORY_ERROR_COUNT_METRICS_ENABLED: "true"
+      SIGKILL_COUNT_METRICS_ENABLED: "true"
+      OOMKILLED_COUNT_METRICS_ENABLED: "true"
+      LME_UNABLE_TO_ADD_DIRTY_BUFFER_METRICS_ENABLED: "true"
+  - appName: "ssm"
+    parameters:
+      MONITORING_QUERY_URL: "http://vmsingle-k8s.platform-monitoring:8429"
+      SSM_NAVIGATE_ACTIONS:
+        '*':
+          '*':
+            microservice:
+              '*':
+              - title: Openshift Console
+                url: ${CLOUD_DASHBOARD_URL}
+              - title: DPT
+                url: https://dpt-frontend-{{instance.name}}-data-management.${CLOUD_PUBLIC_HOST}/
+              - title: BEOC
+                url: https://beoc-frontend-{{instance.name}}-data-management.${CLOUD_PUBLIC_HOST}/
+              - title: Monitoring
+                url: ${GRAFANA_UI_URL}
+              - title: Show MS Logs
+                url: ${GRAYLOG_UI_URL}/search?q=container_name%3A%22{{dnsName}}%22+AND+namespace_name%3A%22{{msNamespace}}%22&rangetype=relative&from=3600
+              - title: Show Error Logs of MS
+                url: ${GRAYLOG_UI_URL}/search?q=container_name%3A%22{{dnsName}}%22+AND+namespace_name%3A%22{{msNamespace}}%22+AND+level%3A3&rangetype=relative&from=3600
+              - title: Tracing
+                url: http://jaeger.${CLOUD_PUBLIC_HOST}
+              - title: Profiling
+                url: https://esc-ui-service-cdt.${CLOUD_PUBLIC_HOST}/esc/calls?filterParams=%7B%22dateRange%22%3A%5B%222023-10-27T11%3A43%3A35.339Z%22%2C%222023-10-27T12%3A43%3A35.339Z%22%5D%2C%22dateRangeOption%22%3A%22LAST_1_HOUR%22%2C%22duration%22%3A%22%3E%3D%205000ms%22%2C%22podsToLoad%22%3A%5B%7B%22namespace%22%3A%22{{msNamespace}}%22%2C%22service%22%3A%22{{dnsName}}%22%7D%5D%2C%22filterString%22%3A%22%22%2C%22hideSystem%22%3Afalse%7D
+        _globals:
+          instance:
+          - title: Openshift Console
+            url: ${CLOUD_DASHBOARD_URL}
+          - title: DPT
+            url: https://dpt-frontend-{{name}}-data-management.${CLOUD_PUBLIC_HOST}/
+          - title: BEOC
+            url: https://beoc-frontend-{{name}}-data-management.${CLOUD_PUBLIC_HOST}/
+          - title: Monitoring
+            url: ${GRAFANA_UI_URL}
+          - title: Graylog
+            url: ${GRAYLOG_UI_URL}
+          - title: Tracing
+            url: http://jaeger.${CLOUD_PUBLIC_HOST}
+          - title: CMDB
+            url: ${CMDB_URL}
+          - title: Profiling
+            url: https://esc-ui-service-cdt.${CLOUD_PUBLIC_HOST}
+          - title: COW
+            url: https://cow-fe-${NAMESPACE}.${CLOUD_PUBLIC_HOST}
+  - appName: "decoco"
+    parameters:
+      DECOCO_DEPLOYERS: |-
+        '[
+          {
+            "name": "${CMDB_URL}",
+            "username": "${DECOCO_CMDB_USERNAME}",
+            "password": "${DECOCO_CMDB_PASSWORD}"
+          }
+        ]'
+
+      DECOCO_K8S_APIS: |-
+        '[
+          {
+            "name": "${DECOCO_CUSTOM_CLOUDNAME}",
+            "apiUrl": "${CLOUD_PROTOCOL}://${CLOUD_API_HOST}:${CLOUD_API_PORT}",
+            "token": "${DECOCO_K8S_API_TOKEN}"
+          }
+        ]'
+
+      DECOCO_CMDB_USERNAME: ${creds.get("decoco-cmdb-cred").username}
+      DECOCO_CMDB_PASSWORD: ${creds.get("decoco-cmdb-cred").password}
+      DECOCO_K8S_API_TOKEN: ${creds.get("decoco-k8s-api-token").secret}
+      DECOCO_STORAGE_USERNAME: ${creds.get("common-minio-cred").username}
+      DECOCO_STORAGE_PASSWORD: ${creds.get("common-minio-cred").password}
+      DECOCO_STORAGE_PREFIX: ${CLOUDNAME.replace("_cse_toolset","")}
+      DECOCO_CUSTOM_CLOUDNAME: ${CLOUDNAME.replace("_cse_toolset","")}
+  - appName: "env-checker"
+    parameters:
+      # ETBSS-12967
+      ENVIRONMENT_CHECKER_CRON_SCHEDULE: "0 * * * *"
+      ENVIRONMENT_CHECKER_CRON_JOB_COMMAND: "./TestOps/src/run_cronjob.sh prj"
+      STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.com"
+      STORAGE_USERNAME: ${creds.get("common-minio-cred").username}
+      STORAGE_PASSWORD: ${creds.get("common-minio-cred").password}

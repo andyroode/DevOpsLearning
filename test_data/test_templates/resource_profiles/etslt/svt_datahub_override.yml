@@ -1,0 +1,6 @@
+---
+name: "svt_datahub_override"
+version: 0
+baseline: "prod-nonha"
+description: "Override for SVT-profile for Dutuhub namespace"
+applications: []

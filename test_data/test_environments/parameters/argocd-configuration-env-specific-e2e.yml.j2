@@ -1,0 +1,17 @@
+version: 23.4
+name: argocd-configuration-env-specific-e2e
+parameters:
+  # argocd
+  DCL_CONFIG_ARGOCD_PROJECT: project
+  # git
+  DCL_GIT_URL: https://git.qubership.com/SD.ETSLT/devops/deployer-pilot/deployer-pilot-configuration
+  DCL_GIT_BRANCH: {{current_env.cloud}}
+  # artifactory
+{% if '-mdc-' in current_env.cloud %}
+  DCL_CONFIG_REGISTRY_URL: https://artifactorymb.qubership.com
+  DCL_CONFIG_DOCKER_REGISTRY: artifactorycn.qubership.com:17014
+{% else %}
+  DCL_CONFIG_REGISTRY_URL: https://artifactorymb.qubership.com
+  DCL_CONFIG_DOCKER_REGISTRY: artifactorycn.qubership.com:17014
+{% endif %}  
+applications: []

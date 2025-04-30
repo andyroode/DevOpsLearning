@@ -1,0 +1,297 @@
+version: 1
+name: bss-common
+parameters:
+  # PAAS_VERSION_CUSTOM: "1.25" # config for ETBSS-5970
+  BSSCRM_ROLLOUT_TARGETS: "BSSCS,ZK,ACCESS_CONTROL,DICTIONARIES_PROVIDER,METAMODEL_PROVIDER_DYNAMIC,METAMODEL_PROVIDER_STATIC,CUSTOMIZATION_MANAGER,CONFIG_SERVER,CONSUL,ACM,ACMBI,CIM" #for CloudBSS-BSSCRM-Reference-Data-Business
+  BSS_CPQ_CHAINS_CIP_DEPLOY_ACTION: "DEPLOY" # ETBSS-1690
+  rtd_integration_url: https://rtcd-engine-service-v1-${BSS_NAMESPACE}.${CLOUD_PRIVATE_HOST}
+  OM_PRODUCT_INVENTORY_URL: http://install-base-service:8080  # ETBSS-1840
+  wp_host_url: "wp-host-app-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/csr/dashboard/projects/project/details" # ETBSS-3108
+  PROPOSAL_DOCUMENTS_BUCKET_NAME: "${ENV_NAME}-proposal-documents"
+  WP_CONFIGURATION_FILE_NAME: prj-bss-wp-configuration.zip # ETBSS-3220
+  WP_CONFIGURATION_SERVICE_NAME: prj-bss-wp-configuration  ## ETBSS-3220
+  WP_RUNTIME_MODE: "CACHE" #ETBSS-3220
+  IMWS_EMAIL_SUPPORT_TOPIC: "mail_watcher_topic" #ETBSS-17778
+applications:
+  - appName: "prj-devops-s3-automations"
+    parameters:
+      # config for ETBSS-6824
+      MINIO_ENDPOINT: ${DOC_STORAGE_SERVER_URL}
+      MINIO_PORT: "443"
+      MINIO_ACCESSKEY: ${DOC_STORAGE_USERNAME}
+      MINIO_SECRETKEY: ${DOC_STORAGE_PASSWORD}
+      MINIO_ALIAS: "prjminio"
+      BUCKETS: "BUCKET1,BUCKET2,BUCKET3,BUCKET4"
+      BUCKET1_NAME: ${DOC_STORAGE_PERSISTENT_BUCKET_NAME}
+      BUCKET1_POLICY: "public"
+      BUCKET1_PURGE: "false"
+      BUCKET2_NAME: ${DOC_STORAGE_TEMPORARY_BUCKET_NAME}
+      BUCKET2_POLICY: "public"
+      BUCKET2_PURGE: "false"
+      BUCKET3_NAME: ${PROPOSAL_DOCUMENTS_BUCKET_NAME}
+      BUCKET3_POLICY: "public"
+      BUCKET3_PURGE: "false"
+      BUCKET4_NAME: "${ENV_NAME}-dgs-quote-info-documents"
+      BUCKET4_POLICY: "public"
+      BUCKET4_PURGE: "false"
+  - appName: "Cloud-Core"
+    parameters:
+      # config for ETBSS-23858
+      AUTH_PLUGIN_URL: "http://prj-token-brokering-service:8080/convert"
+      # config for ETBSS-13558
+      DBAAS_ON_MICROSERVICES_PHYSDB_RULE: "[{\n\t\t\"type\": \"postgresql\",\n\t\t\"\
+      rules\": [{\n\t\t\t\"label\": \"bss_core_balancing_rule=postgresql-bss-core\"\n\t\
+      \t}],\n\t\t\"microservices\": [\n\t\t\t\"permissions-manager-be\", \"access-control\"\
+      , \"entitlements-aggregator\", \"config-server\", \"control-plane\", \"site-management\"\
+      , \"dictionaries-provider-backend\", \"metamodel-provider-backend\", \"samples-repository\"\
+      , \"smartplug\", \"tenant-self-service-backend\"\n\t]},\n{\n\t\t\"type\": \"\
+      postgresql\",\n\t\t\"rules\": [{\n\t\t\t\"label\": \"bss_balancing_rule=postgresql-bss\"\
+      \n\t\t}],\n\t\t\"microservices\": [\n\t\t\t\"bss-config-rollout-manager\", \"\
+      bss-configuration-service\", \"channel-orchestrator\", \"dashboards-service\"\
+      , \"doc-generation-service\", \"scheduling-service\", \"business-calendar-backend-app\"\
+      , \"content-delivery-manager\", \"control-panel-backend\", \"customization-manager\"\
+      , \"ext-websocket-notifier\", \"cloud-data-migration-nifi\", \"cloud-data-migration-nifi-registry\"\
+      , \"org-chart-backend-app\", \"config-store-go\", \"wp-backend\", \"extended-entity-service\"\
+      , \"user-settings-manager\", \"user-settings-service\"\n\t]},\n{\n\t\t\"type\"\
+      : \"postgresql\",\n\t\t\"rules\": [{\n\t\t\t\"label\": \"cpm_balancing_rule=postgresql-bss-cpm\"\
+      \n\t\t}],\n\t\t\"microservices\": [\n\t\t\t\"cpm-core-service\", \"scripting-service\"\
+      , \"prj-cpm-extension-service\"\n\t]},\n{\n\t\t\"type\": \"postgresql\",\n\
+      \t\t\"rules\": [{\n\t\t\t\"label\": \"cpq_balancing_rule=postgresql-bss-cpq\"\
+      \n\t\t}],\n\t\t\"microservices\": [\n\t\t\t\"catalog-service\", \"quotation-engine-service\"\
+      , \"quote-storage-service\", \"quote-tracking-service\", \"submission-handler-service\"\
+      , \"geo-site-core \", \"worklog-service\"\n\t]},\n\t{\n\t\t\"type\": \"postgresql\"\
+      ,\n\t\t\"rules\": [{\n\t\t\t\"label\": \"ib_balancing_rule=postgresql-bss-ib\"\
+      \n\t\t}],\n\t\t\"microservices\": [\n\t\t\t\"quote-ibi-tracking-service\", \"\
+      install-base-service\"\n\t]},\n{\n\t\t\"type\": \"postgresql\",\n\t\t\"rules\"\
+      : [{\n\t\t\t\"label\": \"om_balancing_rule=postgresql-bss-om\"\n\t\t}],\n\t\
+      \t\"microservices\": [\n\t\t\t\"om-notification-service\", \"om-ordering-catalog-service\"\
+      , \"om-order-lifecycle-manager\"\n\t]},\n{\n\t\t\"type\": \"postgresql\",\n\t\
+      \t\"rules\": [{\n\t\t\t\"label\": \"sales_balancing_rule=postgresql-bss-sales\"\
+      \n\t\t}],\n\t\t\"microservices\": [\n\t\t\t\"cost-catalog-service\", \"pnl-and-cost-management-service\"\
+      , \"lead-management-core-service\", \"opportunity-management-core-service\"\
+      , \"qm-core-service\", \"rule-engine-service\", \"prj-bss-ds-management-service\"\
+      , \"prj-bss-approval-flow-generation-service\"\n\t]},\n{\n\t\t\"type\": \"\
+      postgresql\",\n\t\t\"rules\": [{\n\t\t\t\"label\": \"cim_balancing_rule=postgresql-bss-cim\"\
+      \n\t\t}],\n\t\t\"microservices\": [\n\t\t\t\"account-mgmt-bi\", \"account-mgmt-core\"\
+      , \"payment-method-mgmt-core\", \"agreement-mgmt-core\", \"cim-core-service\"\
+      , \"prj-bscs-integration-service\"\n\t]},\n{\n\t\t\"type\": \"postgresql\"\
+      ,\n\t\t\"rules\": [{\n\t\t\t\"label\": \"pi_balancing_rule=postgresql-bss-pi\"\
+      \n\t\t}],\n\t\t\"microservices\": [\n\t\t\t\"party-interaction-core-service\"\
+      \n\t]},\n{\n\t\t\"type\": \"postgresql\",\n\t\t\"rules\": [{\n\t\t\t\"label\"\
+      : \"cip_balancing_rule=postgresql-bss-cip\"\n\t\t}],\n\t\t\"microservices\"\
+      : [\n\t\t\t\"cloud-integration-platform-catalog\", \"cloud-integration-platform-engine\"\
+      , \"cloud-integration-platform-variables-management\"\n\t]},\n{\n\t\t\"type\"\
+      : \"postgresql\",\n\t\t\"rules\": [{\n\t\t\t\"label\": \"utm_balancing_rule=postgresql-bss-utm\"\
+      \n\t\t}],\n\t\t\"microservices\": [\n\t\t\t\"user-task-manager\", \"utm-notification-manager\"\
+      , \"utm-task-template-catalog\", \"pm-admin-backend\", \"pm-workplace-sid-basic-microservice\"\
+      \n\t]}\n\t\t]"
+  - appName: "rtd-rt" # Added as per ETBSS-1622
+    parameters:
+      scenarioId: "eb74c92c-0ee1-46ad-b3d2-cc34737cdacf"
+  - appName: "prj-proposal-generation-service"
+    parameters:
+      PDF_CONVERTER_IMAGE_REPOSITORY: "artifactorycn.qubership.com:17114/unoconv/unoserver-docker"
+      PDF_CONVERTER_TAG: "0.3.21"
+  - appName: "Cloud-Workplaces-FRW-Runtime"  # Added as per ETBSS-4367
+    parameters:
+      BSS_LOCALIZATION_REPO_NAME: "prj-cloudbss-wp-localization"
+      WP_PERMISSIONS_SERVICE_NAME: "prj-wp-configuration"
+      WP_PERMISSIONS_FILE_NAME: "prj-wp-permissions.json"
+  - appName: "Core-Extensions"  # Added as per ETBSS-5447
+    parameters:
+      smartplug.max.plugin.size.mb: "100"
+  - appName: "prj-devops-postdeploy-app"  # Added as per ETBSS-7795
+    parameters:
+      QES_ACCOUNT_NUMBER_COUNTER_START_VALUE: "900900000001"
+      QES_ACCOUNT_ID_COUNTER_START_VALUE: "7000000001"
+  - appName: "prj-token-brokering-service"
+    parameters:
+      SUBJECT_CLAIM: "individualId"
+      CUSTOMER_IDS_CLAIM: "customer_ids"
+      PUBLIC_KEY_SECRET_VALUE: "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF3VDJxV3ptSCtuZGo1RWZrUnZIMApCdWZoUis4aTdsNENwRzhOU05JTUNvWld3N3BmWmJhNy91OWpiMDI0bnFGNGJtL2x0NmRkQ1hNeWlheXVQMWw4CkRob0llMmM5dmdMUHFUckFVY0ZWRitYbC9lV2tmTWl4WncvQ3JyMEtSUnVLeTV3Wm1vU01tY2NyN2NZZFVjeEkKVk5aR0ZLNUlxYUxpZlBZcUc2U3RIVTVSMUZhRjgyUEg1RDlkem5jWmI2T002NHF1VU5FYXliZThiZnJDWlBsRQpIUzNXaUdDTzJkM1ltSXNDZi9nMUY0QzZaRHdKelJUVDZxMzRiWmUyeFhtUDhzeHZpWjdwSnNacnlXTHVzanZ1CmJRc2dvNUE5Mm1JZHZyNFRpUzBJK3BSUHovbjFTSHhDek9VckxCMlp3WDFKZmtkQythVFlRbytWY0tMSUFSUVcKQlFJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0t"
+  - appName: "prj-cip-integration-chains" #Added as per ETBSS-7765
+    parameters:
+      E2E_SO_USER: "bssuae"
+      E2E_SO_PASSWORD: "AAoiuy1!"
+      E2E_SO_NOTIFICATION_URL: "https://external-ingress-gateway-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/cip-routes/orderManagment/notification/v1/"
+      CIM_USERNAME: ${creds.get("prj-cip-integration-chains").username}
+      CIM_PASSWORD: ${creds.get("prj-cip-integration-chains").password}
+      IN_REQUESTED_SYSTEM: "NCBSS"
+      UAE_PASS_USERNAME: "uae_pass_username"
+      UAE_PASS_PASSWORD: "uae_pass_password"
+      GIS_TOKEN_IP_ADDRESS: "0.0.0.0"   # ETBSS-17565
+      GIS_GEO_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/gisTmf673" # ETBSS-29364
+      GIS_GEO_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/gisTmf673" # ETBSS-29364
+      ODS_USERNAME: ${creds.get("prj-cip-integration-chains-ods").username} # ETBSS-19211
+      ODS_PASSWORD: ${creds.get("prj-cip-integration-chains-ods").password}
+      # config for ETBSS-11371, ETBSS-16735
+      VEDA_ADAPTER_URL: "http://basic-adapter.${OSS_NAMESPACE}.svc.cluster.local:8080"
+      VEDA_NOTIFICATION_URL: "https://public-gateway-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/cip-routes/notificationhandlernbia/"
+      # ETBSS-22651 and ETBSS-23087
+      ODS_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibco"
+      ODS_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibco"
+      HPSM_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoHpsm"
+      HPSM_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoHpsm"
+      UAE_PASS_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoUaePass"
+      UAE_PASS_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoUaePass"
+      ASSET_MANAGEMENT_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoAssetManagement"
+      ASSET_MANAGEMENT_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoAssetManagement"
+      GIS_TOKEN_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoGis"
+      GIS_TOKEN_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoGis"
+      GIS_DEV_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoGis"
+      GIS_TIBCO_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoGis"
+      GIS_TIBCO_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoGis"
+      eNRM_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoEnrm"
+      eNRM_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoEnrm"
+      TECHNICAL_PORTAL_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoTechnicalPortal"
+      TECHNICAL_PORTAL_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoTechnicalPortal"
+      BCRM_CREATE_TICKET_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/bcrmCreateTicket"
+      BCRM_CREATE_TICKET_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/bcrmCreateTicket"
+      EDMS_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoEdms"
+      EDMS_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoEdms"
+      REMEDY_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoRemedy"
+      REMEDY_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoRemedy"
+      VEDA_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoVeda"
+      VEDA_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoVeda"
+      BCRM_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/bcrm"
+      BCRM_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/bcrm"
+      NUMBER_MANAGEMENT_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoNumberManagement"
+      NUMBER_MANAGEMENT_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoNumberManagement"
+      CNS_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoCns"
+      CNS_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoCns"
+      LEGACY_CIM_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoLegacyCim"
+      LEGACY_CIM_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoLegacyCim"
+      CRM_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/crm/BadDebtFlagYes"
+      CRM_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/crm"
+      GIS_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoGis"
+      GIS_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoGis"
+      XAAS_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoXaas"
+      XAAS_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoXaas"
+      WFM_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoWfm"
+      WFM_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoWfm"
+      eNRM_TECHNICAL_DETAILS_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoEnrmTechnicalDetails"
+      eNRM_TECHNICAL_DETAILS_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoEnrmTechnicalDetails"
+      EID_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibco"
+      EID_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibco"
+      SONIC_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoSonic"
+      SONIC_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoSonic"
+      ERICSSON_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoEricsson"
+      ERICSSON_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoEricsson"
+      OCR_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOcr"
+      OCR_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOcr"
+      HLR_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoHlr"
+      HLR_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoHlr"
+      FELIX_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoFelix"
+      FELIX_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoFelix"
+      #ETBSS-23970
+      NUMBER_MANAGEMENT_POOL_ID: "4010"
+      #ETBSS-27508
+      ODS_DEBT_COLLECTION_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOdsDebtcollection"
+      ODS_DEBT_COLLECTION_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOdsDebtcollection"
+      ODS_STUCK_CHANNEL_PAYMENTS_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOdsGetStuckChannel"
+      ODS_STUCK_CHANNEL_PAYMENTS_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOdsGetStuckChannel"
+      ODS_FETCH_ACCOUNT_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOdsFetchAccount"
+      ODS_FETCH_ACCOUNT_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOdsFetchAccount"
+      ODS_MASTER_TROUBLE_TICKET_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOdsTroubleTicke"
+      ODS_MASTER_TROUBLE_TICKET_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoOdsTroubleTicke"
+      IN_GENERIC_USAGE_INQUIRY_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoIn"
+      IN_GENERIC_USAGE_INQUIRY_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoIn"
+      NM_TMF716_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoNumberManagementTmf716"
+      NM_TMF716_MAIN_URL: "	http://prj-bss-external-integration-egress-service:8080/tibcoNumberManagementTmf716"
+      NM_TMF639_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoNumberManagementTmf639"
+      NM_TMF639_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoNumberManagementTmf639"
+      REMEDY_TMF638_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoRemedyTmf638"
+      REMEDY_TMF638_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoRemedyTmf638"
+      REMEDY_TMF724_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoRemedyTmf724"
+      REMEDY_TMF724_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoRemedyTmf724"
+      #ETBSS-29048
+      REMEDY_CUSTOMER_ONBOARDING_MAIN_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoRemedyCustomerOnboarding"
+      REMEDY_CUSTOMER_ONBOARDING_BACKUP_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoRemedyCustomerOnboarding"
+  - appName: "CloudCRM-CBM"  #Added as per ETBSS-7455
+    parameters:
+      BSS_INTEGRATION_NRM_ENABLED: "true"
+  - appName: "prj-bss-external-integration-egress-service"  #Added as per ETBSS-15802
+    parameters:
+      IDENTITY_PROVIDER_URL: "http://identity-provider:8080"
+      # TIBCO_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: ${creds.get("prj-bscs-egress-service-tibco-basic-authorization").username}
+      # TIBCO_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: ${creds.get("prj-bscs-egress-service-tibco-basic-authorization").password}
+      DISABLE_SECURE_CONNECTION: "false"
+      M2M_TENANT_ID: "cloud-common" #Added as per ETBSS-11614
+      USER_TENANT_ID_URL: "http://tenant-manager:8080/api/v4/tenant-manager/registration/tenants?dns=cpq" #Added as per ETBSS-11614
+      #Added as per ETBSS-23833
+      TIBCO_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: ${creds.get("external-integration-egress-service-tibco-credentials").username}
+      TIBCO_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: ${creds.get("external-integration-egress-service-tibco-credentials").password}
+      TIBCO_BACKUP_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: ${creds.get("external-integration-egress-service-tibco-backup-credentials").username}
+      TIBCO_BACKUP_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: ${creds.get("external-integration-egress-service-tibco-backup-credentials").password}
+      BCRM_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: ${creds.get("external-integration-egress-service-bcrm-credentials").username}
+      BCRM_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: ${creds.get("external-integration-egress-service-bcrm-credentials").password}
+      BCRM_BACKUP_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: ${creds.get("external-integration-egress-service-bcrm-backup-credentials").username}
+      BCRM_BACKUP_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: ${creds.get("external-integration-egress-service-bcrm-backup-credentials").password}
+      CRM_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: ${creds.get("external-integration-egress-service-crm-credentials").username}
+      CRM_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: ${creds.get("external-integration-egress-service-crm-credentials").password}
+      CRM_BACKUP_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: ${creds.get("external-integration-egress-service-crm-backup-credentials").username}
+      CRM_BACKUP_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: ${creds.get("external-integration-egress-service-crm-backup-credentials").password}
+      ENABLE_TOKEN_MASKING: "true"
+      EXTERNAL_SYSTEMS_URLS: |-
+        '{
+          "tibco":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+          "tibcoBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+          "crm":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+          "crmBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+          "bcrm":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+          "bcrmBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud"
+        }'
+      #ETBSS-27470
+      TIBCO_CERT_VALUE: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUgrRENDQnVDZ0F3SUJBZ0lUYndBTVA1RGlaRHY0bVFpVGFBQUNBQXcva0RBTkJna3Foa2lHOXcwQkFRc0YKQURCVU1STXdFUVlLQ1pJbWlaUHlMR1FCR1JZRFkyOXRNUm93R0FZS0NaSW1pWlB5TEdRQkdSWUtibVYwWTNKaApZMnRsY2pFaE1COEdBMVVFQXhNWVRtVjBRM0poWTJ0bGNpQlVaV05vYm05c2IyZDVJRU5CTUI0WERUSTBNRFF5Ck16RTBNRGswTjFvWERUSTJNRFF5TXpFME1EazBOMW93Z1k4eEhqQWNCZ05WQkFvVEZVNWxkRU55WVdOclpYSWcKVkdWamFHNXZiRzluZVRFT01Bd0dBMVVFQ3hNRlNWUkVVRXd4S2pBb0JnTlZCQU1NSVNvdVlYUndhM1ZpTG0xaApibUZuWldRdWJtVjBZM0poWTJ0bGNpNWpiRzkxWkRFeE1DOEdDU3FHU0liM0RRRUpBUllpVUdGaFUwOXdaWEpoCmRHbHZibk5IY205MWNFQnVaWFJqY21GamEyVnlMbU52YlRDQ0FpSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnSVAKQURDQ0Fnb0NnZ0lCQU55QW52NEUrWVhFKy9DbDBTcVF1aUdnVHgxRUVBdWRocWszU1N2ZnY5VDl3Qk8rRFp3dQpBT3pGVzdNSlRub0ZJcHFZYTNGMVVyNGE3RTlvRW11RC9DRXdxTGFWcjVkbFFScWFSbEVJbHZkZTVTTjUvTnliCkgzTUVoQTFGb0VtMXFlT2hFRjVQQ202dW1OZlBhTDNEb08zWmdIbmVQU05oRExxckcrQlJaLzhLa0tFd2FRekcKVkxkQllkbnJab2dHZE95TitIQWt2S3B2S0RxWEEyMUhJd1JObGlhV0JrV2luNzJ2MmZpNGdOREtpN0RweFVhRApIZFlLeWVSTElsSllEakpoYkJWL0Irb29DTjV0ZVdwTWkwMDJEQlBhY29zZVd0SzA5THgyRUo4Q3hpMWF2bWlQCmRxKzB1SUJzckhpZ3VqTG0zQy8vV044VDh3MDFaN2thTXdjeEU4U1JTZUpGbTcvN3pGVjQyOGVHZEhYL3dxSnQKcndGZU11STAzaU1mZkgwaUtQS2huQ2NabDA3S0xpejdycDJ3Qm5TaWo1TEt5QmQ5RUdFNHdvWW1tOHMvZElxNApwdXBteVBzNzRnUWhacmNITjVRSjhlcTBNNjZQZURZV3FyQjlUcVJKTXhKQmlIQzV1eGFEYm0zaWV2aDNRSmpECmpUdkp3LzVERy90MFhPVFlBSmpySzRTT1dlYmtGM2YyenYxMmhGQXZGOVVBVmhHMjIySXBONDJObTBtR1FLSlEKZTcyYVZXMTRWUEpsRkVBRHJ2eG80M1ArYWFnMWtaZDN5MmlSdXQxV2VjQWNRRldKWlRvOFYrOFJZdCt2QlBRVAovNnRmYWU1NUdDWlpjNUZ0REw1eHRQenBXVVFITm1NTFMwVi9ZOUc2VzVmTWVxbDc4NnBycWhxZkFnTUJBQUdqCmdnT0ZNSUlEZ1RBc0JnTlZIUkVFSlRBamdpRXFMbUYwY0d0MVlpNXRZVzVoWjJWa0xtNWxkR055WVdOclpYSXUKWTJ4dmRXUXdIUVlEVlIwT0JCWUVGTUxZOVNDSWhqTVloaXRaNjl1VlZBb0M0eWJYTUI4R0ExVWRJd1FZTUJhQQpGSzErbUlBUnlPVGUvbFRXd3V4emZQaTI4a1FtTUlJQk13WURWUjBmQklJQktqQ0NBU1l3Z2dFaW9JSUJIcUNDCkFScUdnY2xzWkdGd09pOHZMME5PUFU1bGRFTnlZV05yWlhJbE1qQlVaV05vYm05c2IyZDVKVEl3UTBFb01pa3MKUTA0OVEwVlNWRk5TVml4RFRqMURSRkFzUTA0OVVIVmliR2xqSlRJd1MyVjVKVEl3VTJWeWRtbGpaWE1zUTA0OQpVMlZ5ZG1salpYTXNRMDQ5UTI5dVptbG5kWEpoZEdsdmJpeEVRejF1WlhSamNtRmphMlZ5TEVSRFBXTnZiVDlqClpYSjBhV1pwWTJGMFpWSmxkbTlqWVhScGIyNU1hWE4wUDJKaGMyVS9iMkpxWldOMFEyeGhjM005WTFKTVJHbHoKZEhKcFluVjBhVzl1VUc5cGJuU0dUR2gwZEhBNkx5OURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0TDBObApjblJGYm5KdmJHd3ZUbVYwUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU2d5S1M1amNtd3dnZ0ZFCkJnZ3JCZ0VGQlFjQkFRU0NBVFl3Z2dFeU1JRytCZ2dyQmdFRkJRY3dBb2FCc1d4a1lYQTZMeTh2UTA0OVRtVjAKUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU3hEVGoxQlNVRXNRMDQ5VUhWaWJHbGpKVEl3UzJWNQpKVEl3VTJWeWRtbGpaWE1zUTA0OVUyVnlkbWxqWlhNc1EwNDlRMjl1Wm1sbmRYSmhkR2x2Yml4RVF6MXVaWFJqCmNtRmphMlZ5TEVSRFBXTnZiVDlqUVVObGNuUnBabWxqWVhSbFAySmhjMlUvYjJKcVpXTjBRMnhoYzNNOVkyVnkKZEdsbWFXTmhkR2x2YmtGMWRHaHZjbWwwZVRCdkJnZ3JCZ0VGQlFjd0FZWmphSFIwY0RvdkwwTkZVbFJUVWxZdQpibVYwWTNKaFkydGxjaTVqYjIwdlEyVnlkRVZ1Y205c2JDOURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0ClgwNWxkRU55WVdOclpYSWxNakJVWldOb2JtOXNiMmQ1SlRJd1EwRW9NaWt1WTNKME1Bc0dBMVVkRHdRRUF3SUYKb0RBOUJna3JCZ0VFQVlJM0ZRY0VNREF1QmlZckJnRUVBWUkzRlFpRmpjY1NoTXVlZDRmTmhUV0h4cDV0aEpyVwpFVU9Ed1lBb2c2blZGd0lCWkFJQkNqQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0RBUVlJS3dZQkJRVUhBd0l3Ckp3WUpLd1lCQkFHQ054VUtCQm93R0RBS0JnZ3JCZ0VGQlFjREFUQUtCZ2dyQmdFRkJRY0RBakFOQmdrcWhraUcKOXcwQkFRc0ZBQU9DQVFFQVptWnZ1SUhaZXJmTEtsS2hTTm9ZMG5sOVQ0bWpkNjFhdTAwY2NzZ3pSRXVMeGZoMgpFWkYzcS9DeExHSXRUT0NabENzb0Zna3lFQ0JsajBBZ0JmWllkTFRaSzZLbEZLa3o5ZTFmN2tQRFExeXlJdFFICjdrMXAxTWI0bGNGSk13Rno2MFFZdlRIZXVZTW5KWkJQelhpQ0Z5dzZqbVFQcWFPaHRHZHo1WHY3V2x5akNxbjQKVkl4MlpsQ2MvdTAraFpUTFlFZEl1VVN1SnUzeHRPV0EyWEs5clRvVlJ6N3hvY0NSY0lsT2ljOCtNbFgzVUZ3ZgpBR0tyczBoQ2RLeGpiTEc3cWluMXAzdlBRRmdyTTVNOHBqcnVqRnp6bndTemlQOHRBWjcwM2I0TzFYemN2Y0JuCnhmb0Y0VVBJQ05URUx1QWtUVFJSYjRGVXRiTkNhNFJGSjJQcGNRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
+      BCRM_CERT_VALUE: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUgrRENDQnVDZ0F3SUJBZ0lUYndBTVA1RGlaRHY0bVFpVGFBQUNBQXcva0RBTkJna3Foa2lHOXcwQkFRc0YKQURCVU1STXdFUVlLQ1pJbWlaUHlMR1FCR1JZRFkyOXRNUm93R0FZS0NaSW1pWlB5TEdRQkdSWUtibVYwWTNKaApZMnRsY2pFaE1COEdBMVVFQXhNWVRtVjBRM0poWTJ0bGNpQlVaV05vYm05c2IyZDVJRU5CTUI0WERUSTBNRFF5Ck16RTBNRGswTjFvWERUSTJNRFF5TXpFME1EazBOMW93Z1k4eEhqQWNCZ05WQkFvVEZVNWxkRU55WVdOclpYSWcKVkdWamFHNXZiRzluZVRFT01Bd0dBMVVFQ3hNRlNWUkVVRXd4S2pBb0JnTlZCQU1NSVNvdVlYUndhM1ZpTG0xaApibUZuWldRdWJtVjBZM0poWTJ0bGNpNWpiRzkxWkRFeE1DOEdDU3FHU0liM0RRRUpBUllpVUdGaFUwOXdaWEpoCmRHbHZibk5IY205MWNFQnVaWFJqY21GamEyVnlMbU52YlRDQ0FpSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnSVAKQURDQ0Fnb0NnZ0lCQU55QW52NEUrWVhFKy9DbDBTcVF1aUdnVHgxRUVBdWRocWszU1N2ZnY5VDl3Qk8rRFp3dQpBT3pGVzdNSlRub0ZJcHFZYTNGMVVyNGE3RTlvRW11RC9DRXdxTGFWcjVkbFFScWFSbEVJbHZkZTVTTjUvTnliCkgzTUVoQTFGb0VtMXFlT2hFRjVQQ202dW1OZlBhTDNEb08zWmdIbmVQU05oRExxckcrQlJaLzhLa0tFd2FRekcKVkxkQllkbnJab2dHZE95TitIQWt2S3B2S0RxWEEyMUhJd1JObGlhV0JrV2luNzJ2MmZpNGdOREtpN0RweFVhRApIZFlLeWVSTElsSllEakpoYkJWL0Irb29DTjV0ZVdwTWkwMDJEQlBhY29zZVd0SzA5THgyRUo4Q3hpMWF2bWlQCmRxKzB1SUJzckhpZ3VqTG0zQy8vV044VDh3MDFaN2thTXdjeEU4U1JTZUpGbTcvN3pGVjQyOGVHZEhYL3dxSnQKcndGZU11STAzaU1mZkgwaUtQS2huQ2NabDA3S0xpejdycDJ3Qm5TaWo1TEt5QmQ5RUdFNHdvWW1tOHMvZElxNApwdXBteVBzNzRnUWhacmNITjVRSjhlcTBNNjZQZURZV3FyQjlUcVJKTXhKQmlIQzV1eGFEYm0zaWV2aDNRSmpECmpUdkp3LzVERy90MFhPVFlBSmpySzRTT1dlYmtGM2YyenYxMmhGQXZGOVVBVmhHMjIySXBONDJObTBtR1FLSlEKZTcyYVZXMTRWUEpsRkVBRHJ2eG80M1ArYWFnMWtaZDN5MmlSdXQxV2VjQWNRRldKWlRvOFYrOFJZdCt2QlBRVAovNnRmYWU1NUdDWlpjNUZ0REw1eHRQenBXVVFITm1NTFMwVi9ZOUc2VzVmTWVxbDc4NnBycWhxZkFnTUJBQUdqCmdnT0ZNSUlEZ1RBc0JnTlZIUkVFSlRBamdpRXFMbUYwY0d0MVlpNXRZVzVoWjJWa0xtNWxkR055WVdOclpYSXUKWTJ4dmRXUXdIUVlEVlIwT0JCWUVGTUxZOVNDSWhqTVloaXRaNjl1VlZBb0M0eWJYTUI4R0ExVWRJd1FZTUJhQQpGSzErbUlBUnlPVGUvbFRXd3V4emZQaTI4a1FtTUlJQk13WURWUjBmQklJQktqQ0NBU1l3Z2dFaW9JSUJIcUNDCkFScUdnY2xzWkdGd09pOHZMME5PUFU1bGRFTnlZV05yWlhJbE1qQlVaV05vYm05c2IyZDVKVEl3UTBFb01pa3MKUTA0OVEwVlNWRk5TVml4RFRqMURSRkFzUTA0OVVIVmliR2xqSlRJd1MyVjVKVEl3VTJWeWRtbGpaWE1zUTA0OQpVMlZ5ZG1salpYTXNRMDQ5UTI5dVptbG5kWEpoZEdsdmJpeEVRejF1WlhSamNtRmphMlZ5TEVSRFBXTnZiVDlqClpYSjBhV1pwWTJGMFpWSmxkbTlqWVhScGIyNU1hWE4wUDJKaGMyVS9iMkpxWldOMFEyeGhjM005WTFKTVJHbHoKZEhKcFluVjBhVzl1VUc5cGJuU0dUR2gwZEhBNkx5OURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0TDBObApjblJGYm5KdmJHd3ZUbVYwUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU2d5S1M1amNtd3dnZ0ZFCkJnZ3JCZ0VGQlFjQkFRU0NBVFl3Z2dFeU1JRytCZ2dyQmdFRkJRY3dBb2FCc1d4a1lYQTZMeTh2UTA0OVRtVjAKUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU3hEVGoxQlNVRXNRMDQ5VUhWaWJHbGpKVEl3UzJWNQpKVEl3VTJWeWRtbGpaWE1zUTA0OVUyVnlkbWxqWlhNc1EwNDlRMjl1Wm1sbmRYSmhkR2x2Yml4RVF6MXVaWFJqCmNtRmphMlZ5TEVSRFBXTnZiVDlqUVVObGNuUnBabWxqWVhSbFAySmhjMlUvYjJKcVpXTjBRMnhoYzNNOVkyVnkKZEdsbWFXTmhkR2x2YmtGMWRHaHZjbWwwZVRCdkJnZ3JCZ0VGQlFjd0FZWmphSFIwY0RvdkwwTkZVbFJUVWxZdQpibVYwWTNKaFkydGxjaTVqYjIwdlEyVnlkRVZ1Y205c2JDOURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0ClgwNWxkRU55WVdOclpYSWxNakJVWldOb2JtOXNiMmQ1SlRJd1EwRW9NaWt1WTNKME1Bc0dBMVVkRHdRRUF3SUYKb0RBOUJna3JCZ0VFQVlJM0ZRY0VNREF1QmlZckJnRUVBWUkzRlFpRmpjY1NoTXVlZDRmTmhUV0h4cDV0aEpyVwpFVU9Ed1lBb2c2blZGd0lCWkFJQkNqQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0RBUVlJS3dZQkJRVUhBd0l3Ckp3WUpLd1lCQkFHQ054VUtCQm93R0RBS0JnZ3JCZ0VGQlFjREFUQUtCZ2dyQmdFRkJRY0RBakFOQmdrcWhraUcKOXcwQkFRc0ZBQU9DQVFFQVptWnZ1SUhaZXJmTEtsS2hTTm9ZMG5sOVQ0bWpkNjFhdTAwY2NzZ3pSRXVMeGZoMgpFWkYzcS9DeExHSXRUT0NabENzb0Zna3lFQ0JsajBBZ0JmWllkTFRaSzZLbEZLa3o5ZTFmN2tQRFExeXlJdFFICjdrMXAxTWI0bGNGSk13Rno2MFFZdlRIZXVZTW5KWkJQelhpQ0Z5dzZqbVFQcWFPaHRHZHo1WHY3V2x5akNxbjQKVkl4MlpsQ2MvdTAraFpUTFlFZEl1VVN1SnUzeHRPV0EyWEs5clRvVlJ6N3hvY0NSY0lsT2ljOCtNbFgzVUZ3ZgpBR0tyczBoQ2RLeGpiTEc3cWluMXAzdlBRRmdyTTVNOHBqcnVqRnp6bndTemlQOHRBWjcwM2I0TzFYemN2Y0JuCnhmb0Y0VVBJQ05URUx1QWtUVFJSYjRGVXRiTkNhNFJGSjJQcGNRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
+      CRM_CERT_VALUE: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUgrRENDQnVDZ0F3SUJBZ0lUYndBTVA1RGlaRHY0bVFpVGFBQUNBQXcva0RBTkJna3Foa2lHOXcwQkFRc0YKQURCVU1STXdFUVlLQ1pJbWlaUHlMR1FCR1JZRFkyOXRNUm93R0FZS0NaSW1pWlB5TEdRQkdSWUtibVYwWTNKaApZMnRsY2pFaE1COEdBMVVFQXhNWVRtVjBRM0poWTJ0bGNpQlVaV05vYm05c2IyZDVJRU5CTUI0WERUSTBNRFF5Ck16RTBNRGswTjFvWERUSTJNRFF5TXpFME1EazBOMW93Z1k4eEhqQWNCZ05WQkFvVEZVNWxkRU55WVdOclpYSWcKVkdWamFHNXZiRzluZVRFT01Bd0dBMVVFQ3hNRlNWUkVVRXd4S2pBb0JnTlZCQU1NSVNvdVlYUndhM1ZpTG0xaApibUZuWldRdWJtVjBZM0poWTJ0bGNpNWpiRzkxWkRFeE1DOEdDU3FHU0liM0RRRUpBUllpVUdGaFUwOXdaWEpoCmRHbHZibk5IY205MWNFQnVaWFJqY21GamEyVnlMbU52YlRDQ0FpSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnSVAKQURDQ0Fnb0NnZ0lCQU55QW52NEUrWVhFKy9DbDBTcVF1aUdnVHgxRUVBdWRocWszU1N2ZnY5VDl3Qk8rRFp3dQpBT3pGVzdNSlRub0ZJcHFZYTNGMVVyNGE3RTlvRW11RC9DRXdxTGFWcjVkbFFScWFSbEVJbHZkZTVTTjUvTnliCkgzTUVoQTFGb0VtMXFlT2hFRjVQQ202dW1OZlBhTDNEb08zWmdIbmVQU05oRExxckcrQlJaLzhLa0tFd2FRekcKVkxkQllkbnJab2dHZE95TitIQWt2S3B2S0RxWEEyMUhJd1JObGlhV0JrV2luNzJ2MmZpNGdOREtpN0RweFVhRApIZFlLeWVSTElsSllEakpoYkJWL0Irb29DTjV0ZVdwTWkwMDJEQlBhY29zZVd0SzA5THgyRUo4Q3hpMWF2bWlQCmRxKzB1SUJzckhpZ3VqTG0zQy8vV044VDh3MDFaN2thTXdjeEU4U1JTZUpGbTcvN3pGVjQyOGVHZEhYL3dxSnQKcndGZU11STAzaU1mZkgwaUtQS2huQ2NabDA3S0xpejdycDJ3Qm5TaWo1TEt5QmQ5RUdFNHdvWW1tOHMvZElxNApwdXBteVBzNzRnUWhacmNITjVRSjhlcTBNNjZQZURZV3FyQjlUcVJKTXhKQmlIQzV1eGFEYm0zaWV2aDNRSmpECmpUdkp3LzVERy90MFhPVFlBSmpySzRTT1dlYmtGM2YyenYxMmhGQXZGOVVBVmhHMjIySXBONDJObTBtR1FLSlEKZTcyYVZXMTRWUEpsRkVBRHJ2eG80M1ArYWFnMWtaZDN5MmlSdXQxV2VjQWNRRldKWlRvOFYrOFJZdCt2QlBRVAovNnRmYWU1NUdDWlpjNUZ0REw1eHRQenBXVVFITm1NTFMwVi9ZOUc2VzVmTWVxbDc4NnBycWhxZkFnTUJBQUdqCmdnT0ZNSUlEZ1RBc0JnTlZIUkVFSlRBamdpRXFMbUYwY0d0MVlpNXRZVzVoWjJWa0xtNWxkR055WVdOclpYSXUKWTJ4dmRXUXdIUVlEVlIwT0JCWUVGTUxZOVNDSWhqTVloaXRaNjl1VlZBb0M0eWJYTUI4R0ExVWRJd1FZTUJhQQpGSzErbUlBUnlPVGUvbFRXd3V4emZQaTI4a1FtTUlJQk13WURWUjBmQklJQktqQ0NBU1l3Z2dFaW9JSUJIcUNDCkFScUdnY2xzWkdGd09pOHZMME5PUFU1bGRFTnlZV05yWlhJbE1qQlVaV05vYm05c2IyZDVKVEl3UTBFb01pa3MKUTA0OVEwVlNWRk5TVml4RFRqMURSRkFzUTA0OVVIVmliR2xqSlRJd1MyVjVKVEl3VTJWeWRtbGpaWE1zUTA0OQpVMlZ5ZG1salpYTXNRMDQ5UTI5dVptbG5kWEpoZEdsdmJpeEVRejF1WlhSamNtRmphMlZ5TEVSRFBXTnZiVDlqClpYSjBhV1pwWTJGMFpWSmxkbTlqWVhScGIyNU1hWE4wUDJKaGMyVS9iMkpxWldOMFEyeGhjM005WTFKTVJHbHoKZEhKcFluVjBhVzl1VUc5cGJuU0dUR2gwZEhBNkx5OURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0TDBObApjblJGYm5KdmJHd3ZUbVYwUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU2d5S1M1amNtd3dnZ0ZFCkJnZ3JCZ0VGQlFjQkFRU0NBVFl3Z2dFeU1JRytCZ2dyQmdFRkJRY3dBb2FCc1d4a1lYQTZMeTh2UTA0OVRtVjAKUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU3hEVGoxQlNVRXNRMDQ5VUhWaWJHbGpKVEl3UzJWNQpKVEl3VTJWeWRtbGpaWE1zUTA0OVUyVnlkbWxqWlhNc1EwNDlRMjl1Wm1sbmRYSmhkR2x2Yml4RVF6MXVaWFJqCmNtRmphMlZ5TEVSRFBXTnZiVDlqUVVObGNuUnBabWxqWVhSbFAySmhjMlUvYjJKcVpXTjBRMnhoYzNNOVkyVnkKZEdsbWFXTmhkR2x2YmtGMWRHaHZjbWwwZVRCdkJnZ3JCZ0VGQlFjd0FZWmphSFIwY0RvdkwwTkZVbFJUVWxZdQpibVYwWTNKaFkydGxjaTVqYjIwdlEyVnlkRVZ1Y205c2JDOURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0ClgwNWxkRU55WVdOclpYSWxNakJVWldOb2JtOXNiMmQ1SlRJd1EwRW9NaWt1WTNKME1Bc0dBMVVkRHdRRUF3SUYKb0RBOUJna3JCZ0VFQVlJM0ZRY0VNREF1QmlZckJnRUVBWUkzRlFpRmpjY1NoTXVlZDRmTmhUV0h4cDV0aEpyVwpFVU9Ed1lBb2c2blZGd0lCWkFJQkNqQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0RBUVlJS3dZQkJRVUhBd0l3Ckp3WUpLd1lCQkFHQ054VUtCQm93R0RBS0JnZ3JCZ0VGQlFjREFUQUtCZ2dyQmdFRkJRY0RBakFOQmdrcWhraUcKOXcwQkFRc0ZBQU9DQVFFQVptWnZ1SUhaZXJmTEtsS2hTTm9ZMG5sOVQ0bWpkNjFhdTAwY2NzZ3pSRXVMeGZoMgpFWkYzcS9DeExHSXRUT0NabENzb0Zna3lFQ0JsajBBZ0JmWllkTFRaSzZLbEZLa3o5ZTFmN2tQRFExeXlJdFFICjdrMXAxTWI0bGNGSk13Rno2MFFZdlRIZXVZTW5KWkJQelhpQ0Z5dzZqbVFQcWFPaHRHZHo1WHY3V2x5akNxbjQKVkl4MlpsQ2MvdTAraFpUTFlFZEl1VVN1SnUzeHRPV0EyWEs5clRvVlJ6N3hvY0NSY0lsT2ljOCtNbFgzVUZ3ZgpBR0tyczBoQ2RLeGpiTEc3cWluMXAzdlBRRmdyTTVNOHBqcnVqRnp6bndTemlQOHRBWjcwM2I0TzFYemN2Y0JuCnhmb0Y0VVBJQ05URUx1QWtUVFJSYjRGVXRiTkNhNFJGSjJQcGNRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ=="
+  - appName: "prj-oc-ui-be-service"  #Added as per ETBSS-9398
+    parameters:
+      GIS_URL: "https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689/dev/gis/location/iframe?userid={0}&ipaddres={1}&requester={2}&token={3}"
+  - appName: "cloud-uim"  #Added as per ETBSS-9471
+    parameters:
+      UIM_PLUGINS_CONFIGS: '''{"plugins": {"deliveryPlugins": [{"defaultPluginConfig": {"pluginSpecificConfigs": {"connection_pool.size.max": "\\$(UIM_PLUGIN_SMTP_CONNECTION_POOL_SIZE_MAX)", "host": "\\$(SMTP_SERVER_URL)", "password": "\\$(SMTP_SERVER_PASSWORD)", "port": "\\$(SMTP_SERVER_PORT)", "thread_pool.size": "\\$(UIM_PLUGIN_SMTP_THREAD_POOL_SIZE)", "username": "\\$(SMTP_SERVER_USERNAME)"}}, "implementationConfig": {"oobPluginReference": "E_MAIL"}, "pluginInstanceId": "E_MAIL"}, {"defaultPluginConfig": {"pluginSpecificConfigs": {"cnsEndpoint": "\\$(cnsEndpoint)", "cnsPassword": "\\$(CNS_PASSWORD)", "cnsUrl": "\\$(cnsUrl)", "cnsUsername": "\\$(CNS_USERNAME)", "connection_pool.size.max": "\\$(UIM_PLUGIN_SMTP_CONNECTION_POOL_SIZE_MAX)", "host": "\\$(SMTP_SERVER_URL)", "password": "\\$(SMTP_SERVER_PASSWORD)", "port": "\\$(SMTP_SERVER_PORT)", "thread_pool.size": "\\$(UIM_PLUGIN_SMTP_THREAD_POOL_SIZE)", "username": "\\$(SMTP_SERVER_USERNAME)"}}, "implementationConfig": {"plugPoint": "asyncDeliveryPlugPointV2", "smartplugQualifier": "EsltCnsPlugin"}, "pluginInstanceId": "CNS"}]}}'''
+      UIM_PLUGINS_MAPPING: '''{"pluginsMapping":[{"filters":[{"mediumType":"CALENDAR_EVENT"}],"pluginInstanceId":"E_MAIL"},{"filters":[{"mediumType":"E_MAIL"},{"mediumType":"SMS"}],"pluginInstanceId":"CNS"}]}'''
+  - appName: "prj-uim-int-smartplug"  #Added as per ETBSS-9475 and ETBSS-9477
+    parameters:
+      CNS_USERNAME: ${creds.get("prj-uim-int-smartplug").username}
+      CNS_PASSWORD: ${creds.get("prj-uim-int-smartplug").password}
+      CNS_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoCns"
+      CNS_ENDPOINT: "/TMFC000_CM/TMF681_CM/communicationMessage" #ETBSS-27892
+      CNS_REQUESTED_SYSTEM: "NC-UIM" #ETBSS-28407
+  - appName: "CloudCRM-GraphQL"  #Added as per ETBSS-9507
+    parameters:
+      # update ETBSS-26264 and ETBSS-26787
+      GQL_EXTENSION_POINT_PROPERTIES: "bulk-balance-inquiry-path=/tibcoBscs/tmf678/extension/bulkBalanceInquiry\ninvoice-overview-inquiry-path=/tibcoBscs/integration/ericsson/v1/invoiceOverviewInquiry\ncode-endpoint-path=/tibcoCodeUnifieddunninginquiry/customerbillingcollectionmgmt/r/unifieddunninginquiry\nget-crc-notes-path=/tibcoCodeFetchDunningDetails/customerbillingcollectionmgmt/r/fetchDunningDetails\nupdate-crc-notes-path=/tibcoCodePostDunningDetails/customerbillingcollectionmgmt/cud/postdunningdetails\npayment-endpoint-path=/tibcoCodeGetPayment/TMFC000/TMF676_PM/payment\ngenerate-on-demand-bill=/tibcoBscs/tmf678/customerBillOnDemand\nunbilled-charges-path=/tibcoBscs/integration/ericsson/v1/customerBill/getUnbilledCharges\nbsa-linked-account-path=/tibcoBscs/bsa/linkedAccount\nbsa-party-linked-account-path=/tibcoBscs/bsa/party/{partyId}/LinkedAccount\nbsa-invoice-path=/tibcoBscs/bsa/invoice\nbsa-invoice-details-path=/tibcoBscs/bsa/invoice/details\nretrieve-customer-bill-path=/tibcoBscs/tmf678/customerBill\nretrieve-customer-bill-by-account-id-path=/tibcoBscs/tmf678/customerBill\nretrieve-customer-bill-with-summary-by-account-id-path=/tibcoBscs/tmf678/customerBill"
+  - appName: "cloudbss-om"  #Added as per ETBSS-13668
+    parameters:
+      OM_UIM_URL: "http://uim:8080"
+  - appName: "CRM-CIM"  #Added as per ETBSS-19808
+    parameters:
+      CIM_ENTITLEMENTS_ENABLED: "true"
+  - appName: "CloudBSS-CPM" # Added as per ETBSS-22922
+    parameters:
+      SMTP_SERVER_URL: "testmail.qubership.com"
+      SMTP_SERVER_USERNAME: "prj-approver"
+      SMTP_SERVER_PASSWORD: "prj-approver"
+      IMWS_EMAIL_CHECK_PERIOD_IN_MS: "10000"
+  - appName: "nc-diagnostic-agent"
+    parameters:
+      JAEGER_NS: ""
+      #JAEGER_COLLECTOR_HOST: "open-telemetry-collector.cse-toolset.svc"
+  - appName: "CloudBSS-CPQBE" #ETBSS-26259
+    parameters:
+      catalog-integration-tmf/bss.runtime-catalog.index.search.properties.only-top-offers: "false"
+  - appName: "prj-bscs-integration" #ETBSS-29253
+    parameters:
+      prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.billing-accounts-create-path: "/tibcoBscsTmf666/tmf666/billingAccount"
+      prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.billing-accounts-patch-path: "/tibcoBscsTmf666/tmf666/billingAccount/{id}"
+      prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.occ-path: "/tibcoBscsTmf666/tmf666/extension/addOcc"
+      prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.contracts-path: "/tibcoBscsTmf666/tmf666/extension/createContract"
+      prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-contract-path: "/tibcoBscsTmf666/tmf666/extension/updateContract"
+      prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-services-path: "/tibcoBscsTmf666/tmf666/extension/updateServices"
+      prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-resource-path: "/tibcoBscsTmf666/tmf666/extension/updateResource"
+      prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-tax-registration-number-path: "/tibcoBscsTmf666/tmf666/extension/taxRegistrationNumber"
+  - appName: "prj-bss-coexistence-service" #ETBSS-27862
+    parameters:
+      RETRIEVE_ACCOUNT_URL: "/crm/gw/rest/crm/v1/retrieveaccount"

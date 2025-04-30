@@ -1,0 +1,8 @@
+cp_discovery:
+  gitlab:
+    project: SD.prj/deployment-configuration/prj-env-cloud-passport
+    branch: master
+    # GITLAB_TOKEN_CLOUD_PASSPORT 
+    token: envgen.creds.get('cp-discovery-repository-cred').secret
+# GITLAB_TOKEN
+self_token: envgen.creds.get('self-token-cred').secret

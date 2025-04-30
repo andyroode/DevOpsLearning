@@ -1,0 +1,21 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Cloud-CDC"
+deployParameters:
+  BSS_KAFKA_BOOTSTRAP_SERVERS: "${KAFKA_BOOTSTRAP_SERVER}" # paramset: data-management version: 23.1 source: template
+  BSS_KAFKA_PASSWORD: "${KAFKA_PASSWORD}" # paramset: data-management version: 23.1 source: template
+  BSS_KAFKA_USER: "${KAFKA_USERNAME}" # paramset: data-management version: 23.1 source: template
+  MONITORING_ENABLED: "true"  # paramset: data-management version: 23.1 source: template
+  NIFI_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management version: 23.1 source: template
+  global.secrets.streamingPlatform.kafkaAuthPassword: "${CDC_KAFKA_PASSWORD}" # paramset: data-management version: 23.1 source: template
+  global.secrets.streamingPlatform.kafkaAuthUsername: "${CDC_KAFKA_USER}" # paramset: data-management version: 23.1 source: template
+  global.secrets.streamingPlatform.password: "${CDC_STREAMING_PLATFORM_USERNAME}" # paramset: data-management version: 23.1 source: template
+  global.secrets.streamingPlatform.username: "${CDC_STREAMING_PLATFORM_PASSWORD}" # paramset: data-management version: 23.1 source: template
+  streamingPlatform.bootstrapServers: "${CDC_KAFKA_BOOTSTRAP_SERVERS}" # paramset: data-management version: 23.1 source: template
+  streamingPlatform.configStorageTopic: "${NAMESPACE}_cdc_streaming_service_config" # paramset: data-management version: 23.1 source: template
+  streamingPlatform.groupId: "${NAMESPACE}_cdc_streaming_service" # paramset: data-management version: 23.1 source: template
+  streamingPlatform.metricStorageTopic: "${NAMESPACE}_cdc_streaming_service_metric" # paramset: data-management version: 23.1 source: template
+  streamingPlatform.offsetStorageTopic: "${NAMESPACE}_cdc_streaming_service_offset" # paramset: data-management version: 23.1 source: template
+  streamingPlatform.statusStorageTopic: "${NAMESPACE}_cdc_streaming_service_status" # paramset: data-management version: 23.1 source: template
+technicalConfigurationParameters: {}

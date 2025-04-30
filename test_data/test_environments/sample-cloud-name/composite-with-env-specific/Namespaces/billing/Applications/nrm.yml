@@ -1,0 +1,42 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "nrm"
+deployParameters:
+  ESCAPE_SEQUENCE: "true"  # paramset: billing version: 23.1 source: template
+  IGNORE_MERGE_CONFLICTS: "true" # paramset: billing version: 23.1 source: template
+  nrm.apps.dbp.storage.basePath: "nd-dbp-${NAMESPACE}" # paramset: billing version: 23.1 source: template
+  nrm.apps.dbp.storage.bucketName: "dbp-${NAMESPACE}" # paramset: billing version: 23.1 source: template
+  nrm.apps.printVendor.storage.basePath: "nd-pv-${NAMESPACE}" # paramset: billing version: 23.1 source: template
+  nrm.apps.printVendor.storage.bucketName: "dbp-${NAMESPACE}" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.databases.backend.adminUrl.secretKey: "pgadmin" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.databases.backend.url: "postgresql://${tenant.cloud.namespace.NAMESPACE}:${tenant.cloud.namespace.NAMESPACE}@${tenant.cloud.get(\"nrm.db.url\").split(\"@\")[1]}/${tenant.cloud.namespace.NAMESPACE}-bg2?sslmode=disable" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.databases.taskmaster.adminUrl.secretKey: "pgadmin" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.databases.taskmaster.url: "postgresql://${tenant.cloud.namespace.NAMESPACE}:${tenant.cloud.namespace.NAMESPACE}@${tenant.cloud.get(\"nrm.db.url\").split(\"@\")[1]}/${tenant.cloud.namespace.NAMESPACE}-bg2?sslmode=disable" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.databases.udm.adminUrl.secretKey: "udm" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.databases.udm.replication: "{ 'class' : 'org.apache.cassandra.locator.NetworkTopologyStrategy', 'DC-1': 3 }" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.databases.udm.url: "${tenant.cloud.get(\"nrm.cassandra.url\")}/${NAMESPACE.replace(\"-\",\"\")}" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.dbp.cache.caBundle: "${CLOUD_CDN_STORAGE_CA_BUNDLE.replace(\"    \", \"\").replace(\"|\", \"\").replaceFirst(\"\\n\",\"\")}" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.dbp.cache.enabled: "true" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.dbp.cache.endpoint: "${STORAGE_PROVIDER}://${STORAGE_USERNAME}:${STORAGE_PASSWORD}@${STORAGE_SERVER_URL.replaceFirst(\"https\\\\://\", \"\")}/dbp-${tenant.cloud.namespace.NAMESPACE}?basePath=ngb-dbp-${tenant.cloud.namespace.NAMESPACE}" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.features.enable-alpha-api-versions: "true" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.features.enable-beta-api-versions: "true" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.features.enable-debug-endpoints: "true" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.features.enable-hub-api-versions: "true" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.features.enable-m2m-auth: "false" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.features.enable-pprof-security: "false" # paramset: billing version: 23.1 source: template
+  nrm.core.v5.features.skip-unavailable-idp: "false" # paramset: billing version: 23.1 source: template
+  nrm.integrations.cip.url: "http://cloud-integration-platform-engine.${BSS_NAMESPACE}:8080/routes/" # paramset: billing version: 23.1 source: template
+  nrm.integrations.collectionManager.enabled: "true" # paramset: billing version: 23.1 source: template
+  nrm.integrations.collectionManager.url: "cm-nrm-integration:8080" # paramset: billing version: 23.1 source: template
+  nrm.integrations.qcm.enabled: "false" # paramset: billing version: 23.1 source: template
+  nrm.integrations.rem.enabled: "false" # paramset: billing version: 23.1 source: template
+  nrm.integrations.streaming.config.enabled: "false" # paramset: billing version: 23.1 source: template
+  nrm.integrations.streaming.costedEvents.enabled: "true" # paramset: billing version: 23.1 source: template
+  nrm.integrations.streaming.data.enabled: "false" # paramset: billing version: 23.1 source: template
+  nrm.integrations.uim.enabled: "true" # paramset: billing version: 23.1 source: template
+  nrm.integrations.uim.integrationTopic: "false" # paramset: billing version: 23.1 source: template
+  nrm.integrations.uim.partitionsNumber: "5" # paramset: billing version: 23.1 source: template
+  nrm.integrations.uim.replicationFactor: "3" # paramset: billing version: 23.1 source: template
+  nrm.integrations.uim.topicName: "maas.${BSS_NAMESPACE}.uimNotificationRequests" # paramset: billing version: 23.1 source: template
+technicalConfigurationParameters: {}

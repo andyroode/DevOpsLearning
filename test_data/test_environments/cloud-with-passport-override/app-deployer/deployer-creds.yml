@@ -1,0 +1,10 @@
+app-deployer-token-cred:
+  type: secret
+  data:
+    # 1179bea6f9de336670395e4d90245ec4fa
+    secret: 1179bea6f9de336670395e4d90245ec4fa
+app-deployer-username-cred:
+  type: secret
+  data:
+    # admin
+    secret: admin

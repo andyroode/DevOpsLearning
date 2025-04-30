@@ -1,0 +1,109 @@
+{
+  "version" : 1,
+  "name" : "bss",
+  "parameters" : {
+    "BILLING_NAMESPACE" : "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-billing\")}",
+    "OSS_NAMESPACE" : "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-oss\")}"
+  },
+  "applications" : [ {
+    "appName" : "CRM-CIM",
+    "parameters" : {
+      "UIM_INTEGRATION_ENABLED" : "true",
+      "ENTITLEMENTS_ENABLED_CIM" : "true",
+      "CIM_CHANGE_NOTIFICATIONS_ENABLED" : "true",
+      "BSS_INTEGRATION_UIM_ENABLED" : "true"
+    }
+  }, {
+    "appName" : "Cloud-Workplaces-FRW-Runtime",
+    "parameters" : {
+      "WP_RUNTIME_ON_START_LOAD" : "true",
+      "WP_RUNTIME_MODE" : "CACHE"
+    }
+  }, {
+    "appName" : "CloudBSS-CPM",
+    "parameters" : {
+      "IMWS_EMAIL_PASSWORD" : "${SMTP_SERVER_PASSWORD}",
+      "ZOOKEEPER_ENABLED" : "true",
+      "IMWS_EMAIL_USERNAME" : "${SMTP_SERVER_USERNAME}",
+      "IMWS_EMAIL_SERVER_URL" : "${tenant.cloud.SMTP_SERVER_URL}"
+    }
+  }, {
+    "appName" : "CloudBSS-CPMCIP",
+    "parameters" : {
+      "BSS_INTEGRATION_NRM_MODE" : "composite",
+      "BSS_INTEGRATION_NRM_DOMAIN" : "${BILLING_NAMESPACE}",
+      "bss.integration.nrm.eca2-url" : "eca2.${BILLING_NAMESPACE}:8080",
+      "bss.integration.nrm.rtb-url" : "realtime-bills.${BILLING_NAMESPACE}:8080"
+    }
+  }, {
+    "appName" : "CloudBSS-CPQBE",
+    "parameters" : {
+      "ENTITLEMENTS_ENABLED_IBS" : "true"
+    }
+  }, {
+    "appName" : "CloudBSS-MCBE",
+    "parameters" : {
+      "CH_CMS_ADAPTER" : "contentful"
+    }
+  }, {
+    "appName" : "CloudBSS-SPS",
+    "parameters" : {
+      "STORAGE_ENDPOINT" : "${tenant.cloud.STORAGE_SERVER_URL}",
+      "STORAGE_SECRET_KEY" : "${STORAGE_PASSWORD}",
+      "STORAGE_TEMPORARY_BUCKET_NAME" : "${tenant.cloud.DOC_STORAGE_TEMPORARY_BUCKET_NAME}",
+      "STORAGE_PERSISTENT_BUCKET_NAME" : "${tenant.cloud.DOC_STORAGE_PERSISTENT_BUCKET_NAME}",
+      "STORAGE_ACCESS_KEY" : "${STORAGE_USERNAME}"
+    }
+  }, {
+    "appName" : "CloudCRM-CBM",
+    "parameters" : {
+      "ECA2_LOGS" : "true",
+      "BSS_INTEGRATION_NRM_MODE" : "composite",
+      "BSS_INTEGRATION_NRM_DOMAIN" : "${BILLING_NAMESPACE}"
+    }
+  }, {
+    "appName" : "CloudCRM-GraphQL",
+    "parameters" : {
+      "BSS_INTEGRATION_NRM_MODE" : "composite",
+      "BSS_INTEGRATION_NRM_DOMAIN" : "${BILLING_NAMESPACE}"
+    }
+  }, {
+    "appName" : "CloudMigrationNiFi",
+    "parameters" : {
+      "NIFI_USE_TLS_PASSTHROUGH_INGRESS" : "true",
+      "NIFI_EXPOSE_CUSTOM_PORTS" : "upload_8081,prepare-data_8083,diagnostic_8084,webhooks_32080,cdc-monitor_9194,dst-export_8056,dst-import_8057,cdm-monitor_9192",
+      "NIFI_PV_STORAGE_CLASS" : "${tenant.cloud.STORAGE_RWO_CLASS}",
+      "NIFI_CUSTOM_MONITORING_PORTS" : "cdc-monitor_30s,cdm-monitor_15s"
+    }
+  }, {
+    "appName" : "cloud-user-task-manager",
+    "parameters" : {
+      "KAFKA_SECURITY_ENABLED" : "true"
+    }
+  }, {
+    "appName" : "cloudbss-om",
+    "parameters" : {
+      "OM_CLEANUP_POLLING_INTERVAL" : "40000",
+      "OM_ESO_CALLBACK_URL" : "http://cloud-integration-platform-engine.${NAMESPACE}:8080/routes",
+      "OM_ESO_SERVICE_REQUESTS_URL" : "http://service-requests.${OSS_NAMESPACE}:8080",
+      "OM_ESO_URL" : "http://eso-manager.${OSS_NAMESPACE}:8080",
+      "OM_SPM_IDENTITY_PROVIDER_EXTERNAL" : "false",
+      "OM_PB_URL" : "http://phone-book.${OSS_NAMESPACE}.svc.cluster.local:8080",
+      "ZOOKEEPER_ENABLED" : "true",
+      "OM_PB_RELEASE_VERSION" : "23.1",
+      "OM_SPM_RELEASE_VERSION" : "23.1",
+      "OM_CIP_DEPLOYED_INTEGRATIONS" : "[\"som\",\"eso\",\"utm\",\"ibs\",\"uim\",\"pb\",\"spm\"]",
+      "OM_SPM_URL" : "http://sim-profile-manager.${OSS_NAMESPACE}.svc.cluster.local:8080",
+      "OM_PB_IDENTITY_PROVIDER_EXTERNAL" : "false",
+      "OM_UIM_URL" : "http://internal-gateway-service:8080",
+      "OM_UIM_CRED" : "${creds.get('om-uim-cred').secret}"
+    }
+  }, {
+    "appName" : "uim",
+    "parameters" : {
+      "UIM_PLUGINS_CONFIGS" : "'{\n  \"plugins\": {\n    \"deliveryPlugins\": [\n      {\n        \"defaultPluginConfig\": {\n          \"pluginSpecificConfigs\": {\n            \"host\": \"${SMPP_HOST}\",\n            \"password\": \"${SMPP_PASSWORD}\",\n            \"port\": \"${SMPP_PORT}\",\n            \"reconnect.interval.millis\": \"30000\",\n            \"submit.timeout\": \"10000\",\n            \"system.id\": \"${SMPP_USERNAME}\",\n            \"window\": \"1\"\n          }\n        },\n        \"implementationConfig\": {\n          \"oobPluginReference\": \"SMS\"\n        },\n        \"pluginInstanceId\": \"SMS\"\n      },\n      {\n        \"defaultPluginConfig\": {\n          \"pluginSpecificConfigs\": {\n            \"host\": \"${tenant.cloud.SMTP_SERVER_URL}\",\n            \"port\": \"${tenant.cloud.SMTP_SERVER_PORT}\",\n            \"transport_strategy\": \"SMTP\",\n            \"username\": \"${SMTP_SERVER_USERNAME}\",\n            \"password\": \"${SMTP_SERVER_PASSWORD}\"            \n          }\n        },\n        \"implementationConfig\": {\n          \"oobPluginReference\": \"E_MAIL\"\n        },\n        \"pluginInstanceId\": \"E_MAIL\"\n      },\n      {\n        \"pluginInstanceId\": \"MOBILE_PUSH\",\n        \"defaultPluginConfig\": {\n          \"pluginSpecificConfigs\": {\n            \"thread_pool.size\": \"8\"\n          }\n        },\n        \"implementationConfig\": {\n          \"oobPluginReference\": \"MOBILE_PUSH\"\n        }\n      }\n    ]\n  }\n}'",
+      "DEPLOY_W_HELM" : "true",
+      "UIM_PLUGINS_MAPPING" : "'{\n  \"pluginsMapping\": [\n    {\n      \"filters\": [\n        {\n          \"mediumType\": \"E_MAIL\"\n        },\n        {\n          \"mediumType\": \"CALENDAR_EVENT\"\n        }\n      ],\n      \"pluginInstanceId\": \"E_MAIL\"\n    },\n    {\n      \"filters\": [\n        {\n          \"mediumType\": \"SMS\"\n        }\n      ],\n      \"pluginInstanceId\": \"SMS\"\n    },\n    {\n      \"pluginInstanceId\": \"MOBILE_PUSH\",\n      \"filters\": [\n         {\n           \"mediumType\": \"MOBILE_PUSH\"\n         }\n      ]\n    }\n  ]\n}'"
+    }
+  } ]
+}

@@ -1,0 +1,20 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cloudbss-om"
+deployParameters:
+  OM_CIP_DEPLOYED_INTEGRATIONS: "[\"som\",\"eso\",\"utm\",\"ibs\",\"uim\",\"pb\",\"spm\"]" # paramset: bss version: 1 source: template
+  OM_CLEANUP_POLLING_INTERVAL: "40000"  # paramset: bss version: 1 source: template
+  OM_ESO_CALLBACK_URL: "http://cloud-integration-platform-engine.${NAMESPACE}:8080/routes" # paramset: bss version: 1 source: template
+  OM_ESO_SERVICE_REQUESTS_URL: "http://service-requests.${OSS_NAMESPACE}:8080" # paramset: bss version: 1 source: template
+  OM_ESO_URL: "http://eso-manager.${OSS_NAMESPACE}:8080" # paramset: bss version: 1 source: template
+  OM_PB_IDENTITY_PROVIDER_EXTERNAL: "false" # paramset: bss version: 1 source: template
+  OM_PB_RELEASE_VERSION: "23.1" # paramset: bss version: 1 source: template
+  OM_PB_URL: "http://phone-book.${OSS_NAMESPACE}.svc.cluster.local:8080" # paramset: bss version: 1 source: template
+  OM_SPM_IDENTITY_PROVIDER_EXTERNAL: "false" # paramset: bss version: 1 source: template
+  OM_SPM_RELEASE_VERSION: "23.1" # paramset: bss version: 1 source: template
+  OM_SPM_URL: "http://sim-profile-manager.${OSS_NAMESPACE}.svc.cluster.local:8080" # paramset: bss version: 1 source: template
+  OM_UIM_CRED: "${creds.get('om-uim-cred').secret}" # paramset: bss version: 1 source: template
+  OM_UIM_URL: "http://internal-gateway-service:8080" # paramset: bss version: 1 source: template
+  ZOOKEEPER_ENABLED: "true" # paramset: bss version: 1 source: template
+technicalConfigurationParameters: {}

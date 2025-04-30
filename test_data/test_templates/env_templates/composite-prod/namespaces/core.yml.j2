@@ -1,0 +1,16 @@
+---
+name: "{{current_env.environmentName}}-core"
+credentialsId: "core-namespace-token"
+isServerSideMerge: false
+labels:
+- "solutionInstance-{{env}}"
+- "solution-{{tenant}}"
+cleanInstallApprovalRequired: {{ current_env.additionalTemplateVariables.cleanInstallApprovalRequired | default('false') }}
+mergeDeployParametersAndE2EParameters: false
+deployParameters: {}
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "core"
+e2eParameterSets: []
+technicalConfigurationParameterSets: []

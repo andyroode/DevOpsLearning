@@ -1,0 +1,131 @@
+version: 1.5
+cloud:
+  CLOUD_API_HOST: dev-1.k8s.sdntest.qubership.com
+  CLOUD_API_PORT: 6443
+  CLOUD_DEPLOY_TOKEN: TOKEN
+  CLOUD_PUBLIC_HOST: dev-1.k8s.sdntest.qubership.com
+  CLOUD_PRIVATE_HOST: dev-1.k8s-private.sdntest.qubership.com
+  CLOUD_DASHBOARD_URL: https://dev-1.k8s.sdntest.qubership.com
+  CLOUD_PROTOCOL: https
+  PRODUCTION_MODE: false
+  GRAYLOG_UI_URL: https://graylog-service.ops-logging:12201
+  TRACING_UI_URL: ${CLOUD_PROTOCOL}://jaeger.${CLOUD_PUBLIC_HOST}
+  GRAFANA_UI_URL: https://grafana-platform-monitoring.${CLOUD_PUBLIC_HOST}
+  CMDB_URL: https://cloud-deployer.qubership.com
+dbaas:
+  API_DBAAS_ADDRESS: http://dbaas-aggregator.dbaas:8080
+  DBAAS_AGGREGATOR_ADDRESS: https://aggregator-dbaas.${CLOUD_PRIVATE_HOST}
+  DBAAS_CLUSTER_DBA_CREDENTIALS_USERNAME: ${cmdb.creds.get("dbaas-cluster-dba-cred").username}
+  DBAAS_CLUSTER_DBA_CREDENTIALS_PASSWORD: ${cmdb.creds.get("dbaas-cluster-dba-cred").password}
+maas:
+  MAAS_INTERNAL_ADDRESS: http://maas-service.maas:8080
+  MAAS_SERVICE_ADDRESS: https://maas-service-maas.${CLOUD_PRIVATE_HOST}
+  MAAS_CREDENTIALS_USERNAME: ${cmdb.creds.get("maas-cred").username}
+  MAAS_CREDENTIALS_PASSWORD: ${cmdb.creds.get("maas-cred").password}
+consul:
+  CONSUL_URL: consul.consul
+  CONSUL_ENABLED: false
+  CONSUL_PUBLIC_URL: http://consul-consul.${CLOUD_PRIVATE_HOST}
+  CONSUL_ADMIN_TOKEN: ${cmdb.creds.get("consul-admin-cred").secret}
+zookeeper:
+  ZOOKEEPER_URL: ${ZOOKEEPER_ADDRESS}
+  ZOOKEEPER_ADDRESS: zookeeper.zookeeper:2181
+vault:
+  #PUBLIC_VAULT_URL: # TODO: not in WIKI page
+  VAULT_ADDR: 
+  VAULT_AUTH_ROLE_ID: ""
+  VAULT_AUTH_SECRET_ID: ""
+  VAULT_AUTH_PATH: ""
+  VAULT_AUTH_NAMESPACE: ""
+smtp:
+  SMTP_SERVER_URL: testmail.qubership.com
+  SMTP_SERVER_PORT: 25
+  SMTP_SERVER_USERNAME: ${cmdb.creds.get("smtp-server-cred").username}
+  SMTP_SERVER_PASSWORD: ${cmdb.creds.get("smtp-server-cred").password}
+storage:
+  STORAGE_SERVER_URL: https://s3.qubership.com
+  STORAGE_PROVIDER: s3
+  STORAGE_REGION: 
+  STORAGE_USERNAME: ${cmdb.creds.get("storage-cred").username}
+  STORAGE_PASSWORD: ${cmdb.creds.get("storage-cred").password}
+  CDN_STORAGE_SERVER_URL: ${STORAGE_SERVER_URL}
+  CDN_STORAGE_PROVIDER: ${STORAGE_PROVIDER}
+  CDN_STORAGE_REGION: ${STORAGE_REGION}
+  CDN_STORAGE_USERNAME: ${STORAGE_USERNAME}
+  CDN_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
+  DOC_STORAGE_SERVER_URL: ${STORAGE_SERVER_URL}
+  DOC_STORAGE_PROVIDER: ${STORAGE_PROVIDER}
+  DOC_STORAGE_REGION: ${STORAGE_REGION}
+  DOC_STORAGE_USERNAME: ${STORAGE_USERNAME}
+  DOC_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
+  STORAGE_RWO_CLASS: csi-cinder-sc-retain
+  STORAGE_RWX_CLASS: nfs-sc
+core:
+  DEFAULT_TENANT_NAME: cpq
+  DEFAULT_TENANT_ADMIN_LOGIN: cpq@qubership.com
+  MAVEN_REPO_URL: https://artifactorycn.qubership.com/
+  MAVEN_REPO_NAME: pd.saas.mvn.group
+  MAVEN_REPO_STAGING_NAME: ${MAVEN_REPO_NAME}
+  MAVEN_REPO_DEV_NAME: ${MAVEN_REPO_NAME}
+global:
+  MONITORING_ENABLED: true
+  TRACING_ENABLED: false
+  TRACING_HOST: nc-diagnostic-agent
+bss:
+  # ZOOKEEPER_ADDRESS - TODO: duplicated in WIKI page
+  DOC_STORAGE_TEMPORARY_BUCKET_NAME: storage-proxy-temporary-bucket
+  DOC_STORAGE_PERSISTENT_BUCKET_NAME: storage-proxy-permanent-bucket
+billing:
+  nrm.kafka.url: kafka://admin:admin@kafka.kafka:9092
+  nrm.cassandra.url: cassandra://admin:admin@cassandra.cassandra:9042
+  nrm.postgresql.rw.address: pg-patroni.postgresql-billing:5432
+  nrm.postgresql.ro.address: pg-patroni-ro.postgresql-billing:5432
+  nrm.postgresql.username: tmp_user
+  nrm.postgresql.password: tmp_password
+  CM_POSTGRESQL_RW_USERNAME: ${cmdb.creds.get("cm-postgresql-rw-cred").username}
+  CM_POSTGRESQL_RW_PASSWORD: ${cmdb.creds.get("cm-postgresql-rw-cred").password}
+  CM_POSTGRESQL_RW_SERVER: pg-patroni.postgresql-billing:5432
+  CM_KAFKA_BOOTSTRAP_SERVERS: kafka.kafka:9092
+  CM_KAFKA_CLIENT_PASSWORD: ${cmdb.creds.get("cm-kafka-cred").username}
+  CM_KAFKA_CLIENT_USERNAME: ${cmdb.creds.get("cm-kafka-cred").password}
+oss:
+  OSS_STREAMING_PLATFORM_URL: streaming-platform.streaming:8083
+  OSS_STREAMING_PLATFORM_USERNAME: ${cmdb.creds.get("oss-streaming-cred").username}
+  OSS_STREAMING_PLATFORM_PASSWORD: ${cmdb.creds.get("oss-streaming-cred").password}
+cse:
+  DST_STORAGE_BUCKET: dst-bucket
+  DST_STORAGE_USERNAME: ${STORAGE_USERNAME}
+  DST_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
+  DAT_STORAGE_BUCKET: dat-bucket
+  DAT_STORAGE_USERNAME: ${STORAGE_USERNAME}
+  DAT_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
+  DFT_STORAGE_BUCKET: dft-bucket
+  DFT_STORAGE_USERNAME: ${STORAGE_USERNAME}
+  DFT_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
+  DPC_STORAGE_REGION: ${STORAGE_REGION}
+  DPC_STORAGE_BUCKET: discrepancy-detector-reports
+  DPC_STORAGE_USERNAME: ${STORAGE_USERNAME}
+  DPC_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
+  SSM_CMDB_USER: ${cmdb.creds.get("ssm-cmdb-cred").username}
+  SSM_CMDB_TOKEN: ${cmdb.creds.get("ssm-cmdb-cred").password}
+  CSE_GRAYLOG_USER: ${cmdb.creds.get("cse-graylog-cred").username}
+  CSE_GRAYLOG_PASSWORD: ${cmdb.creds.get("cse-graylog-cred").password}
+  MONITORING_NAMESPACE: platform-monitoring
+  MONITORING_TYPE: VictoriaDB
+  MONITORING_EXT_MONITORING_QUERY_URL: 
+  CSE_EXTERNAL_MONITORING_USER: 
+  CSE_EXTERNAL_MONITORING_PASSWORD: 
+  OPS_IDP_URL: https://idp-infra.${CLOUD_PUBLIC_HOST}
+  BEOC_STORAGE_BUCKET: beoc-bucket
+  BEOC_STORAGE_USERNAME: ${STORAGE_USERNAME}
+  BEOC_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
+  HDS_STORAGE_USERNAME: ${STORAGE_USERNAME}
+  HDS_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
+  HDS_STORAGE_SERVER_URL: ${STORAGE_SERVER_URL}
+  HDS_STORAGE_PROVIDER: ${STORAGE_PROVIDER}
+  HDS_STORAGE_BUCKET: hds_data
+  HDS_STORAGE_REGION: ${STORAGE_REGION}
+cdc:
+  CDC_NIFI_NAMESPACE: 
+  CDC_STREAMING_PLATFORM_USERNAME: ${cmdb.creds.get("cdc-streaming-cred").username}
+  CDC_STREAMING_PLATFORM_PASSWORD: ${cmdb.creds.get("cdc-streaming-cred").password}

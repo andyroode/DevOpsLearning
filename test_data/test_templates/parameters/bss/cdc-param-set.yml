@@ -1,0 +1,6 @@
+---
+name: "cdc-param-set"
+parameters:
+  global.secrets.streamingPlatform.password: "admin"
+  global.secrets.streamingPlatform.username: "admin"
+applications: []

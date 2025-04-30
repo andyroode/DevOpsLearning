@@ -1,0 +1,89 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "pl01-zookeeper-streaming"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-pl01"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true  # paramset: zookeeper version: 23.4 source: template
+  DISABLE_CRD: false # paramset: zookeeper version: 23.4 source: template
+  backupDaemon: # paramset: zookeeper version: 23.4 source: template
+    backupStorage:
+      persistentVolumeType: "standalone"
+      storageClass: "${STORAGE_RWO_CLASS}"
+      volumeSize: "5Gi"
+    install: false
+  global: # paramset: zookeeper version: 23.4 source: template
+    enablePersistentVolumeCreation: false
+    name: "zookeeper"
+    secrets:
+      zooKeeper:
+        additionalUsers: "user:pass"
+        adminPassword: "${creds.get(\"zookeeper-streaming-admin-cred\").password}"
+        adminUsername: "${creds.get(\"zookeeper-streaming-admin-cred\").username}"
+        clientPassword: "${creds.get(\"zookeeper-streaming-client-cred\").password}"
+        clientUsername: "${creds.get(\"zookeeper-streaming-client-cred\").username}"
+    skipNamespaceValidation: true
+  integration-tests: # paramset: zookeeper version: 23.4 source: template
+    integrationTests:
+      install: true
+  monitoring: # paramset: zookeeper version: 23.4 source: template
+    install: true
+    installGrafanaDashboard: true
+    monitoringType: "prometheus"
+    resources:
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+      requests:
+        cpu: "25m"
+        memory: "128Mi"
+  operator: # paramset: zookeeper version: 23.4 source: template
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "component"
+                  operator: "In"
+                  values:
+                    - "zookeeper-service-operator"
+            topologyKey: "kubernetes.io/hostname"
+  zooKeeper: # paramset: zookeeper version: 23.4 source: template
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "component"
+                  operator: "In"
+                  values:
+                    - "zookeeper"
+            topologyKey: "kubernetes.io/hostname"
+    heapSize: "256"
+    jolokiaPort: "9087"
+    quorumAuthEnabled: true
+    replicas: "3"
+    resources:
+      limits:
+        cpu: "300m"
+        memory: "512Mi"
+      requests:
+        cpu: "50m"
+        memory: "512Mi"
+    storage:
+      className:
+        - "${STORAGE_RWO_CLASS}"
+      size: "10Gi"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

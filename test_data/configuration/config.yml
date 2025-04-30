@@ -1,0 +1,3 @@
+crypt: false
+artifact_definitions_discovery_mode: auto
+cloud_passport_decryption: true

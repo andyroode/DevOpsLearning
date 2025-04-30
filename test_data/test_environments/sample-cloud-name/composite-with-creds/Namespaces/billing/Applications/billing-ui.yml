@@ -1,0 +1,24 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "billing-ui"
+deployParameters:
+  ACCESS_CONTROL_ENABLED: "true" # paramset: billing version: 23.1 source: template
+  ACCESS_CONTROL_GATEWAY_URL: "${PUBLIC_GATEWAY_URL}/access/v1/" # paramset: billing version: 23.1 source: template
+  ACCESS_CONTROL_URL: "http://public-gateway-service:8080" # paramset: billing version: 23.1 source: template
+  AUTH: "true" # paramset: billing version: 23.1 source: template
+  CATALOG_TARGET: "catalog:8080" # paramset: billing version: 23.1 source: template
+  DBP_TARGET: "formatter:8080" # paramset: billing version: 23.1 source: template
+  EA_TARGET: "ea-api:8080" # paramset: billing version: 23.1 source: template
+  GRPC_TARGET: "eca2:8080" # paramset: billing version: 23.1 source: template
+  GRPC_TLS_ENABLED: "false" # paramset: billing version: 23.1 source: template
+  IDENTITY_PROVIDER_URL: "http://identity-provider:8080" # paramset: billing version: 23.1 source: template
+  ISSUER: "${PUBLIC_GATEWAY_URL}/auth/realms/${TENANT_ID}" # paramset: billing version: 23.1 source: template
+  ISSUER_HTTPS: "true" # paramset: billing version: 23.1 source: template
+  PRIVATE_OIDC_PROVIDER_URI: "http://identity-provider:8080/auth/realms/${TENANT_ID}/protocol/openid-connect/token" # paramset: billing version: 23.1 source: template
+  PUBLIC_CLIENT_ID: "frontend" # paramset: billing version: 23.1 source: template
+  PUBLIC_GATEWAY_URL: "https://public-gateway-${NAMESPACE}.${CLOUD_PUBLIC_HOST}" # paramset: billing version: 23.1 source: template
+  PUBLIC_OIDC_PROVIDER_URI: "${PUBLIC_GATEWAY_URL}/auth/realms/${TENANT_ID}" # paramset: billing version: 23.1 source: template
+  RTB_TARGET: "realtime-bills:8080" # paramset: billing version: 23.1 source: template
+  TENANT_ID: "cloud-common" # paramset: billing version: 23.1 source: template
+technicalConfigurationParameters: {}

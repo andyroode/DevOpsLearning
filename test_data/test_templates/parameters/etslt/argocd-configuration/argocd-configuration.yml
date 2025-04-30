@@ -1,0 +1,16 @@
+version: 24.1
+name: argocd-configuration
+parameters: 
+  ARGOCD_URL: "https://argocd-server.${CLOUD_PUBLIC_HOST}"
+  ARGOCD_MAX_RETRY: '100'
+  ARGOCD_WAIT_TIMEOUT: '5'
+  ARGOCD_SYNC_EXECUTE: 'true'
+  ARGOCD_INSECURE: 'true'
+  ARGOCD_USERNAME: ${creds.get("argocd-cred").username}
+  ARGOCD_PASSWORD: ${creds.get("argocd-cred").password}
+  ARGOCD_FAST_FAIL: 'true'
+  ARGOCD_FAST_FAIL_MAX: '10'
+  # WA till autodiscovery in ACH
+  PAAS_PLATFORM: 'OPENSHIFT'
+  PAAS_VERSION: 'v4.12'
+applications: []

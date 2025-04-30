@@ -1,0 +1,10 @@
+---
+name: "nifi_param_set"
+parameters:
+  NIFI_CONF_STORAGE: "temp"
+  NIFI_CONTENT_STORAGE: "temp"
+  NIFI_FLOWFILE_STORAGE: "temp"
+  NIFI_PROVENANCE_STORAGE: "temp"
+  NIFI_REG_STORAGE: "temp"
+  NIFI_SENSITIVE_KEY: "tmp_password"
+applications: []

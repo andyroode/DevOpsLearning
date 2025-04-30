@@ -1,0 +1,16 @@
+---
+name: "{{ current_env.environmentName }}-velero"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters: {}
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - velero
+e2eParameterSets: []
+technicalConfigurationParameterSets: []

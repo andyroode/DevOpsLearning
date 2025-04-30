@@ -1,0 +1,48 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-rabbitmq"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true  # paramset: rabbitmq version: 23.4 source: template
+  DISABLE_CRD: false # paramset: rabbitmq version: 23.4 source: template
+  ESCAPE_SEQUENCE: true # paramset: rabbitmq version: 23.4 source: template
+  loglevel: "DEBUG" # paramset: rabbitmq version: 23.4 source: template
+  name: "rabbitmq-service" # paramset: rabbitmq version: 23.4 source: template
+  rabbitmq: # paramset: rabbitmq version: 23.4 source: template
+    auto_reboot: true
+    custom_params:
+      rabbitmq_default_password: "${creds.get(\"rabbitmq-admin-cred\").password}"
+      rabbitmq_default_user: "${creds.get(\"rabbitmq-admin-cred\").username}"
+      rabbitmq_vm_memory_high_watermark: "80%"
+    hostpath_configuration: false
+    ingress:
+      enabled: true
+      host: "rabbitmq-${namespace_rabbitmq}.apps."
+    replicas: "3"
+    resources:
+      limits:
+        cpu: "1"
+        memory: "2Gi"
+      requests:
+        cpu: "300m"
+        memory: "2Gi"
+      storage: "5Gi"
+      storageclass: "${STORAGE_RWO_CLASS}"
+    tls:
+      secretName: "\"\""
+    validate_state: true
+  rabbitmqPrometheusMonitoring: true # paramset: rabbitmq version: 23.4 source: template
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

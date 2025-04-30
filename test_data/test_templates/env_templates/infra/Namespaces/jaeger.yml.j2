@@ -1,0 +1,25 @@
+---
+name: "{{ current_env.environmentName }}-jaeger"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  query:
+    ingress:
+      host: "jaeger-{{ current_env.environmentName }}.apps.{{ current_env.cluster.cloud_public_url }}"
+    route:
+      enable: true
+      host: "jaeger-{{ current_env.environmentName }}.apps.{{ current_env.cluster.cloud_public_url }}"
+  cassandraSchemaJob:
+    keyspace: "{{ current_env.environmentName | replace("-", "_") }}_jaeger"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - jaeger
+e2eParameterSets: {}
+technicalConfigurationParameterSets: []
+

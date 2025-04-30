@@ -1,0 +1,98 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Cloud-Core"
+deployParameters:
+  AUTH_PLUGIN_URL: "http://etslt-token-brokering-service:8080/convert" # paramset: bss-common version: 1 source: template
+  DBAAS_ON_MICROSERVICES_PHYSDB_RULE: |-
+    [{
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "bss_core_balancing_rule=postgresql-bss-core"
+    		}],
+    		"microservices": [
+    			"permissions-manager-be", "access-control", "entitlements-aggregator", "config-server", "control-plane", "site-management", "dictionaries-provider-backend", "metamodel-provider-backend", "samples-repository", "smartplug", "tenant-self-service-backend"
+    	]},
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "bss_balancing_rule=postgresql-bss"
+    		}],
+    		"microservices": [
+    			"bss-config-rollout-manager", "bss-configuration-service", "channel-orchestrator", "dashboards-service", "doc-generation-service", "scheduling-service", "business-calendar-backend-app", "content-delivery-manager", "control-panel-backend", "customization-manager", "ext-websocket-notifier", "cloud-data-migration-nifi", "cloud-data-migration-nifi-registry", "org-chart-backend-app", "config-store-go", "wp-backend", "extended-entity-service", "user-settings-manager", "user-settings-service"
+    	]},
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "cpm_balancing_rule=postgresql-bss-cpm"
+    		}],
+    		"microservices": [
+    			"cpm-core-service", "scripting-service", "etslt-cpm-extension-service"
+    	]},
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "cpq_balancing_rule=postgresql-bss-cpq"
+    		}],
+    		"microservices": [
+    			"catalog-service", "quotation-engine-service", "quote-storage-service", "quote-tracking-service", "submission-handler-service", "geo-site-core ", "worklog-service"
+    	]},
+    	{
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "ib_balancing_rule=postgresql-bss-ib"
+    		}],
+    		"microservices": [
+    			"quote-ibi-tracking-service", "install-base-service"
+    	]},
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "om_balancing_rule=postgresql-bss-om"
+    		}],
+    		"microservices": [
+    			"om-notification-service", "om-ordering-catalog-service", "om-order-lifecycle-manager"
+    	]},
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "sales_balancing_rule=postgresql-bss-sales"
+    		}],
+    		"microservices": [
+    			"cost-catalog-service", "pnl-and-cost-management-service", "lead-management-core-service", "opportunity-management-core-service", "qm-core-service", "rule-engine-service", "etslt-bss-ds-management-service", "etslt-bss-approval-flow-generation-service"
+    	]},
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "cim_balancing_rule=postgresql-bss-cim"
+    		}],
+    		"microservices": [
+    			"account-mgmt-bi", "account-mgmt-core", "payment-method-mgmt-core", "agreement-mgmt-core", "cim-core-service", "etslt-bscs-integration-service"
+    	]},
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "pi_balancing_rule=postgresql-bss-pi"
+    		}],
+    		"microservices": [
+    			"party-interaction-core-service"
+    	]},
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "cip_balancing_rule=postgresql-bss-cip"
+    		}],
+    		"microservices": [
+    			"cloud-integration-platform-catalog", "cloud-integration-platform-engine", "cloud-integration-platform-variables-management"
+    	]},
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "utm_balancing_rule=postgresql-bss-utm"
+    		}],
+    		"microservices": [
+    			"user-task-manager", "utm-notification-manager", "utm-task-template-catalog", "pm-admin-backend", "pm-workplace-sid-basic-microservice"
+    	]}
+    		]
+   # paramset: bss-common version: 1 source: template
+technicalConfigurationParameters: {}

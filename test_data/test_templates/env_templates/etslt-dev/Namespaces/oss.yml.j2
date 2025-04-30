@@ -1,0 +1,27 @@
+---
+name: "{{current_env.environmentName}}-oss"
+credentialsId: ""
+tenantName: "{{_tenant}}"
+labels: []
+isServerSideMerge: false
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: dev_oss_override_hawk
+  baseline: dev
+deployParameters:
+  COMPOSITE_PLATFORM: "true"
+  CONSUL_ENABLED: "true"
+  USE_POSTGRESQL_AS_DB: "true"
+  BSS_NAMESPACE: "{{current_env.environmentName}}-bss"
+  CORE_NAMESPACE: "{{current_env.environmentName}}-core"
+  DATA_MANAGEMENT_NAMESPACE: "{{current_env.environmentName}}-data-management"
+  OSS_NAMESPACE: "{{current_env.environmentName}}-oss"
+  # ETBSS-2100
+  DBAAS_LODB_PER_NAMESPACE_AUTOBALANCE_RULES: "postgresql=>postgresql-oss:postgres"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "oss-wa"
+e2eParameterSets: []
+technicalConfigurationParameterSets: []

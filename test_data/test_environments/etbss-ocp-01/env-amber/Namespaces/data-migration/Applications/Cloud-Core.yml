@@ -1,0 +1,18 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Cloud-Core"
+deployParameters:
+  DBAAS_ON_MICROSERVICES_PHYSDB_RULE: |-
+    [
+    {
+    		"type": "postgresql",
+    		"rules": [{
+    			"label": "datamigration_balancing_rule=postgresql-datamigration"
+    		}],
+    		"microservices": [
+    			"config-server", "control-plane", "site-management", "cloud-data-migration-nifi", "cloud-data-migration-nifi-registry"
+    	]}
+    		]
+   # paramset: data-migration version: 1 source: template
+technicalConfigurationParameters: {}

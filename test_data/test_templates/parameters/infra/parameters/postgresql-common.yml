@@ -1,0 +1,61 @@
+version: 23.4
+name: postgresql-common
+parameters:
+  DEPLOY_W_HELM: true
+  DISABLE_CRD: false
+  NC_DBAAS_ADAPTER_WAIT_TIMEOUT: 500s
+  patroni:
+    install: true
+    replicas: "2"
+    resources:
+      limits:
+        cpu: "3" 
+        memory: "3Gi" 
+    requests:
+      cpu: "500m" 
+      memory: "1Gi" 
+    storage:
+      size: "10Gi" 
+      type: provisioned
+      storageClass: '${STORAGE_RWO_CLASS}'
+    postgreSQLParams:
+      - 'max_connections: 2000'
+      - 'wal_level: logical'
+      - 'shared_preload_libraries: pg_stat_statements, pg_hint_plan, decoderbufs, pg_cron'
+  backupDaemon:
+    install: false
+    storage:
+      type: provisioned
+      size: "20Gi"
+      storageClass: '${STORAGE_RWO_CLASS}'
+    backupSchedule: 0 23 * * *
+    evictionPolicy: 5d/delete
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 1512Mi
+  tests:
+    install: false
+    runTestScenarios: basic
+  metricCollector:
+    install: true
+    applyGrafanaDashboard: true
+    prometheusMonitoring: true
+    metricsProfile: "prod"
+  postgresExporter:
+    install: true
+    securityContext:
+      runAsUser: 1000890000
+  vaultRegistration:
+    url: "''" 
+  policies:
+    tolerations:
+      - key: node.kubernetes.io/unreachable
+        operator: Exists
+        effect: NoExecute
+        tolerationSeconds: 6000
+        value: "''"
+applications: []

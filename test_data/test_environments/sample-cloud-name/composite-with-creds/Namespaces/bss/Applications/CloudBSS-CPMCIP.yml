@@ -1,0 +1,10 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CloudBSS-CPMCIP"
+deployParameters:
+  BSS_INTEGRATION_NRM_DOMAIN: "${BILLING_NAMESPACE}" # paramset: bss version: 1 source: template
+  BSS_INTEGRATION_NRM_MODE: "composite" # paramset: bss version: 1 source: template
+  bss.integration.nrm.eca2-url: "eca2.${BILLING_NAMESPACE}:8080" # paramset: bss version: 1 source: template
+  bss.integration.nrm.rtb-url: "realtime-bills.${BILLING_NAMESPACE}:8080" # paramset: bss version: 1 source: template
+technicalConfigurationParameters: {}

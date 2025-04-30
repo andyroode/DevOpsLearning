@@ -1,0 +1,16 @@
+---
+name: "dev_oss_override"
+baseline: "dev"
+description: "Override for dev-profile for OSS namespace"
+applications:
+- name: "Cloud-Core"
+  version: "release-2023.3-8.4.0-20231103.225817-60-RELEASE"
+  sd: ""
+  services:
+  - name: "facade-operator"
+    parameters:
+    - name: "FACADE_GATEWAY_MEMORY_LIMIT"
+      value: "96Mi"
+    - name: "FACADE_GATEWAY_CPU_REQUEST"
+      value: "50m"
+version: 0

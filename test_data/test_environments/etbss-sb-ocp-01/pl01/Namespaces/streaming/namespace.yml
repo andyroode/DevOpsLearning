@@ -1,0 +1,78 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "pl01-streaming"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-pl01"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  CUSTOM_RESOURCE_NAME: "streaming" # paramset: streaming version: 23.4 source: template
+  DEPLOY_W_HELM: true  # paramset: streaming version: 23.4 source: template
+  DISABLE_FORCE_APPLY: false # paramset: streaming version: 23.4 source: template
+  ESCAPE_SEQUENCE: true # paramset: streaming version: 23.4 source: template
+  configurator: # paramset: streaming version: 23.4 source: template
+    install: false
+  global: # paramset: streaming version: 23.4 source: template
+    name: "streaming"
+    podReadinessTimeout: 300
+    secrets:
+      monitoring:
+        prometheusUsername: "${creds.get(\"monitoring-prometheus-cred\").username}"
+        prometheuspassword: "${creds.get(\"monitoring-prometheus-cred\").password}"
+      streamingPlatform:
+        kafkaAuthPassword: "${creds.get(\"kafka-streaming-admin-cred\").password}"
+        kafkaAuthUsername: "${creds.get(\"kafka-streaming-admin-cred\").username}"
+        password: "${creds.get(\"streaming-platform-cred\").password}"
+        username: "${creds.get(\"streaming-platform-cred\").username}"
+    waitForPodsReady: true
+  integrationTests: # paramset: streaming version: 23.4 source: template
+    install: false
+  monitoring: # paramset: streaming version: 23.4 source: template
+    install: true
+    installDashboard: true
+    monitoringType: "prometheus"
+  operator: # paramset: streaming version: 23.4 source: template
+    replicas: 1
+  streaming-platform: # paramset: streaming version: 23.4 source: template
+    livenessProbeInitialDelay: "180"
+    livenessProbeTimeout: "20"
+    readinessProbeInitialDelay: "180"
+  streamingPlatform: # paramset: streaming version: 23.4 source: template
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: "component"
+                  operator: "In"
+                  values:
+                    - "streaming-platform"
+            topologyKey: "kubernetes.io/hostname"
+    bootstrapServers: "kafka.${namespace_kafka_streaming}:9092"
+    heapSize: 640
+    ingress:
+      host: "streaming-platform-pl01-streaming.apps."
+    install: true
+    replicas: 3
+    resources:
+      limits:
+        cpu: "400m"
+        memory: "1024Mi"
+      requests:
+        cpu: "100m"
+        memory: "1024Mi"
+    zookeeperAddress: "zookeeper.${namespace_zookeeper_streaming}:2181"
+  vaultSecretManagement: # paramset: streaming version: 23.4 source: template
+    enabled: false
+    url: "\"\""
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

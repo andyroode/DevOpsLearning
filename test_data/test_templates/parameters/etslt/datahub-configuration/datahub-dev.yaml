@@ -1,0 +1,59 @@
+version: 1
+name: datahub-dev
+parameters: {}
+applications:
+  - appName: "aap-datahub-core"
+    parameters:
+      securityContexts:
+        pod:
+          runAsNonRoot: true
+          runAsUser: null
+          fsGroup: null
+          seccompProfile:
+            type: RuntimeDefault
+        containers:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+  - appName: "aap-datahub-base"
+    parameters:
+      securityContexts:
+        pod:
+          runAsNonRoot: true
+          runAsUser: null
+          fsGroup: null
+          seccompProfile:
+            type: RuntimeDefault
+        containers:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+      sparkOperator.k8s.token: ${creds.get("cloud-deploy-sa-token").secret}
+      oracleDb.rdb.fetchsize: "100"
+      greenplumDb.rdb.fetchsize: "100"
+      datahubDefaultEnv.DATAHUB__dfs_default_file_format: "orc"
+      workers.persistence.enabled: "true"
+      scheduler.logGroomerSidecar.retentionDays: "2"
+      workers.logGroomerSidecar.retentionDays: "2"
+      sparkOperator.spark.metastoreUrl: "thrift://hive-metastore.hive-metastore:9083"
+      sparkOperator.minio.url: "minio.minio.svc:9000"
+      sparkOperator.minio.user: "admin"
+      sparkOperator.minio.pass: "admin123"
+      kafka.secure.sasl.username: "admin"
+      kafka.secure.sasl.password: "admin"
+  - appName: "prj-datahub-etl"
+    parameters:
+      securityContexts:
+        pod:
+          runAsNonRoot: true
+          runAsUser: null
+          fsGroup: null
+          seccompProfile:
+            type: RuntimeDefault
+        containers:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL

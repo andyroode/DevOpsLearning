@@ -1,0 +1,63 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "etbss-sb-ocp-01"
+apiUrl: "api.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+apiPort: "6443" # cloud passport: etbss-sb-ocp-01 version: 1.5
+privateUrl: "apps.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+publicUrl: "apps.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+dashboardUrl: "https://console-openshift-console.apps.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+labels: []
+defaultCredentialsId: "cloud-deploy-sa-token" # cloud passport: etbss-sb-ocp-01 version: 1.5
+protocol: "https" # cloud passport: etbss-sb-ocp-01 version: 1.5
+dbMode: "db"
+databases: []
+mergeDeployParametersAndE2EParameters: false
+maasConfig:
+  credentialsId: "maas-cred" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  enable: true  # cloud passport: etbss-sb-ocp-01 version: 1.5
+  maasUrl: "http://maas-service-maas.apps.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  maasInternalAddress: "http://maas-service.maas:8080" # cloud passport: etbss-sb-ocp-01 version: 1.5
+vaultConfig:
+  credentialsId: ""
+  enable: false
+  url: ""
+dbaasConfigs:
+  - credentialsId: "dbaas-cluster-dba-cred" # cloud passport: etbss-sb-ocp-01 version: 1.5
+    enable: true # cloud passport: etbss-sb-ocp-01 version: 1.5
+    apiUrl: "http://dbaas-aggregator.dbaas:8080" # cloud passport: etbss-sb-ocp-01 version: 1.5
+    aggregatorUrl: "https://aggregator-dbaas.apps.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+consulConfig:
+  tokenSecret: "consul-admin-cred" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  enabled: true # cloud passport: etbss-sb-ocp-01 version: 1.5
+  publicUrl: "http://consul-server.consul:8500" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  internalUrl: "http://consul-server.consul:8500" # cloud passport: etbss-sb-ocp-01 version: 1.5
+deployParameters:
+  CLOUD_DASHBOARD_URL: "https://console-openshift-console.apps.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  CMDB_URL: "https://app-deployer.apps.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  CONSUL_ENABLED: "true" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  ESCAPE_SEQUENCE: "true"
+  GRAFANA_UI_URL: "https://grafana-platform-monitoring.apps.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  GRAYLOG_UI_URL: "https://graylog-logging-etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  INFRA_ENVIRONMENT_NAME: "platform-with-overrides"
+  PAAS_VERSION: "1.27"
+  PAAS_VERSION_CUSTOM: "1.27"
+  PRODUCTION_MODE: "false" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  STORAGE_RWO_CLASS: "standard-csi-paas" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  STORAGE_RWX_CLASS: "" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  TRACING_UI_URL: "https://jaeger.apps.etbss-sb-ocp-01.managed.qubership.cloud" # cloud passport: etbss-sb-ocp-01 version: 1.5
+  namespace_cassandra_cse: "platform-with-overrides-cassandra-cse"
+  namespace_dbaas: "platform-with-overrides-dbaas"
+  namespace_kafka: "platform-with-overrides-kafka"
+  namespace_kafka_streaming: "platform-with-overrides-kafka-streaming"
+  namespace_postgresql_bss: "platform-with-overrides-postgresql-bss"
+  namespace_postgresql_platform: "platform-with-overrides-postgresql-platform"
+  namespace_rabbitmq: "platform-with-overrides-rabbitmq"
+  namespace_zookeeper: "platform-with-overrides-zookeeper"
+  namespace_zookeeper_streaming: "platform-with-overrides-zookeeper-streaming"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

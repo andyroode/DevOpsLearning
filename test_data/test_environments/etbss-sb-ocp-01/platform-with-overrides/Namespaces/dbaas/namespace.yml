@@ -1,0 +1,39 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-dbaas"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DBAAS_CLUSTER_DBA_CREDENTIALS_PASSWORD: "${creds.get(\"dbaas-cluster-dba-cred\").password}" # paramset: dbaas version: 23.4 source: template
+  DBAAS_CLUSTER_DBA_CREDENTIALS_USERNAME: "${creds.get(\"dbaas-cluster-dba-cred\").username}" # paramset: dbaas version: 23.4 source: template
+  DBAAS_PREMATURE_REGISTRATION_ADAPTER_ADDRESSES: "http://nc-dbaas-postgres-adapter.${namespace_postgresql_platform}:8080" # paramset: dbaas version: 23.4 source: template
+  MONITORING_ENABLED: true # paramset: dbaas version: 23.4 source: template
+  NODE_SELECTOR_DBAAS_KEY: "node-role.kubernetes.io/worker" # paramset: dbaas version: 23.4 source: template
+  POSTGRES_DBA_PASSWORD: "${creds.get(\"postgresql-platform-cred\").password}" # paramset: dbaas version: 23.4 source: template
+  POSTGRES_DBA_USER: "${creds.get(\"postgresql-platform-cred\").username}" # paramset: dbaas version: 23.4 source: template
+  POSTGRES_HOST: "pg-patroni.${namespace_postgresql_platform}" # paramset: dbaas version: 23.4 source: template
+  REGION_DBAAS: "" # paramset: dbaas version: 23.4 source: template
+  dbaas: # paramset: dbaas version: 23.4 source: template
+    aggregator:
+      registrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+    install: true
+    resources:
+      limits:
+        cpu: "1"
+        memory: "904Mi"
+      requests:
+        cpu: "250m"
+        memory: "904Mi"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

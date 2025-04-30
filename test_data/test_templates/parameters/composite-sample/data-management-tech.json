@@ -1,0 +1,29 @@
+{
+  "name" : "data-management-tech",
+  "version" : 23.1,
+  "parameters" : {
+    "BSS_NAMESPACE" : "${NAMESPACE.replaceFirst(/-data-management$/, \"-bss\")}",
+    "OSS_NAMESPACE" : "${NAMESPACE.replaceFirst(/-data-management$/, \"-oss\")}"
+  },
+  "applications" : [ {
+    "parameters" : {
+      "beoc_package.CPQ_NAMESPACE" : "${BSS_NAMESPACE}",
+      "beoc_package.CIM_NAMESPACE" : "${BSS_NAMESPACE}",
+      "beoc_package.COM_NAMESPACE" : "${BSS_NAMESPACE}"
+    },
+    "appName" : "beoc"
+  }, {
+    "parameters" : {
+      "dpt_package.COM_NAMESPACE" : "${BSS_NAMESPACE}",
+      "dpt_package.CLOUD_NAME" : "${CLOUD_PUBLIC_HOST}",
+      "dpt_package.NAMESPACE" : "${NAMESPACE}",
+      "dpt_package.ESO_NAMESPACE" : "${OSS_NAMESPACE}"
+    },
+    "appName" : "dpt"
+  }, {
+    "parameters" : {
+      "dpt_package.CLOUD_NAME" : "${CLOUD_PUBLIC_HOST}"
+    },
+    "appName" : "ftpd-dpt-configuration-sample"
+  } ]
+}

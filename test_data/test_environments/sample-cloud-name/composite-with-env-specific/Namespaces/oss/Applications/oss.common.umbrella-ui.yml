@@ -1,0 +1,11 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "oss.common.umbrella-ui"
+deployParameters:
+  EXTERNAL_ROUTES_PROTOCOL: "https" # paramset: oss version: 23.1 source: template
+  MONITORING_ENABLED: "true" # paramset: oss version: 23.1 source: template
+  SUPERSET_EXTERNAL_URL: "${EXTERNAL_ROUTES_PROTOCOL}://reporting-superset-ext-${DM_NAMESPACE}.${CLOUD_PUBLIC_HOST}" # paramset: oss version: 23.1 source: template
+  USE_POSTGRESQL_AS_DB: "true"  # paramset: oss version: 23.1 source: template
+  UUI_INITIAL_APP: "uui/number-management" # paramset: oss version: 23.1 source: template
+technicalConfigurationParameters: {}

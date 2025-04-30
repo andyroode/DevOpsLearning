@@ -1,0 +1,6 @@
+version: 23.3
+name: core-e2e-wa
+parameters:
+    #paramset: core-WA version: 23.3 source: template
+    PROFILE: "dev"
+applications: []

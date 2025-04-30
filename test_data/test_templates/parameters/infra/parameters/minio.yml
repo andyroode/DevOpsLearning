@@ -1,0 +1,33 @@
+version: 23.4
+name: minio
+parameters:
+  DEPLOY_W_HELM: true
+  DISABLE_CRD: true
+  DISABLE_FORCE_APPLY: false
+  ESCAPE_SEQUENCE: true
+  mode: "standalone"
+  replicas: "1"
+  rootUser: "${creds.get(\"minio-admin\").username}"
+  rootPassword: "${creds.get(\"minio-admin\").password}"
+  persistence:
+    enabled: true
+    storageClass: "${STORAGE_RWO_CLASS}"
+    size: "100Gi"
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "200m"
+    limits:
+      memory: "1Gi"
+      cpu: "1"
+  ingress:
+    enabled: true
+    annotations: "'{\"nginx.ingress.kubernetes.io/proxy-body-size\": \"200m\"}'"
+  service:
+    type: "ClusterIP"
+  consoleService:
+    type: "ClusterIP"
+  consoleIngress:
+    enabled: true
+
+applications: []

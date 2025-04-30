@@ -1,0 +1,9 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "resource-inventory.sim-management"
+deployParameters:
+  DB_NAME_PREFIX: "${NAMESPACE.replace(\"-\",\"_\")}" # paramset: oss version: 23.1 source: template
+  KAFKA_SECURITY_ENABLED: "${tenant.cloud.CLOUD_KAFKA_SECURITY_ENABLED}" # paramset: oss version: 23.1 source: template
+  SIM_PROFILE_MANAGER_RELEASE_SCHEDULE_ENABLED: "false" # paramset: oss version: 23.1 source: template
+technicalConfigurationParameters: {}

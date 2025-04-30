@@ -1,0 +1,21 @@
+dpt-streaming-kafka-cred: # namespace env-3-data-management
+  type: "usernamePassword"
+  data:
+    # admin
+    username: "admin"
+    # admin
+    password: "admin"
+dpt-streaming-platform-cred: # namespace env-3-data-management
+  type: "usernamePassword"
+  data:
+    # admin
+    username: "admin"
+    # admin
+    password: "admin"
+cdc-streaming-cred: # namespace env-1-data-management
+  type: "usernamePassword"
+  data:
+    # admin
+    username: "admin"
+    # admin
+    password: "admin"

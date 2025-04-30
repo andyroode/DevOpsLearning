@@ -1,0 +1,9 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CloudBSS-PnL"
+deployParameters: {}
+technicalConfigurationParameters:
+  pnl-and-cost-management-service/pnl.import.currency.default: "AED" # paramset: bss-internal-integrations-tech version: 1 source: template
+  pnl-and-cost-management-service/pnl.quote-auto-load.enabled: "true" # paramset: bss-internal-integrations-tech version: 1 source: template
+  pnl-and-cost-management-service/pnl.quote-auto-load.on-states: "FINANCIAL_APPROVAL_PENDING" # paramset: bss-internal-integrations-tech version: 1 source: template

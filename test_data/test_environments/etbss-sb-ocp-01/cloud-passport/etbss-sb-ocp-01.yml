@@ -1,0 +1,35 @@
+version: 1.5
+cloud:
+  CLOUD_API_HOST: api.etbss-sb-ocp-01.managed.qubership.cloud
+  CLOUD_API_PORT: "6443"
+  CLOUD_DEPLOY_TOKEN: cloud-deploy-sa-token
+  CLOUD_PUBLIC_HOST: apps.etbss-sb-ocp-01.managed.qubership.cloud
+  CLOUD_PRIVATE_HOST: apps.etbss-sb-ocp-01.managed.qubership.cloud
+  CLOUD_DASHBOARD_URL: https://console-openshift-console.apps.etbss-sb-ocp-01.managed.qubership.cloud
+  CLOUD_PROTOCOL: https
+  PRODUCTION_MODE: "false"
+  #WA For ETBSS-422
+  GRAYLOG_UI_URL: https://graylog-logging-etbss-sb-ocp-01.managed.qubership.cloud
+  TRACING_UI_URL: https://jaeger.apps.etbss-sb-ocp-01.managed.qubership.cloud
+  GRAFANA_UI_URL: https://grafana-platform-monitoring.apps.etbss-sb-ocp-01.managed.qubership.cloud
+  CMDB_URL: https://app-deployer.apps.etbss-sb-ocp-01.managed.qubership.cloud
+dbaas:
+  API_DBAAS_ADDRESS: http://dbaas-aggregator.dbaas:8080 
+  DBAAS_AGGREGATOR_ADDRESS: https://aggregator-dbaas.apps.etbss-sb-ocp-01.managed.qubership.cloud
+  DBAAS_CLUSTER_DBA_CREDENTIALS_USERNAME: ${creds.get("dbaas-cluster-dba-cred").username}
+  DBAAS_CLUSTER_DBA_CREDENTIALS_PASSWORD: ${creds.get("dbaas-cluster-dba-cred").password}
+maas:
+  MAAS_INTERNAL_ADDRESS: http://maas-service.maas:8080
+  MAAS_SERVICE_ADDRESS: http://maas-service-maas.apps.etbss-sb-ocp-01.managed.qubership.cloud
+  MAAS_CREDENTIALS_USERNAME: ${creds.get("maas-cred").username}
+  MAAS_CREDENTIALS_PASSWORD: ${creds.get("maas-cred").password}
+consul:
+  CONSUL_URL: http://consul-server.consul:8500
+  CONSUL_ENABLED: true
+  # https://consul.apps.etbss-sb-ocp-01.managed.qubership.cloud
+  CONSUL_PUBLIC_URL: http://consul-server.consul:8500
+  CONSUL_ADMIN_TOKEN: ${creds.get("consul-admin-cred").secret}
+storage:
+  STORAGE_RWO_CLASS: standard-csi-paas
+  STORAGE_RWX_CLASS: ""
+

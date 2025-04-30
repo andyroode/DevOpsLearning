@@ -1,0 +1,91 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "uim"
+deployParameters:
+  DEPLOY_W_HELM: "true" # paramset: bss version: 1 source: template
+  UIM_PLUGINS_CONFIGS: |-
+    '{
+      "plugins": {
+        "deliveryPlugins": [
+          {
+            "defaultPluginConfig": {
+              "pluginSpecificConfigs": {
+                "host": "${SMPP_HOST}",
+                "password": "${SMPP_PASSWORD}",
+                "port": "${SMPP_PORT}",
+                "reconnect.interval.millis": "30000",
+                "submit.timeout": "10000",
+                "system.id": "${SMPP_USERNAME}",
+                "window": "1"
+              }
+            },
+            "implementationConfig": {
+              "oobPluginReference": "SMS"
+            },
+            "pluginInstanceId": "SMS"
+          },
+          {
+            "defaultPluginConfig": {
+              "pluginSpecificConfigs": {
+                "host": "${tenant.cloud.SMTP_SERVER_URL}",
+                "port": "${tenant.cloud.SMTP_SERVER_PORT}",
+                "transport_strategy": "SMTP",
+                "username": "${SMTP_SERVER_USERNAME}",
+                "password": "${SMTP_SERVER_PASSWORD}"            
+              }
+            },
+            "implementationConfig": {
+              "oobPluginReference": "E_MAIL"
+            },
+            "pluginInstanceId": "E_MAIL"
+          },
+          {
+            "pluginInstanceId": "MOBILE_PUSH",
+            "defaultPluginConfig": {
+              "pluginSpecificConfigs": {
+                "thread_pool.size": "8"
+              }
+            },
+            "implementationConfig": {
+              "oobPluginReference": "MOBILE_PUSH"
+            }
+          }
+        ]
+      }
+    }'
+   # paramset: bss version: 1 source: template
+  UIM_PLUGINS_MAPPING: |-
+    '{
+      "pluginsMapping": [
+        {
+          "filters": [
+            {
+              "mediumType": "E_MAIL"
+            },
+            {
+              "mediumType": "CALENDAR_EVENT"
+            }
+          ],
+          "pluginInstanceId": "E_MAIL"
+        },
+        {
+          "filters": [
+            {
+              "mediumType": "SMS"
+            }
+          ],
+          "pluginInstanceId": "SMS"
+        },
+        {
+          "pluginInstanceId": "MOBILE_PUSH",
+          "filters": [
+             {
+               "mediumType": "MOBILE_PUSH"
+             }
+          ]
+        }
+      ]
+    }'
+   # paramset: bss version: 1 source: template
+technicalConfigurationParameters: {}

@@ -1,0 +1,65 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-jaeger"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true  # paramset: jaeger version: 23.4 source: template
+  DISABLE_CRD: false # paramset: jaeger version: 23.4 source: template
+  DISABLE_FORCE_APPLY: false # paramset: jaeger version: 23.4 source: template
+  ESCAPE_SEQUENCE: true # paramset: jaeger version: 23.4 source: template
+  cassandraSchemaJob: # paramset: jaeger version: 23.4 source: template
+    datacenter: "dc1"
+    host: "cassandra.${namespace_cassandra_cse}"
+    install: true
+    keyspace: "platform_with_overrides_jaeger"
+    mode: "prod"
+    password: "${creds.get(\"cassandra-cse-cred\").password}"
+    port: "9042"
+    ttl:
+      dependencies: "0"
+      trace: "172800"
+    username: "${creds.get(\"cassandra-cse-cred\").username}"
+  collector: # paramset: jaeger version: 23.4 source: template
+    install: true
+    replicas: "2"
+    resources:
+      limits:
+        cpu: "400m"
+        memory: "400Mi"
+      requests:
+        cpu: "200m"
+        memory: "200Mi"
+  jaeger: # paramset: jaeger version: 23.4 source: template
+    storage:
+      type: "cassandra"
+  prometheusMonitoring: true # paramset: jaeger version: 23.4 source: template
+  prometheusMonitoringDashboard: true # paramset: jaeger version: 23.4 source: template
+  query: # paramset: jaeger version: 23.4 source: template
+    ingress:
+      host: "jaeger-platform-with-overrides.apps."
+      install: true
+    install: true
+    resources:
+      limits:
+        cpu: "400m"
+        memory: "400Mi"
+      requests:
+        cpu: "200m"
+        memory: "200Mi"
+    route:
+      enable: true
+      host: "jaeger-platform-with-overrides.apps."
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

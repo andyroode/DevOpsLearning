@@ -1,0 +1,22 @@
+version: 1
+name: design-time-configuration
+parameters:
+    PGADMIN_CONFIG_SESSION_COOKIE_DOMAIN: ""
+    DBAAS_ADMIN_UI_ADDRESS: ""
+applications:
+  - appName: "CloudBSS-PIM"
+    parameters:
+      # config for ETBSS-2035
+      PIM_OPTIONAL_SUB_MODULES: "marketing,product_cost"
+  - appName: "cloud-sct"
+    parameters:
+      # config for ETBSS-6772
+      SCT_OC_UI_BASE_PATH: "/api/v1/prj-oc-ui-app"
+      # config for ETBSS-10500
+      SCT_GIT_TOKEN: ${creds.get("cloud-sct-token").secret}
+  - appName: "prj-bss-pim"
+    parameters:
+      # Config for ETBSS-5734
+      CDC_NOTIFICATION: "false"
+      CPQ_IMPORT: "false"
+      CPQ_RESTORE: "true"

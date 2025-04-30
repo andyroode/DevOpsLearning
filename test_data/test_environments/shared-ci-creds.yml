@@ -1,0 +1,17 @@
+# ETBSS-1243
+ci-webex-token-cred:
+  type: secret
+  data:
+    secret: VALUE_HERE
+# ETBSS-1243
+ci-atp-auth-cred:
+  type: usernamePassword
+  data:
+    username: USER_HERE
+    password: PASSWORD_HERE
+# ETBSS-1243
+ci-builder-auth-cred:
+  type: usernamePassword
+  data:
+    username: USER_HERE
+    password: PASSWORD_HERE

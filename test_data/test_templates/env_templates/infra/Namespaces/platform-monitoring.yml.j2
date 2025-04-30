@@ -1,0 +1,39 @@
+---
+name: "{{ current_env.environmentName }}-platform-monitoring"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  victoriametrics:
+    vmAgent:
+      remoteWriteSettings:
+        label:
+          cluster: "{{ current_env.cloud }}"
+      externalLabels:
+        cluster: "{{ current_env.cloud }}"
+  grafana:
+    ingress:
+      host: "grafana-{{ current_env.environmentName }}-platform-monitoring.apps.{{ current_env.cluster.cloud_public_url }}"
+  ams:
+    config:
+      quarkus:
+        datasource:
+          jdbc:
+            url: jdbc:postgresql://pg-patroni.${namespace_postgresql_platform}.svc:5432/postgres?currentSchema=ams
+    secrets:
+      - name: ams-postgres-credentials
+        data:
+          username: "${creds.get(\"postgresql-platform-cred\").username}"
+          password: "${creds.get(\"postgresql-platform-cred\").password}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - platform-monitoring
+  - ams-service
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

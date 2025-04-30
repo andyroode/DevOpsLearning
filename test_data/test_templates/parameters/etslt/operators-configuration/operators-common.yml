@@ -1,0 +1,14 @@
+version: 1
+name: operators-common
+parameters: {}
+applications:
+  - appName: "routes-operator-app"
+    parameters:
+      PROTOCOL: https
+      DEFAULT_TENANT_NAME: cloud-common
+  - appName: "maas-operator-app"
+    parameters:
+      MAAS_HOST: ${MAAS_INTERNAL_ADDRESS}
+  - appName: "dbaas-operator-app"
+    parameters:
+      DBAAS_HOST: ${API_DBAAS_ADDRESS}

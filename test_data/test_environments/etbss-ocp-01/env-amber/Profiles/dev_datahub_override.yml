@@ -1,0 +1,25 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "dev_datahub_override"
+version: 0
+baseline: "dev"
+description: "Override for datahub-profile for datahub namespace"
+applications:
+  - name: "Cloud-Core"
+    version: "release-2023.3-8.4.0-20231103.225817-60-RELEASE"
+    sd: ""
+    services:
+      - name: "core-operator"
+        parameters:
+          - name: "CPU_REQUEST"
+            value: "20m"
+          - name: "CPU_LIMIT"
+            value: "600m"
+          - name: "MEMORY_REQUEST"
+            value: "376Mi"
+          - name: "MEMORY_LIMIT"
+            value: "376Mi"
+          - name: "MEM_ARGS"
+            value: "-XX:+UseSerialGC -XX:+UnlockExperimentalVMOptions -XX:CICompilerCount=2 -Xms80m -Xmx80m -Xss256k -XX:MetaspaceSize=144m -XX:MaxMetaspaceSize=144m -XX:ReservedCodeCacheSize=20M  -XX:CompressedClassSpaceSize=32M\
+              \ -XX:MinMetaspaceExpansion=1M -XX:MaxMetaspaceExpansion=8M -XX:CodeCacheExpansionSize=24M -XX:MaxDirectMemorySize=10M -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90"

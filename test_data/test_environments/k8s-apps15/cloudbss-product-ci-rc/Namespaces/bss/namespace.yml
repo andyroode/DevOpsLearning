@@ -1,0 +1,120 @@
+# The contents of this file is generated from template artifact: demo-bss-env-template.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cloudbss-product-ci-rc-bss"
+credentialsId: "k8s-apps15-service-admin"
+isServerSideMerge: false
+
+labels:
+  - "DEV"
+  - "solutionInstance-cloudbss-product-ci-rc"
+  - "solution-DEVOPSBP-TESTS"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: "static_core_gw"
+  baseline: "dev"
+deployParameters:
+  '#creds{CP_ECOMM_AUTH_CLIENT_SECRET_USERNAME, CP_ECOMM_AUTH_CLIENT_SECRET}': "CP-ECOMM-AUTH-CLIENT-SECRET-CREDENTIALS-CLOUDBSS-RELEASE" # paramset: portal_ecomm_set version: n/a
+  '#creds{CP_ECOMM_AUTH_SECRET_USERNAME, CP_ECOMM_AUTH_SECRET}': "CP-ECOMM-AUTH-SECRET-CREDENTIALS-CLOUDBSS-RELEASE" # paramset: portal_ecomm_set version: n/a
+  '#creds{CP_ECOMM_GOOGLE_MAP_API_KEY_SECRET_USERNAME, CP_ECOMM_GOOGLE_MAP_API_KEY_SECRET}': "CP-ECOMM-GOOGLE-MAP-KEY-SECRET-CREDENTIALS-CLOUDBSS-RELEASE" # paramset: portal_ecomm_set version: n/a
+  '#creds{CP_ECOMM_SECRET_USERNAME, CP_ECOMM_SECRET}': "CP-ECOMM-SECRET-CREDENTIALS-CLOUDBSS-RELEASE" # paramset: portal_ecomm_set version: n/a
+  '#creds{IMWS_EMAIL_USERNAME, IMWS_EMAIL_PASSWORD}': "ims-cpm-storage-creds-release" # paramset: cpm_param_set version: n/a
+  '#creds{SMTP_SERVER_USERNAME, SMTP_SERVER_PASSWORD}': "ims-cpm-storage-creds-release" # paramset: cpm_param_set version: n/a
+  ACCESS_CONTROL_OVERRIDE_CONDITION_WITH_PREDICATE: "true" # paramset: others_params_set version: n/a
+  ACCESS_CONTROL_REMOTE_SETTINGS_ENABLED: "true" # paramset: others_params_set version: n/a
+  BSS_CPM_SAMPLE_CONFIGURATION_INSTALL: "true" # paramset: cpm_param_set version: n/a
+  BSS_CPQ_CHAINS_CIP_DEPLOY_ACTION: "DEPLOY" # paramset: cpq-param-set version: n/a
+  BSS_INTEGRATION_NRM_DOMAIN: "cloud-rbm-pg-1" # paramset: nrm_pg_1_param_set version: n/a
+  BSS_INTEGRATION_NRM_MODE: "composite" # paramset: nrm_pg_1_param_set version: n/a
+  BSS_INTEGRATION_NRM_PORT: "8080" # paramset: nrm_pg_1_param_set version: n/a
+  BSS_INTEGRATION_NRM_PROTOCOL: "http" # paramset: nrm_pg_1_param_set version: n/a
+  CDN_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # paramset: default-passport-set version: n/a
+  CDN_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # paramset: default-passport-set version: n/a
+  CDN_STORAGE_REGION: "${STORAGE_REGION}" # paramset: default-passport-set version: n/a
+  CDN_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # paramset: default-passport-set version: n/a
+  CDN_STORAGE_USERNAME: "${STORAGE_USERNAME}" # paramset: default-passport-set version: n/a
+  CONSUL_ENABLED: "true" # paramset: default-passport-set version: n/a
+  DBAAS_ADMIN_UI_ADDRESS: "https://dbass-admin-ui-pgadmin-dbaas-admin-ui.k8s-apps15.k8s.sdntest.qubership.com/" # paramset: default-passport-set version: n/a
+  DEFAULT_TENANT_ADMIN_LOGIN: "tmp_user" # paramset: default-passport-set version: n/a
+  DEFAULT_TENANT_ADMIN_PASSWORD: "tmp_password" # paramset: others_params_set version: n/a
+  DEFAULT_TENANT_NAME: "cpq" # paramset: default-passport-set version: n/a
+  DGM_FCM_SENDER_ID: "485371624856" # paramset: others_params_set version: n/a
+  DGM_FCM_SERVER_KEY: "tmp_secret" # paramset: others_params_set version: n/a
+  DOC_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # paramset: default-passport-set version: n/a
+  DOC_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # paramset: default-passport-set version: n/a
+  DOC_STORAGE_REGION: "${STORAGE_REGION}" # paramset: default-passport-set version: n/a
+  DOC_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # paramset: default-passport-set version: n/a
+  DOC_STORAGE_USERNAME: "${STORAGE_USERNAME}" # paramset: default-passport-set version: n/a
+  ESCAPE_SEQUENCE: "true" # paramset: default-passport-set version: n/a
+  ESC_COLLECTOR_HOST: "esc-collector-service.${ESC_COLLECTOR_NS}" # paramset: nc_diag_param_set version: n/a
+  ESC_COLLECTOR_NS: "cdt" # paramset: nc_diag_param_set version: n/a
+  ESC_COLLECTOR_PORT: "1715" # paramset: nc_diag_param_set version: n/a
+  ESC_STATIC_HOST: "esc-static-service.${ESC_COLLECTOR_NS}" # paramset: nc_diag_param_set version: n/a
+  ESC_STATIC_PORT: "8080" # paramset: nc_diag_param_set version: n/a
+  GMS_FCM_SENDER_ID: "485371624856" # paramset: others_params_set version: n/a
+  GMS_FCM_SERVER_KEY: "tmp_secret" # paramset: others_params_set version: n/a
+  IBS_BIS_BUSINESS_STREAMING_EVENTS_ENABLED: "true" # paramset: cpq-param-set version: n/a
+  IBS_BSS_BIS_EVENTS_BUSINESS_STREAMING_ENABLED: "true" # paramset: cpq-param-set version: n/a
+  IBS_BSS_INDEX_BIS_EVENTS_NOTIFICATION_ENABLED: "true" # paramset: cpq-param-set version: n/a
+  IDP_KAFKA_EVENTS_ENABLED: "true" # paramset: others_params_set version: n/a
+  JAEGER_AGENT_PORT: "14267" # paramset: nc_diag_param_set version: n/a
+  JAEGER_COLLECTOR_HOST: "jaeger-collector.${JAEGER_NS}" # paramset: nc_diag_param_set version: n/a
+  JAEGER_GRPC_PORT: "14250" # paramset: nc_diag_param_set version: n/a
+  JAEGER_NS: "jaeger" # paramset: nc_diag_param_set version: n/a
+  JAEGER_THRIFT_PORT: "14268" # paramset: nc_diag_param_set version: n/a
+  MAVEN_REPO_NAME: "pd.saas.mvn.group, pd.utm.mvn.group" # paramset: default-passport-set version: n/a
+  MAVEN_REPO_URL: "https://artifactorycn.qubership.com/" # paramset: default-passport-set version: n/a
+  NIFI_CONF_STORAGE: "temp" # paramset: nifi_param_set version: n/a
+  NIFI_CONTENT_STORAGE: "temp" # paramset: nifi_param_set version: n/a
+  NIFI_FLOWFILE_STORAGE: "temp" # paramset: nifi_param_set version: n/a
+  NIFI_PROVENANCE_STORAGE: "temp" # paramset: nifi_param_set version: n/a
+  NIFI_REG_STORAGE: "temp" # paramset: nifi_param_set version: n/a
+  NIFI_SENSITIVE_KEY: "tmp_secret" # paramset: nifi_param_set version: n/a
+  OM_CIP_DEPLOYED_INTEGRATIONS: "'[\"som\",\"ibs\",\"uim\"]'" # paramset: om_int_param_set version: n/a
+  OM_UIM_URL: "http://uim:8080" # paramset: om_int_param_set version: n/a
+  ORG_CHART_INTEGRATION_ENABLED: "true" # paramset: default-passport-set version: n/a
+  STORAGE_PASSWORD: "tmp_password" # paramset: default-passport-set version: n/a
+  STORAGE_PROVIDER: "s3" # paramset: default-passport-set version: n/a
+  STORAGE_REGION: "{}" # paramset: default-passport-set version: n/a
+  STORAGE_SERVER_URL: "https://minio01cn.qubership.com" # paramset: default-passport-set version: n/a
+  STORAGE_USERNAME: "test-s3-cdn" # paramset: default-passport-set version: n/a
+  TENANT_LEVEL_ROLES: "PRODUCT-MANAGER TENANT-ADMIN CUSTOMER-SALES-REPRESENTATIVE CONTENT-MANAGER CUSTOMER-SUPPORT-AGENT GLOBAL-CUSTOMER-SALES-REPRESENTATIVE PORTFOLIO-MANAGER ROLE_READ-ONLY-USER ROLE_CAMPAIGN-AGENT\
+    \ ROLE_CAMPAIGN-MANAGER ROLE_CONTACT-POLICY-MANAGER ROLE_ADMINISTRATOR ROLE_CJM-USER ROLE_CJM-ADMINISTRATOR ROLE_CJM-READ-ONLY-USER ROLE_Security_Admin ROLE_Customer ROLE_CSR ROLE_Salesint_Prod_Admin\
+    \ ROLE_GRAPHQL_USER ROLE_BIS_RO ROLE_BIS_RW ROLE_Cpq_Admin ROLE_Cpq_Product_Sales_Partner ROLE_Cpq_Product_Pre_Sales ROLE_Cpq_Product_Sales_Manager ROLE_Cpq_Product_Director ROLE_Cpq_Product_VP ROLE_Cpq_Product_Commercial_Director\
+    \ ROLE_Cpq_Product_CEO_CFO ROLE_Cpq_Product_Reporting ROLE_Cpq_Product_Anonymous_Customer ROLE_UTM_EXECUTOR ROLE_UTM_SUPERVISOR ROLE_UTM_ADMINISTRATOR ROLE_ORGCHART_ADMINISTRATOR ROLE_ORGCHART_MANAGER\
+    \ ROLE_ORGCHART_TEAM_LEAD ROLE_BC_ADMINISTRATOR ROLE_PIM-ADMIN ROLE_PIM-VIEW AM-ADMIN AM-STOCK-USER ROLE_UIM-USER ROLE_cloud-om-ui-read-all ROLE_cloud-om-ui-write-all ROLE_cloud-om-catalog-read-all\
+    \ ROLE_cloud-om-catalog-write-all ROLE_cloud-om-read-product-order ROLE_cloud-om-submit-product-order ROLE_cloud-om-read-service-order ROLE_cloud-om-submit-service-order ROLE_cloud-om-update-order ROLE_cloud-om-read-product-offering-qualification\
+    \ ROLE_cloud-om-submit-product-offering-qualification ROLE_DS_SuperUser ROLE_DS_Sales_Agent ROLE_DS_Sales_Manager ROLE_DS_Administrator ROLE_RTD-READ-ONLY-USER ROLE_RTD-ADMINISTRATOR ROLE_RTC-D-EXT-CLIENT\
+    \ ROLE_RTD-SCRIPTS-ADMINISTRATOR ROLE_CPM_Admin ROLE_CDN-ADMIN ROLE_CIP_ADMIN ROLE_CIP_DEV ROLE_CIP_CUSTOMER ROLE_CLOUD-ADMIN ROLE_GMS_MOBILE_APP_USER ROLE_cdc_control_superuser ROLE_cdc_control_viewer\
+    \ ROLE_cdc_control_executor ROLE_cdc_control_importer ROLE_MARKETING_CLIENT ROLE_PNL_ADMIN ROLE_PROJECT_MANAGER_LEAD ROLE_CHOR_ADMIN WPP_ADMIN" # paramset: default-passport-set version: n/a
+  UIMT_GIT_BOT_LOGIN: "x_local_uimt_bot" # paramset: ui_metrics_tool_set version: n/a
+  UIMT_GIT_BOT_TOKEN: "glpat-nRbxeNqrcmS9wxPrh3fx" # paramset: ui_metrics_tool_set version: n/a
+  UIM_FCM_SERVICE_ACCOUNT_KEY: |-
+    {
+      "type": "service_account",
+      "project_id": "cloudjpg-firebase-notification",
+      "private_key_id": "a3a9c39ee5e862aee166b586a4c2726a2268792c",
+      "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDO4MxpBsEhYD3a\n0hrie1rVAQBXrqBoSynE3gnYQ1cWpjtPe8HDGccwJ3/+r89kCGXbALkIyuec5AU+\nwhOL6N3JGY3bMWx9DcaVhdCJo/v86Tw/e6wYDUTFV4lQQXpzWlrqqP9wsTjd0I5u\nqWjxXCN3qVvFloWvYPs0/h+DpVD9yg2MLUrBAJtT17JlOV6YlsihtjGseCi4sP8H\noRsVNdSv+9DkGgBplx4dmsj2X9SgFOYol5lM/EjU6ltfdWz4F/NFQDJS1X1/mPGR\ndMQdw6Z++k+BQ1AUS9ihgmxet//PFkGXCJ9/VC4aQceB+OIGGjPwb84WpXHS2rVN\nbCsHCuC5AgMBAAECggEAAK1KnJohspArKcc1s8s60bcW7pKEIYBMddCOeopAd+P+\n8FYZjiHqQKVPPe6XYzlMPn1ICoPVHhB2X5CJ2x5EIwx1ZhPRyAhFg/MvJmADXQ83\nNo9lyzenTBhPChJt+g0RGCyOEo0VgFNwHZsIFgzTTlFSX2TMPBoU9fHjOX55pMbO\nksoz8TPW/FUmssMWzRPVSfyx7S69qTPLscB7zIG4TRZWXqL4Cbta7BAXTj6Kk20i\newnKWhYkCE0pF/W4v0H8k1tqTKw+SF9P6Siesbxab/14Hx4epyxV7P9SQmzUV+4+\nlKnZC8uUYES4yPCYEMZeLkISejkNpOzxYxd3kiQw4QKBgQD4pobnu6n7/OZgqZAA\n/7xEdPk2mGBm4Bo7XUeK2vmOl7DzpcCQzX63iOC+Zc6oLVCA83VJnDQGP261USEC\n8WiGctAwdYA9/wv6ZkAOwBxo5TZ4iKMmv8F3oMoYBhFIodJ3CujqJL5RVWv2iAKM\nimn6ekt2qejsoH867Dd5Dcd92QKBgQDU/jDebubMLgVjTk4N4aJl6F9e7TbGGiPx\n4NVRza1JidOORmlDoyWY7YJ6TUKq0hRNSMlilw4D1tye8EH2MU2ptpVOO27J6hGR\nH7qMsLwN/GeOIBnauiLl1Ud6Q3l6bib1FjtpvCrpmDg2CZOPh2hKnwQi3SApf5yD\n1szHsNNN4QKBgAlXSC4gcKxUvdrXw98lvE7eDhas9sImnRWp1Wwz+bgPnsgoa+mE\nrsP6UmcUsATFXwbZHojbY2DwtRn+qDzSENksKwIHCABMOoj3mmRzdx3BrqAskeR8\nw6nY0n7Ai5ms6pkqQcG6C6RGjz29skrRUFXmjjsw+t0Y0m7GPPdBO0NRAoGAImxy\nuYBzDMzjUgl11AiDlrTXtR/hmmLfLFiKIY58U0ZTSstWd/gGO5EnZVzXSYRqg5Mf\n+S8wtK4lOgrank+ZnbRErUAtx7Rs4meeXt6xhhElK3NEunUa7sppovkEySTEZxgQ\nwiYHSXmwnAswLiJUWLsakAftCsf1I9mzfxK1FAECgYA7Bwf6+I9oQM4U/0NDvp0k\nve7tXAe/wzo6z2e9aMO3mhjR1RRlrwFCswdGPJIfDhsTgW85HJ+0v4UPVxGRM3Rb\nePTo7MUYC34E7IooF1JhskQQZ81LI362ZJn0u6sXEgAXcfy28YzeluD392tfw2li\ndjpP2sKkB2S2YSepqbar2g==\n-----END PRIVATE KEY-----\n",
+      "client_email": "firebase-adminsdk-az2yn@cloudjpg-firebase-notification.iam.gserviceaccount.com",
+      "client_id": "107421480300534105218",
+      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+      "token_uri": "https://oauth2.googleapis.com/token",
+      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+      "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-az2yn%40cloudjpg-firebase-notification.iam.gserviceaccount.com",
+      "universe_domain": "googleapis.com"
+    }
+   # paramset: others_params_set version: n/a
+  ZIPKIN_COLLECTOR_HOST: "jaeger-collector.${JAEGER_NS}" # paramset: nc_diag_param_set version: n/a
+  ZIPKIN_COLLECTOR_PORT: "9411" # paramset: nc_diag_param_set version: n/a
+  ZOOKEEPER_ADDRESS: "zookeeper.zookeeper:2181" # paramset: om_int_param_set version: n/a
+  eca.logs: "false" # paramset: nrm_pg_1_param_set version: n/a
+  global.secrets.streamingPlatform.password: "tmp_user" # paramset: cdc-param-set version: n/a
+  global.secrets.streamingPlatform.username: "tmp_user" # paramset: cdc-param-set version: n/a
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+applications: null
+dirty: false

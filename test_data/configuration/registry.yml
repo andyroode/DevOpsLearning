@@ -1,0 +1,10 @@
+artifactorycn:
+  username: envgen.creds.get('artifactorycn-cred').username
+  password: envgen.creds.get('artifactorycn-cred').password
+  releaseRepository: "https://artifactorycn.qubership.com/pd.sandbox.mvn.release"
+  snapshotRepository: "https://artifactorycn.qubership.com/nc.dmp-descriptor.mvn.staging"
+  stagingRepository: "https://artifactorycn.qubership.com/nc.dmp-descriptor.mvn.staging"
+  proxyRepository: "https://artifactorycn.qubership.com/pd.sandbox.mvn.proxy"
+  releaseTemplateRepository: "https://artifactorycn.qubership.com/pd.sandbox.mvn.release"
+  snapshotTemplateRepository: "https://artifactorycn.qubership.com/pd.sandbox.mvn.snapshot"
+  stagingTemplateRepository: "https://artifactorycn.qubership.com/pd.sandbox.mvn.staging"

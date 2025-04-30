@@ -1,0 +1,20 @@
+version: 23.4
+name: infra-keycloak
+parameters:
+  SERVICE_NAME: infra-keycloak
+  CPU_REQUEST: 100m
+  CPU_LIMIT: "2"
+  MEMORY_REQUEST: 512Mi
+  MEMORY_LIMIT: 2550Mi
+  REPLICAS: "2"
+  PAAS_PLATFORM: OPENSHIFT
+  ENABLE_MONITORING: "true"
+  INSTALL_GRAFANA_DASHBOARD: "true"
+  INFRA_KEYCLOAK_ADMIN_USER_NAME: admin
+  INFRA_KEYCLOAK_ADMIN_PASSWORD: admin
+  DB_HOST: "pg-patroni.${namespace_postgresql_platform}"
+  DB_PORT: "5432"
+  DB_NAME: dbaas_bss_pg_infra_keycloak
+  DB_PASSWORD: "${creds.get(\"postgresql-platform-cred\").password}"
+  DB_USERNAME: "${creds.get(\"postgresql-platform-cred\").username}"
+applications: []

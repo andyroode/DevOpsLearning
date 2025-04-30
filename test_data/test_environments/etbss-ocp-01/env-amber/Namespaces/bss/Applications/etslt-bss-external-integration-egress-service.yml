@@ -1,0 +1,655 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "etslt-bss-external-integration-egress-service"
+deployParameters:
+  BCRM_BACKUP_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-bcrm-backup-credentials\").password}" # paramset: bss-common version: 1 source: template
+  BCRM_BACKUP_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-bcrm-backup-credentials\").username}" # paramset: bss-common version: 1 source: template
+  BCRM_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-bcrm-credentials\").password}" # paramset: bss-common version: 1 source: template
+  BCRM_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-bcrm-credentials\").username}" # paramset: bss-common version: 1 source: template
+  BCRM_CERT_VALUE: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUgrRENDQnVDZ0F3SUJBZ0lUYndBTVA1RGlaRHY0bVFpVGFBQUNBQXcva0RBTkJna3Foa2lHOXcwQkFRc0YKQURCVU1STXdFUVlLQ1pJbWlaUHlMR1FCR1JZRFkyOXRNUm93R0FZS0NaSW1pWlB5TEdRQkdSWUtibVYwWTNKaApZMnRsY2pFaE1COEdBMVVFQXhNWVRtVjBRM0poWTJ0bGNpQlVaV05vYm05c2IyZDVJRU5CTUI0WERUSTBNRFF5Ck16RTBNRGswTjFvWERUSTJNRFF5TXpFME1EazBOMW93Z1k4eEhqQWNCZ05WQkFvVEZVNWxkRU55WVdOclpYSWcKVkdWamFHNXZiRzluZVRFT01Bd0dBMVVFQ3hNRlNWUkVVRXd4S2pBb0JnTlZCQU1NSVNvdVlYUndhM1ZpTG0xaApibUZuWldRdWJtVjBZM0poWTJ0bGNpNWpiRzkxWkRFeE1DOEdDU3FHU0liM0RRRUpBUllpVUdGaFUwOXdaWEpoCmRHbHZibk5IY205MWNFQnVaWFJqY21GamEyVnlMbU52YlRDQ0FpSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnSVAKQURDQ0Fnb0NnZ0lCQU55QW52NEUrWVhFKy9DbDBTcVF1aUdnVHgxRUVBdWRocWszU1N2ZnY5VDl3Qk8rRFp3dQpBT3pGVzdNSlRub0ZJcHFZYTNGMVVyNGE3RTlvRW11RC9DRXdxTGFWcjVkbFFScWFSbEVJbHZkZTVTTjUvTnliCkgzTUVoQTFGb0VtMXFlT2hFRjVQQ202dW1OZlBhTDNEb08zWmdIbmVQU05oRExxckcrQlJaLzhLa0tFd2FRekcKVkxkQllkbnJab2dHZE95TitIQWt2S3B2S0RxWEEyMUhJd1JObGlhV0JrV2luNzJ2MmZpNGdOREtpN0RweFVhRApIZFlLeWVSTElsSllEakpoYkJWL0Irb29DTjV0ZVdwTWkwMDJEQlBhY29zZVd0SzA5THgyRUo4Q3hpMWF2bWlQCmRxKzB1SUJzckhpZ3VqTG0zQy8vV044VDh3MDFaN2thTXdjeEU4U1JTZUpGbTcvN3pGVjQyOGVHZEhYL3dxSnQKcndGZU11STAzaU1mZkgwaUtQS2huQ2NabDA3S0xpejdycDJ3Qm5TaWo1TEt5QmQ5RUdFNHdvWW1tOHMvZElxNApwdXBteVBzNzRnUWhacmNITjVRSjhlcTBNNjZQZURZV3FyQjlUcVJKTXhKQmlIQzV1eGFEYm0zaWV2aDNRSmpECmpUdkp3LzVERy90MFhPVFlBSmpySzRTT1dlYmtGM2YyenYxMmhGQXZGOVVBVmhHMjIySXBONDJObTBtR1FLSlEKZTcyYVZXMTRWUEpsRkVBRHJ2eG80M1ArYWFnMWtaZDN5MmlSdXQxV2VjQWNRRldKWlRvOFYrOFJZdCt2QlBRVAovNnRmYWU1NUdDWlpjNUZ0REw1eHRQenBXVVFITm1NTFMwVi9ZOUc2VzVmTWVxbDc4NnBycWhxZkFnTUJBQUdqCmdnT0ZNSUlEZ1RBc0JnTlZIUkVFSlRBamdpRXFMbUYwY0d0MVlpNXRZVzVoWjJWa0xtNWxkR055WVdOclpYSXUKWTJ4dmRXUXdIUVlEVlIwT0JCWUVGTUxZOVNDSWhqTVloaXRaNjl1VlZBb0M0eWJYTUI4R0ExVWRJd1FZTUJhQQpGSzErbUlBUnlPVGUvbFRXd3V4emZQaTI4a1FtTUlJQk13WURWUjBmQklJQktqQ0NBU1l3Z2dFaW9JSUJIcUNDCkFScUdnY2xzWkdGd09pOHZMME5PUFU1bGRFTnlZV05yWlhJbE1qQlVaV05vYm05c2IyZDVKVEl3UTBFb01pa3MKUTA0OVEwVlNWRk5TVml4RFRqMURSRkFzUTA0OVVIVmliR2xqSlRJd1MyVjVKVEl3VTJWeWRtbGpaWE1zUTA0OQpVMlZ5ZG1salpYTXNRMDQ5UTI5dVptbG5kWEpoZEdsdmJpeEVRejF1WlhSamNtRmphMlZ5TEVSRFBXTnZiVDlqClpYSjBhV1pwWTJGMFpWSmxkbTlqWVhScGIyNU1hWE4wUDJKaGMyVS9iMkpxWldOMFEyeGhjM005WTFKTVJHbHoKZEhKcFluVjBhVzl1VUc5cGJuU0dUR2gwZEhBNkx5OURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0TDBObApjblJGYm5KdmJHd3ZUbVYwUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU2d5S1M1amNtd3dnZ0ZFCkJnZ3JCZ0VGQlFjQkFRU0NBVFl3Z2dFeU1JRytCZ2dyQmdFRkJRY3dBb2FCc1d4a1lYQTZMeTh2UTA0OVRtVjAKUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU3hEVGoxQlNVRXNRMDQ5VUhWaWJHbGpKVEl3UzJWNQpKVEl3VTJWeWRtbGpaWE1zUTA0OVUyVnlkbWxqWlhNc1EwNDlRMjl1Wm1sbmRYSmhkR2x2Yml4RVF6MXVaWFJqCmNtRmphMlZ5TEVSRFBXTnZiVDlqUVVObGNuUnBabWxqWVhSbFAySmhjMlUvYjJKcVpXTjBRMnhoYzNNOVkyVnkKZEdsbWFXTmhkR2x2YmtGMWRHaHZjbWwwZVRCdkJnZ3JCZ0VGQlFjd0FZWmphSFIwY0RvdkwwTkZVbFJUVWxZdQpibVYwWTNKaFkydGxjaTVqYjIwdlEyVnlkRVZ1Y205c2JDOURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0ClgwNWxkRU55WVdOclpYSWxNakJVWldOb2JtOXNiMmQ1SlRJd1EwRW9NaWt1WTNKME1Bc0dBMVVkRHdRRUF3SUYKb0RBOUJna3JCZ0VFQVlJM0ZRY0VNREF1QmlZckJnRUVBWUkzRlFpRmpjY1NoTXVlZDRmTmhUV0h4cDV0aEpyVwpFVU9Ed1lBb2c2blZGd0lCWkFJQkNqQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0RBUVlJS3dZQkJRVUhBd0l3Ckp3WUpLd1lCQkFHQ054VUtCQm93R0RBS0JnZ3JCZ0VGQlFjREFUQUtCZ2dyQmdFRkJRY0RBakFOQmdrcWhraUcKOXcwQkFRc0ZBQU9DQVFFQVptWnZ1SUhaZXJmTEtsS2hTTm9ZMG5sOVQ0bWpkNjFhdTAwY2NzZ3pSRXVMeGZoMgpFWkYzcS9DeExHSXRUT0NabENzb0Zna3lFQ0JsajBBZ0JmWllkTFRaSzZLbEZLa3o5ZTFmN2tQRFExeXlJdFFICjdrMXAxTWI0bGNGSk13Rno2MFFZdlRIZXVZTW5KWkJQelhpQ0Z5dzZqbVFQcWFPaHRHZHo1WHY3V2x5akNxbjQKVkl4MlpsQ2MvdTAraFpUTFlFZEl1VVN1SnUzeHRPV0EyWEs5clRvVlJ6N3hvY0NSY0lsT2ljOCtNbFgzVUZ3ZgpBR0tyczBoQ2RLeGpiTEc3cWluMXAzdlBRRmdyTTVNOHBqcnVqRnp6bndTemlQOHRBWjcwM2I0TzFYemN2Y0JuCnhmb0Y0VVBJQ05URUx1QWtUVFJSYjRGVXRiTkNhNFJGSjJQcGNRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==" # paramset: bss-common version: 1 source: template
+  CRM_BACKUP_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-crm-backup-credentials\").password}" # paramset: bss-common version: 1 source: template
+  CRM_BACKUP_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-crm-backup-credentials\").username}" # paramset: bss-common version: 1 source: template
+  CRM_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-crm-credentials\").password}" # paramset: bss-common version: 1 source: template
+  CRM_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-crm-credentials\").username}" # paramset: bss-common version: 1 source: template
+  CRM_CERT_VALUE: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUgrRENDQnVDZ0F3SUJBZ0lUYndBTVA1RGlaRHY0bVFpVGFBQUNBQXcva0RBTkJna3Foa2lHOXcwQkFRc0YKQURCVU1STXdFUVlLQ1pJbWlaUHlMR1FCR1JZRFkyOXRNUm93R0FZS0NaSW1pWlB5TEdRQkdSWUtibVYwWTNKaApZMnRsY2pFaE1COEdBMVVFQXhNWVRtVjBRM0poWTJ0bGNpQlVaV05vYm05c2IyZDVJRU5CTUI0WERUSTBNRFF5Ck16RTBNRGswTjFvWERUSTJNRFF5TXpFME1EazBOMW93Z1k4eEhqQWNCZ05WQkFvVEZVNWxkRU55WVdOclpYSWcKVkdWamFHNXZiRzluZVRFT01Bd0dBMVVFQ3hNRlNWUkVVRXd4S2pBb0JnTlZCQU1NSVNvdVlYUndhM1ZpTG0xaApibUZuWldRdWJtVjBZM0poWTJ0bGNpNWpiRzkxWkRFeE1DOEdDU3FHU0liM0RRRUpBUllpVUdGaFUwOXdaWEpoCmRHbHZibk5IY205MWNFQnVaWFJqY21GamEyVnlMbU52YlRDQ0FpSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnSVAKQURDQ0Fnb0NnZ0lCQU55QW52NEUrWVhFKy9DbDBTcVF1aUdnVHgxRUVBdWRocWszU1N2ZnY5VDl3Qk8rRFp3dQpBT3pGVzdNSlRub0ZJcHFZYTNGMVVyNGE3RTlvRW11RC9DRXdxTGFWcjVkbFFScWFSbEVJbHZkZTVTTjUvTnliCkgzTUVoQTFGb0VtMXFlT2hFRjVQQ202dW1OZlBhTDNEb08zWmdIbmVQU05oRExxckcrQlJaLzhLa0tFd2FRekcKVkxkQllkbnJab2dHZE95TitIQWt2S3B2S0RxWEEyMUhJd1JObGlhV0JrV2luNzJ2MmZpNGdOREtpN0RweFVhRApIZFlLeWVSTElsSllEakpoYkJWL0Irb29DTjV0ZVdwTWkwMDJEQlBhY29zZVd0SzA5THgyRUo4Q3hpMWF2bWlQCmRxKzB1SUJzckhpZ3VqTG0zQy8vV044VDh3MDFaN2thTXdjeEU4U1JTZUpGbTcvN3pGVjQyOGVHZEhYL3dxSnQKcndGZU11STAzaU1mZkgwaUtQS2huQ2NabDA3S0xpejdycDJ3Qm5TaWo1TEt5QmQ5RUdFNHdvWW1tOHMvZElxNApwdXBteVBzNzRnUWhacmNITjVRSjhlcTBNNjZQZURZV3FyQjlUcVJKTXhKQmlIQzV1eGFEYm0zaWV2aDNRSmpECmpUdkp3LzVERy90MFhPVFlBSmpySzRTT1dlYmtGM2YyenYxMmhGQXZGOVVBVmhHMjIySXBONDJObTBtR1FLSlEKZTcyYVZXMTRWUEpsRkVBRHJ2eG80M1ArYWFnMWtaZDN5MmlSdXQxV2VjQWNRRldKWlRvOFYrOFJZdCt2QlBRVAovNnRmYWU1NUdDWlpjNUZ0REw1eHRQenBXVVFITm1NTFMwVi9ZOUc2VzVmTWVxbDc4NnBycWhxZkFnTUJBQUdqCmdnT0ZNSUlEZ1RBc0JnTlZIUkVFSlRBamdpRXFMbUYwY0d0MVlpNXRZVzVoWjJWa0xtNWxkR055WVdOclpYSXUKWTJ4dmRXUXdIUVlEVlIwT0JCWUVGTUxZOVNDSWhqTVloaXRaNjl1VlZBb0M0eWJYTUI4R0ExVWRJd1FZTUJhQQpGSzErbUlBUnlPVGUvbFRXd3V4emZQaTI4a1FtTUlJQk13WURWUjBmQklJQktqQ0NBU1l3Z2dFaW9JSUJIcUNDCkFScUdnY2xzWkdGd09pOHZMME5PUFU1bGRFTnlZV05yWlhJbE1qQlVaV05vYm05c2IyZDVKVEl3UTBFb01pa3MKUTA0OVEwVlNWRk5TVml4RFRqMURSRkFzUTA0OVVIVmliR2xqSlRJd1MyVjVKVEl3VTJWeWRtbGpaWE1zUTA0OQpVMlZ5ZG1salpYTXNRMDQ5UTI5dVptbG5kWEpoZEdsdmJpeEVRejF1WlhSamNtRmphMlZ5TEVSRFBXTnZiVDlqClpYSjBhV1pwWTJGMFpWSmxkbTlqWVhScGIyNU1hWE4wUDJKaGMyVS9iMkpxWldOMFEyeGhjM005WTFKTVJHbHoKZEhKcFluVjBhVzl1VUc5cGJuU0dUR2gwZEhBNkx5OURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0TDBObApjblJGYm5KdmJHd3ZUbVYwUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU2d5S1M1amNtd3dnZ0ZFCkJnZ3JCZ0VGQlFjQkFRU0NBVFl3Z2dFeU1JRytCZ2dyQmdFRkJRY3dBb2FCc1d4a1lYQTZMeTh2UTA0OVRtVjAKUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU3hEVGoxQlNVRXNRMDQ5VUhWaWJHbGpKVEl3UzJWNQpKVEl3VTJWeWRtbGpaWE1zUTA0OVUyVnlkbWxqWlhNc1EwNDlRMjl1Wm1sbmRYSmhkR2x2Yml4RVF6MXVaWFJqCmNtRmphMlZ5TEVSRFBXTnZiVDlqUVVObGNuUnBabWxqWVhSbFAySmhjMlUvYjJKcVpXTjBRMnhoYzNNOVkyVnkKZEdsbWFXTmhkR2x2YmtGMWRHaHZjbWwwZVRCdkJnZ3JCZ0VGQlFjd0FZWmphSFIwY0RvdkwwTkZVbFJUVWxZdQpibVYwWTNKaFkydGxjaTVqYjIwdlEyVnlkRVZ1Y205c2JDOURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0ClgwNWxkRU55WVdOclpYSWxNakJVWldOb2JtOXNiMmQ1SlRJd1EwRW9NaWt1WTNKME1Bc0dBMVVkRHdRRUF3SUYKb0RBOUJna3JCZ0VFQVlJM0ZRY0VNREF1QmlZckJnRUVBWUkzRlFpRmpjY1NoTXVlZDRmTmhUV0h4cDV0aEpyVwpFVU9Ed1lBb2c2blZGd0lCWkFJQkNqQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0RBUVlJS3dZQkJRVUhBd0l3Ckp3WUpLd1lCQkFHQ054VUtCQm93R0RBS0JnZ3JCZ0VGQlFjREFUQUtCZ2dyQmdFRkJRY0RBakFOQmdrcWhraUcKOXcwQkFRc0ZBQU9DQVFFQVptWnZ1SUhaZXJmTEtsS2hTTm9ZMG5sOVQ0bWpkNjFhdTAwY2NzZ3pSRXVMeGZoMgpFWkYzcS9DeExHSXRUT0NabENzb0Zna3lFQ0JsajBBZ0JmWllkTFRaSzZLbEZLa3o5ZTFmN2tQRFExeXlJdFFICjdrMXAxTWI0bGNGSk13Rno2MFFZdlRIZXVZTW5KWkJQelhpQ0Z5dzZqbVFQcWFPaHRHZHo1WHY3V2x5akNxbjQKVkl4MlpsQ2MvdTAraFpUTFlFZEl1VVN1SnUzeHRPV0EyWEs5clRvVlJ6N3hvY0NSY0lsT2ljOCtNbFgzVUZ3ZgpBR0tyczBoQ2RLeGpiTEc3cWluMXAzdlBRRmdyTTVNOHBqcnVqRnp6bndTemlQOHRBWjcwM2I0TzFYemN2Y0JuCnhmb0Y0VVBJQ05URUx1QWtUVFJSYjRGVXRiTkNhNFJGSjJQcGNRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==" # paramset: bss-common version: 1 source: template
+  DISABLE_SECURE_CONNECTION: "false" # paramset: bss-common version: 1 source: template
+  ENABLE_TOKEN_MASKING: "true" # paramset: bss-common version: 1 source: template
+  EXTERNAL_SYSTEMS_URLS: |-
+    '{
+      "tibco":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+      "tibcoBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+      "crm":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+      "crmBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+      "bcrm":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud",
+      "bcrmBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud"
+    }'
+   # paramset: bss-common version: 1 source: template
+  IDENTITY_PROVIDER_URL: "http://identity-provider:8080" # paramset: bss-common version: 1 source: template
+  M2M_TENANT_ID: "cloud-common" # paramset: bss-common version: 1 source: template
+  TIBCO_BACKUP_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-tibco-backup-credentials\").password}" # paramset: bss-common version: 1 source: template
+  TIBCO_BACKUP_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-tibco-backup-credentials\").username}" # paramset: bss-common version: 1 source: template
+  TIBCO_BASIC_AUTHORIZATION_PASSWORD_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-tibco-credentials\").password}" # paramset: bss-common version: 1 source: template
+  TIBCO_BASIC_AUTHORIZATION_USERNAME_SECRET_VALUE: "${creds.get(\"external-integration-egress-service-tibco-credentials\").username}" # paramset: bss-common version: 1 source: template
+  TIBCO_CERT_VALUE: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUgrRENDQnVDZ0F3SUJBZ0lUYndBTVA1RGlaRHY0bVFpVGFBQUNBQXcva0RBTkJna3Foa2lHOXcwQkFRc0YKQURCVU1STXdFUVlLQ1pJbWlaUHlMR1FCR1JZRFkyOXRNUm93R0FZS0NaSW1pWlB5TEdRQkdSWUtibVYwWTNKaApZMnRsY2pFaE1COEdBMVVFQXhNWVRtVjBRM0poWTJ0bGNpQlVaV05vYm05c2IyZDVJRU5CTUI0WERUSTBNRFF5Ck16RTBNRGswTjFvWERUSTJNRFF5TXpFME1EazBOMW93Z1k4eEhqQWNCZ05WQkFvVEZVNWxkRU55WVdOclpYSWcKVkdWamFHNXZiRzluZVRFT01Bd0dBMVVFQ3hNRlNWUkVVRXd4S2pBb0JnTlZCQU1NSVNvdVlYUndhM1ZpTG0xaApibUZuWldRdWJtVjBZM0poWTJ0bGNpNWpiRzkxWkRFeE1DOEdDU3FHU0liM0RRRUpBUllpVUdGaFUwOXdaWEpoCmRHbHZibk5IY205MWNFQnVaWFJqY21GamEyVnlMbU52YlRDQ0FpSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnSVAKQURDQ0Fnb0NnZ0lCQU55QW52NEUrWVhFKy9DbDBTcVF1aUdnVHgxRUVBdWRocWszU1N2ZnY5VDl3Qk8rRFp3dQpBT3pGVzdNSlRub0ZJcHFZYTNGMVVyNGE3RTlvRW11RC9DRXdxTGFWcjVkbFFScWFSbEVJbHZkZTVTTjUvTnliCkgzTUVoQTFGb0VtMXFlT2hFRjVQQ202dW1OZlBhTDNEb08zWmdIbmVQU05oRExxckcrQlJaLzhLa0tFd2FRekcKVkxkQllkbnJab2dHZE95TitIQWt2S3B2S0RxWEEyMUhJd1JObGlhV0JrV2luNzJ2MmZpNGdOREtpN0RweFVhRApIZFlLeWVSTElsSllEakpoYkJWL0Irb29DTjV0ZVdwTWkwMDJEQlBhY29zZVd0SzA5THgyRUo4Q3hpMWF2bWlQCmRxKzB1SUJzckhpZ3VqTG0zQy8vV044VDh3MDFaN2thTXdjeEU4U1JTZUpGbTcvN3pGVjQyOGVHZEhYL3dxSnQKcndGZU11STAzaU1mZkgwaUtQS2huQ2NabDA3S0xpejdycDJ3Qm5TaWo1TEt5QmQ5RUdFNHdvWW1tOHMvZElxNApwdXBteVBzNzRnUWhacmNITjVRSjhlcTBNNjZQZURZV3FyQjlUcVJKTXhKQmlIQzV1eGFEYm0zaWV2aDNRSmpECmpUdkp3LzVERy90MFhPVFlBSmpySzRTT1dlYmtGM2YyenYxMmhGQXZGOVVBVmhHMjIySXBONDJObTBtR1FLSlEKZTcyYVZXMTRWUEpsRkVBRHJ2eG80M1ArYWFnMWtaZDN5MmlSdXQxV2VjQWNRRldKWlRvOFYrOFJZdCt2QlBRVAovNnRmYWU1NUdDWlpjNUZ0REw1eHRQenBXVVFITm1NTFMwVi9ZOUc2VzVmTWVxbDc4NnBycWhxZkFnTUJBQUdqCmdnT0ZNSUlEZ1RBc0JnTlZIUkVFSlRBamdpRXFMbUYwY0d0MVlpNXRZVzVoWjJWa0xtNWxkR055WVdOclpYSXUKWTJ4dmRXUXdIUVlEVlIwT0JCWUVGTUxZOVNDSWhqTVloaXRaNjl1VlZBb0M0eWJYTUI4R0ExVWRJd1FZTUJhQQpGSzErbUlBUnlPVGUvbFRXd3V4emZQaTI4a1FtTUlJQk13WURWUjBmQklJQktqQ0NBU1l3Z2dFaW9JSUJIcUNDCkFScUdnY2xzWkdGd09pOHZMME5PUFU1bGRFTnlZV05yWlhJbE1qQlVaV05vYm05c2IyZDVKVEl3UTBFb01pa3MKUTA0OVEwVlNWRk5TVml4RFRqMURSRkFzUTA0OVVIVmliR2xqSlRJd1MyVjVKVEl3VTJWeWRtbGpaWE1zUTA0OQpVMlZ5ZG1salpYTXNRMDQ5UTI5dVptbG5kWEpoZEdsdmJpeEVRejF1WlhSamNtRmphMlZ5TEVSRFBXTnZiVDlqClpYSjBhV1pwWTJGMFpWSmxkbTlqWVhScGIyNU1hWE4wUDJKaGMyVS9iMkpxWldOMFEyeGhjM005WTFKTVJHbHoKZEhKcFluVjBhVzl1VUc5cGJuU0dUR2gwZEhBNkx5OURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0TDBObApjblJGYm5KdmJHd3ZUbVYwUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU2d5S1M1amNtd3dnZ0ZFCkJnZ3JCZ0VGQlFjQkFRU0NBVFl3Z2dFeU1JRytCZ2dyQmdFRkJRY3dBb2FCc1d4a1lYQTZMeTh2UTA0OVRtVjAKUTNKaFkydGxjaVV5TUZSbFkyaHViMnh2WjNrbE1qQkRRU3hEVGoxQlNVRXNRMDQ5VUhWaWJHbGpKVEl3UzJWNQpKVEl3VTJWeWRtbGpaWE1zUTA0OVUyVnlkbWxqWlhNc1EwNDlRMjl1Wm1sbmRYSmhkR2x2Yml4RVF6MXVaWFJqCmNtRmphMlZ5TEVSRFBXTnZiVDlqUVVObGNuUnBabWxqWVhSbFAySmhjMlUvYjJKcVpXTjBRMnhoYzNNOVkyVnkKZEdsbWFXTmhkR2x2YmtGMWRHaHZjbWwwZVRCdkJnZ3JCZ0VGQlFjd0FZWmphSFIwY0RvdkwwTkZVbFJUVWxZdQpibVYwWTNKaFkydGxjaTVqYjIwdlEyVnlkRVZ1Y205c2JDOURSVkpVVTFKV0xtNWxkR055WVdOclpYSXVZMjl0ClgwNWxkRU55WVdOclpYSWxNakJVWldOb2JtOXNiMmQ1SlRJd1EwRW9NaWt1WTNKME1Bc0dBMVVkRHdRRUF3SUYKb0RBOUJna3JCZ0VFQVlJM0ZRY0VNREF1QmlZckJnRUVBWUkzRlFpRmpjY1NoTXVlZDRmTmhUV0h4cDV0aEpyVwpFVU9Ed1lBb2c2blZGd0lCWkFJQkNqQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0RBUVlJS3dZQkJRVUhBd0l3Ckp3WUpLd1lCQkFHQ054VUtCQm93R0RBS0JnZ3JCZ0VGQlFjREFUQUtCZ2dyQmdFRkJRY0RBakFOQmdrcWhraUcKOXcwQkFRc0ZBQU9DQVFFQVptWnZ1SUhaZXJmTEtsS2hTTm9ZMG5sOVQ0bWpkNjFhdTAwY2NzZ3pSRXVMeGZoMgpFWkYzcS9DeExHSXRUT0NabENzb0Zna3lFQ0JsajBBZ0JmWllkTFRaSzZLbEZLa3o5ZTFmN2tQRFExeXlJdFFICjdrMXAxTWI0bGNGSk13Rno2MFFZdlRIZXVZTW5KWkJQelhpQ0Z5dzZqbVFQcWFPaHRHZHo1WHY3V2x5akNxbjQKVkl4MlpsQ2MvdTAraFpUTFlFZEl1VVN1SnUzeHRPV0EyWEs5clRvVlJ6N3hvY0NSY0lsT2ljOCtNbFgzVUZ3ZgpBR0tyczBoQ2RLeGpiTEc3cWluMXAzdlBRRmdyTTVNOHBqcnVqRnp6bndTemlQOHRBWjcwM2I0TzFYemN2Y0JuCnhmb0Y0VVBJQ05URUx1QWtUVFJSYjRGVXRiTkNhNFJGSjJQcGNRPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQ==" # paramset: bss-common version: 1 source: template
+  USER_TENANT_ID_URL: "http://tenant-manager:8080/api/v4/tenant-manager/registration/tenants?dns=cpq" # paramset: bss-common version: 1 source: template
+technicalConfigurationParameters:
+  etslt-bss-external-integration-egress-service/assetManagement: |
+    "{
+    	"assetManagementMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"assetManagementBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "assetManagementMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/bcrm: |
+    "{
+    	"bcrmMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"bcrmBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"bcrmSecret",
+    	"activeSystemUrl": "bcrmMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/bcrmCreateTicket: |
+    "{
+    	"bcrmCreateTicketMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"bcrmCreateTicketBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"bcrmSecret",
+    	"activeSystemUrl": "bcrmCreateTicketMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/bscs: |
+    "{
+    	"bscsMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"bscsBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "bscsMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/bscsTmf666: |
+    "{
+    	"bscsTmf666Main":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"bscsTmf666Backup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "bscsTmf666Main"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/bscsTmf678: |
+    "{ 
+      "bscsTmf678Main":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689", 
+      "bscsTmf678Backup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689", 
+      "authData":"tibcoSecret", 
+      "activeSystemUrl": "bscsTmf678Main" 
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/cns: |
+    "{
+    	"cnsMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"cnsBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "cnsMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/code: |
+    "{
+    	"codeMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"codeBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "codeMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/codeFetchDunningDetails: |
+    "{
+    	"codeFetchDunningDetailsMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"codeFetchDunningDetailsBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "codeFetchDunningDetailsMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/codeGetAdjustments: |
+    "{
+    	"codeGetAdjustmentsDetailsMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"codeGetAdjustmentsDetailsBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "codeFetchDunningDetailsMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/codeGetPayment: |
+    "{
+    	"codeGetPaymentMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"codeGetPaymentBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "codeGetPaymentMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/codePostDunningDetails: |
+    "{
+    	"codePostDunningDetailsMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"codePostDunningDetailsBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "codePostDunningDetailsMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/codeUnifieddunninginquiry: |
+    "{
+    	"codeUnifieddunninginquiryMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"codeUnifieddunninginquiryBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "codeUnifieddunninginquiryMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/crm: |
+    "{
+    	"crmMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"crmBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"crmSecret",
+    	"activeSystemUrl": "crmMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/edms: |
+    "{
+    	"edmsMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"edmsBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "edmsMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/enrm: |
+    "{
+    	"enrmMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"enrmBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "enrmMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/enrmTechnicalDetails: |
+    "{
+    	"enrmTechnicalDetailsMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"enrmTechnicalDetailsBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "enrmTechnicalDetailsMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/ericsson: |
+    "{
+    	"ericssonMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"ericssonBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "ericssonMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/external.systems.urls: |-
+    {
+    	"tibco":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"toBeDeleted",
+    			"password":"toBeDeleted"
+    		}
+    	},
+    	"tibcoBackup":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"toBeDeleted",
+    			"password":"toBeDeleted"
+    		}
+    	},
+    	"tibcoOdsDebtcollection":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoOdsGetStuckChannel":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoOdsFetchAccount":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoOdsTroubleTicke":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoIn":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoHpsm":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoUaePass":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"notProvided",
+    			"password":"notProvided"
+    		}
+    	},
+    	"tibcoAssetManagement":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoEnrm":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"notProvided",
+    			"password":"notProvided"
+    		}
+    	},
+    	"tibcoTechnicalPortal":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoEdms":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoRemedyTmf724":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoRemedyTmf638":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoVeda":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-soap-http/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"notProvided",
+    			"password":"notProvided"
+    		}
+    	},
+    	"tibcoNumberManagementTmf716":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoNumberManagementTmf639":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoCns":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoLegacyCim":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoGis":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoXaas":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"notProvided",
+    			"password":"notProvided"
+    		}
+    	},
+    	"tibcoWfm":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoEnrmTechnicalDetails":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoSonic":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"notProvided",
+    			"password":"notProvided"
+    		}
+    	},
+    	"tibcoEricsson":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoOcr":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoHlr":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoBscs":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"toBeDeleted",
+    			"password":"toBeDeleted"
+    		}
+    	},
+    	"tibcoCode":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"toBeDeleted",
+    			"password":"toBeDeleted"
+    		}
+    	},
+    	"crm":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"crm_username1",
+    			"password":"crm_password1"
+    		}
+    	},
+    	"crmBackup":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"crm_username",
+    			"password":"crm_password"
+    		}
+    	},
+    	"bcrm":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"bcrm_username",
+    			"password":"bcrm_password"
+    		}
+    	},
+    	"bcrmBackup":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"bcrm_username",
+    			"password":"bcrm_password"
+    		}
+    	},
+    	"bcrmCreateTicket":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"bcrm_username",
+    			"password":"bcrm_password"
+    		}
+    	},
+    	"tibcoCodeUnifieddunninginquiry":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoCodePostDunningDetails":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoCodeFetchDunningDetails":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoCodeGetAdjustments":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoCodeGetPayment":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	},
+    	"tibcoFelix":{
+    		"externalSystemURL":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    		"authData":{
+    			"username":"nccip",
+    			"password":"nccip"
+    		}
+    	}
+    }
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/felix: |
+    "{
+    	"felixMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"felixBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "felixMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/gis: |
+    "{
+    	"gisMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"gisBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "gisMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/hlr: |
+    "{
+    	"hlrMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"hlrBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "hlrMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/hpsm: |
+    "{
+    	"hpsmMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"hpsmBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "hpsmMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/in: |
+    "{
+    	"inMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"inBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "inMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/legacyCim: |
+    "{
+    	"legacyCimMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"legacyBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "legacyCimMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/numberManagementTmf639: |
+    "{
+    	"numberManagementTmf639Main":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"numberManagementTmf639Backup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "numberManagementTmf639Main"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/numberManagementTmf716: |
+    "{
+    	"numberManagementTmf716Main":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"numberManagementTmf716Backup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "numberManagementTmf716Main"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/ocr: |
+    "{
+    	"ocrMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"ocrBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "ocrMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/odsDebtCollection: |
+    "{
+    	"odsDebtCollectionMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"odsDebtCollectionBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "odsDebtCollectionMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/odsFetchAccount: |
+    "{
+    	"odsFetchAccountMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"odsFetchAccountBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "odsFetchAccountMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/odsGetStuckChannel: |
+    "{
+    	"odsGetStuckChannelMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"odsGetStuckChannelBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "odsGetStuckChannelMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/odsTroubleTicket: |
+    "{
+    	"odsTroubleTicketMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"odsTroubleTicketBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "odsTroubleTicketMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/remedyCustomerOnboarding: |
+    "{
+    	"remedyCustomerOnboardingMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"remedyCustomerOnboardingBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "remedyCustomerOnboardingMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/remedyTmf638: |
+    "{
+    	"remedyTmf638Main":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"remedyTmf638Backup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "remedyTmf638Main"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/remedyTmf724: |
+    "{
+    	"remedyTmf724Main":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"remedyTmf724Backup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "remedyTmf724Main"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/sonic: |
+    "{
+    	"sonicMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"sonicBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "sonicMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/technicalPortal: |
+    "{
+    	"technicalPortalMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"technicalPortalBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "technicalPortal"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/tibco: |
+    "{
+      "tibcoMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+      "tibcoBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/       c9645d45-466e-412f-9082-5148023c9689",
+      "authData":"tibcoSecret",
+      "activeSystemUrl": "tibcoMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/uaePass: |
+    "{
+    	"uaePassMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"uaePassBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "uaePassMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/veda: |
+    "{
+    	"vedaMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"vedaBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "vedaMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/wfm: |
+    "{
+    	"wfmMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"wfmBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "wfmMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template
+  etslt-bss-external-integration-egress-service/xaas: |
+    "{
+    	"xaasMain":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"xaasBackup":"https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689",
+    	"authData":"tibcoSecret",
+    	"activeSystemUrl": "xaasMain"
+    }"
+   # paramset: bss-internal-integrations-tech version: 1 source: template

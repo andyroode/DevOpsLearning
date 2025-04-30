@@ -1,0 +1,18 @@
+---
+name: "operators"
+credentialsId: ""
+tenantName: "{{_tenant}}"
+labels:
+- "solutionInstance-{{env}}"
+- "solution-{{_tenant}}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  ENV_NAME: "{{current_env.environmentName}}" 
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "operators-common"
+e2eParameterSets: []
+technicalConfigurationParameterSets: []

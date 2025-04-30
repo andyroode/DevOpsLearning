@@ -1,0 +1,10 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CloudMigrationNiFi"
+deployParameters:
+  NIFI_CUSTOM_MONITORING_PORTS: "cdc-monitor_30s,cdm-monitor_15s" # paramset: bss version: 1 source: template
+  NIFI_EXPOSE_CUSTOM_PORTS: "upload_8081,prepare-data_8083,diagnostic_8084,webhooks_32080,cdc-monitor_9194,dst-export_8056,dst-import_8057,cdm-monitor_9192" # paramset: bss version: 1 source: template
+  NIFI_PV_STORAGE_CLASS: "${tenant.cloud.STORAGE_RWO_CLASS}" # paramset: bss version: 1 source: template
+  NIFI_USE_TLS_PASSTHROUGH_INGRESS: "true"  # paramset: bss version: 1 source: template
+technicalConfigurationParameters: {}

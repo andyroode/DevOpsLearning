@@ -1,0 +1,48 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "ssm"
+deployParameters:
+  MONITORING_QUERY_URL: "http://vmsingle-k8s.platform-monitoring:8429" # paramset: cse-toolset-dev version: 1 source: template
+  SSM_NAVIGATE_ACTIONS: # paramset: cse-toolset-dev version: 1 source: template
+    '*':
+      '*':
+        microservice:
+          '*':
+            - title: "Openshift Console"
+              url: "${CLOUD_DASHBOARD_URL}"
+            - title: "DPT"
+              url: "https://dpt-frontend-{{instance.name}}-data-management.${CLOUD_PUBLIC_HOST}/"
+            - title: "BEOC"
+              url: "https://beoc-frontend-{{instance.name}}-data-management.${CLOUD_PUBLIC_HOST}/"
+            - title: "Monitoring"
+              url: "${GRAFANA_UI_URL}"
+            - title: "Show MS Logs"
+              url: "${GRAYLOG_UI_URL}/search?q=container_name%3A%22{{dnsName}}%22+AND+namespace_name%3A%22{{msNamespace}}%22&rangetype=relative&from=3600"
+            - title: "Show Error Logs of MS"
+              url: "${GRAYLOG_UI_URL}/search?q=container_name%3A%22{{dnsName}}%22+AND+namespace_name%3A%22{{msNamespace}}%22+AND+level%3A3&rangetype=relative&from=3600"
+            - title: "Tracing"
+              url: "http://jaeger.${CLOUD_PUBLIC_HOST}"
+            - title: "Profiling"
+              url: "https://esc-ui-service-cdt.${CLOUD_PUBLIC_HOST}/esc/calls?filterParams=%7B%22dateRange%22%3A%5B%222023-10-27T11%3A43%3A35.339Z%22%2C%222023-10-27T12%3A43%3A35.339Z%22%5D%2C%22dateRangeOption%22%3A%22LAST_1_HOUR%22%2C%22duration%22%3A%22%3E%3D%205000ms%22%2C%22podsToLoad%22%3A%5B%7B%22namespace%22%3A%22{{msNamespace}}%22%2C%22service%22%3A%22{{dnsName}}%22%7D%5D%2C%22filterString%22%3A%22%22%2C%22hideSystem%22%3Afalse%7D"
+    _globals:
+      instance:
+        - title: "Openshift Console"
+          url: "${CLOUD_DASHBOARD_URL}"
+        - title: "DPT"
+          url: "https://dpt-frontend-{{name}}-data-management.${CLOUD_PUBLIC_HOST}/"
+        - title: "BEOC"
+          url: "https://beoc-frontend-{{name}}-data-management.${CLOUD_PUBLIC_HOST}/"
+        - title: "Monitoring"
+          url: "${GRAFANA_UI_URL}"
+        - title: "Graylog"
+          url: "${GRAYLOG_UI_URL}"
+        - title: "Tracing"
+          url: "http://jaeger.${CLOUD_PUBLIC_HOST}"
+        - title: "CMDB"
+          url: "${CMDB_URL}"
+        - title: "Profiling"
+          url: "https://esc-ui-service-cdt.${CLOUD_PUBLIC_HOST}"
+        - title: "COW"
+          url: "https://cow-fe-${NAMESPACE}.${CLOUD_PUBLIC_HOST}"
+technicalConfigurationParameters: {}

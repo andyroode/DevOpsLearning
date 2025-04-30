@@ -1,0 +1,30 @@
+version: 2.1
+type: solutionDeploy
+deployMode: composite
+applications:
+  - version: "nc-diagnostic-agent:release-1.2.4-20240402.110146-1-RELEASE"
+    deployPostfix: "cse-toolset"
+  - version: "composite-status-metrics-producer:master-20240412.120655-192"
+    deployPostfix: "cse-toolset"
+  - version: "log-exporter:release-2024-2-1.01.026"
+    deployPostfix: "cse-toolset"
+  - version: "ssm:release-2024-1-1.011.013-RELEASE"
+    deployPostfix: "cse-toolset"
+  - version: "decoco:master-20240408.073445-126"
+    deployPostfix: "cse-toolset"
+  - version: "cow:release-2024-1-1.01.012-RELEASE"
+    deployPostfix: "cse-toolset"
+  - version: "env-checker:master-SNAPSHOT"
+    deployPostfix: "cse-toolset"
+  - version: "etslt-cow-configuration:release-ph1_cd1-SNAPSHOT"
+    deployPostfix: "cse-toolset"
+userData:
+  cci:
+    systemConfiguration:
+      id: 2245
+      name: "ETBSS - CSE_Toolset (Product and Project)"
+      version: 34
+    deploymentSchema:
+      id: 7
+      name: "Etisalat BSS CSE Toolset Deployment Schema"
+  

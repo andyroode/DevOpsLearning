@@ -1,0 +1,37 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "dev-nrm-override"
+version: 0
+
+baseline: "dev"
+description: "Override for dev-profile"
+applications:
+  - name: "Core-Extensions"
+    version: "release-2023.3-11.17.0-20231107.113613-36-RELEASE"
+    sd: ""
+    services:
+      - name: "samples-repository"
+        parameters:
+          - name: "CPU_LIMIT"
+            value: "1"
+          - name: "MEMORY_LIMIT"
+            value: "562Mi"
+          - name: "REPLICAS"
+            value: "3"
+          - name: "CPU_REQUEST"
+            value: "150m"
+  - name: "Cloud-Core"
+  #version: "release-2023.3-8.4.0-20231103.225817-60-RELEASE"
+  #sd: ""
+    services:
+      - name: "tenant-manager"
+        parameters:
+          - name: "CPU_LIMIT"
+            value: "2"
+          - name: "REPLICAS"
+            value: "3"
+          - name: "CPU_REQUEST"
+            value: "150m"
+          - name: "MEMORY_LIMIT"
+            value: "336Mi"

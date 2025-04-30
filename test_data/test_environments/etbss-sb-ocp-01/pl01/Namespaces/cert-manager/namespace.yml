@@ -1,0 +1,38 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "pl01-cert-manager"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-pl01"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true  # paramset: cert-manager version: 23.4 source: template
+  VELERO_BACKUP_SECRETS: # paramset: cert-manager version: 23.4 source: template
+    secretContents:
+      cloud: |
+        [default]
+        aws_access_key_id = ${creds.get(\"velero-s3-cred\").username}
+        aws_secret_access_key = ${creds.get(\"velero-s3-cred\").password}
+  dev-clusterissuer: # paramset: cert-manager version: 23.4 source: template
+    enabled: true
+  extraArgs: # paramset: cert-manager version: 23.4 source: template
+    - "--enable-certificate-owner-ref=true"
+  global: # paramset: cert-manager version: 23.4 source: template
+    rbac:
+      create: true
+  installCRDs: true # paramset: cert-manager version: 23.4 source: template
+  serviceAccount: # paramset: cert-manager version: 23.4 source: template
+    create: true
+  startupapicheck: # paramset: cert-manager version: 23.4 source: template
+    enabled: false
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

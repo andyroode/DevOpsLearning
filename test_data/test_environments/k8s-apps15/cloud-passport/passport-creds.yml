@@ -1,0 +1,20 @@
+MaaS-Default-Client:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+Shared-default-dbaas:
+  type: "usernamePassword"
+  data:
+    username: "admin"
+    password: "admin"
+consul-token:
+  type: "secret"
+  data:
+    secret: "consul_token"
+
+
+k8s-apps15-service-admin:
+  type: "secret"
+  data:
+    secret: "secret-value-here"

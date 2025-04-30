@@ -1,0 +1,18 @@
+---
+name: "static_core_gw"
+baseline: "dev"
+description: "Temp profile until PSUPCLFRM-7489 will be fixed"
+applications:
+- name: "Cloud-Core"
+  version: "release-2023.4-8.9.0-20231117.131809-9-RELEASE"
+  sd: ""
+  services:
+  - name: "static-core-gateway"
+    parameters:
+    - name: "MEMORY_LIMIT"
+      value: "512Mi"
+  - name: "key-manager"
+    parameters:
+    - name: "MEMORY_LIMIT"
+      value: "75Mi"
+version: 0

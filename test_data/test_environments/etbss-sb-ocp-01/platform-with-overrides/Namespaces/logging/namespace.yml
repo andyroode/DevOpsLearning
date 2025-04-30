@@ -1,0 +1,45 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform-with-overrides-logging"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-platform-with-overrides"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  DEPLOY_W_HELM: true # paramset: logging version: 23.4 source: template
+  createClusterAdminEntities: true # paramset: logging version: 23.4 source: template
+  fluentd: # paramset: logging version: 23.4 source: template
+    customFilterConf: |
+      <filter parsed.kubernetes.var.log.**>
+        @type record_transformer
+      <record>
+        cluster "etbss-sb-ocp-01"
+      </record>
+      </filter>
+      <filter parsed.kubernetes.var.log.**openshift-dns**>
+        @type grep
+          <exclude>
+            key log
+            pattern ^\[INFO\].*
+          </exclude>
+      </filter>
+    install: true
+    resources:
+      limits:
+        cpu: 1
+        memory: "1Gi"
+    securityContextPrivileged: true
+    securityResources:
+      install: true
+  openshiftDeploy: true # paramset: logging version: 23.4 source: template
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

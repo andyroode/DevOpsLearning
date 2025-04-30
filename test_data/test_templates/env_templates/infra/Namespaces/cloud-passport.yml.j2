@@ -1,0 +1,22 @@
+---
+name: "{{ current_env.environmentName }}-cloud-passport"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  cmdb:
+    url: "https://app-deployer.apps.{{ current_env.cluster.cloud_public_url }}"
+  dns:
+    cloud_public_host: "apps.{{ current_env.cluster.cloud_public_url }}"
+    cloud_private_host: "apps.{{ current_env.cluster.cloud_public_url }}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - cloud-passport
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

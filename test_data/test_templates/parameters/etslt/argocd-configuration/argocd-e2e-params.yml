@@ -1,0 +1,5 @@
+version: 24.1
+name: argocd-e2e-params
+parameters:
+  ARGO_TECH_APP_VERSION: deploy-sync-app:1.9.1-20240722.152545-1-RELEASE
+applications: []

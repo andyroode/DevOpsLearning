@@ -1,0 +1,7 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Core-Extensions"
+deployParameters:
+  CONFIG_MAP_ROLLOUT_TIMEOUT_SEC: "3600"  # paramset: data-management-configuration version: 1 source: template
+technicalConfigurationParameters: {}

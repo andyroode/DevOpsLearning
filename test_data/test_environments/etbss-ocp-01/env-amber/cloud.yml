@@ -1,0 +1,162 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "etbss_ocp_01_env_amber"
+apiUrl: "api.etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+apiPort: "6443" # cloud passport: etbss-ocp-01 version: 1.5
+privateUrl: "apps.etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+publicUrl: "apps.etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+dashboardUrl: "https://console-openshift-console.apps.etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+labels: []
+defaultCredentialsId: "cloud-deploy-sa-token" # cloud passport: etbss-ocp-01 version: 1.5
+protocol: "https" # cloud passport: etbss-ocp-01 version: 1.5
+dbMode: "db"
+databases: []
+mergeDeployParametersAndE2EParameters: false
+maasConfig:
+  credentialsId: "maasexternal" # cloud passport: etbss-ocp-01 version: 1.5
+  enable: true  # cloud passport: etbss-ocp-01 version: 1.5
+  maasUrl: "http://maas-service.maas:8080" # cloud passport: etbss-ocp-01 version: 1.5
+  maasInternalAddress: "http://maas-service.maas:8080" # cloud passport: etbss-ocp-01 version: 1.5
+vaultConfig:
+  credentialsId: ""
+  enable: false
+  url: ""
+dbaasConfigs:
+  - credentialsId: "dbaas" # cloud passport: etbss-ocp-01 version: 1.5
+    enable: true # cloud passport: etbss-ocp-01 version: 1.5
+    apiUrl: "http://dbaas-aggregator.dbaas:8080" # cloud passport: etbss-ocp-01 version: 1.5
+    aggregatorUrl: "http://dbaas-aggregator.dbaas:8080" # cloud passport: etbss-ocp-01 version: 1.5
+consulConfig:
+  tokenSecret: "consul" # cloud passport: etbss-ocp-01 version: 1.5
+  enabled: true # cloud passport: etbss-ocp-01 version: 1.5
+  publicUrl: "http://consul-server.consul:8500" # cloud passport: etbss-ocp-01 version: 1.5
+  internalUrl: "http://consul-server.consul:8500" # cloud passport: etbss-ocp-01 version: 1.5
+deployParameters:
+  ARGOCD_FAST_FAIL: "true" # paramset: argocd-configuration version: 24.1 source: template
+  ARGOCD_FAST_FAIL_MAX: "10" # paramset: argocd-configuration version: 24.1 source: template
+  ARGOCD_INSECURE: "true" # paramset: argocd-configuration version: 24.1 source: template
+  ARGOCD_MAX_RETRY: "100" # paramset: argocd-configuration version: 24.1 source: template
+  ARGOCD_PASSWORD: "${creds.get(\"argocd-cred\").password}" # paramset: argocd-configuration version: 24.1 source: template
+  ARGOCD_SYNC_EXECUTE: "true" # paramset: argocd-configuration version: 24.1 source: template
+  ARGOCD_URL: "https://argocd-server.${CLOUD_PUBLIC_HOST}" # paramset: argocd-configuration version: 24.1 source: template
+  ARGOCD_USERNAME: "${creds.get(\"argocd-cred\").username}" # paramset: argocd-configuration version: 24.1 source: template
+  ARGOCD_WAIT_TIMEOUT: "5" # paramset: argocd-configuration version: 24.1 source: template
+  BEOC_STORAGE_BUCKET: "${ENV_NAME}-beoc-bucket" # cloud passport: etbss-ocp-01 version: 1.5
+  BEOC_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: etbss-ocp-01 version: 1.5
+  BEOC_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  CDC_NIFI_NAMESPACE: ""   # cloud passport: etbss-ocp-01 version: 1.5
+  CDC_STREAMING_PLATFORM_PASSWORD: "${creds.get(\"streaming\").password}" # cloud passport: etbss-ocp-01 version: 1.5
+  CDC_STREAMING_PLATFORM_USERNAME: "${creds.get(\"streaming\").username}" # cloud passport: etbss-ocp-01 version: 1.5
+  CDN_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: etbss-ocp-01 version: 1.5
+  CDN_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # cloud passport: etbss-ocp-01 version: 1.5
+  CDN_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: etbss-ocp-01 version: 1.5
+  CDN_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: etbss-ocp-01 version: 1.5
+  CDN_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  CLOUD_DASHBOARD_URL: "https://console-openshift-console.apps.etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+  CMDB_URL: "https://app-deployer.apps.etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+  COMMON_KAFKA_SERVER: "kafka.kafka:9092" # paramset: cloud-configuration version: 23.3 source: template
+  CONSUL_ENABLED: "true"   # cloud passport: etbss-ocp-01 version: 1.5
+  CSE_EXTERNAL_MONITORING_PASSWORD: "" # cloud passport: etbss-ocp-01 version: 1.5
+  CSE_EXTERNAL_MONITORING_USER: "" # cloud passport: etbss-ocp-01 version: 1.5
+  CSE_GRAYLOG_PASSWORD: "${creds.get(\"graylog\").password}" # cloud passport: etbss-ocp-01 version: 1.5
+  CSE_GRAYLOG_USER: "${creds.get(\"graylog\").username}" # cloud passport: etbss-ocp-01 version: 1.5
+  DAT_STORAGE_BUCKET: "${ENV_NAME}-dat-bucket" # cloud passport: etbss-ocp-01 version: 1.5
+  DAT_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: etbss-ocp-01 version: 1.5
+  DAT_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  DEFAULT_TENANT_ADMIN_LOGIN: "${creds.get(\"coreexternal\").username}" # cloud passport: etbss-ocp-01 version: 1.5
+  DEFAULT_TENANT_ADMIN_PASSWORD: "${creds.get(\"coreexternal\").password}" # cloud passport: etbss-ocp-01 version: 1.5
+  DEFAULT_TENANT_NAME: "cpq" # cloud passport: etbss-ocp-01 version: 1.5
+  DFT_STORAGE_BUCKET: "${ENV_NAME}-dft-bucket" # cloud passport: etbss-ocp-01 version: 1.5
+  DFT_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: etbss-ocp-01 version: 1.5
+  DFT_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  DISABLE_PARALLEL_EXECUTION: "true" # paramset: cloud-configuration version: 23.3 source: template
+  DOC_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: etbss-ocp-01 version: 1.5
+  DOC_STORAGE_PERSISTENT_BUCKET_NAME: "${ENV_NAME}-storage-proxy-permanent-bucket" # cloud passport: etbss-ocp-01 version: 1.5
+  DOC_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # cloud passport: etbss-ocp-01 version: 1.5
+  DOC_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: etbss-ocp-01 version: 1.5
+  DOC_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: etbss-ocp-01 version: 1.5
+  DOC_STORAGE_TEMPORARY_BUCKET_NAME: "${ENV_NAME}-storage-proxy-temporary-bucket" # cloud passport: etbss-ocp-01 version: 1.5
+  DOC_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  DPC_STORAGE_BUCKET: "${ENV_NAME}-discrepancy-detector-reports" # cloud passport: etbss-ocp-01 version: 1.5
+  DPC_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: etbss-ocp-01 version: 1.5
+  DPC_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: etbss-ocp-01 version: 1.5
+  DPC_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  DST_STORAGE_BUCKET: "${ENV_NAME}-dst-bucket" # cloud passport: etbss-ocp-01 version: 1.5
+  DST_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: etbss-ocp-01 version: 1.5
+  DST_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  ENV_NAME: "env-amber"
+  ESCAPE_SEQUENCE: "true" # paramset: cloud-configuration version: 23.3 source: template
+  ESC_COLLECTOR_NS: "cdt" # paramset: cloud-passport-wa version: 23.3 source: template
+  GRAFANA_UI_URL: "https://grafana-platform-monitoring.apps.etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+  GRAYLOG_UI_URL: "https://graylog-etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+  HDS_STORAGE_BUCKET: "${ENV_NAME}-hds_data" # cloud passport: etbss-ocp-01 version: 1.5
+  HDS_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: etbss-ocp-01 version: 1.5
+  HDS_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # cloud passport: etbss-ocp-01 version: 1.5
+  HDS_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: etbss-ocp-01 version: 1.5
+  HDS_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: etbss-ocp-01 version: 1.5
+  HDS_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  MAAS_CONFIG: |-
+    apiVersion: nc.maas.kafka/v2
+    kind: instance-designator
+    spec:
+      namespace: ${NAMESPACE}
+      defaultInstance: kafka
+   # paramset: cloud-configuration version: 23.3 source: template
+  MAVEN_REPO_DEV_NAME: "${MAVEN_REPO_NAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  MAVEN_REPO_NAME: "sd.etslt_bss.mvn.group" # cloud passport: etbss-ocp-01 version: 1.5
+  MAVEN_REPO_STAGING_NAME: "${MAVEN_REPO_NAME}" # cloud passport: etbss-ocp-01 version: 1.5
+  MAVEN_REPO_URL: "https://artifactorycn.qubership.com/" # cloud passport: etbss-ocp-01 version: 1.5
+  MONITORING_ENABLED: "true" # cloud passport: etbss-ocp-01 version: 1.5
+  MONITORING_EXT_MONITORING_QUERY_URL: "" # cloud passport: etbss-ocp-01 version: 1.5
+  MONITORING_NAMESPACE: "platform-monitoring" # cloud passport: etbss-ocp-01 version: 1.5
+  MONITORING_TYPE: "VictoriaDB" # cloud passport: etbss-ocp-01 version: 1.5
+  NC_DIAGNOSTIC_MODE: "off" # paramset: cloud-passport-wa version: 23.3 source: template
+  NIFI_PREVIOUS_SENSITIVE_KEY: "secretkey" # paramset: cloud-passport-wa version: 23.3 source: template
+  NIFI_SENSITIVE_KEY: "secretkey1234" # paramset: cloud-passport-wa version: 23.3 source: template
+  OPS_IDP_URL: ""          # cloud passport: etbss-ocp-01 version: 1.5
+  OSS_STREAMING_PLATFORM_PASSWORD: "${creds.get(\"streaming\").password}" # cloud passport: etbss-ocp-01 version: 1.5
+  OSS_STREAMING_PLATFORM_URL: "http://streaming-platform.streaming:8083" # cloud passport: etbss-ocp-01 version: 1.5
+  OSS_STREAMING_PLATFORM_USERNAME: "${creds.get(\"streaming\").username}" # cloud passport: etbss-ocp-01 version: 1.5
+  PAAS_PLATFORM: "OPENSHIFT" # paramset: wa-openshift-versions version: 24.1 source: template
+  PAAS_VERSION: "v4.12" # paramset: wa-openshift-versions version: 24.1 source: template
+  PRODUCTION_MODE: "false" # cloud passport: etbss-ocp-01 version: 1.5
+  RUN_PARALLEL_EXECUTION: "false" # paramset: cloud-configuration version: 23.3 source: template
+  SSM_CMDB_TOKEN: "${creds.get(\"ssm-cmdb-cred\").password}" # cloud passport: etbss-ocp-01 version: 1.5
+  SSM_CMDB_USER: "${creds.get(\"ssm-cmdb-cred\").username}" # cloud passport: etbss-ocp-01 version: 1.5
+  STORAGE_PASSWORD: "${creds.get(\"storage\").password}" # cloud passport: etbss-ocp-01 version: 1.5
+  STORAGE_PROVIDER: "s3"   # cloud passport: etbss-ocp-01 version: 1.5
+  STORAGE_REGION: "us-west-2" # cloud passport: etbss-ocp-01 version: 1.5
+  STORAGE_RWO_CLASS: "standard-csi-paas" # cloud passport: etbss-ocp-01 version: 1.5
+  STORAGE_RWX_CLASS: ""    # cloud passport: etbss-ocp-01 version: 1.5
+  STORAGE_SERVER_URL: "https://minio.apps.etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+  STORAGE_USERNAME: "${creds.get(\"storage\").username}" # cloud passport: etbss-ocp-01 version: 1.5
+  TRACING_ENABLED: "true"  # cloud passport: etbss-ocp-01 version: 1.5
+  TRACING_HOST: "nc-diagnostic-agent" # cloud passport: etbss-ocp-01 version: 1.5
+  TRACING_UI_URL: "https://jaeger.apps.etbss-ocp-01.managed.qubership.cloud" # cloud passport: etbss-ocp-01 version: 1.5
+  USE_POSTGRESQL_AS_DB: "true" # paramset: cloud-configuration version: 23.3 source: template
+  ZOOKEEPER_ADDRESS: "zookeeper.zookeeper:2181" # cloud passport: etbss-ocp-01 version: 1.5
+  ZOOKEEPER_URL: "${ZOOKEEPER_ADDRESS}" # cloud passport: etbss-ocp-01 version: 1.5
+e2eParameters:
+  ARGO_TECH_APP_VERSION: "deploy-sync-app:1.9.1-20240722.152545-1-RELEASE" # paramset: argocd-e2e-params version: 24.1 source: template
+  ATP_DYNAMIC_PARAMETERS: "ROOT_PROJECT,ATP_JENKINS_URL,ATP_JENKINS_CREDS_ID,TEST_PLAN,TEST_SUITE,TA_TOOLS_GROUP,THREAD_COUNT,EMAIL,TEST_DATA_SCOPE" # paramset: csd-configuration-e2e version: 1 source: template
+  ATP_JENKINS_URL: "https://duncan-ci-cn.qubership.com" # paramset: ci-configuration-e2e version: 1 source: template
+  ATP_PARAMS_FILE_PATH: "atp/atpJobsProperties.yaml" # paramset: csd-configuration-e2e version: 1 source: template
+  ATP_PARAMS_GIT_BRANCH: "master" # paramset: csd-configuration-e2e version: 1 source: template
+  ATP_PARAMS_GIT_URL: "https://git.qubership.com/SD.ETSLT/devops/etslt-atp-configuration.git" # paramset: csd-configuration-e2e version: 1 source: template
+  CSD_CONFIGURATION: |
+    '{"cse-toolset": {"DEFAULT_MAIN_SD_PREFIX": "ETSLT-CSE-Toolset-SD", "DEFAULT_SD_PREFIX": ""}, "custom-operators": {"DEFAULT_MAIN_SD_PREFIX": "ETSLT-Custom-Operators-SD", "DEFAULT_SD_PREFIX": ""}, "design-time": {"DEFAULT_MAIN_SD_PREFIX": "ETSLT-Design-Time-SD", "DEFAULT_SD_PREFIX": ""}, "solution-deploy": {"DEFAULT_MAIN_SD_PREFIX": "ETSLT-Product-SD", "DEFAULT_SD_PREFIX": "ETSLT-Project-SD"}}'
+   # paramset: csd-configuration-e2e version: 1 source: template
+  MINIO_BINARY_FILE_URL: "https://artifactorycn.qubership.com/nc.thirdparty.files/minio/mc/linux-amd64/mc.RELEASE.2023-11-15T22-45-58Z" # paramset: csd-configuration-e2e version: 1 source: template
+  PROMOTE_CONFIG: |
+    '{"PROJECT_APP_PREFIX": "etslt", "PROMOTE_JOB": "https://cloud-deployer.qubership.com/job/ETISALAT/job/regular.update.Promote"}'
+   # paramset: csd-configuration-e2e version: 1 source: template
+  ROOM_ID: "Y2lzY29zcGFyazovL3VzL1JPT00vMzQ1ZGY5YzAtOThlOS0xMWVlLTg3MzAtOGZmMjhlYWIwNjgz" # paramset: ci-configuration-e2e version: 1 source: template
+  STABLE_ARTIFACTS_CONFIG: |
+    '[{"folder": "ETBSS_Product_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.ETSLT/solution-descriptors/etslt-stable-sd", "name": "ETSLT-Product-SD"}, {"folder": "ETBSS_Project_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.ETSLT/solution-descriptors/etslt-stable-sd", "name": "ETSLT-Project-SD"}, {"folder": "etslt_env_templates_stable_builds", "git_branch": "release/ph1_cd1", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.ETSLT/solution-descriptors/etslt-stable-sd", "name": "etslt-env-templates"}]'
+   # paramset: csd-configuration-e2e version: 1 source: template
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

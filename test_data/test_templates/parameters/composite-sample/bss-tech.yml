@@ -1,0 +1,42 @@
+name: bss-tech
+version: 23.1
+parameters:
+    spring.kafka.properties.security.protocol: SASL_PLAINTEXT
+applications:
+-   appName: CRM-CIM
+    parameters:
+        bss.index.events.reindex.create-index-alias: 'true'
+        bss.index.events.reindex.delete-previous-indices: 'true'
+-   appName: CloudBSS-CPM
+    parameters:
+        bss.index.events.reindex.create-index-alias: 'true'
+        bss.index.events.reindex.delete-previous-indices: 'true'
+        bss.index.events.reindex.delete-previous-indices-test: 'true'
+-   appName: CloudBSS-CPQBE
+    parameters:
+        cpq.submission-handler.steps.skip-processing-prepare-for-submit-event: 'true'
+        bss.index.events.reindex.create-index-alias: 'true'
+        bss.index.events.reindex.delete-previous-indices: 'true'
+        cpq.install-base-service.events.on-change-notifications-enabled: 'true'
+        cpq.install-base-service.kafka.enabled: 'true'
+-   appName: CloudCRM-CBM
+    parameters:
+        eca.core.sslcontext.enabled: 'true'
+        eca.catalog.host: 'catalog-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443'
+        eca.sslcontext.enabled: 'true'
+        eca.digital-bill-presentment.host: 'formatter-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443'
+        eca.logs: 'true'
+        eca.catalog.sslcontext.enabled: 'true'
+        eca.core.host: 'eca2-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443'
+        eca.host: 'eca2-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443'
+-   appName: CloudCRM-GraphQL
+    parameters:
+        eap.host: 'ea-api-ea-${BILLING_NAMESPACE}.${CLOUD_PUBLIC_HOST}:443'
+        eap.cred: ${cmdb.creds.get('eap-secret-cred').secret}
+-   appName: cloudjpg-bis
+    parameters:
+        bss.index.bis-events.scheduling.streaming-processing-enabled: 'true'
+-   appName: dpc
+    parameters:
+        DEFAULT_TENANT_NAME: '${tenant.cloud.DEFAULT_TENANT_NAME}'
+    

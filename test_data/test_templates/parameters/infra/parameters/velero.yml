@@ -1,0 +1,19 @@
+version: 23.4
+name: velero
+parameters:
+  DEPLOY_W_HELM: true
+  ESCAPE_SEQUENCE: true
+  serviceAccount:
+    server:
+      create: true
+      name: velero-cluster-admin
+  containerSecurityContext:
+    runAsUser: 65532
+    runAsNonRoot: true
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+    seccompProfile:
+      type: RuntimeDefault
+applications: []

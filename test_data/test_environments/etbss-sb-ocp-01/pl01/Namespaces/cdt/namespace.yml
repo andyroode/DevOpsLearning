@@ -1,0 +1,26 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "pl01-cdt"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-pl01"
+  - "solution-Infrastructure"
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  CASSANDRA_HOST: "cassandra.${namespace_cassandra_cse}.svc"
+  CASSANDRA_KEYSPACE: "pl01_cdtmain"
+  CASSANDRA_PASSWORD: "${creds.get(\"cassandra-cse-cred\").password}"
+  CASSANDRA_PORT: "9042"
+  CASSANDRA_USERNAME: "${creds.get(\"cassandra-cse-cred\").username}"
+  DIAG_PV_DAYS_DELETE_AFTER: "14"
+  DIAG_PV_HOURS_ARCHIVE_AFTER: "2"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

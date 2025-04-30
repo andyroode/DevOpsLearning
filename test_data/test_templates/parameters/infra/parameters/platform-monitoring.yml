@@ -1,0 +1,121 @@
+version: 23.4
+name: platform-monitoring
+parameters:
+  global:
+    privilegedRights: true
+  DEPLOY_W_HELM: true
+  DISABLE_CRD: false
+  DISABLE_FORCE_APPLY: false
+  ESCAPE_SEQUENCE: true
+  prometheus:
+    install: false
+  prometheusadapter:
+    install: true
+  victoriametrics:
+    vmAgent:
+      install: true
+      paused: false
+      replicas: "1"
+      extraArgs:
+        promscrape.maxScrapeSize: "64MB"
+      ingress:
+        install: true
+      remoteWrite:
+        - url: "http://vmsingle-k8s:8429/api/v1/write"
+        - url: "http://ams:8187/api/v3/prometheus/write"
+      resources:
+        limits:
+          cpu: "2"
+          memory: "6Gi"
+        requests:
+          cpu: "500m"
+          memory: "3Gi"
+      secrets: 
+        - "kube-etcd-client-certs"
+      evaluationInterval: "1m"
+      minScrapeInterval: "1m"
+    vmAlertManager:
+      terminationGracePeriodSeconds: 30
+      configSecret: '""'
+      configRawYaml: '""'
+      ingress:
+        install: true
+      install: true
+      paused: false
+      replicas: "1"
+      resources:
+        limits:
+          cpu: "100m"
+          memory: "256Mi"
+        requests:
+          cpu: "30m"
+          memory: "56Mi"
+      retention: "120h"
+      secrets: 
+        - "kube-etcd-client-certs"
+    vmOperator:
+      install: true
+      paused: false
+      resources:
+        limits:
+          cpu: "400m"
+          memory: "800Mi"
+        requests:
+          cpu: "200m"
+          memory: "100Mi"
+    vmSingle:
+      ingress:
+        install: true
+      install: true
+      paused: false
+      resources:
+        limits:
+          cpu: "1000m"
+          memory: "5000Mi"
+        requests:
+          cpu: "300m"
+          memory: "2000Mi"
+      retentionPeriod: "2d"
+      storage:
+        accessModes:
+          - "ReadWriteOnce"
+        storageClassName: "${STORAGE_RWO_CLASS}"
+        resources:
+          requests:
+            storage: "40Gi"
+  grafana:
+    install: true
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+      limits:
+        cpu: "500m"
+        memory: "1Gi"
+    ingress:
+      install: true
+    operator:
+      resources:
+        requests:
+          cpu: "50m"
+          memory: "200Mi"
+        limits:
+          cpu: "200m"
+          memory: "1Gi"
+  kubeStateMetrics:
+    install: true
+    paused: false
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "1000m"
+        memory: "1Gi"
+  nodeExporter:
+    install: true
+    setupSecurityContext: true
+    port: "9112"
+  validate: false
+applications: []
+

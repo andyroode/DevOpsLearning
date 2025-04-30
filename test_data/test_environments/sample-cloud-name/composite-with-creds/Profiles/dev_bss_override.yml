@@ -1,0 +1,171 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "dev_bss_override"
+version: 0
+baseline: "dev"
+description: "Override for dev-profile for BSS namespaces"
+applications:
+  - name: "Cloud-Core"
+    version: "release-2023.3-8.4.0-20231103.225817-60-RELEASE"
+    sd: ""
+    services:
+      - name: "facade-operator"
+        parameters:
+          - name: "FACADE_GATEWAY_MEMORY_LIMIT"
+            value: "96Mi"
+          - name: "FACADE_GATEWAY_CPU_REQUEST"
+            value: "50m"
+      - name: "config-server"
+        parameters:
+          - name: "MEM_ARGS"
+            value: "-XX:+UseSerialGC -XX:+UnlockExperimentalVMOptions -Xms256m -Xmx256m -Xss256k -XX:MetaspaceSize=256m -XX:MaxMetaspaceSize=256m -XX:MaxDirectMemorySize=10m -XX:ReservedCodeCacheSize=32M\
+              \ -XX:CompressedClassSpaceSize=32M -XX:MinMetaspaceExpansion=1M -XX:MaxMetaspaceExpansion=8M -XX:CodeCacheExpansionSize=256k -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:GCTimeRatio=4\
+              \ -XX:AdaptiveSizePolicyWeight=90"
+          - name: "MEMORY_LIMIT"
+            value: "768Mi"
+      - name: "identity-provider"
+        parameters:
+          - name: "PG_MAX_POOL_SIZE"
+            value: "30"
+      - name: "maas-agent"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "72Mi"
+      - name: "key-manager"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "100Mi"
+  - name: "Core-Extensions"
+    version: "release-2023.3-11.17.0-20231107.113613-36-RELEASE"
+    sd: ""
+    services:
+      - name: "core-extensions-gateway-config"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "96Mi"
+          - name: "MEMORY_REQUEST"
+            value: "96Mi"
+          - name: "CPU_REQUEST"
+            value: "50m"
+      - name: "smartplug"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "512Mi"
+          - name: "MEMORY_REQUEST"
+            value: "512Mi"
+          - name: "CPU_LIMIT"
+            value: "1"
+          - name: "CPU_REQUEST"
+            value: "30m"
+  - name: "CloudBSS-BSSCRM"
+    version: "release-2023.3-20230905.060404-3-RELEASE"
+    sd: ""
+    services:
+      - name: "bss-config-rollout-manager"
+        parameters:
+          - name: "COMPOSITE_GATEWAY_CPU_REQUEST"
+            value: "50m"
+          - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
+            value: "128Mi"
+  - name: "CloudBSS-CPQBE"
+    version: "release-2023.3-20231018.085154-102-RELEASE"
+    sd: ""
+    services:
+      - name: "cloudbss-cpqbe-composite-gateway"
+        parameters:
+          - name: "CPU_REQUEST"
+            value: "20m"
+          - name: "MEMORY_LIMIT"
+            value: "96Mi"
+          - name: "MEMORY_REQUEST"
+            value: "96Mi"
+  - name: "CloudMigrationNiFi"
+    version: "release-2023.3-20231019.181323-43-RELEASE"
+    sd: ""
+    services:
+      - name: "cloud-data-migration-nifi"
+        parameters:
+          - name: "CPU_REQUEST"
+            value: "200m"
+          - name: "CONSUL_CONFIG_JAVA_OPTIONS"
+            value: "-XX:+UseSerialGC -Xmx96m -Xss512k -XX:MaxDirectMemorySize=50m -XX:MetaspaceSize=36m -XX:MaxMetaspaceSize=96m -XX:ReservedCodeCacheSize=16M -XX:CompressedClassSpaceSize=32M -XX:MinMetaspaceExpansion=1M\
+              \ -XX:MaxMetaspaceExpansion=8M -XX:CodeCacheExpansionSize=256k"
+  - name: "CloudBSS-CPM"
+    version: "release-2023.3-20231020.104207-48-RELEASE"
+    sd: ""
+    services:
+      - name: "cloudbss-cpm-composite-gateway"
+        parameters:
+          - name: "CPU_REQUEST"
+            value: "20m"
+          - name: "MEMORY_LIMIT"
+            value: "96Mi"
+          - name: "MEMORY_REQUEST"
+            value: "96Mi"
+      - name: "incoming-mail-handler-service"
+        parameters:
+          - name: "REPLICAS"
+            value: "0"
+  - name: "Cloud-Frontend-Platform"
+    version: "release-candidate-20231031.122936-122-RELEASE"
+    sd: ""
+    services:
+      - name: "user-settings-service"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "96Mi"
+  - name: "cloudbss-om"
+    version: "release-2023.4-20240131.131355-183-RELEASE"
+    sd: ""
+    services:
+      - name: "om-ordering-catalog-service"
+        parameters:
+          - name: "CPU_LIMIT"
+            value: "2"
+  - name: "cloud-integration-platform"
+    version: "release-candidate-2024.1-d2-20240206.153000-21"
+    sd: ""
+    services:
+      - name: "cloud-integration-platform-systems-catalog"
+        parameters:
+          - name: "EGRESS_GATEWAY_MEMORY"
+            value: "64Mi"
+  - name: "CloudBSS-SPS" #ETBSS-12947
+    version: ""
+    sd: ""
+    services:
+      - name: "cloudbss-sps-composite-gateway"
+        parameters:
+          - name: "CPU_LIMIT"
+            value: "1"
+          - name: "MEMORY_LIMIT"
+            value: "96Mi"
+          - name: "CPU_REQUEST"
+            value: "20m"
+          - name: "MEMORY_REQUEST"
+            value: "96Mi"
+  - name: "CloudBSS-PnL"
+    version: ""
+    sd: ""
+    services:
+      - name: "cloudbss-pnl-gateway"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "96Mi"
+          - name: "CPU_REQUEST"
+            value: "20m"
+          - name: "MEMORY_REQUEST"
+            value: "96Mi"
+  - name: "CloudBSS-DGS"
+    version: ""
+    sd: ""
+    services:
+      - name: "cloudbss-dgs-composite-gateway"
+        parameters:
+          - name: "MEMORY_LIMIT"
+            value: "96Mi"
+          - name: "CPU_REQUEST"
+            value: "20m"
+          - name: "MEMORY_REQUEST"
+            value: "96Mi"

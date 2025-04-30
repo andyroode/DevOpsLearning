@@ -1,0 +1,11 @@
+name: "prj-Project-SD"
+groupId: "com.qubership.cloud.prj-bss.deployment-descriptor"
+artifactId: "prj-project-sd"
+registry:
+  name: "default-prj-bss"
+  credentialsId: "artifactorycn-cred"
+  mavenConfig:
+    repositoryDomainName: "https://artifactorymb.qubership.com"
+    targetSnapshot: "sd.prj_bss.mvn.snapshots"
+    targetStaging: "sd.prj_bss.mvn.staging"
+    targetRelease: "sd.prj_bss.mvn"

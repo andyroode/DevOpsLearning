@@ -1,0 +1,19 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "PMWorkplace"
+deployParameters:
+  COM_FACADE_GATEWAY: "https://om-order-lifecycle-manager-v1-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/" # paramset: bss-internal-integrations version: 1 source: template
+  COM_NAMESPACE: "${BSS_NAMESPACE}" # paramset: bss-internal-integrations version: 1 source: template
+  CPQ_FRONTEND_URL: "https://oc-ui-fe-app-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/" # paramset: bss-internal-integrations version: 1 source: template
+  GATEWAY_CPQ: "https://quote-tmf-service-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/" # paramset: bss-internal-integrations version: 1 source: template
+  GATEWAY_QES: "https://quotation-engine-service-v1-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/" # paramset: bss-internal-integrations version: 1 source: template
+  KAFKA_BOOTSTRAP_SERVER: "${COMMON_KAFKA_SERVER}" # paramset: bss-internal-integrations version: 1 source: template
+  KAFKA_COM_BOOTSTRAP_SERVER: "${COMMON_KAFKA_SERVER}" # paramset: bss-internal-integrations version: 1 source: template
+  KAFKA_TOPIC_COM_CDC: "${BSS_NAMESPACE}.om.streaming.v2.event.queue" # paramset: bss-internal-integrations version: 1 source: template
+  KAFKA_TOPIC_UTM_CDC: "utm.streaming.v2.event.queue" # paramset: bss-internal-integrations version: 1 source: template
+  KAFKA_UTM_BOOTSTRAP_SERVER: "${COMMON_KAFKA_SERVER}" # paramset: bss-internal-integrations version: 1 source: template
+  MAAS_CLASSIFIER_NAME: "http://maas-service-maas.${CLOUD_PUBLIC_HOST}/" # paramset: bss-internal-integrations version: 1 source: template
+  PMWP_INTEGRATED_SYSTEMS: "COM|CPQ|UTM" # paramset: bss-internal-integrations version: 1 source: template
+technicalConfigurationParameters:
+  pm-cpq-adapter-go/pm.project.autoprocessing: "false"  # paramset: bss-internal-integrations-tech version: 1 source: template

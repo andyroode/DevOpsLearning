@@ -1,0 +1,21 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CODETOPROD"
+registryName: "default-infra-services"
+description: "Sample template for composite environment with credentials in parameters"
+owners: "Evgenii A. Popov, Viktor Solovev"
+gitRepository: ""
+defaultBranch: ""
+credential: ""
+labels: []
+globalE2EParameters:
+  pipelineDefaultRecipients: ""
+  recipientsStrategy: "merge"
+  mergeTenantsAndE2EParameters: false
+  environmentParameters:
+    PARALLEL_CHUNKS_ENABLED_APPROVAL: "false"
+    PROFILE: "nd_dev;ftpd_dev;dev_az11;dev"
+deployParameters:
+  ESCAPE_SEQUENCE: "true"
+

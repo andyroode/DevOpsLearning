@@ -1,0 +1,10 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "cloud-reporting"
+deployParameters:
+  SMTP_SERVER_PASSWORD: "" # paramset: data-management-configuration version: 1 source: template
+  SMTP_SERVER_PORT: "25" # paramset: data-management-configuration version: 1 source: template
+  SMTP_SERVER_URL: "testmail.qubership.com" # paramset: data-management-configuration version: 1 source: template
+  SMTP_SERVER_USERNAME: "" # paramset: data-management-configuration version: 1 source: template
+technicalConfigurationParameters: {}

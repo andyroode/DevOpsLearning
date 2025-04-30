@@ -1,0 +1,61 @@
+version: 23.4
+name: streaming
+parameters:
+  DEPLOY_W_HELM: true
+  CUSTOM_RESOURCE_NAME: "streaming"
+  vaultSecretManagement:
+    enabled: false
+    url: '""'
+  global:
+    name: "streaming"
+    waitForPodsReady: true
+    podReadinessTimeout: 300
+    secrets:
+      streamingPlatform:
+        username: "${creds.get(\"streaming-platform-cred\").username}"
+        password: "${creds.get(\"streaming-platform-cred\").password}"
+        kafkaAuthUsername: "${creds.get(\"kafka-streaming-admin-cred\").username}"
+        kafkaAuthPassword: "${creds.get(\"kafka-streaming-admin-cred\").password}"
+      monitoring:
+        prometheusUsername: "${creds.get(\"monitoring-prometheus-cred\").username}"
+        prometheuspassword: "${creds.get(\"monitoring-prometheus-cred\").password}"
+  operator:
+    replicas: 1
+  streamingPlatform:
+    install: true
+    replicas: 3
+    affinity:
+      podAntiAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+                - key: component
+                  operator: In
+                  values:
+                    - streaming-platform
+            topologyKey: kubernetes.io/hostname
+    heapSize: 640
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "1024Mi"
+      limits:
+        cpu: "400m"
+        memory: "1024Mi"
+    bootstrapServers: "kafka.${namespace_kafka_streaming}:9092"
+    zookeeperAddress: "zookeeper.${namespace_zookeeper_streaming}:2181"
+  streaming-platform:
+    readinessProbeInitialDelay: "180"
+    livenessProbeInitialDelay: "180"
+    livenessProbeTimeout: "20"
+  monitoring:
+    install: true
+    monitoringType: "prometheus"
+    installDashboard: true
+  configurator:
+    install: false
+  integrationTests:
+    install: false
+  DISABLE_FORCE_APPLY: false
+  ESCAPE_SEQUENCE: true
+applications: []

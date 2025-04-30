@@ -1,0 +1,13 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "dpt"
+deployParameters:
+  DPT_ACTION_ENABLE_TENANTS: "true" # paramset: data-management-configuration version: 1 source: template
+  PUSHGATEWAY_ENABLED: "true" # paramset: data-management-configuration version: 1 source: template
+  feature-flags.prometheus-metrics-enabled: "true"  # paramset: data-management-configuration version: 1 source: template
+technicalConfigurationParameters:
+  dpt_package.CLOUD_NAME: "${CLOUD_PUBLIC_HOST}" # paramset: data-management-tech version: 23.1 source: template
+  dpt_package.COM_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 23.1 source: template
+  dpt_package.ESO_NAMESPACE: "${OSS_NAMESPACE}" # paramset: data-management-tech version: 23.1 source: template
+  dpt_package.NAMESPACE: "${NAMESPACE}" # paramset: data-management-tech version: 23.1 source: template

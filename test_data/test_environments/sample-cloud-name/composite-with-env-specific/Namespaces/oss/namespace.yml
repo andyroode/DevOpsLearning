@@ -1,0 +1,71 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "composite-with-env-specific-oss"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-composite-with-env-specific"
+  - "solution-CODETOPROD"
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: "dev_oss_override"
+  baseline: "dev"
+deployParameters:
+  BSS_NAMESPACE: "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-bss\")}" # paramset: oss version: 23.1 source: template
+  DM_NAMESPACE: "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-data-management\")}" # paramset: oss version: 23.1 source: template
+  GLOBAL_RESOURCE_PROFILE: "${STRUCTURED_GLOBAL_RESOURCE_PROFILE}" # paramset: oss version: 23.1 source: template
+  MUI_SKIP_FRAGMENT_DEPLOY_CHECK: "true" # paramset: oss version: 23.1 source: template
+  NETWORK_ADAPTERS_NAMESPACE: "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-network-adapters\")}" # paramset: oss version: 23.1 source: template
+  STRUCTURED_GLOBAL_RESOURCE_PROFILE: # paramset: oss version: 23.1 source: template
+    ftpd_dev:
+      access-control:
+        '#inherit': "dev"
+        MEMORY_LIMIT: "550Mi"
+        MEMORY_REQUEST: "550Mi"
+      content-delivery-manager:
+        '#inherit': "dev_az11"
+        CPU_LIMIT: "1"
+        CPU_REQUEST: "50m"
+        MEMORY_LIMIT: "75Mi"
+        MEMORY_REQUEST: "75Mi"
+      dumps-cleanup-service:
+        '#inherit': "dev_az11"
+        DUMPS_CLEANUP_SERVICE_CPU_LIMIT: "100m"
+        DUMPS_CLEANUP_SERVICE_CPU_REQUEST: "20m"
+        DUMPS_CLEANUP_SERVICE_MEMORY_LIMIT: "150Mi"
+        DUMPS_CLEANUP_SERVICE_MEMORY_REQUEST: "100Mi"
+      facade-operator:
+        '#inherit': "dev"
+        FACADE_GATEWAY_MEMORY_LIMIT: "96Mi"
+        _comment: "This memory limit only applies to those gateways whose service does not have an explicitly defined FacadeService. If the service has an explicitly defined FacadeService, then the parameter\
+          \ COMPOSITE_GATEWAY_MEMORY_LIMIT must be passed to this service."
+      frontend-gateway:
+        '#inherit': "dev_az11"
+        CPU_REQUEST: "30m"
+        INTERNAL_GW_CPU_LIMIT: "500m"
+        INTERNAL_GW_MEMORY_LIMIT: "200Mi"
+        INTERNAL_GW_MEMORY_REQUEST: "200Mi"
+        PRIVATE_GW_CPU_LIMIT: "100m"
+        PRIVATE_GW_MEMORY_LIMIT: "100Mi"
+        PRIVATE_GW_MEMORY_REQUEST: "100Mi"
+      paas-mediation:
+        '#inherit': "dev"
+        MEMORY_LIMIT: "100Mi"
+      tenant-manager:
+        '#inherit': "dev_az11"
+        CPU_LIMIT: "1500m"
+        CPU_REQUEST: "30m"
+        MEMORY_LIMIT: "500Mi"
+        MEMORY_REQUEST: "500Mi"
+      tenant-self-service-frontend:
+        '#inherit': "dev_az11"
+        MEMORY_LIMIT: "64Mi"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
+

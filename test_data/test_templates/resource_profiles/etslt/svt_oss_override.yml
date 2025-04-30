@@ -1,0 +1,6 @@
+---
+name: "svt_oss_override"
+version: 0
+baseline: "prod-nonha"
+description: "Override for SVT-profile for OSS namespace"
+applications: []

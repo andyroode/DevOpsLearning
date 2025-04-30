@@ -1,0 +1,113 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "billing-security"
+deployParameters:
+  ACCESS_CONTROL_URL: "http://access-control:8080" # paramset: billing version: 23.1 source: template
+  DEFAULT_TENANT: "${DEFAULT_TENANT_NAME}" # paramset: billing version: 23.1 source: template
+  DOMAIN_NAME: "${CLOUD_PUBLIC_HOST}" # paramset: billing version: 23.1 source: template
+  ECA2_GETTENANTS_API: "http://eca2:8080/api/core/v2022.4.0/tenants" # paramset: billing version: 23.1 source: template
+  LOG_LEVEL: "INFO" # paramset: billing version: 23.1 source: template
+  PUBLIC_IDP_URL: "https://public-gateway-${NAMESPACE}.${CLOUD_PUBLIC_HOST}" # paramset: billing version: 23.1 source: template
+  REGISTERED_APPS_DETAILS: |-
+    {
+
+
+
+        "app": [
+
+
+
+            {
+
+
+
+                "claimName": [
+
+
+
+                    "preferred_username"
+
+
+
+                ],
+
+
+
+                "hostDetails": [
+
+
+
+                    {
+
+
+
+                        "hostName":
+
+    "billingui-${NAMESPACE}.${CLOUD_PUBLIC_HOST}"
+
+
+
+                    }
+
+
+
+                ],
+
+
+
+                "name": "CAM",
+
+
+
+                "services": [
+
+
+
+                    {
+
+
+
+                        "contextPath": "/ui-api/v1",
+
+
+
+                        "serviceUrl": "http://billing-ui-api:8080/"
+
+
+
+                    },
+
+
+
+                    {
+
+
+
+                        "contextPath": "/ui",
+
+
+
+                        "serviceUrl": "http://billingui:8080"
+
+
+
+                    }
+
+
+
+                ]
+
+
+
+            }
+
+
+
+        ]
+
+
+
+    }
+   # paramset: billing version: 23.1 source: template
+technicalConfigurationParameters: {}

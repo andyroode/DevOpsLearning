@@ -1,0 +1,134 @@
+version: 23.4
+name: kafka
+parameters:
+  DEPLOY_W_HELM: true
+  DISABLE_CRD: false
+  global:
+    name: "kafka"
+    waitForPodsReady: true
+    podReadinessTimeout: "300"
+    monitoringType: "prometheus"
+    installDashboard: true
+    disasterRecovery:
+      mode: ""
+    secrets:
+      kafka:
+        disableSecurity: false
+      monitoring:
+        prometheusUsername: ""
+        prometheusPassword: ""
+    skipNamespaceValidation: true
+  operator:
+    replicas: "1"
+    affinity: {
+      "podAntiAffinity": {
+        "requiredDuringSchedulingIgnoredDuringExecution": [
+        {
+          "labelSelector": {
+            "matchExpressions": [
+            {
+              "key": "component",
+              "operator": "In",
+              "values": [
+                "kafka-service-operator"]}]},
+          "topologyKey":"kubernetes.io/hostname"}]}}
+
+  kafka:
+    terminationGracePeriod: "180"
+    rollbackTimeout: "3600"
+    healthCheckTimeout: "30"
+    enableAuditLogs: false
+    oauth:
+      clockSkew: "10"
+      jwkSourceType: "jwks"
+      jwksConnectionTimeout: "1000"
+      jwksReadTimeout: "1000"
+      jwksSizeLimit: "51200"
+    consulDiscovery: false
+    consulAclEnabled: false
+    install: true
+    affinity: {
+      "podAffinity": {
+        "preferredDuringSchedulingIgnoredDuringExecution": [
+        {
+          "weight": 100,
+          "podAffinityTerm": {
+            "labelSelector": {
+              "matchExpressions": [
+              {
+                "key": "component",
+                "operator": "In",
+                "values": [
+                  "zookeeper"]}]},
+            "topologyKey": "kubernetes.io/hostname" }}]},
+            "podAntiAffinity": {
+              "requiredDuringSchedulingIgnoredDuringExecution": [
+              {
+                "labelSelector": {
+                  "matchExpressions": [
+                  {
+                    "key": "component",
+                    "operator": "In",
+                    "values": [
+                      "kafka"]}]},
+                "topologyKey": "kubernetes.io/hostname"}]}}
+    disruptionBudget:
+      enabled: false
+    heapSize: "1024"
+    replicas: "3"
+    resources:
+      requests:
+        cpu: "150m"
+        memory: "2Gi"
+      limits:
+        cpu: "1000m"
+        memory: "2Gi"
+    storage: 
+      className: 
+        - "${STORAGE_RWO_CLASS}"
+      size: "20Gi"
+    getRacksFromNodeLabels: false
+    nodeLabelNameForRack: "zone"
+    racks:
+      - "rack-1"
+      - "rack-2"
+      - "rack-3"
+  monitoring:
+    install: true
+    affinity: {"podAffinity":{"preferredDuringSchedulingIgnoredDuringExecution": [{"podAffinityTerm":{"labelSelector": {"matchExpressions": [{"key": "component", "operator": "In", "values": ["kafka"]}]}, "topologyKey":"kubernetes.io/hostname"}, "weight": 100}]}}
+    kafkaTotalBrokerCount: "3"
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "128Mi"
+      limits:
+        cpu: "200m"
+        memory: "256Mi"
+    monitoringCoreosGroup: false
+    lagExporter:
+      enabled: true
+  mirrorMaker:
+    install: false
+  mirrorMakerMonitoring:
+    install: false
+  vaultSecretManagement:
+    enabled: false
+  backupDaemon:
+    install: false
+    securityContext: {"runAsGroup": 1000, "runAsUser": 1000} 
+  integrationTests:
+    install: false
+  akhq:
+    install: true
+    schemaRegistryUrl: '""'
+    affinity: {"podAffinity":{"preferredDuringSchedulingIgnoredDuringExecution": [{"podAffinityTerm":{"labelSelector": {"matchExpressions": [{"key": "component", "operator": "In", "values": ["kafka"]}]}, "topologyKey":"kubernetes.io/hostname"}, "weight": 100}]}}
+    kafkaPollTimeout: "10000"
+    enableAccessLog: false
+    resources:
+      requests:
+        cpu: "50m"
+        memory: "400Mi"
+      limits:
+        cpu: "300m"
+        memory: "500Mi"
+applications: []

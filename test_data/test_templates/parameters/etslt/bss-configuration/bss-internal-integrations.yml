@@ -1,0 +1,38 @@
+version: 1
+name: bss-internal-integrations
+parameters: {}
+applications:
+  - appName: "cloudbss-om"
+    parameters:
+      # config for ETBSS-805
+      OM_DECOMPOSITION_SOM_DEFAULT_URL: http://om-tmf641-integration-service:8080/serviceOrderingManagement/v2
+      OM_DECOMPOSITION_SOM_DEFAULT_NOTIFICATION_SUBSCRIPTIONS_URL: http://om-notification-service.${BSS_NAMESPACE}:8080/serviceOrderingManagement/v2
+      OM_DECOMPOSITION_SOM_URLS:
+        9f4d4ac0-c391-4667-97fc-1725440dfebc:
+          notificationsSubscriptionUrl: 'http://om-notification-service.${BSS_NAMESPACE}:8080/serviceOrderingManagement/v2'
+          url: 'http://om-tmf641-integration-service:8080/serviceOrderingManagement/v2'
+        a8758cad-4678-4709-a06f-3e9d249ef725:
+          notificationsSubscriptionUrl: 'http://om-stub-service:8080/serviceOrderingManagement/v2'
+          url: 'http://om-stub-service:8080/serviceOrderingManagement/v2'
+      OM_CIP_DEPLOYED_INTEGRATIONS: [som, eso, utm, ibs, uim]
+      OM_ESO_URL: http://eso-manager.${OSS_NAMESPACE}:8080
+      OM_ESO_SERVICE_REQUESTS_URL: http://service-requests.${OSS_NAMESPACE}:8080
+      OM_ESO_CALLBACK_URL: http://cloud-integration-platform-engine.${BSS_NAMESPACE}:8080/routes
+      OM_UTM_URL: http://internal-gateway-service:8080
+      OM_UTM_CALLBACK_URL: http://cloud-integration-platform-engine.${BSS_NAMESPACE}:8080/routes
+      OM_DEFAULT_PREPAYMENT_ALLOCATION_ENABLED: 'false' #ETBSS-992 WA
+  - appName: "PMWorkplace"
+    parameters:
+      # config for ETBSS-995
+      PMWP_INTEGRATED_SYSTEMS: COM|CPQ|UTM #ETBSS-5764
+      GATEWAY_CPQ: https://quote-tmf-service-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/
+      GATEWAY_QES: https://quotation-engine-service-v1-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/
+      COM_FACADE_GATEWAY: https://om-order-lifecycle-manager-v1-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/
+      COM_NAMESPACE: ${BSS_NAMESPACE}
+      CPQ_FRONTEND_URL: https://oc-ui-fe-app-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/
+      KAFKA_BOOTSTRAP_SERVER: ${COMMON_KAFKA_SERVER}  #ETBSS-7839
+      KAFKA_UTM_BOOTSTRAP_SERVER: ${COMMON_KAFKA_SERVER}  #ETBSS-7839
+      KAFKA_COM_BOOTSTRAP_SERVER: ${COMMON_KAFKA_SERVER}  #ETBSS-7839
+      KAFKA_TOPIC_COM_CDC: ${BSS_NAMESPACE}.om.streaming.v2.event.queue
+      KAFKA_TOPIC_UTM_CDC: utm.streaming.v2.event.queue
+      MAAS_CLASSIFIER_NAME: http://maas-service-maas.${CLOUD_PUBLIC_HOST}/

@@ -1,0 +1,35 @@
+---
+applications:
+- name: "Cloud-Core"
+  services:
+  - name: "facade-operator"
+    parameters:
+    - name: "FACADE_GATEWAY_CPU_REQUEST"
+      value: "150m" # override
+  - name: catalog-service # new
+    parameters:
+    - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
+      value: "96Mi"  
+    - name: "COMPOSITE_GATEWAY_CPU_REQUEST"
+      value: "50m"  
+- name: "CloudBSS-BSSCRM"
+  version: "release-2023.3-20230905.060404-3-RELEASE"
+  sd: ""
+  services:
+  - name: "bss-config-rollout-manager"
+    parameters:
+    - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
+      value: "256Mi" # override
+    - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT2" #new
+      value: "512Mi" 
+- name: "CloudBSS-CPQBE" # new
+  version: "release-2023.3-20231018.085154-102-RELEASE"
+  sd: ""
+  services:
+  - name: "catalog-service"
+    parameters:
+    - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
+      value: "96Mi"
+    - name: "COMPOSITE_GATEWAY_CPU_REQUEST"
+      value: "50m"
+ 

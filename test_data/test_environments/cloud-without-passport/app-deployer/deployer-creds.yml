@@ -1,0 +1,8 @@
+app-deployer-token-cred:
+  type: secret
+  data:
+    secret: deployer_token
+app-deployer-username-cred:
+  type: secret
+  data:
+    secret: '[encrypted:AES256_Fernet]gAAAAABlSqXiVwD_Kd7IU_cwVFyqeKJnQRN7i8e4tVZA0H0QPG5PEeawUT_ts-Xg_qS92m_bKYVwVrhxiRS8lOmPx5ero3LSMw=='

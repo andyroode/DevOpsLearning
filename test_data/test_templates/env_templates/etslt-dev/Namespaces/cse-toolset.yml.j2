@@ -1,0 +1,23 @@
+---
+name: "cse-toolset"
+tenantName: "{{_tenant}}"
+credentialsId: ""
+labels:
+- "solutionInstance-{{env}}"
+- "solution-{{_tenant}}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: dev_cse_override
+  baseline: dev
+deployParameters:
+  ENV_NAME: "{{current_env.environmentName}}" 
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "cse-toolset-wa"
+- "cse-toolset-dev"
+e2eParameterSets:
+- "cse-toolset-e2e-wa"
+technicalConfigurationParameterSets: []

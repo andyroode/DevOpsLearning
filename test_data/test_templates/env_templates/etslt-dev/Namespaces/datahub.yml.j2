@@ -1,0 +1,27 @@
+---
+name: "{{current_env.environmentName}}-datahub"
+credentialsId: ""
+tenantName: "{{_tenant}}"
+labels:
+- "solutionInstance-{{env}}"
+- "solution-{{_tenant}}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: "dev_datahub_override"
+  baseline: dev
+deployParameters:
+  COMPOSITE_PLATFORM: "true"
+  CONSUL_ENABLED: "true"
+  LINK_SCRIPT_MANAGER_INTEGRATION_ENABLE: "false"
+  BSS_NAMESPACE: "{{current_env.environmentName}}-bss"
+  CORE_NAMESPACE: "{{current_env.environmentName}}-core"
+  DATA_MANAGEMENT_NAMESPACE: "{{current_env.environmentName}}-data-management"
+  OSS_NAMESPACE: "{{current_env.environmentName}}-oss"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+- "datahub-dev"
+e2eParameterSets:  []
+technicalConfigurationParameterSets: []

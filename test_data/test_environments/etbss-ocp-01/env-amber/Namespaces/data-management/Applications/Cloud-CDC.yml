@@ -1,0 +1,9 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Cloud-CDC"
+deployParameters:
+  CONSUMER_OVERRIDE_MAX_PARTITION_FETCH_BYTES: "2500000" # paramset: data-management-wa version: 23.3 source: template
+  global.secrets.streamingPlatform.password: "${creds.get(\"cdc-streaming-cred\").password}" # paramset: data-management-wa version: 23.3 source: template
+  global.secrets.streamingPlatform.username: "${creds.get(\"cdc-streaming-cred\").username}" # paramset: data-management-wa version: 23.3 source: template
+technicalConfigurationParameters: {}

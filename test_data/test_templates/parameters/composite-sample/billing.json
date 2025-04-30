@@ -1,0 +1,258 @@
+{
+    "name": "billing",
+    "version": 23.1,
+    "parameters": {
+        "BSS_NAMESPACE": "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-bss\")}",
+        "ESCAPE_SEQUENCE": "true",
+        "GLOBAL_RESOURCE_PROFILE": "${STRUCTURED_GLOBAL_RESOURCE_PROFILE}",
+        "STRUCTURED_GLOBAL_RESOURCE_PROFILE": {
+            "ftpd_dev": {
+                "tenant-manager": {
+                    "#inherit": "dev_az11",
+                    "CPU_REQUEST": "30m",
+                    "MEMORY_REQUEST": "500Mi",
+                    "CPU_LIMIT": "1500m",
+                    "MEMORY_LIMIT": "500Mi"
+                },
+                "frontend-gateway": {
+                    "#inherit": "dev_az11",
+                    "INTERNAL_GW_MEMORY_LIMIT": "200Mi",
+                    "INTERNAL_GW_MEMORY_REQUEST": "200Mi",
+                    "INTERNAL_GW_CPU_LIMIT": "500m",
+                    "PRIVATE_GW_MEMORY_LIMIT": "100Mi",
+                    "PRIVATE_GW_MEMORY_REQUEST": "100Mi",
+                    "PRIVATE_GW_CPU_LIMIT": "100m",
+                    "CPU_REQUEST": "30m"
+                },
+                "pim-frontend-srv": {
+                    "#inherit": "dev_az11",
+                    "MEMORY_LIMIT": "48Mi",
+                    "MEMORY_REQUEST": "48Mi"
+                },
+                "access-control": {
+                    "#inherit": "dev",
+                    "MEMORY_REQUEST": "550Mi",
+                    "MEMORY_LIMIT": "550Mi"
+                },
+                "facade-operator": {
+                    "#inherit": "dev",
+                    "_comment": "This memory limit only applies to those gateways whose service does not have an explicitly defined FacadeService. If the service has an explicitly defined FacadeService, then the parameter COMPOSITE_GATEWAY_MEMORY_LIMIT must be passed to this service.",
+                    "FACADE_GATEWAY_MEMORY_LIMIT": "96Mi"
+                },
+                "paas-mediation": {
+                    "#inherit": "dev",
+                    "MEMORY_LIMIT": "100Mi"
+                },
+                "tenant-self-service-frontend": {
+                    "#inherit": "dev_az11",
+                    "MEMORY_LIMIT": "64Mi"
+                }
+            }
+        },
+        "nrm.apps.rb.volumes.input.capacity": "1Gi",
+        "nrm.apps.rb.volumes.input.storageClass": "${tenant.cloud.STORAGE_RWX_CLASS}",
+        "nrm.apps.rb.volumes.mf.capacity": "1Gi",
+        "nrm.apps.rb.volumes.mf.storageClass": "${tenant.cloud.STORAGE_RWX_CLASS}",
+        "nrm.apps.rb.volumes.outputs.capacity": "1Gi",
+        "nrm.apps.rb.volumes.outputs.storageClass": "${tenant.cloud.STORAGE_RWX_CLASS}",
+        "nrm.identityProviders.cloud-common.url": "http://identity-provider:8080/auth/realms/cloud-common",
+        "nrm.identityProviders.cloud-common.usedFor": "'\n- clientCredentials\n'",
+        "nrm.identityProviders.cloud-common.verifierConfig.skipClientIdCheck": "true",
+        "nrm.identityProviders.cloud-common.verifierConfig.skipExpiryCheck": "false",
+        "nrm.identityProviders.cloud-common.verifierConfig.skipIssuerCheck": "true",
+        "nrm.identityProviders.cloud-common.verifierConfig.supportedSigningAlgs": "'\n[]\n'",
+        "nrm.identityProviders.cpq.url": "http://identity-provider:8080/auth/realms/${CPQ_TENANT_ID}",
+        "nrm.identityProviders.cpq.verifierConfig.skipClientIdCheck": "true",
+        "nrm.identityProviders.cpq.verifierConfig.skipExpiryCheck": "false",
+        "nrm.identityProviders.cpq.verifierConfig.skipIssuerCheck": "true",
+        "nrm.identityProviders.cpq.verifierConfig.supportedSigningAlgs": "'\n[]\n'",
+        "nrm.integrations.acm.url": "\"http://account-mgmt-core.${BSS_NAMESPACE}:8080/accountManagement/v2/billingAccount/\"",
+        "nrm.integrations.cip.enabled": "true",
+        "nrm.integrations.cipBarAction.url": "http://cloud-integration-platform-engine.${BSS_NAMESPACE}:8080/routes/om-saldomax-barring/listener",
+        "nrm.integrations.cipSpeedDrop.url": "http://cloud-integration-platform-engine.${BSS_NAMESPACE}:8080/routes/om-set-speed-drop/listener",
+        "nrm.postgresql.rw.url": "${tenant.cloud.get(\"nrm.db.url\")}/postgres?sslmode=disable",
+        "nrm.storage.url": "s3://${STORAGE_USERNAME}:${STORAGE_PASSWORD}@${STORAGE_SERVER_URL.replaceFirst(\"https\\\\://\", \"\")}"
+    },
+    "applications": [
+        {
+            "appName": "Cloud-Core",
+            "parameters": {
+                "COMPOSITE_PLATFORM": "true"
+            }
+        },
+        {
+            "appName": "billing-billops",
+            "parameters": {
+                "BILLOPS_PVC_ACCESS_MODES": "ReadWriteMany",
+                "BASELINE_NAMESPACE": "${NAMESPACE.replaceFirst(/-(\\w)*$/, \"-core\")}"
+            }
+        },
+        {
+            "appName": "billing-security",
+            "parameters": {
+                "ACCESS_CONTROL_URL": "http://access-control:8080",
+                "DEFAULT_TENANT": "${DEFAULT_TENANT_NAME}",
+                "LOG_LEVEL": "INFO",
+                "DOMAIN_NAME": "${CLOUD_PUBLIC_HOST}",
+                "ECA2_GETTENANTS_API": "http://eca2:8080/api/core/v2022.4.0/tenants",
+                "PUBLIC_IDP_URL": "https://public-gateway-${NAMESPACE}.${CLOUD_PUBLIC_HOST}",
+                "REGISTERED_APPS_DETAILS": "{\n\n\n\n    \"app\": [\n\n\n\n        {\n\n\n\n            \"claimName\": [\n\n\n\n                \"preferred_username\"\n\n\n\n            ],\n\n\n\n            \"hostDetails\": [\n\n\n\n                {\n\n\n\n                    \"hostName\":\n\n\"billingui-${NAMESPACE}.${CLOUD_PUBLIC_HOST}\"\n\n\n\n                }\n\n\n\n            ],\n\n\n\n            \"name\": \"CAM\",\n\n\n\n            \"services\": [\n\n\n\n                {\n\n\n\n                    \"contextPath\": \"/ui-api/v1\",\n\n\n\n                    \"serviceUrl\": \"http://billing-ui-api:8080/\"\n\n\n\n                },\n\n\n\n                {\n\n\n\n                    \"contextPath\": \"/ui\",\n\n\n\n                    \"serviceUrl\": \"http://billingui:8080\"\n\n\n\n                }\n\n\n\n            ]\n\n\n\n        }\n\n\n\n    ]\n\n\n\n}"
+            }
+        },
+        {
+            "appName": "billing-ui",
+            "parameters": {
+                "ACCESS_CONTROL_GATEWAY_URL": "${PUBLIC_GATEWAY_URL}/access/v1/",
+                "IDENTITY_PROVIDER_URL": "http://identity-provider:8080",
+                "ISSUER_HTTPS": "true",
+                "GRPC_TLS_ENABLED": "false",
+                "PUBLIC_OIDC_PROVIDER_URI": "${PUBLIC_GATEWAY_URL}/auth/realms/${TENANT_ID}",
+                "EA_TARGET": "ea-api:8080",
+                "PRIVATE_OIDC_PROVIDER_URI": "http://identity-provider:8080/auth/realms/${TENANT_ID}/protocol/openid-connect/token",
+                "ISSUER": "${PUBLIC_GATEWAY_URL}/auth/realms/${TENANT_ID}",
+                "GRPC_TARGET": "eca2:8080",
+                "AUTH": "true",
+                "PUBLIC_GATEWAY_URL": "https://public-gateway-${NAMESPACE}.${CLOUD_PUBLIC_HOST}",
+                "DBP_TARGET": "formatter:8080",
+                "ACCESS_CONTROL_URL": "http://public-gateway-service:8080",
+                "PUBLIC_CLIENT_ID": "frontend",
+                "TENANT_ID": "cloud-common",
+                "RTB_TARGET": "realtime-bills:8080",
+                "CATALOG_TARGET": "catalog:8080",
+                "ACCESS_CONTROL_ENABLED": "true"
+            }
+        },
+        {
+            "appName": "business-api",
+            "parameters": {
+                "IDENTITY_PROVIDER_URL": "http://identity-provider:8080",
+                "GRAYLOG_ENABLED": "true",
+                "GRAYLOG_HOST": "${tenant.cloud.GRAYLOG_UI_URL}",
+                "ECA2_TARGET": "eca2:8080",
+                "DBP_TARGET": "formatter:8080",
+                "ACCESS_CONTROL_URL": "http://access-control:8080",
+                "GRPC_TLS_ENABLED": "false",
+                "RTB_TARGET": "realtime-bills:8080",
+                "CATALOG_TARGET": "catalog:8080",
+                "ACCESS_CONTROL_ENABLED": "true",
+                "PROVIDER_ISSUER_URL": "https://public-gateway-${NAMESPACE}.${CLOUD_PUBLIC_HOST}/auth/realms/${CPQ_TENANT_ID}",
+                "ESCAPE_SEQUENCE": "true"
+            }
+        },
+        {
+            "appName": "collections-manager",
+            "parameters": {
+                "CM_TENANT_NAME": "${CPQ_TENANT_ID}",
+                "CA_BUNDLE_CERTIFICATE": "${CLOUD_CA_BUNDLE_CERTIFICATE}",
+                "CM_DIGITALBILLS_ENDPOINT": "/api/digitalbills/v2023.1.0",
+                "cm.integrations": "{ \"om\":{ \"enabled\":true, \"url\":\"http://om-order-lifecycle-manager.${BSS_NAMESPACE}:8080\" }, \"uim\":{ \"enabled\":true, \"topicName\":\"uimNotificationRequests\", \"url\":\"http://uim.${BSS_NAMESPACE}:8080\" }}",
+                "CM_UIM_PREFER_GRPC": "false",
+                "CM_UIM_ENDPOINT": "/api/cmuim/v2023.2.0/notifications"
+            }
+        },
+        {
+            "appName": "ea",
+            "parameters": {
+                "eventaggregator.region.id": "1",
+                "eventaggregator.region.dbAdminSecret.name": "admin-db-secret",
+                "eventaggregator.region.dbAdminSecret.key": "pgadmin",
+                "eventaggregator.region.kafkaConnection": "${tenant.cloud.get(\"nrm.kafka.url\")}",
+                "eventaggregator.region.rdb.dbname": "${NAMESPACE}-ea",
+                "eventaggregator.region.rdb.type": "postgresql",
+                "eventaggregator.region.rdb.user": "${NAMESPACE}",
+                "eventaggregator.region.rdb.password": "${NAMESPACE}",
+                "eventaggregator.region.rdb.host": "${tenant.cloud.get(\"nrm.db.url\").split(\"@\")[1]}",
+                "eventaggregator.topicsPrefix": "${NAMESPACE}",
+                "eventaggregator.security.identityProviders": "'\n- name: cloud-common\n\n  url: http://identity-provider:8080/auth/realms/cloud-common\n\n  verifierConfig:\n\n    skipClientIdCheck: true\n\n    skipIssuerCheck: true\n\n- name: cpq\n\n  url:\nhttp://identity-provider:8080/auth/realms/${CPQ_TENANT_ID}\n\n  verifierConfig:\n\n    skipClientIdCheck: true\n\n    skipIssuerCheck: true\n\n'",
+                "eventaggregator.security.securityRoles": "'\n- name: anonymous\n  rules:\n    - verbs:\n        - \"*\"\n      apiGroups:\n        - reflection.api.nrm.qubership.com\n      resources:\n        - \"*\"\n  anonymous: true\n- name: ROLE_eca_super_admin\n  rules:\n    - verbs:\n        - \"*\"\n      apiGroups:\n        - ea.api.nrm.qubership.com\n        - reflection.api.nrm.qubership.com\n      resources:\n        - \"*\"\n  anonymous: false\n- name: ROLE_nrm_admin_qa_only_do_not_use_in_applications\n  rules:\n    - verbs:\n        - \"*\"\n      apiGroups:\n        - ea.api.nrm.qubership.com\n        - reflection.api.nrm.qubership.com\n      resources:\n        - \"*\"\n  anonymous: false\n- anonymous: false\n  name: ROLE_cloud-graphql\n  rules:\n    - apiGroups:\n        - ea.api.nrm.qubership.com\n        - reflection.api.nrm.qubership.com\n      resources:\n        - \"*\"\n      verbs:\n        - \"*\"\n'",
+                "ESCAPE_SEQUENCE": "true",
+                "nrm.apps.eap.dbName": "${NAMESPACE}-streamers",
+                "nrm.integrations.streaming.costedEvents.enabled": "true"
+            }
+        },
+        {
+            "appName": "nrm",
+            "parameters": {
+                "ESCAPE_SEQUENCE": "true",
+                "IGNORE_MERGE_CONFLICTS": "true",
+                "nrm.apps.dbp.storage.basePath": "nd-dbp-${NAMESPACE}",
+                "nrm.apps.dbp.storage.bucketName": "dbp-${NAMESPACE}",
+                "nrm.apps.printVendor.storage.basePath": "nd-pv-${NAMESPACE}",
+                "nrm.apps.printVendor.storage.bucketName": "dbp-${NAMESPACE}",
+                "nrm.core.v5.databases.backend.adminUrl.secretKey": "pgadmin",
+                "nrm.core.v5.databases.backend.url": "postgresql://${tenant.cloud.namespace.NAMESPACE}:${tenant.cloud.namespace.NAMESPACE}@${tenant.cloud.get(\"nrm.db.url\").split(\"@\")[1]}/${tenant.cloud.namespace.NAMESPACE}-bg2?sslmode=disable",
+                "nrm.core.v5.databases.taskmaster.adminUrl.secretKey": "pgadmin",
+                "nrm.core.v5.databases.taskmaster.url": "postgresql://${tenant.cloud.namespace.NAMESPACE}:${tenant.cloud.namespace.NAMESPACE}@${tenant.cloud.get(\"nrm.db.url\").split(\"@\")[1]}/${tenant.cloud.namespace.NAMESPACE}-bg2?sslmode=disable",
+                "nrm.core.v5.databases.udm.adminUrl.secretKey": "udm",
+                "nrm.core.v5.databases.udm.replication": "{ 'class' : 'org.apache.cassandra.locator.NetworkTopologyStrategy', 'DC-1': 3 }",
+                "nrm.core.v5.databases.udm.url": "${tenant.cloud.get(\"nrm.cassandra.url\")}/${NAMESPACE.replace(\"-\",\"\")}",
+                "nrm.core.v5.dbp.cache.caBundle": "${CLOUD_CDN_STORAGE_CA_BUNDLE.replace(\"    \", \"\").replace(\"|\", \"\").replaceFirst(\"\\n\",\"\")}",
+                "nrm.core.v5.dbp.cache.enabled": "true",
+                "nrm.core.v5.features.enable-alpha-api-versions": "true",
+                "nrm.core.v5.features.enable-beta-api-versions": "true",
+                "nrm.core.v5.features.enable-debug-endpoints": "true",
+                "nrm.core.v5.features.enable-hub-api-versions": "true",
+                "nrm.core.v5.features.enable-m2m-auth": "false",
+                "nrm.core.v5.features.enable-pprof-security": "false",
+                "nrm.core.v5.features.skip-unavailable-idp": "false",
+                "nrm.integrations.collectionManager.enabled": "true",
+                "nrm.integrations.collectionManager.url": "cm-nrm-integration:8080",
+                "nrm.integrations.qcm.enabled": "false",
+                "nrm.integrations.rem.enabled": "false",
+                "nrm.integrations.streaming.config.enabled": "false",
+                "nrm.integrations.streaming.costedEvents.enabled": "true",
+                "nrm.integrations.streaming.data.enabled": "false",
+                "nrm.integrations.uim.enabled": "true",
+                "nrm.integrations.uim.integrationTopic": "false",
+                "nrm.integrations.uim.partitionsNumber": "5",
+                "nrm.integrations.uim.replicationFactor": "3",
+                "nrm.integrations.uim.topicName": "maas.${BSS_NAMESPACE}.uimNotificationRequests",
+                "nrm.core.v5.dbp.cache.endpoint": "${STORAGE_PROVIDER}://${STORAGE_USERNAME}:${STORAGE_PASSWORD}@${STORAGE_SERVER_URL.replaceFirst(\"https\\\\://\", \"\")}/dbp-${tenant.cloud.namespace.NAMESPACE}?basePath=ngb-dbp-${tenant.cloud.namespace.NAMESPACE}",
+                "nrm.integrations.cip.url": "http://cloud-integration-platform-engine.${BSS_NAMESPACE}:8080/routes/"
+            }
+        },
+        {
+            "appName": "nrm-operator",
+            "parameters": {
+                "DEPLOY_W_HELM": "true",
+                "ESCAPE_SEQUENCE": "true",
+                "IGNORE_MERGE_CONFLICTS": "true",
+                "nrm.operator.v4.apiExplorer.resources.limits.cpu": "0.6",
+                "nrm.operator.v4.apiExplorer.resources.limits.memory": "256Mi",
+                "nrm.operator.v4.apiExplorer.resources.requests.cpu": "0.3",
+                "nrm.operator.v4.apiExplorer.resources.requests.memory": "128Mi",
+                "nrm.operator.v4.security.securityRoles": "'\n- anonymous: true\n  name: anonymous\n  rules:\n    - apiGroups:\n        - operator.api.nrm.qubership.com\n      resources:\n        - \"*\"\n      verbs:\n        - \"*\"\n'",
+                "nrm.operator.v4.databases.dbAdmins": "'\n- name: pgadmin\n\n  url:\n${tenant.cloud.get(\"nrm.db.url\")}/postgres?sslmode=disable\n- name: udm\n\n  url: ${tenant.cloud.get(\"nrm.cassandra.url\")}/system\n\n'",
+                "nrm.operator.v4.security.additionalCertificatesYaml.cert": "${CLOUD_CDN_STORAGE_CA_BUNDLE.replace(\"    \", \"\").replace(\"|\", \"\").replaceFirst(\"\\n\",\"\")}",
+                "nrm.operator.v4.security.additionalCertificatesYaml.endpoints": "${STORAGE_PROVIDER}://${STORAGE_USERNAME}:${STORAGE_PASSWORD}@${STORAGE_SERVER_URL.replaceFirst(\"https\\\\://\", \"\")}"
+            }
+        },
+        {
+            "appName": "nrm-operator-v2",
+            "parameters": {
+                "nrm.operator.v4.databases.dbAdmins": "'\n- name: pgadmin\n\n  url:\n${tenant.cloud.get(\"nrm.db.url\")}/postgres?sslmode=disable\n- name: udm\n\n  url: ${tenant.cloud.get(\"nrm.cassandra.url\")}/system\n\n'",
+                "nrm.operator.v4.apiExplorer.resources.limits.cpu": "0.6",
+                "nrm.operator.v4.apiExplorer.resources.requests.cpu": "0.6",
+                "nrm.identityProviders.cpq.verifierConfig.skipExpiryCheck": "false",
+                "IGNORE_MERGE_CONFLICTS": "true",
+                "nrm.apps.rb.volumes.outputs.storageClass": "${tenant.cloud.STORAGE_RWX_CLASS}",
+                "nrm.cassandra.url": "${tenant.cloud.get(\"nrm.cassandra.url\")}/${NAMESPACE.replace(\"-\",\"\")}",
+                "nrm.identityProviders.cpq.verifierConfig.skipIssuerCheck": "true",
+                "nrm.apps.rb.volumes.outputs.capacity": "1Gi",
+                "nrm.identityProviders.cpq.verifierConfig.skipClientIdCheck": "true",
+                "nrm.operator.v4.security.securityRoles": "'\n- anonymous: true\n  name: anonymous\n  rules:\n    - apiGroups:\n        - operator.api.nrm.qubership.com\n      resources:\n        - \"*\"\n      verbs:\n        - \"*\"\n'",
+                "nrm.identityProviders.cloud-common.verifierConfig.skipClientIdCheck": "true",
+                "nrm.postgresql.rw.url": "${tenant.cloud.get(\"nrm.db.url\")}/postgres?sslmode=disable",
+                "nrm.identityProviders.cloud-common.url": "http://identity-provider:8080/auth/realms/cloud-common",
+                "ESCAPE_SEQUENCE": "true",
+                "nrm.identityProviders.cpq.verifierConfig.supportedSigningAlgs": "'\n[]\n'",
+                "nrm.identityProviders.cloud-common.verifierConfig.supportedSigningAlgs": "'\n[]\n'",
+                "nrm.identityProviders.cloud-common.verifierConfig.skipIssuerCheck": "true",
+                "nrm.identityProviders.cloud-common.verifierConfig.skipExpiryCheck": "false",
+                "nrm.identityProviders.cpq.url": "http://identity-provider:8080/auth/realms/${CPQ_TENANT_ID}",
+                "nrm.operator.v4.security.additionalCertificatesYaml.cert": "${CLOUD_CDN_STORAGE_CA_BUNDLE.replace(\"    \", \"\").replace(\"|\", \"\").replaceFirst(\"\\n\",\"\")}",
+                "nrm.operator.v4.security.additionalCertificatesYaml.endpoints": "${STORAGE_PROVIDER}://${STORAGE_USERNAME}:${STORAGE_PASSWORD}@${STORAGE_SERVER_URL.replaceFirst(\"https\\\\://\", \"\")}"
+            }
+        }
+    ]
+}

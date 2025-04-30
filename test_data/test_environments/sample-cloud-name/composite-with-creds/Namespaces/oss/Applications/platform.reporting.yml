@@ -1,0 +1,16 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "platform.reporting"
+deployParameters:
+  --PARAMETERS_MISSING_IN_NOTES--: "=====================" # paramset: oss version: 23.1 source: template
+  CAPACITY_MANAGEMENT_DATASOURCE: "datamart-builder" # paramset: oss version: 23.1 source: template
+  CDI_REPORTING_POSTGRES_DB_NAME: "${NAMESPACE.replace(\"-\",\"_\")}_cdi_reporting" # paramset: oss version: 23.1 source: template
+  DB_POSTGRES_DB_NAME: "${NAMESPACE.replace(\"-\",\"_\")}_reporting" # paramset: oss version: 23.1 source: template
+  KAFKA_SECURITY_ENABLED: "${tenant.cloud.CLOUD_KAFKA_SECURITY_ENABLED}" # paramset: oss version: 23.1 source: template
+  MONITORING_ENABLED: "true" # paramset: oss version: 23.1 source: template
+  REPORTING_POSTGRES_DB_NOSUPER_PASSWORD: "${POSTGRES_DB_PASSWORD}" # paramset: oss version: 23.1 source: template
+  REPORTING_POSTGRES_DB_NOSUPER_READ_ONLY_USERNAME: "${NAMESPACE}_reporting_read_only_user" # paramset: oss version: 23.1 source: template
+  REPORTING_POSTGRES_DB_NOSUPER_USERNAME: "${POSTGRES_DB_USERNAME}" # paramset: oss version: 23.1 source: template
+  SPR_KAFKA_APPLICATION_ID: "${NAMESPACE}_sink-processor-reporting" # paramset: oss version: 23.1 source: template
+technicalConfigurationParameters: {}

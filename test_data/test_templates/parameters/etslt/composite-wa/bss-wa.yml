@@ -1,0 +1,20 @@
+version: 23.3
+name: bss-wa
+parameters: 
+  #GQL_SCHEMA_DOMAINS: "ACM,AGM,CIM,COM,CPM,DS,GSM,IBS,MC,PNL,POC,Quote,Worklog,Quota,Entity,UTM"              #Added as per ETBSS-535 , ETBSS-839 - Removed as per ETBSS-1226
+  WP_RUNTIME_MODE: "CACHE"                                                                         #Added as per ETBSS-822
+applications:
+- appName: "cloudbss-om"
+  parameters:
+    # Added as per ETBSS-1029
+    OM_DEFAULT_PREPAYMENT_ALLOCATION_ENABLED: "false"
+- appName: "cloud-integration-platform"
+  parameters:
+    # WA for ETBSS-275
+    # EGRESS_GATEWAY_MEMORY: "64Mi" #ETBSS-5138
+    # WA for ETBSS-1688
+    SMARTPLUG_ENABLED: "true"
+- appName: "CRM-CIM"
+  parameters:
+    # Added as per ETBSS-5855
+    BSS_INTEGRATION_UIM_ENABLED: "true"

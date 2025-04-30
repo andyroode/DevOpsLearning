@@ -1,0 +1,9 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "Access-Control"
+deployParameters:
+  ACCESS_CONTROL_ADMIN_ROLE: "ROLE_Security_Admin" # paramset: common version: 23.1 source: template
+  ACCESS_CONTROL_REMOTE_SETTINGS_ENABLED: "true"  # paramset: common version: 23.1 source: template
+  TEST_PARAM: "test_value" # paramset: common version: 23.1 source: template
+technicalConfigurationParameters: {}

@@ -1,0 +1,7 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "rtd-rt"
+deployParameters:
+  scenarioId: "eb74c92c-0ee1-46ad-b3d2-cc34737cdacf" # paramset: bss-common version: 1 source: template
+technicalConfigurationParameters: {}

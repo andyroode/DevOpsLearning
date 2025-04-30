@@ -1,0 +1,6 @@
+---
+tenant: "{{ templates_dir }}/env_templates/cse-toolset/tenant.yml.j2"
+cloud: "{{ templates_dir }}/env_templates/cse-toolset/cloud.yml.j2"
+namespaces:
+  - template_path: "{{ templates_dir }}/env_templates/cse-toolset/namespaces/cse-toolset.yml.j2"
+parametersets: []

@@ -1,0 +1,29 @@
+# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "env-amber-datahub"
+credentialsId: ""
+isServerSideMerge: false
+labels:
+  - "solutionInstance-env-amber"
+  - "solution-Applications"
+cleanInstallApprovalRequired: false
+mergeDeployParametersAndE2EParameters: false
+profile:
+  name: "dev_datahub_override"
+  baseline: "dev"
+deployParameters:
+  BSS_NAMESPACE: "env-amber-bss"
+  COMPOSITE_PLATFORM: "true"
+  CONSUL_ENABLED: "true"
+  CORE_NAMESPACE: "env-amber-core"
+  DATA_MANAGEMENT_NAMESPACE: "env-amber-data-management"
+  LINK_SCRIPT_MANAGER_INTEGRATION_ENABLE: "false"
+  OSS_NAMESPACE: "env-amber-oss"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets: []
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+tenantName: "Applications"
+

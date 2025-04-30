@@ -1,0 +1,17 @@
+name: "{{current_env.tenant}}"
+registryName: "default"
+description: "{{current_env.description}}"
+owners: "{{current_env.owners}}"
+deployParameters:
+  CMDB_SCHEME: "CLOUD_PER_ENV"  # Added as per ETBSS-1052
+globalE2EParameters:
+  pipelineDefaultRecipients: ""
+  recipientsStrategy: "merge"
+  mergeTenantsAndE2EParameters: false
+  environmentParameters: 
+    # ETBSS-1243
+    WEBEX_TOKEN: "dummy"
+gitRepository: ""
+defaultBranch: ""
+credential: ""
+labels: []

@@ -1,0 +1,51 @@
+version: 23.4
+name: opensearch
+parameters:
+  monitoring:
+    enabled: true
+  opensearch:
+    securityContextCustom:
+      fsGroup: 1000
+    fixMount:
+      enabled: true
+    master:
+      replicas: "3"
+      javaOpts: "-Xms718m -Xmx718m"
+      resources:
+        requests:
+          memory: "1536Mi"
+          cpu: "200m"
+        limits:
+          memory: "1536Mi"
+          cpu: "500m"
+      persistence:
+        storageClass: "${STORAGE_RWO_CLASS}"
+        size: "20Gi"
+    client:
+      ingress:
+        enabled: true
+  
+  dbaasAdapter:
+    enabled: true
+    dbaasUsername: "${creds.get(\"dbaas-adapter-cred\").password}"
+    dbaasPassword: "${creds.get(\"dbaas-adapter-cred\").username}"
+    dbaasAggregatorRegistrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+    elasticsearchInstallationMode: "joint"
+    elasticsearchClusterVersion: ""
+    qubershipElasticsearchClusterVersion: ""
+    elasticsearchRepo: "snapshots"
+    elasticsearchRepoRoot: "/usr/share/elasticsearch/snapshots"
+    elasticsearchPort: "9200"
+    elasticsearchNodesCount: "3"
+    registrationAuthUsername: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
+    registrationAuthPassword: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
+    requests:
+      memory: "32Mi"
+      cpu: "200m"
+    limits:
+      memory: "32Mi"
+      cpu: "200m"
+  ESCAPE_SEQUENCE: true
+  DEPLOY_W_HELM: true
+  DISABLE_CRD: false
+applications: []

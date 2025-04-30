@@ -1,0 +1,13 @@
+# The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
+# Contents will be overwritten by next generation.
+# Please modify this contents only for development purposes or as workaround.
+name: "CloudBSS-CPM"
+deployParameters:
+  IMWS_EMAIL_PASSWORD: "${SMTP_SERVER_PASSWORD}" # paramset: bss version: 1 source: template
+  IMWS_EMAIL_SERVER_URL: "${tenant.cloud.SMTP_SERVER_URL}" # paramset: bss version: 1 source: template
+  IMWS_EMAIL_USERNAME: "${SMTP_SERVER_USERNAME}" # paramset: bss version: 1 source: template
+  ZOOKEEPER_ENABLED: "true" # paramset: bss version: 1 source: template
+technicalConfigurationParameters:
+  bss.index.events.reindex.create-index-alias: "true"  # paramset: bss-tech version: 23.1 source: template
+  bss.index.events.reindex.delete-previous-indices: "true" # paramset: bss-tech version: 23.1 source: template
+  bss.index.events.reindex.delete-previous-indices-test: "true" # paramset: bss-tech version: 23.1 source: template

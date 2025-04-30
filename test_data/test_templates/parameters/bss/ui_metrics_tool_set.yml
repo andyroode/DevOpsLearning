@@ -1,0 +1,6 @@
+---
+name: "ui_metrics_tool_set"
+parameters:
+  UIMT_GIT_BOT_LOGIN: "x_local_uimt_bot"
+  UIMT_GIT_BOT_TOKEN: "glpat-nRbxeNqrcmS9wxPrh3fx"
+applications: []

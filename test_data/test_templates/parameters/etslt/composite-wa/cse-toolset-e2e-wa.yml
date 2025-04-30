@@ -1,0 +1,6 @@
+version: 23.3
+name: cse-toolset-e2e-wa
+parameters:
+    #paramset: cse-toolset-WA version: 23.3 source: template
+    PROFILE: "dev"
+applications: []

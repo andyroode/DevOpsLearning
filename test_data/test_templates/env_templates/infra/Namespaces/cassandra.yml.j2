@@ -1,0 +1,25 @@
+---
+name: "{{ current_env.environmentName }}-cassandra"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  dbaas:
+    aggregator:
+      address: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+      dbaasAggregatorRegistrationAddress: "http://dbaas-aggregator.${namespace_dbaas}:8080"
+      physicalDatabaseIdentifier: "{{ current_env.environmentName }}-cassandra"
+  cassandra:
+    username: "${creds.get(\"cassandra-cred\").username}"
+    password: "${creds.get(\"cassandra-cred\").password}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - cassandra
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+

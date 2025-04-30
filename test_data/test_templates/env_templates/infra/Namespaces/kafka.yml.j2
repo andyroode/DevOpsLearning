@@ -1,0 +1,35 @@
+---
+name: "{{ current_env.environmentName }}-kafka"
+credentialsId: ""
+labels:
+- "solutionInstance-{{ current_env.environmentName }}"
+- "solution-{{ current_env.tenant }}"
+isServerSideMerge: false
+cleanInstallApprovalRequired: true
+mergeDeployParametersAndE2EParameters: false
+deployParameters:
+  kafka:
+    registeredServiceName: "kafka.{{ current_env.environmentName }}-kafka"
+    zookeeperConnect: "zookeeper.${namespace_zookeeper}:2181"
+  global:
+    secrets:
+      akhq:
+        defaultUsername: "${creds.get(\"kafka-akhq-cred\").username}"
+        defaultPassword: "${creds.get(\"kafka-akhq-cred\").password}" 
+      kafka:
+        adminUsername: "${creds.get(\"kafka-admin-cred\").username}"
+        adminPassword: "${creds.get(\"kafka-admin-cred\").password}"
+        clientUsername: "${creds.get(\"kafka-client-cred\").username}"
+        clientPassword: "${creds.get(\"kafka-client-cred\").password}"
+        zookeeperClientUsername: "${creds.get(\"zookeeper-client-cred\").username}"
+        zookeeperClientPassword: "${creds.get(\"zookeeper-client-cred\").password}"
+  akhq:
+    ingress:
+      host: "akhq-${namespace_kafka}.apps.{{ current_env.cluster.cloud_public_url }}"
+e2eParameters: {}
+technicalConfigurationParameters: {}
+deployParameterSets:
+  - kafka
+e2eParameterSets: []
+technicalConfigurationParameterSets: []
+
