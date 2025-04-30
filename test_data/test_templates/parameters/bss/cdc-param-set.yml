@@ -1,6 +1,6 @@
 ---
 name: "cdc-param-set"
 parameters:
-  global.secrets.streamingPlatform.username: "tmp_password"
+  global.secrets.streamingPlatform.password: "tmp_password"
   global.secrets.streamingPlatform.username: "tmp_user"
 applications: []
