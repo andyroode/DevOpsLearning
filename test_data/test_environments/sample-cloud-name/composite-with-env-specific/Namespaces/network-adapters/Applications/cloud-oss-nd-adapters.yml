@@ -14,7 +14,7 @@ deployParameters:
   OAUTH_CREDENTIALS_SECRET: "eda2-pcrf-oauth-credentials-secret" # paramset: network-adapters version: 23.1 source: template
   OAUTH_SERVICE_GRANT_TYPE: "password" # paramset: network-adapters version: 23.1 source: template
   OAUTH_SERVICE_SCOPE: "scopes.ericsson.com/activation/aapi.read scopes.ericsson.com/activation/aapi.write" # paramset: network-adapters version: 23.1 source: template
-  OTAP_CLIENT_URL: "ssh://10.109.106.75:22" # paramset: network-adapters version: 23.1 source: template
+  OTAP_CLIENT_URL: "ssh://0.0.0.0:0000" # paramset: network-adapters version: 23.1 source: template
   OTAP_S3_STORAGE_CA_BUNDLE: "${CLOUD_CDN_STORAGE_CA_BUNDLE.replace(\"    \", \"\").replace(\"|\", \"\").replaceFirst(\"\\n\",\"\")}" # paramset: network-adapters version: 23.1 source: template
   OTAP_S3_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # paramset: network-adapters version: 23.1 source: template
   OTAP_S3_STORAGE_REGION: "${STORAGE_REGION}" # paramset: network-adapters version: 23.1 source: template

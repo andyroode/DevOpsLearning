@@ -5,8 +5,8 @@ name: "aap-datahub-base"
 deployParameters:
   datahubDefaultEnv.DATAHUB__dfs_default_file_format: "orc" # paramset: datahub-dev version: 1 source: template
   greenplumDb.rdb.fetchsize: "100" # paramset: datahub-dev version: 1 source: template
-  kafka.secure.sasl.password: "admin" # paramset: datahub-dev version: 1 source: template
-  kafka.secure.sasl.username: "admin" # paramset: datahub-dev version: 1 source: template
+  kafka.secure.sasl.username: "tmp_password" # paramset: datahub-dev version: 1 source: template
+  kafka.secure.sasl.username: "tmp_user" # paramset: datahub-dev version: 1 source: template
   oracleDb.rdb.fetchsize: "100" # paramset: datahub-dev version: 1 source: template
   scheduler.logGroomerSidecar.retentionDays: "2" # paramset: datahub-dev version: 1 source: template
   securityContexts: # paramset: datahub-dev version: 1 source: template

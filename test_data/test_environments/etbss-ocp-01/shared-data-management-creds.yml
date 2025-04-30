@@ -2,20 +2,20 @@ dpt-streaming-kafka-cred: # namespace env-3-data-management
   type: "usernamePassword"
   data:
     # admin
-    username: "admin"
+    username: "tmp_user"
     # admin
-    password: "admin"
+    username: "tmp_password"
 dpt-streaming-platform-cred: # namespace env-3-data-management
   type: "usernamePassword"
   data:
     # admin
-    username: "admin"
+    username: "tmp_user"
     # admin
-    password: "admin"
+    username: "tmp_password"
 cdc-streaming-cred: # namespace env-1-data-management
   type: "usernamePassword"
   data:
     # admin
-    username: "admin"
+    username: "tmp_user"
     # admin
-    password: "admin"
+    username: "tmp_password"

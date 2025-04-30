@@ -1,13 +1,13 @@
 MaaS-Default-Client:
   type: "usernamePassword"
   data:
-    username: "admin"
-    password: "admin"
+    username: "tmp_user"
+    username: "tmp_password"
 Shared-default-dbaas:
   type: "usernamePassword"
   data:
-    username: "admin"
-    password: "admin"
+    username: "tmp_user"
+    username: "tmp_password"
 consul-token:
   type: "secret"
   data:

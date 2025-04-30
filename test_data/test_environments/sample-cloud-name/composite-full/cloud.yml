@@ -122,10 +122,10 @@ deployParameters:
   ZOOKEEPER_URL: "${ZOOKEEPER_ADDRESS}" # cloud passport: sample-cloud-name version: 1.5
   nrm.cassandra.url: "cassandra://admin:admin@cassandra.cassandra:9042" # cloud passport: sample-cloud-name version: 1.5
   nrm.kafka.url: "kafka://admin:admin@kafka.kafka:9092" # cloud passport: sample-cloud-name version: 1.5
-  nrm.postgresql.password: "tmp_user" # cloud passport: sample-cloud-name version: 1.5
+  nrm.postgresql.password: "tmp_password" # cloud passport: sample-cloud-name version: 1.5
   nrm.postgresql.ro.address: "pg-patroni-ro.postgresql-billing:5432" # cloud passport: sample-cloud-name version: 1.5
   nrm.postgresql.rw.address: "pg-patroni.postgresql-billing:5432" # cloud passport: sample-cloud-name version: 1.5
-  nrm.postgresql.username: "tmp_password" # cloud passport: sample-cloud-name version: 1.5
+  nrm.postgresql.username: "tmp_user" # cloud passport: sample-cloud-name version: 1.5
 e2eParameters:
   CLOUD_LEVEL_PARAM_1: "cloud-level-value-1" # paramset: cloud-level-paramset version: 23.1 source: instance
 technicalConfigurationParameters: {}

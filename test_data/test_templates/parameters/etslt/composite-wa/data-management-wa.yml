@@ -31,7 +31,7 @@ applications:
     parameters:
       # Added as WA for ETBSS-3604, should be removed after fixing the application
       MONITORING_QUERY_USER: "admin"
-      MONITORING_QUERY_PASSWORD: "admin"
+      MONITORING_QUERY_username: "tmp_password"
   - appName: "prj-bss-pim"
     parameters:
       # Config for ETBSS-6766

@@ -45,7 +45,7 @@ cloudPassport:
       ZOOKEEPER_URL: "string"
       ZOOKEEPER_ADDRESS: "string"
     vault:
-      #PUBLIC_VAULT_URL: # TODO: not in BASS page
+      #PUBLIC_VAULT_URL: # TODO: not in WIKI page
       VAULT_ADDR: "string"
       VAULT_AUTH_ROLE_ID: "string"
       VAULT_AUTH_SECRET_ID: "string"
