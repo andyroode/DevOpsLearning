@@ -30,7 +30,7 @@ dbaas-cluster-dba-cred:
 deploy-sa-token:
   type: "secret"
   data:
-    secret: "tmp_secret"
+    secret: "VALUE"
 maas-cred:
   type: "usernamePassword"
   data:
