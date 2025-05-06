@@ -1,0 +1,8 @@
+app-deployer-token-cred:
+  type: secret
+  data:
+    secret: tmp_secret
+app-deployer-username-cred:
+  type: secret
+  data:
+    secret: 'tmp_secret'
