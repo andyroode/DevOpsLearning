@@ -2,7 +2,7 @@ inventory:
   environmentName: "test-env"
   clusterUrl: "test.com"
   tenantName: "test-tenant"
-  deployer: "test-deployer"
+  deployer: "app-deployer"
   cloudName: "test-cloud-name"
   cloudPassport: "test-cloud-name"
 envTemplate:
