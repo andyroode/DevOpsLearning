@@ -1,0 +1,7 @@
+---
+tenant: "{{ templates_dir }}/env_templates/my-own-test-template/tenant.yml.j2"
+cloud: "{{ templates_dir }}/env_templates/my-own-test-template/cloud.yml.j2"
+namespaces:
+  - name: "{{current_env.environmentName}}-my-own-test-template"
+    template_path: "{{ templates_dir }}/env_templates/my-own-test-template/Namespaces/my-own-test-template.yml.j2"
+parametersets: []
