@@ -1,9 +1,9 @@
 # The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "TELUS-NOTIFICATION"
+name: "PROJECT-NOTIFICATION"
 deployParameters:
   CPQ_QUOTE_NOTIFICATION_TOPIC: "DV.Customer.QuoteManagement.Quote"             # paramset: prod-shared version: 23.1 source: instance
-  OM_TELUS_ORDER_NOTIFICATION_TOPIC: "DV.Customer.ProductOrdering.ProductOrder" # paramset: prod-shared version: 23.1 source: instance
-  TELUS_IBS_NOTIFICATION_SERVICE_TOPIC: "DV.Product.ProductInventory.Product"   # paramset: prod-shared version: 23.1 source: instance
+  OM_PROJECT_ORDER_NOTIFICATION_TOPIC: "DV.Customer.ProductOrdering.ProductOrder" # paramset: prod-shared version: 23.1 source: instance
+  PROJECT_IBS_NOTIFICATION_SERVICE_TOPIC: "DV.Product.ProductInventory.Product"   # paramset: prod-shared version: 23.1 source: instance
 technicalConfigurationParameters: {}

@@ -168,11 +168,11 @@ envSpecific:
         technicalConfigurationParameters:
           TECHNICAL_PARAM_1: "string"
         applications:
-          TELUS-NOTIFICATION:
+          PROJECT-NOTIFICATION:
             deployParameters: 
               CPQ_QUOTE_NOTIFICATION_TOPIC: "string"
-              TELUS_IBS_NOTIFICATION_SERVICE_TOPIC: "string"
-              OM_TELUS_ORDER_NOTIFICATION_TOPIC:
+              PROJECT_IBS_NOTIFICATION_SERVICE_TOPIC: "string"
+              OM_PROJECT_ORDER_NOTIFICATION_TOPIC:
                 type: "string"
                 allowNone: true
   # list of black listed parameters, that can be present on environment specific level
