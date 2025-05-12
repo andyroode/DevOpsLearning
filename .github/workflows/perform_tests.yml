@@ -51,8 +51,8 @@ jobs:
 
       - name: ENVGENE HELPER test
         run: |
-          cd scripts/build_env
-          pytest --capture=no -W ignore::DeprecationWarning --junitxml=../../junit.xml
+          cd python/envgene/envgenehelper
+          pytest --capture=no -W ignore::DeprecationWarning --junitxml=../../../junit.xml
           cd ../..
           mv junit.xml junit_envgenehelper.xml    
       
