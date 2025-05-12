@@ -1,4 +1,4 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
 name: "cloud_with_passport_override_cse_toolset"
@@ -84,7 +84,7 @@ deployParameters:
   HDS_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: passport version: 1.5
   HDS_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: passport version: 1.5
   MAVEN_REPO_DEV_NAME: "${MAVEN_REPO_NAME}" # cloud passport: passport version: 1.5
-  MAVEN_REPO_NAME: "sd.etslt_bss.mvn.group" # cloud passport: passport version: 1.5
+  MAVEN_REPO_NAME: "sd.prj_bss.mvn.group" # cloud passport: passport version: 1.5
   MAVEN_REPO_STAGING_NAME: "${MAVEN_REPO_NAME}" # cloud passport: passport version: 1.5
   MAVEN_REPO_URL: "https://artifactorycn.qubership.com/" # cloud passport: passport version: 1.5
   MONITORING_ENABLED: "true" # cloud passport: passport version: 1.5

@@ -1,4 +1,4 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
 name: "CRM-CIM"
@@ -7,5 +7,5 @@ deployParameters:
   CIM_ENTITLEMENTS_ENABLED: "true"     # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters:
   cim-core-service.integration.cim-otps-contact-medium-verification.enabled: "false" # paramset: bss-internal-integrations-tech version: 1 source: template
-  cim-core-service/cpq.account-mgmt-bi.url: "http://etslt-bscs-integration-service:8080" # paramset: bss-internal-integrations-tech version: 1 source: template
+  cim-core-service/cpq.account-mgmt-bi.url: "http://prj-bscs-integration-service:8080" # paramset: bss-internal-integrations-tech version: 1 source: template
   pm-cpq-adapter-go/pm.project.autoprocessing: "true"  # paramset: bss-internal-integrations-tech version: 1 source: template

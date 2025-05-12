@@ -17,7 +17,7 @@ deployParameters:
     user: "admin"
   core: # paramset: cloud-passport version: 23.4 source: template
     install: true
-    repo_name: "sd.etslt_bss.mvn.group"
+    repo_name: "sd.prj_bss.mvn.group"
   dns:
     cloud_private_host: "apps."
     cloud_public_host: "apps."

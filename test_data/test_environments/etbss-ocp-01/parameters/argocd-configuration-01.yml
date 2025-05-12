@@ -7,5 +7,5 @@ parameters:
   PAAS_PLATFORM: 'OPENSHIFT'
   # WA till autodiscovery in ACH
   PAAS_VERSION: 'v4.12'
-  # variable for etslt-devops-predeploy-app to enable users provisioning
+  # variable for prj-devops-predeploy-app to enable users provisioning
   ARGO_MODE: "true"

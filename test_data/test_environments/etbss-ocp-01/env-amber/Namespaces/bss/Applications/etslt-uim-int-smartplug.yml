@@ -1,11 +1,11 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "etslt-uim-int-smartplug"
+name: "prj-uim-int-smartplug"
 deployParameters:
   CNS_ENDPOINT: "/TMFC000_CM/TMF681_CM/communicationMessage" # paramset: bss-common version: 1 source: template
-  CNS_PASSWORD: "${creds.get(\"etslt-uim-int-smartplug\").password}" # paramset: bss-common version: 1 source: template
+  CNS_PASSWORD: "${creds.get(\"prj-uim-int-smartplug\").password}" # paramset: bss-common version: 1 source: template
   CNS_REQUESTED_SYSTEM: "NC-UIM" # paramset: bss-common version: 1 source: template
-  CNS_URL: "http://etslt-bss-external-integration-egress-service:8080/tibcoCns" # paramset: bss-common version: 1 source: template
-  CNS_USERNAME: "${creds.get(\"etslt-uim-int-smartplug\").username}" # paramset: bss-common version: 1 source: template
+  CNS_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoCns" # paramset: bss-common version: 1 source: template
+  CNS_USERNAME: "${creds.get(\"prj-uim-int-smartplug\").username}" # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters: {}

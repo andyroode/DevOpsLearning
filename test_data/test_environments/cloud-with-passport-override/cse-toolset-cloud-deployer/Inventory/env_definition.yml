@@ -20,8 +20,8 @@ envTemplate:
     repository: "stagingRepository"
     templateRepository: "stagingTemplateRepository"
     artifact:
-      group_id: "com.qubership.deploy.custom-etslt_deployment-configuration"
-      artifact_id: "sd.etslt_deployment-configuration_etslt-env-templates"
+      group_id: "com.qubership.deploy.custom-prj_deployment-configuration"
+      artifact_id: "sd.prj_deployment-configuration_prj-env-templates"
       version: "release-e2e_baseline-SNAPSHOT"
 generatedVersions:
   generateEnvironmentLatestVersion: "cloud-with-passport-override-cse-toolset-cloud-deployer-version-from-tests"  # This value is automatically generated during job run.

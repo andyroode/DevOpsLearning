@@ -54,7 +54,7 @@ core:
   DEFAULT_TENANT_ADMIN_LOGIN: ${creds.get("coreexternal").username}
   DEFAULT_TENANT_ADMIN_PASSWORD: ${creds.get("coreexternal").password}
   MAVEN_REPO_URL: https://artifactorycn.qubership.com/
-  MAVEN_REPO_NAME: sd.etslt_bss.mvn.group
+  MAVEN_REPO_NAME: sd.prj_bss.mvn.group
   MAVEN_REPO_STAGING_NAME: ${MAVEN_REPO_NAME}
   MAVEN_REPO_DEV_NAME: ${MAVEN_REPO_NAME}
 global:

@@ -1,8 +1,8 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
 name: "CloudCRM-CBM"
 deployParameters:
   BSS_INTEGRATION_NRM_ENABLED: "true"  # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters:
-  account-mgmt-core/cpq.account-mgmt-bi.host: "etslt-bscs-integration-service" # paramset: bss-internal-integrations-tech version: 1 source: template
+  account-mgmt-core/cpq.account-mgmt-bi.host: "prj-bscs-integration-service" # paramset: bss-internal-integrations-tech version: 1 source: template

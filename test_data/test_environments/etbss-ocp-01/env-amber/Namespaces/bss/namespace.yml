@@ -1,4 +1,4 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
 name: "env-amber-bss"
@@ -28,8 +28,8 @@ deployParameters:
   OSS_NAMESPACE: "env-amber-oss"
   # ETBSS-2100
   PROPOSAL_DOCUMENTS_BUCKET_NAME: "${ENV_NAME}-proposal-documents" # paramset: bss-common version: 1 source: template
-  WP_CONFIGURATION_FILE_NAME: "etslt-bss-wp-configuration.zip" # paramset: bss-common version: 1 source: template
-  WP_CONFIGURATION_SERVICE_NAME: "etslt-bss-wp-configuration" # paramset: bss-common version: 1 source: template
+  WP_CONFIGURATION_FILE_NAME: "prj-bss-wp-configuration.zip" # paramset: bss-common version: 1 source: template
+  WP_CONFIGURATION_SERVICE_NAME: "prj-bss-wp-configuration" # paramset: bss-common version: 1 source: template
   WP_RUNTIME_MODE: "CACHE" # paramset: bss-common version: 1 source: template
   rtd_integration_url: "https://rtcd-engine-service-v1-${BSS_NAMESPACE}.${CLOUD_PRIVATE_HOST}" # paramset: bss-common version: 1 source: template
   wp_host_url: "wp-host-app-${BSS_NAMESPACE}.${CLOUD_PUBLIC_HOST}/csr/dashboard/projects/project/details" # paramset: bss-common version: 1 source: template

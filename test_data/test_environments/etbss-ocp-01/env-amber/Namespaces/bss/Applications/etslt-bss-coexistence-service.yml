@@ -1,7 +1,7 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "etslt-bss-coexistence-service"
+name: "prj-bss-coexistence-service"
 deployParameters:
   RETRIEVE_ACCOUNT_URL: "/crm/gw/rest/crm/v1/retrieveaccount" # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters: {}

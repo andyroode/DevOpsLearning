@@ -1,7 +1,7 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "etslt-oc-ui-be-service"
+name: "prj-oc-ui-be-service"
 deployParameters:
   GIS_URL: "https://atp-itf-stubs-prod.atpkub.managed.qubership.cloud/mockingbird-transport-rest/c9645d45-466e-412f-9082-5148023c9689/dev/gis/location/iframe?userid={0}&ipaddres={1}&requester={2}&token={3}" # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters: {}

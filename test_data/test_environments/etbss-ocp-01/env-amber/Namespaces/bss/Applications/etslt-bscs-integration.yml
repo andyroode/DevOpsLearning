@@ -1,14 +1,14 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "etslt-bscs-integration"
+name: "prj-bscs-integration"
 deployParameters:
-  etslt-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.billing-accounts-create-path: "/tibcoBscsTmf666/tmf666/billingAccount" # paramset: bss-common version: 1 source: template
-  etslt-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.billing-accounts-patch-path: "/tibcoBscsTmf666/tmf666/billingAccount/{id}" # paramset: bss-common version: 1 source: template
-  etslt-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.contracts-path: "/tibcoBscsTmf666/tmf666/extension/createContract" # paramset: bss-common version: 1 source: template
-  etslt-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.occ-path: "/tibcoBscsTmf666/tmf666/extension/addOcc" # paramset: bss-common version: 1 source: template
-  etslt-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-contract-path: "/tibcoBscsTmf666/tmf666/extension/updateContract" # paramset: bss-common version: 1 source: template
-  etslt-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-resource-path: "/tibcoBscsTmf666/tmf666/extension/updateResource" # paramset: bss-common version: 1 source: template
-  etslt-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-services-path: "/tibcoBscsTmf666/tmf666/extension/updateServices" # paramset: bss-common version: 1 source: template
-  etslt-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-tax-registration-number-path: "/tibcoBscsTmf666/tmf666/extension/taxRegistrationNumber" # paramset: bss-common version: 1 source: template
+  prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.billing-accounts-create-path: "/tibcoBscsTmf666/tmf666/billingAccount" # paramset: bss-common version: 1 source: template
+  prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.billing-accounts-patch-path: "/tibcoBscsTmf666/tmf666/billingAccount/{id}" # paramset: bss-common version: 1 source: template
+  prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.contracts-path: "/tibcoBscsTmf666/tmf666/extension/createContract" # paramset: bss-common version: 1 source: template
+  prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.occ-path: "/tibcoBscsTmf666/tmf666/extension/addOcc" # paramset: bss-common version: 1 source: template
+  prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-contract-path: "/tibcoBscsTmf666/tmf666/extension/updateContract" # paramset: bss-common version: 1 source: template
+  prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-resource-path: "/tibcoBscsTmf666/tmf666/extension/updateResource" # paramset: bss-common version: 1 source: template
+  prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-services-path: "/tibcoBscsTmf666/tmf666/extension/updateServices" # paramset: bss-common version: 1 source: template
+  prj-bscs-integration-service/bscs-integration-service.webclient.paths.bscs.update-tax-registration-number-path: "/tibcoBscsTmf666/tmf666/extension/taxRegistrationNumber" # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters: {}

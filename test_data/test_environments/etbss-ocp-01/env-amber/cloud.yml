@@ -1,4 +1,4 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
 name: "etbss_ocp_01_env_amber"
@@ -104,7 +104,7 @@ deployParameters:
       defaultInstance: kafka
    # paramset: cloud-configuration version: 23.3 source: template
   MAVEN_REPO_DEV_NAME: "${MAVEN_REPO_NAME}" # cloud passport: etbss-ocp-01 version: 1.5
-  MAVEN_REPO_NAME: "sd.etslt_bss.mvn.group" # cloud passport: etbss-ocp-01 version: 1.5
+  MAVEN_REPO_NAME: "sd.prj_bss.mvn.group" # cloud passport: etbss-ocp-01 version: 1.5
   MAVEN_REPO_STAGING_NAME: "${MAVEN_REPO_NAME}" # cloud passport: etbss-ocp-01 version: 1.5
   MAVEN_REPO_URL: "https://artifactorycn.qubership.com/" # cloud passport: etbss-ocp-01 version: 1.5
   MONITORING_ENABLED: "true" # cloud passport: etbss-ocp-01 version: 1.5
@@ -143,17 +143,17 @@ e2eParameters:
   ATP_JENKINS_URL: "https://duncan-ci-cn.qubership.com" # paramset: ci-configuration-e2e version: 1 source: template
   ATP_PARAMS_FILE_PATH: "atp/atpJobsProperties.yaml" # paramset: csd-configuration-e2e version: 1 source: template
   ATP_PARAMS_GIT_BRANCH: "master" # paramset: csd-configuration-e2e version: 1 source: template
-  ATP_PARAMS_GIT_URL: "https://git.qubership.com/SD.ETSLT/devops/etslt-atp-configuration.git" # paramset: csd-configuration-e2e version: 1 source: template
+  ATP_PARAMS_GIT_URL: "https://git.qubership.com/SD.ETSLT/devops/prj-atp-configuration.git" # paramset: csd-configuration-e2e version: 1 source: template
   CSD_CONFIGURATION: |
     '{"cse-toolset": {"DEFAULT_MAIN_SD_PREFIX": "ETSLT-CSE-Toolset-SD", "DEFAULT_SD_PREFIX": ""}, "custom-operators": {"DEFAULT_MAIN_SD_PREFIX": "ETSLT-Custom-Operators-SD", "DEFAULT_SD_PREFIX": ""}, "design-time": {"DEFAULT_MAIN_SD_PREFIX": "ETSLT-Design-Time-SD", "DEFAULT_SD_PREFIX": ""}, "solution-deploy": {"DEFAULT_MAIN_SD_PREFIX": "ETSLT-Product-SD", "DEFAULT_SD_PREFIX": "ETSLT-Project-SD"}}'
    # paramset: csd-configuration-e2e version: 1 source: template
   MINIO_BINARY_FILE_URL: "https://artifactorycn.qubership.com/nc.thirdparty.files/minio/mc/linux-amd64/mc.RELEASE.2023-11-15T22-45-58Z" # paramset: csd-configuration-e2e version: 1 source: template
   PROMOTE_CONFIG: |
-    '{"PROJECT_APP_PREFIX": "etslt", "PROMOTE_JOB": "https://cloud-deployer.qubership.com/job/ETISALAT/job/regular.update.Promote"}'
+    '{"PROJECT_APP_PREFIX": "prj", "PROMOTE_JOB": "https://cloud-deployer.qubership.com/job/ETISALAT/job/regular.update.Promote"}'
    # paramset: csd-configuration-e2e version: 1 source: template
   ROOM_ID: "Y2lzY29zcGFyazovL3VzL1JPT00vMzQ1ZGY5YzAtOThlOS0xMWVlLTg3MzAtOGZmMjhlYWIwNjgz" # paramset: ci-configuration-e2e version: 1 source: template
   STABLE_ARTIFACTS_CONFIG: |
-    '[{"folder": "ETBSS_Product_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.ETSLT/solution-descriptors/etslt-stable-sd", "name": "ETSLT-Product-SD"}, {"folder": "ETBSS_Project_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.ETSLT/solution-descriptors/etslt-stable-sd", "name": "ETSLT-Project-SD"}, {"folder": "etslt_env_templates_stable_builds", "git_branch": "release/ph1_cd1", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.ETSLT/solution-descriptors/etslt-stable-sd", "name": "etslt-env-templates"}]'
+    '[{"folder": "ETBSS_Product_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.ETSLT/solution-descriptors/prj-stable-sd", "name": "ETSLT-Product-SD"}, {"folder": "ETBSS_Project_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.ETSLT/solution-descriptors/prj-stable-sd", "name": "ETSLT-Project-SD"}, {"folder": "prj_env_templates_stable_builds", "git_branch": "release/ph1_cd1", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.ETSLT/solution-descriptors/prj-stable-sd", "name": "prj-env-templates"}]'
    # paramset: csd-configuration-e2e version: 1 source: template
 technicalConfigurationParameters: {}
 deployParameterSets: []

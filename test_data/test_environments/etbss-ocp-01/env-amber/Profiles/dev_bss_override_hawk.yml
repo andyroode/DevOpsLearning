@@ -1,4 +1,4 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
 name: "dev_bss_override_hawk"
@@ -1337,11 +1337,11 @@ applications:
             value: "56Mi"
           - name: "MEMORY_LIMIT"
             value: "56Mi"
-  - name: "etslt-bscs-egress-service"
+  - name: "prj-bscs-egress-service"
     version: "release-ph1_cd1-20240411.142307-3"
     sd: ""
     services:
-      - name: "etslt-bscs-egress-service"
+      - name: "prj-bscs-egress-service"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1351,11 +1351,11 @@ applications:
             value: "192Mi"
           - name: "MEMORY_LIMIT"
             value: "192Mi"
-  - name: "etslt-bss-ds-management-service"
+  - name: "prj-bss-ds-management-service"
     version: "release-ph1_cd1-20240402.173716-1-RELEASE"
     sd: ""
     services:
-      - name: "etslt-bss-ds-management-service"
+      - name: "prj-bss-ds-management-service"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1374,11 +1374,11 @@ applications:
             value: "100m"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "48Mi"
-  - name: "etslt-bss-be-crm"
+  - name: "prj-bss-be-crm"
     version: "release-ph1_cd1-20240412.154432-5"
     sd: ""
     services:
-      - name: "etslt-cpm-extension-service"
+      - name: "prj-cpm-extension-service"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1397,7 +1397,7 @@ applications:
             value: "100m"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "48Mi"
-      - name: "etslt-security-proxy-service"
+      - name: "prj-security-proxy-service"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1416,11 +1416,11 @@ applications:
             value: "100m"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "48Mi"
-  - name: "etslt-proposal-generation-service"
+  - name: "prj-proposal-generation-service"
     version: "release-ph1_cd1-20240408.143600-2"
     sd: ""
     services:
-      - name: "etslt-proposal-generation-service"
+      - name: "prj-proposal-generation-service"
         parameters:
           - name: "CPU_REQUEST"
             value: "30m"
@@ -1447,11 +1447,11 @@ applications:
             value: "3Gi"
           - name: "PDF_CONVERTER_MEMORY_LIMIT"
             value: "3Gi"
-  - name: "etslt-oc-ui-be-service"
+  - name: "prj-oc-ui-be-service"
     version: "release-ph1_cd1-20240515.193249-76"
     sd: ""
     services:
-      - name: "etslt-oc-ui-be-service"
+      - name: "prj-oc-ui-be-service"
         parameters:
           - name: "CPU_REQUEST"
             value: "20m"
@@ -1470,11 +1470,11 @@ applications:
             value: "100m"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "48Mi"
-  - name: "etslt-token-brokering-service"
+  - name: "prj-token-brokering-service"
     version: "release-ph1_cd1-20240321.095842-2"
     sd: ""
     services:
-      - name: "etslt-token-brokering-service"
+      - name: "prj-token-brokering-service"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"

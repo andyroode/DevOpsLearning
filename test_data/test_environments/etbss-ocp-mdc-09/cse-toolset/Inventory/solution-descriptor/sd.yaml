@@ -16,7 +16,7 @@ applications:
     deployPostfix: "cse-toolset"
   - version: "env-checker:master-SNAPSHOT"
     deployPostfix: "cse-toolset"
-  - version: "etslt-cow-configuration:release-ph1_cd1-SNAPSHOT"
+  - version: "prj-cow-configuration:release-ph1_cd1-SNAPSHOT"
     deployPostfix: "cse-toolset"
 userData:
   cci:

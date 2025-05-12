@@ -1,11 +1,11 @@
-# The contents of this file is generated from template artifact: sd.etslt_deployment-configuration_etslt-env-templates.
+# The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
 name: "Cloud-Workplaces-FRW-Runtime"
 deployParameters:
-  BSS_LOCALIZATION_REPO_NAME: "etslt-cloudbss-wp-localization" # paramset: bss-common version: 1 source: template
-  WP_PERMISSIONS_FILE_NAME: "etslt-wp-permissions.json" # paramset: bss-common version: 1 source: template
-  WP_PERMISSIONS_SERVICE_NAME: "etslt-wp-configuration" # paramset: bss-common version: 1 source: template
+  BSS_LOCALIZATION_REPO_NAME: "prj-cloudbss-wp-localization" # paramset: bss-common version: 1 source: template
+  WP_PERMISSIONS_FILE_NAME: "prj-wp-permissions.json" # paramset: bss-common version: 1 source: template
+  WP_PERMISSIONS_SERVICE_NAME: "prj-wp-configuration" # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters:
   wp-runtime/ORG_CHART_INTEGRATION_ENABLED: "true"  # paramset: bss-internal-integrations-tech version: 1 source: template
   wp-runtime/wp-host-app/JNLP_ADDRESS: "https://cim.prj.corp.ae/ToolkitWeb/IDCardToolkitService.jnlp" # paramset: bss-internal-integrations-tech version: 1 source: template
