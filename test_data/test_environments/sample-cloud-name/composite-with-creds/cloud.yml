@@ -134,12 +134,12 @@ e2eParameters:
   DCL_CONFIG_CMDB_URL: "https://cloud-deployer.qubership.com" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_CMDB_USER: "${creds.get(\"deployer-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_CONF_ENGINE: "local-kustomize" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
-  DCL_CONFIG_DOCKER_REGISTRY: "artifactorycn.qubership.com:17014"     # paramset: argocd-configuration-env-specific-e2e version: 23.4 source: instance
+  DCL_CONFIG_DOCKER_REGISTRY: "artifactorycn.qubership.com:17014"    # paramset: argocd-configuration-env-specific-e2e version: 23.4 source: instance
   DCL_CONFIG_GITLAB_TOKEN: "${creds.get(\"dcl-gitlab-cred\").password}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_GITLAB_USER: "${creds.get(\"dcl-gitlab-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_PROD_MODE: false # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_REGISTRY_PASSWORD: "${creds.get(\"dcl-registry-cred\").password}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
-  DCL_CONFIG_REGISTRY_URL: "https://artifactorymb.qubership.com"      # paramset: argocd-configuration-env-specific-e2e version: 23.4 source: instance
+  DCL_CONFIG_REGISTRY_URL: "https://artifactorymb.qubership.com"     # paramset: argocd-configuration-env-specific-e2e version: 23.4 source: instance
   DCL_CONFIG_REGISTRY_USER: "${creds.get(\"dcl-registry-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_TECH_APP_NAME_VERSION: "ach-kubernetes-agent:release-1.0.8-20240816.160656-3-RELEASE" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_TICKET_ID: "ETBSS-32954" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
