@@ -42,6 +42,13 @@ jobs:
           mv sops-v3.9.0.linux.amd64 /usr/local/bin/sops
           chmod +x /usr/local/bin/sops
 
+      - name: ENVGENE HELPER test
+        run: |
+          cd python/envgene/envgenehelper
+          pytest --capture=no -W ignore::DeprecationWarning --junitxml=../../../junit.xml
+          cd ../../..
+          mv junit.xml junit_envgenehelper.xml  
+      
       - name: BUILD ENV test
         run: |
           cd scripts/build_env
@@ -49,16 +56,17 @@ jobs:
           cd ../..
           mv junit.xml junit_build_env.xml
 
-      - name: ENVGENE HELPER test
+      - name: EFFECTIVE SET test
         run: |
-          cd python/envgene/envgenehelper
-          pytest --capture=no -W ignore::DeprecationWarning --junitxml=../../../junit.xml
-          cd ../../..
-          mv junit.xml junit_envgenehelper.xml    
+          cd build_effective_set_generator/scripts
+          pytest --capture=no -W ignore::DeprecationWarning --junitxml=../../junit.xml
+          cd ../..
+          mv junit.xml junit_effective_set_generator.xml
+          
       
       - name: Merge test results
         run: |
-          junitparser merge junit_build_env.xml junit_envgenehelper.xml junit.xml    
+          junitparser merge junit_build_env.xml junit_envgenehelper.xml junit_effective_set_generator.xml junit.xml    
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
