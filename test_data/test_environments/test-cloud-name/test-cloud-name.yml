@@ -3,3 +3,5 @@ version: 1.5
 cloud: 
   CLOUD_API_HOST: temp.cloud.com
   CLOUD_API_PORT: "1111"
+  CLOUD_PRIVATE_HOST: anru-test-01.managed.temp.cloud
+  
