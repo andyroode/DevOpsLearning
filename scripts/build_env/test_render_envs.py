@@ -15,6 +15,8 @@ test_data = [
     , ("etbss-sb-ocp-01", "pl01", "etbss-sb-ocp-01-pl01-version-from-tests")
     , ("etbss-sb-ocp-01", "platform-with-overrides", "etbss-sb-ocp-01-platform-with-overrides-version-from-tests")
     , ("cloud-with-passport-override", "cse-toolset", "cloud-with-passport-override-cse-toolset-version-from-tests")
+    , ("cloud-with-passport-override", "cse-toolset-cloud-deployer", "cloud-with-passport-override-cse-toolset-cloud-deployer-version-from-tests")
+    , ("cloud-with-passport-override", "cse-toolset-test-deployer", "cloud-with-passport-override-cse-toolset-test-deployer-version-from-tests")
 ]
 g_templates_dir = getAbsPath("../../test_data/test_templates")
 g_inventory_dir = getAbsPath("../../test_data/test_environments")
