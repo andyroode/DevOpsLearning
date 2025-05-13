@@ -145,7 +145,7 @@ e2eParameters:
   DCL_CONFIG_TICKET_ID: "ETBSS-32954" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_GIT_BRANCH: "cloud_passport_sample"                              # paramset: argocd-configuration-env-specific-e2e version: 23.4 source: instance
   DCL_GIT_COMMIT_MESSAGE: "[ETBSS-32954] Update DCL configuration file for further deploy" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
-  DCL_GIT_URL: "https://git.qubership.com/SD.ETSLT/devops/deployer-pilot/deployer-pilot-configuration" # paramset: argocd-configuration-env-specific-e2e version: 23.4 source: instance
+  DCL_GIT_URL: "https://git.qubership.com/SD.prj/devops/deployer-pilot/deployer-pilot-configuration" # paramset: argocd-configuration-env-specific-e2e version: 23.4 source: instance
 technicalConfigurationParameters: {}
 deployParameterSets: []
 e2eParameterSets: []

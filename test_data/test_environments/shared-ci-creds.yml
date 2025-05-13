@@ -7,11 +7,11 @@ ci-webex-token-cred:
 ci-atp-auth-cred:
   type: usernamePassword
   data:
-    username: USER_HERE
-    password: PASSWORD_HERE
+    username: tmp_user
+    password: tmp_password
 # ETBSS-1243
 ci-builder-auth-cred:
   type: usernamePassword
   data:
-    username: USER_HERE
-    password: PASSWORD_HERE
+    username: tmp_user
+    password: tmp_password
