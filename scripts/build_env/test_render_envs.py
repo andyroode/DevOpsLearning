@@ -11,6 +11,9 @@ test_data = [
     , ("sample-cloud-name", "composite-with-env-specific", "composite-with-env-specific-version-from-tests")
     , ("another-cloud-name", "composite-full", "another-cloud-name-version-from-tests")
     , ("etbss-ocp-mdc-09", "cse-toolset", "mdc-09-cse-toolset-from-tests")
+    , ("cloud-without-passport", "env-without-passport", "env-without-passport-version-from-tests")
+    , ("etbss-sb-ocp-01", "pl01", "etbss-sb-ocp-01-pl01-version-from-tests")
+    , ("etbss-sb-ocp-01", "platform-with-overrides", "etbss-sb-ocp-01-platform-with-overrides-version-from-tests")
 ]
 g_templates_dir = getAbsPath("../../test_data/test_templates")
 g_inventory_dir = getAbsPath("../../test_data/test_environments")
