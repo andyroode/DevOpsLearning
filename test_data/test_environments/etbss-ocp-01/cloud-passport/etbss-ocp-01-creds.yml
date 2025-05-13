@@ -15,7 +15,7 @@ coreexternal:
   type: "usernamePassword"
   data:
     username: "tmp_user"
-    password: "tmp_password!"
+    password: "tmp_password"
 dbaas:
   type: "usernamePassword"
   data:

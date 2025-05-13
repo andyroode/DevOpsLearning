@@ -2,7 +2,7 @@
 ci-webex-token-cred:
   type: secret
   data:
-    secret: VALUE_HERE
+    secret: tmp_secret
 # ETBSS-1243
 ci-atp-auth-cred:
   type: usernamePassword
