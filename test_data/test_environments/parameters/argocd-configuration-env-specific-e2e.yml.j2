@@ -8,10 +8,10 @@ parameters:
   DCL_GIT_BRANCH: {{current_env.cloud}}
   # artifactory
 {% if '-mdc-' in current_env.cloud %}
-  DCL_CONFIG_REGISTRY_URL: https://artifactorymb.qubership.com
-  DCL_CONFIG_DOCKER_REGISTRY: artifactorycn.qubership.com:17014
+  DCL_CONFIG_REGISTRY_URL: https://artifactorymb.qubership.com  
+  DCL_CONFIG_DOCKER_REGISTRY: artifactorycn.qubership.com:17014  
 {% else %}
-  DCL_CONFIG_REGISTRY_URL: https://artifactorymb.qubership.com
-  DCL_CONFIG_DOCKER_REGISTRY: artifactorycn.qubership.com:17014
+  DCL_CONFIG_REGISTRY_URL: https://artifactorymb.qubership.com  
+  DCL_CONFIG_DOCKER_REGISTRY: artifactorycn.qubership.com:17014  
 {% endif %}  
 applications: []
