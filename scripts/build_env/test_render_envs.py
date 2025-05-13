@@ -7,6 +7,8 @@ from envgenehelper import *
 
 test_data = [
       ("sample-cloud-name", "composite-full", "composite-full-version-from-tests")
+    , ("sample-cloud-name", "composite-with-creds", "composite-with-creds-version-from-tests")
+    , ("sample-cloud-name", "composite-with-env-specific", "composite-with-env-specific-version-from-tests")
 ]
 g_templates_dir = getAbsPath("../../test_data/test_templates")
 g_inventory_dir = getAbsPath("../../test_data/test_environments")
