@@ -11,7 +11,7 @@ jobs:
   pytest:
     runs-on: ubuntu-latest
     container:
-      image: python:3.10-slim-bookworm
+      image: ghcr.io/netcracker/qubership-envgene:latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
