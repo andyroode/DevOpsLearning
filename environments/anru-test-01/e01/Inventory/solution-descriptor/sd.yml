@@ -252,7 +252,7 @@ applications:
     alias: "Cloud-Core:datahub"
     deployPostfix: "TESTY"
 cmdbConfigs:
-  - "etbss-app-gav-configuration:release-ph1-cd1-SNAPSHOT"
+  - "project-app-gav-configuration:release-ph1-cd1-SNAPSHOT"
 userData:
   cci:
     systemConfiguration:

@@ -1,5 +1,5 @@
 app-deployer:
   username: envgen.creds.get('app-deployer-username-cred').secret
   token: envgen.creds.get('app-deployer-token-cred').secret
-  deployerUrl: "https://app-deployer.apps.project-ocp-mdc-09.managed.qubership.cloud"
-  
+  deployerUrl: "https://app-deployer.apps.project-sb-ocp-01.managed.qubership.cloud/"
+

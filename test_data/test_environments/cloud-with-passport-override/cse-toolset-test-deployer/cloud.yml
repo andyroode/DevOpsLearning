@@ -2,11 +2,11 @@
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
 name: "cloud_with_passport_override_cse_toolset_test_deployer"
-apiUrl: "api.etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+apiUrl: "api.project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
 apiPort: "6443" # cloud passport: passport version: 1.5
-privateUrl: "apps.etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
-publicUrl: "apps.etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
-dashboardUrl: "https://console-openshift-console.apps.etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+privateUrl: "apps.project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+publicUrl: "apps.project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+dashboardUrl: "https://console-openshift-console.apps.project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
 labels: []
 defaultCredentialsId: "cloud-deploy-sa-token" # cloud passport: passport version: 1.5
 protocol: "https" # cloud passport: passport version: 1.5
@@ -44,8 +44,8 @@ deployParameters:
   CDN_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: passport version: 1.5
   CDN_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: passport version: 1.5
   CDN_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: passport version: 1.5
-  CLOUD_DASHBOARD_URL: "https://console-openshift-console.apps.etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
-  CMDB_URL: "https://app-deployer.apps.etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+  CLOUD_DASHBOARD_URL: "https://console-openshift-console.apps.project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+  CMDB_URL: "https://app-deployer.apps.project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
   CONSUL_ENABLED: false              # paramset: cloud-passport-override version: 24.2 source: instance
   CSE_EXTERNAL_MONITORING_PASSWORD: "" # cloud passport: passport version: 1.5
   CSE_EXTERNAL_MONITORING_USER: "" # cloud passport: passport version: 1.5
@@ -75,8 +75,8 @@ deployParameters:
   DST_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: passport version: 1.5
   DST_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: passport version: 1.5
   ESC_COLLECTOR_NS: "cdt" # paramset: cloud-passport-wa version: 23.3 source: template
-  GRAFANA_UI_URL: "https://grafana-platform-monitoring.apps.etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
-  GRAYLOG_UI_URL: "https://graylog-logging-etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+  GRAFANA_UI_URL: "https://grafana-platform-monitoring.apps.project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+  GRAYLOG_UI_URL: "https://graylog-logging-project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
   HDS_STORAGE_BUCKET: "hds_data" # cloud passport: passport version: 1.5
   HDS_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: passport version: 1.5
   HDS_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # cloud passport: passport version: 1.5
@@ -106,11 +106,11 @@ deployParameters:
   STORAGE_REGION: "us-west-2" # cloud passport: passport version: 1.5
   STORAGE_RWO_CLASS: "standard-csi-paas" # cloud passport: passport version: 1.5
   STORAGE_RWX_CLASS: ""   # cloud passport: passport version: 1.5
-  STORAGE_SERVER_URL: "https://minio.apps.etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+  STORAGE_SERVER_URL: "https://minio.apps.project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
   STORAGE_USERNAME: "${creds.get(\"storage-creds\").username}" # cloud passport: passport version: 1.5
   TRACING_ENABLED: "true" # cloud passport: passport version: 1.5
   TRACING_HOST: "nc-diagnostic-agent" # cloud passport: passport version: 1.5
-  TRACING_UI_URL: "https://jaeger.apps.etbss-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
+  TRACING_UI_URL: "https://jaeger.apps.project-ocp-mdc-09.managed.qubership.cloud" # cloud passport: passport version: 1.5
   ZOOKEEPER_ADDRESS: "zookeeper.zookeeper:2181" # cloud passport: passport version: 1.5
   ZOOKEEPER_URL: "${ZOOKEEPER_ADDRESS}" # cloud passport: passport version: 1.5
 e2eParameters: {}

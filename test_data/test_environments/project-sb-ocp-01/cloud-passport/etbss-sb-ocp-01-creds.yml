@@ -1,0 +1,6 @@
+cloud-deploy-sa-token: # cloud passport: project-ocp-03 version: 1.5
+  type: "secret"
+  data:
+    secret: "fake_secret"
+
+
