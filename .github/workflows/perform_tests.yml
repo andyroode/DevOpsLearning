@@ -1,6 +1,6 @@
 name: Run Pytest
 
-run-name: "EnvGene tests - commit: ${{ github.sha }} - branch: ${{ github.ref_name }}- started by: ${{ github.sha }}"
+run-name: "EnvGene tests - commit: ${{ github.sha[:6] }} - branch: ${{ github.ref_name }}- started by: ${{ github.sha }}"
 
 on:
   workflow_dispatch:
