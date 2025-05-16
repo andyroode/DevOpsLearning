@@ -6,7 +6,7 @@ credentialsId: ""
 isServerSideMerge: false
 labels:
   - "solutionInstance-composite-with-creds"
-  - "solution-CODETOPROD"
+  - "solution-PROJECT"
 cleanInstallApprovalRequired: false
 mergeDeployParametersAndE2EParameters: false
 deployParameters:

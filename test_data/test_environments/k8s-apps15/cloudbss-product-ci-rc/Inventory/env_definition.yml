@@ -1,6 +1,6 @@
 inventory:
-  environmentName: "cloudbss-product-ci-rc"
-  tenantName: "DEVOPSBP-TESTS"
+  environmentName: "project-product-ci-rc"
+  tenantName: "PROJECT-TESTS"
   deployer: "cloud-deployer"
   description: ""
   owners: ""
@@ -15,4 +15,4 @@ envTemplate:
   additionalTemplateVariables: {}
   envSpecificParamsets: {}
 generatedVersions:
-  generateEnvironmentLatestVersion: "k8s-apps15-cloudbss-product-ci-rc-version-from-tests"  # This value is automatically generated during job run.
+  generateEnvironmentLatestVersion: "k8s-apps15-project-product-ci-rc-version-from-tests"  # This value is automatically generated during job run.

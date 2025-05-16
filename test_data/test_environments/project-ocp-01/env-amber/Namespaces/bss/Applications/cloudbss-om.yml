@@ -1,7 +1,7 @@
 # The contents of this file is generated from template artifact: sd.prj_deployment-configuration_prj-env-templates.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "cloudbss-om"
+name: "project-om"
 deployParameters:
   OM_CIP_DEPLOYED_INTEGRATIONS: # paramset: bss-internal-integrations version: 1 source: template
     - "som"

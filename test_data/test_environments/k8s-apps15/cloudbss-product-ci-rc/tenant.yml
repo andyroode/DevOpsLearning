@@ -1,11 +1,11 @@
 # The contents of this file is generated from template artifact: demo-bss-env-template.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "DEVOPSBP-TESTS"
+name: "PROJECT-TESTS"
 registryName: "Shared Platform Registry"
 description: ""
 owners: ""
-gitRepository: "https://git.qubership.com/PROD.CCSM.CloudBSS/cloudbss-cmdb-configurations.git"
+gitRepository: "https://git.qubership.org/PROD.CCSM.CloudBSS/project-cmdb-configurations.git"
 defaultBranch: ""
 credential: ""
 labels:

@@ -81,7 +81,7 @@
       "KAFKA_SECURITY_ENABLED" : "true"
     }
   }, {
-    "appName" : "cloudbss-om",
+    "appName" : "project-om",
     "parameters" : {
       "OM_CLEANUP_POLLING_INTERVAL" : "40000",
       "OM_ESO_CALLBACK_URL" : "http://cloud-integration-platform-engine.${NAMESPACE}:8080/routes",

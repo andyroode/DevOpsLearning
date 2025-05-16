@@ -30,7 +30,7 @@ deployParameters:
       name: anonymous
       rules:
         - apiGroups:
-            - operator.api.nrm.qubership.com
+            - operator.api.nrm.qubership.org
           resources:
             - "*"
           verbs:

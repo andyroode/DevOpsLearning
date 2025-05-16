@@ -1,17 +1,17 @@
 version: 1.5
 cloud:
-  CLOUD_API_HOST: sample-cloud-name.k8s.sdntest.qubership.com
+  CLOUD_API_HOST: sample-cloud-name.k8s.sdntest.qubership.org
   CLOUD_API_PORT: 6443
   CLOUD_DEPLOY_TOKEN: deploy-sa-token
-  CLOUD_PUBLIC_HOST: dev-1.k8s.sdntest.qubership.com
-  CLOUD_PRIVATE_HOST: dev-1.k8s-private.sdntest.qubership.com
-  CLOUD_DASHBOARD_URL: https://dev-1.k8s.sdntest.qubership.com
+  CLOUD_PUBLIC_HOST: dev-1.k8s.sdntest.qubership.org
+  CLOUD_PRIVATE_HOST: dev-1.k8s-private.sdntest.qubership.org
+  CLOUD_DASHBOARD_URL: https://dev-1.k8s.sdntest.qubership.org
   CLOUD_PROTOCOL: https
   PRODUCTION_MODE: false
   GRAYLOG_UI_URL: https://graylog-service.ops-logging:12201
   TRACING_UI_URL: ${CLOUD_PROTOCOL}://jaeger.${CLOUD_PUBLIC_HOST}
   GRAFANA_UI_URL: https://grafana-platform-monitoring.${CLOUD_PUBLIC_HOST}
-  CMDB_URL: https://cloud-deployer.qubership.com
+  CMDB_URL: https://cloud-deployer.qubership.org
 dbaas:
   API_DBAAS_ADDRESS: http://dbaas-aggregator.dbaas:8080
   DBAAS_AGGREGATOR_ADDRESS: https://aggregator-dbaas.${CLOUD_PRIVATE_HOST}
@@ -38,12 +38,12 @@ vault:
   VAULT_AUTH_PATH: ""
   VAULT_AUTH_NAMESPACE: ""
 smtp:
-  SMTP_SERVER_URL: testmail.qubership.com
+  SMTP_SERVER_URL: testmail.qubership.org
   SMTP_SERVER_PORT: 25
   SMTP_SERVER_USERNAME: ${cmdb.creds.get("smtp-server-cred").username}
   SMTP_SERVER_PASSWORD: ${cmdb.creds.get("smtp-server-cred").password}
 storage:
-  STORAGE_SERVER_URL: https://s3.qubership.com
+  STORAGE_SERVER_URL: https://s3.qubership.org
   STORAGE_PROVIDER: s3
   STORAGE_REGION: 
   STORAGE_USERNAME: ${cmdb.creds.get("storage-cred").username}
@@ -62,15 +62,15 @@ storage:
   STORAGE_RWX_CLASS: nfs-sc
 core:
   DEFAULT_TENANT_NAME: cpq
-  DEFAULT_TENANT_ADMIN_LOGIN: cpq@qubership.com
-  MAVEN_REPO_URL: https://artifactorycn.qubership.com/
+  DEFAULT_TENANT_ADMIN_LOGIN: cpq@qubership.org
+  MAVEN_REPO_URL: https://artifactory.qubership.org/
   MAVEN_REPO_NAME: pd.saas.mvn.group
   MAVEN_REPO_STAGING_NAME: ${MAVEN_REPO_NAME}
   MAVEN_REPO_DEV_NAME: ${MAVEN_REPO_NAME}
 global:
   MONITORING_ENABLED: true
   TRACING_ENABLED: false
-  TRACING_HOST: nc-diagnostic-agent
+  TRACING_HOST: qs-diagnostic-agent
 bss:
   # ZOOKEEPER_ADDRESS - TODO: duplicated in WIKI page
   DOC_STORAGE_TEMPORARY_BUCKET_NAME: storage-proxy-temporary-bucket
@@ -108,13 +108,13 @@ cse:
   DPC_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
   SSM_CMDB_USER: ${cmdb.creds.get("ssm-cmdb-cred").username}
   SSM_CMDB_TOKEN: ${cmdb.creds.get("ssm-cmdb-cred").password}
-  CSE_GRAYLOG_USER: ${cmdb.creds.get("cse-graylog-cred").username}
-  CSE_GRAYLOG_PASSWORD: ${cmdb.creds.get("cse-graylog-cred").password}
+  PRJ_GRAYLOG_USER: ${cmdb.creds.get("cse-graylog-cred").username}
+  PRJ_GRAYLOG_PASSWORD: ${cmdb.creds.get("cse-graylog-cred").password}
   MONITORING_NAMESPACE: platform-monitoring
   MONITORING_TYPE: VictoriaDB
   MONITORING_EXT_MONITORING_QUERY_URL: 
-  CSE_EXTERNAL_MONITORING_USER: 
-  CSE_EXTERNAL_MONITORING_PASSWORD: 
+  PRJ_EXTERNAL_MONITORING_USER: 
+  PRJ_EXTERNAL_MONITORING_PASSWORD: 
   OPS_IDP_URL: https://idp-infra.${CLOUD_PUBLIC_HOST}
   BEOC_STORAGE_BUCKET: beoc-bucket
   BEOC_STORAGE_USERNAME: ${STORAGE_USERNAME}

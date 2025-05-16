@@ -5,6 +5,6 @@ name: "CloudBSS-CPM"
 deployParameters:
   IMWS_EMAIL_CHECK_PERIOD_IN_MS: "10000" # paramset: bss-common version: 1 source: template
   SMTP_SERVER_PASSWORD: "prj-approver" # paramset: bss-common version: 1 source: template
-  SMTP_SERVER_URL: "testmail.qubership.com" # paramset: bss-common version: 1 source: template
+  SMTP_SERVER_URL: "testmail.qubership.org" # paramset: bss-common version: 1 source: template
   SMTP_SERVER_USERNAME: "prj-approver" # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters: {}

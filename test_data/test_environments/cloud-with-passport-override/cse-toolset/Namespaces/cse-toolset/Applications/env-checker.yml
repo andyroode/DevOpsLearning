@@ -6,6 +6,6 @@ deployParameters:
   ENVIRONMENT_CHECKER_CRON_JOB_COMMAND: "./TestOps/src/run_cronjob.sh prj" # paramset: cse-toolset-dev version: 1 source: template
   ENVIRONMENT_CHECKER_CRON_SCHEDULE: "0 * * * *" # paramset: cse-toolset-dev version: 1 source: template
   STORAGE_PASSWORD: "${creds.get(\"common-minio-cred\").password}" # paramset: cse-toolset-dev version: 1 source: template
-  STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.com" # paramset: cse-toolset-dev version: 1 source: template
+  STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.org" # paramset: cse-toolset-dev version: 1 source: template
   STORAGE_USERNAME: "${creds.get(\"common-minio-cred\").username}" # paramset: cse-toolset-dev version: 1 source: template
 technicalConfigurationParameters: {}

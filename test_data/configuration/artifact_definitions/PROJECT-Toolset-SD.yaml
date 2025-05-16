@@ -1,11 +1,11 @@
-name: "prj-CSE-Toolset-SD"
-groupId: "com.qubership.cloud.prj-bss.deployment-descriptor"
+name: "prj-PRJ-Toolset-SD"
+groupId: "org.qubership.cloud.prj-bss.deployment-descriptor"
 artifactId: "prj-cse-toolset-sd"
 registry:
   name: "default-prj-bss"
-  credentialsId: "artifactorycn-cred"
+  credentialsId: "artifactory-cred"
   mavenConfig:
-    repositoryDomainName: "https://artifactorycn.qubership.com"
+    repositoryDomainName: "https://artifactory.qubership.org"
     targetSnapshot: "sd.prj_bss.mvn.snapshots"
     targetStaging: "sd.prj_bss.mvn.staging"
     targetRelease: "sd.prj_bss.mvn"

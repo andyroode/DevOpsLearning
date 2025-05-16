@@ -164,7 +164,7 @@
                 "eventaggregator.region.rdb.host": "${tenant.cloud.get(\"nrm.db.url\").split(\"@\")[1]}",
                 "eventaggregator.topicsPrefix": "${NAMESPACE}",
                 "eventaggregator.security.identityProviders": "'\n- name: cloud-common\n\n  url: http://identity-provider:8080/auth/realms/cloud-common\n\n  verifierConfig:\n\n    skipClientIdCheck: true\n\n    skipIssuerCheck: true\n\n- name: cpq\n\n  url:\nhttp://identity-provider:8080/auth/realms/${CPQ_TENANT_ID}\n\n  verifierConfig:\n\n    skipClientIdCheck: true\n\n    skipIssuerCheck: true\n\n'",
-                "eventaggregator.security.securityRoles": "'\n- name: anonymous\n  rules:\n    - verbs:\n        - \"*\"\n      apiGroups:\n        - reflection.api.nrm.qubership.com\n      resources:\n        - \"*\"\n  anonymous: true\n- name: ROLE_eca_super_admin\n  rules:\n    - verbs:\n        - \"*\"\n      apiGroups:\n        - ea.api.nrm.qubership.com\n        - reflection.api.nrm.qubership.com\n      resources:\n        - \"*\"\n  anonymous: false\n- name: ROLE_nrm_admin_qa_only_do_not_use_in_applications\n  rules:\n    - verbs:\n        - \"*\"\n      apiGroups:\n        - ea.api.nrm.qubership.com\n        - reflection.api.nrm.qubership.com\n      resources:\n        - \"*\"\n  anonymous: false\n- anonymous: false\n  name: ROLE_cloud-graphql\n  rules:\n    - apiGroups:\n        - ea.api.nrm.qubership.com\n        - reflection.api.nrm.qubership.com\n      resources:\n        - \"*\"\n      verbs:\n        - \"*\"\n'",
+                "eventaggregator.security.securityRoles": "'\n- name: anonymous\n  rules:\n    - verbs:\n        - \"*\"\n      apiGroups:\n        - reflection.api.nrm.qubership.org\n      resources:\n        - \"*\"\n  anonymous: true\n- name: ROLE_eca_super_admin\n  rules:\n    - verbs:\n        - \"*\"\n      apiGroups:\n        - ea.api.nrm.qubership.org\n        - reflection.api.nrm.qubership.org\n      resources:\n        - \"*\"\n  anonymous: false\n- name: ROLE_nrm_admin_qa_only_do_not_use_in_applications\n  rules:\n    - verbs:\n        - \"*\"\n      apiGroups:\n        - ea.api.nrm.qubership.org\n        - reflection.api.nrm.qubership.org\n      resources:\n        - \"*\"\n  anonymous: false\n- anonymous: false\n  name: ROLE_cloud-graphql\n  rules:\n    - apiGroups:\n        - ea.api.nrm.qubership.org\n        - reflection.api.nrm.qubership.org\n      resources:\n        - \"*\"\n      verbs:\n        - \"*\"\n'",
                 "ESCAPE_SEQUENCE": "true",
                 "nrm.apps.eap.dbName": "${NAMESPACE}-streamers",
                 "nrm.integrations.streaming.costedEvents.enabled": "true"
@@ -221,7 +221,7 @@
                 "nrm.operator.v4.apiExplorer.resources.limits.memory": "256Mi",
                 "nrm.operator.v4.apiExplorer.resources.requests.cpu": "0.3",
                 "nrm.operator.v4.apiExplorer.resources.requests.memory": "128Mi",
-                "nrm.operator.v4.security.securityRoles": "'\n- anonymous: true\n  name: anonymous\n  rules:\n    - apiGroups:\n        - operator.api.nrm.qubership.com\n      resources:\n        - \"*\"\n      verbs:\n        - \"*\"\n'",
+                "nrm.operator.v4.security.securityRoles": "'\n- anonymous: true\n  name: anonymous\n  rules:\n    - apiGroups:\n        - operator.api.nrm.qubership.org\n      resources:\n        - \"*\"\n      verbs:\n        - \"*\"\n'",
                 "nrm.operator.v4.databases.dbAdmins": "'\n- name: pgadmin\n\n  url:\n${tenant.cloud.get(\"nrm.db.url\")}/postgres?sslmode=disable\n- name: udm\n\n  url: ${tenant.cloud.get(\"nrm.cassandra.url\")}/system\n\n'",
                 "nrm.operator.v4.security.additionalCertificatesYaml.cert": "${CLOUD_CDN_STORAGE_CA_BUNDLE.replace(\"    \", \"\").replace(\"|\", \"\").replaceFirst(\"\\n\",\"\")}",
                 "nrm.operator.v4.security.additionalCertificatesYaml.endpoints": "${STORAGE_PROVIDER}://${STORAGE_USERNAME}:${STORAGE_PASSWORD}@${STORAGE_SERVER_URL.replaceFirst(\"https\\\\://\", \"\")}"
@@ -240,7 +240,7 @@
                 "nrm.identityProviders.cpq.verifierConfig.skipIssuerCheck": "true",
                 "nrm.apps.rb.volumes.outputs.capacity": "1Gi",
                 "nrm.identityProviders.cpq.verifierConfig.skipClientIdCheck": "true",
-                "nrm.operator.v4.security.securityRoles": "'\n- anonymous: true\n  name: anonymous\n  rules:\n    - apiGroups:\n        - operator.api.nrm.qubership.com\n      resources:\n        - \"*\"\n      verbs:\n        - \"*\"\n'",
+                "nrm.operator.v4.security.securityRoles": "'\n- anonymous: true\n  name: anonymous\n  rules:\n    - apiGroups:\n        - operator.api.nrm.qubership.org\n      resources:\n        - \"*\"\n      verbs:\n        - \"*\"\n'",
                 "nrm.identityProviders.cloud-common.verifierConfig.skipClientIdCheck": "true",
                 "nrm.postgresql.rw.url": "${tenant.cloud.get(\"nrm.db.url\")}/postgres?sslmode=disable",
                 "nrm.identityProviders.cloud-common.url": "http://identity-provider:8080/auth/realms/cloud-common",

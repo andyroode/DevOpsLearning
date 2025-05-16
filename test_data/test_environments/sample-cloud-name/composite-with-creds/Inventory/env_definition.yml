@@ -1,6 +1,6 @@
 inventory:
   environmentName: "composite-with-creds"
-  tenantName: "CODETOPROD"
+  tenantName: "PROJECT"
   deployer: "cloud-deployer"
   cloudPassport: "cloud-passport-sample"
   description: "Sample template for composite environment with credentials in parameters"
@@ -19,10 +19,10 @@ envTemplate:
     additinalVarInstanceDir: "test1"
     additinalVarParentDir: "test2"
   templateArtifact:
-    registry: "artifactorycn"
+    registry: "artifactory"
     repository: "snapshotRepository"
     artifact:
-      group_id: "com.qubership.deploy.product"
+      group_id: "org.qubership.deploy.product"
       artifact_id: "prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project"
       version: "master_20231005-131627"
 generatedVersions:

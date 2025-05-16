@@ -2,7 +2,7 @@ version: 2.1
 type: solutionDeploy
 deployMode: composite
 applications:
-  - version: "nc-diagnostic-agent:release-1.2.4-20240402.110146-1-RELEASE"
+  - version: "qs-diagnostic-agent:release-1.2.4-20240402.110146-1-RELEASE"
     deployPostfix: "cse-toolset"
   - version: "composite-status-metrics-producer:master-20240412.120655-192"
     deployPostfix: "cse-toolset"
@@ -22,9 +22,9 @@ userData:
   cci:
     systemConfiguration:
       id: 2245
-      name: "ETBSS - CSE_Toolset (Product and Project)"
+      name: "ETBSS - PRJ_Toolset (Product and Project)"
       version: 34
     deploymentSchema:
       id: 7
-      name: "Etisalat BSS CSE Toolset Deployment Schema"
+      name: "Etisalat BSS PRJ Toolset Deployment Schema"
   

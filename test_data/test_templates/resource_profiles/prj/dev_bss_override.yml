@@ -72,7 +72,7 @@ applications:
   version: "release-2023.3-20231018.085154-102-RELEASE"
   sd: ""
   services:
-  - name: "cloudbss-cpqbe-composite-gateway"
+  - name: "project-cpqbe-composite-gateway"
     parameters:
     - name: "CPU_REQUEST"
       value: "20m"    
@@ -94,7 +94,7 @@ applications:
   version: "release-2023.3-20231020.104207-48-RELEASE"
   sd: ""
   services:
-  - name: "cloudbss-cpm-composite-gateway"
+  - name: "project-cpm-composite-gateway"
     parameters:
     - name: "CPU_REQUEST"
       value: "20m"    
@@ -114,7 +114,7 @@ applications:
     parameters:
       - name: "MEMORY_LIMIT"
         value: "96Mi"
-- name: "cloudbss-om"
+- name: "project-om"
   version: "release-2023.4-20240131.131355-183-RELEASE"
   sd: ""
   services:
@@ -134,7 +134,7 @@ applications:
   version: ""
   sd: ""
   services:
-  - name: "cloudbss-sps-composite-gateway"
+  - name: "project-sps-composite-gateway"
     parameters:
     - name: "CPU_LIMIT"
       value: "1"
@@ -148,7 +148,7 @@ applications:
   version: ""
   sd: ""
   services:
-  - name: "cloudbss-pnl-gateway"
+  - name: "project-pnl-gateway"
     parameters:
     - name: "MEMORY_LIMIT"
       value: "96Mi"
@@ -160,7 +160,7 @@ applications:
   version: ""
   sd: ""
   services:
-  - name: "cloudbss-dgs-composite-gateway"
+  - name: "project-dgs-composite-gateway"
     parameters:
     - name: "MEMORY_LIMIT"
       value: "96Mi"

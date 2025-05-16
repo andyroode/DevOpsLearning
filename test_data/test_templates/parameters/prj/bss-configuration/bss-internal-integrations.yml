@@ -2,7 +2,7 @@ version: 1
 name: bss-internal-integrations
 parameters: {}
 applications:
-  - appName: "cloudbss-om"
+  - appName: "project-om"
     parameters:
       # config for ETBSS-805
       OM_DECOMPOSITION_SOM_DEFAULT_URL: http://om-tmf641-integration-service:8080/serviceOrderingManagement/v2

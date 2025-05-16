@@ -2,7 +2,7 @@ version: 1
 name: bss-internal-integrations
 parameters: {}
 applications:
-  - appName: "cloudbss"
+  - appName: "project"
     parameters:
       DEFAULT_URL: http://integration-service:8888/OrderManagement/v3
       URLS:

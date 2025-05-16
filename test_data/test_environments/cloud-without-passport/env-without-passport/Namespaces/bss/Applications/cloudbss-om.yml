@@ -1,7 +1,7 @@
 # The contents of this file is generated from template artifact: prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "cloudbss-om"
+name: "project-om"
 deployParameters:
   OM_CIP_DEPLOYED_INTEGRATIONS: "[\"som\",\"eso\",\"utm\",\"ibs\",\"uim\",\"pb\",\"spm\"]" # paramset: bss version: 1 source: template
   OM_CLEANUP_POLLING_INTERVAL: "40000"  # paramset: bss version: 1 source: template

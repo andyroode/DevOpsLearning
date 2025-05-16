@@ -170,11 +170,11 @@ applications:
       value: "720Mi"
     - name: "REPLICAS"
       value: "1" 
-- name: "nc-diagnostic-agent"
+- name: "qs-diagnostic-agent"
   version: "release-1.2.3-20230503.063042-5-RELEASE"
   sd: ""
   services:
-  - name: "nc-diagnostic-agent"
+  - name: "qs-diagnostic-agent"
     parameters:
       - name: "CPU_REQUEST"
         value: "100m"

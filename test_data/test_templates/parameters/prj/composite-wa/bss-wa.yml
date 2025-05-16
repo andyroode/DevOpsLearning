@@ -4,7 +4,7 @@ parameters:
   #GQL_SCHEMA_DOMAINS: "ACM,AGM,CIM,COM,CPM,DS,GSM,IBS,MC,PNL,POC,Quote,Worklog,Quota,Entity,UTM"              #Added as per ETBSS-535 , ETBSS-839 - Removed as per ETBSS-1226
   WP_RUNTIME_MODE: "CACHE"                                                                         #Added as per ETBSS-822
 applications:
-- appName: "cloudbss-om"
+- appName: "project-om"
   parameters:
     # Added as per ETBSS-1029
     OM_DEFAULT_PREPAYMENT_ALLOCATION_ENABLED: "false"

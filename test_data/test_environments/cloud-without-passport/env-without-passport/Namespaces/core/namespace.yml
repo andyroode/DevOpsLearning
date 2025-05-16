@@ -6,7 +6,7 @@ credentialsId: "core-namespace-token"
 isServerSideMerge: false
 labels:
   - "solutionInstance-env-without-passport"
-  - "solution-CODETOPROD"
+  - "solution-PROJECT"
 cleanInstallApprovalRequired: false
 mergeDeployParametersAndE2EParameters: false
 profile:
@@ -14,7 +14,7 @@ profile:
   baseline: "dev"
 deployParameters:
   CONSUL_ENABLED: "true" # paramset: common version: 23.1 source: template
-  GATEWAYS_ALLOWED_ORIGIN: "*.qubership.com,*.qubership.com:*,*.qubership.cloud:*,*.prj.nu:*,*.np-nuuazure.dk,*.np-nuuazure.dk:*"  # paramset: common version: 23.1 source: template
+  GATEWAYS_ALLOWED_ORIGIN: "*.qubership.org,*.qubership.org:*,*.qubership.cloud:*,*.prj.nu:*,*.np-nuuazure.dk,*.np-nuuazure.dk:*"  # paramset: common version: 23.1 source: template
   GLOBAL_RESOURCE_PROFILE: |-
     '{
         "ftpd_dev": {
@@ -39,7 +39,7 @@ deployParameters:
             },
             "cpm-core-service": {
               "#inherit": "dev",
-              "_comment": "For cloudbss-cpm-gateway.",
+              "_comment": "For project-cpm-gateway.",
               "COMPOSITE_GATEWAY_CPU_REQUEST": "100m",
               "COMPOSITE_GATEWAY_MEMORY_REQUEST": "35Mi",
               "COMPOSITE_GATEWAY_MEMORY_LIMIT": "128Mi"
@@ -96,7 +96,7 @@ deployParameters:
               "MEMORY_LIMIT": "48Mi",
               "MEMORY_REQUEST": "48Mi"
             },
-            "cloudbss-workplaces-configuration": {
+            "project-workplaces-configuration": {
               "#inherit": "dev_az11",
               "MEMORY_LIMIT": "48Mi"
             },

@@ -2,7 +2,7 @@ version: 1
 name: ci-configuration-e2e
 parameters:
   # ETBSS-1243
-  ATP_JENKINS_URL: https://duncan-ci-cn.qubership.com
+  ATP_JENKINS_URL: https://duncan-ci-cn.qubership.org
   # ETBSS-1243
   ROOM_ID: Y2lzY29zcGFyazovL3VzL1JPT00vMzQ1ZGY5YzAtOThlOS0xMWVlLTg3MzAtOGZmMjhlYWIwNjgz
 applications: []

@@ -1,14 +1,14 @@
 # The contents of this file is generated from template artifact: demo-bss-env-template.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "cloudbss-product-ci-rc-baseline"
+name: "project-product-ci-rc-baseline"
 credentialsId: "k8s-apps15-service-admin"
 isServerSideMerge: false
 
 labels:
   - "DEV"
-  - "solutionInstance-cloudbss-product-ci-rc"
-  - "solution-DEVOPSBP-TESTS"
+  - "solutionInstance-project-product-ci-rc"
+  - "solution-PROJECT-TESTS"
 cleanInstallApprovalRequired: true
 mergeDeployParametersAndE2EParameters: false
 profile:
@@ -21,8 +21,8 @@ deployParameters:
   CDN_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # paramset: default-passport-set version: n/a
   CDN_STORAGE_USERNAME: "${STORAGE_USERNAME}" # paramset: default-passport-set version: n/a
   CONSUL_ENABLED: "true" # paramset: default-passport-set version: n/a
-  DBAAS_ADMIN_UI_ADDRESS: "https://dbass-admin-ui-pgadmin-dbaas-admin-ui.k8s-apps15.k8s.sdntest.qubership.com/" # paramset: default-passport-set version: n/a
-  DEFAULT_TENANT_ADMIN_LOGIN: "cpq-admin@qubership.com" # paramset: default-passport-set version: n/a
+  DBAAS_ADMIN_UI_ADDRESS: "https://dbass-admin-ui-pgadmin-dbaas-admin-ui.k8s-apps15.k8s.sdntest.qubership.org/" # paramset: default-passport-set version: n/a
+  DEFAULT_TENANT_ADMIN_LOGIN: "cpq-admin@qubership.org" # paramset: default-passport-set version: n/a
   DEFAULT_TENANT_NAME: "cpq" # paramset: default-passport-set version: n/a
   DOC_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # paramset: default-passport-set version: n/a
   DOC_STORAGE_PROVIDER: "${STORAGE_PROVIDER}" # paramset: default-passport-set version: n/a
@@ -31,12 +31,12 @@ deployParameters:
   DOC_STORAGE_USERNAME: "${STORAGE_USERNAME}" # paramset: default-passport-set version: n/a
   ESCAPE_SEQUENCE: "true" # paramset: default-passport-set version: n/a
   MAVEN_REPO_NAME: "pd.saas.mvn.group, pd.utm.mvn.group" # paramset: default-passport-set version: n/a
-  MAVEN_REPO_URL: "https://artifactorycn.qubership.com/" # paramset: default-passport-set version: n/a
+  MAVEN_REPO_URL: "https://artifactory.qubership.org/" # paramset: default-passport-set version: n/a
   ORG_CHART_INTEGRATION_ENABLED: "true" # paramset: default-passport-set version: n/a
   STORAGE_PASSWORD: "W4cgcjIL" # paramset: default-passport-set version: n/a
   STORAGE_PROVIDER: "s3" # paramset: default-passport-set version: n/a
   STORAGE_REGION: "{}" # paramset: default-passport-set version: n/a
-  STORAGE_SERVER_URL: "https://minio01cn.qubership.com" # paramset: default-passport-set version: n/a
+  STORAGE_SERVER_URL: "https://minio01cn.qubership.org" # paramset: default-passport-set version: n/a
   STORAGE_USERNAME: "test-s3-cdn" # paramset: default-passport-set version: n/a
   TENANT_LEVEL_ROLES: "PRODUCT-MANAGER TENANT-ADMIN CUSTOMER-SALES-REPRESENTATIVE CONTENT-MANAGER CUSTOMER-SUPPORT-AGENT GLOBAL-CUSTOMER-SALES-REPRESENTATIVE PORTFOLIO-MANAGER ROLE_READ-ONLY-USER ROLE_CAMPAIGN-AGENT\
     \ ROLE_CAMPAIGN-MANAGER ROLE_CONTACT-POLICY-MANAGER ROLE_ADMINISTRATOR ROLE_CJM-USER ROLE_CJM-ADMINISTRATOR ROLE_CJM-READ-ONLY-USER ROLE_Security_Admin ROLE_Customer ROLE_CSR ROLE_Salesint_Prod_Admin\

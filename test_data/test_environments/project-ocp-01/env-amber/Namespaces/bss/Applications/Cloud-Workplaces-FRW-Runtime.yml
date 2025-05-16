@@ -3,7 +3,7 @@
 # Please modify this contents only for development purposes or as workaround.
 name: "Cloud-Workplaces-FRW-Runtime"
 deployParameters:
-  BSS_LOCALIZATION_REPO_NAME: "prj-cloudbss-wp-localization" # paramset: bss-common version: 1 source: template
+  BSS_LOCALIZATION_REPO_NAME: "prj-project-wp-localization" # paramset: bss-common version: 1 source: template
   WP_PERMISSIONS_FILE_NAME: "prj-wp-permissions.json" # paramset: bss-common version: 1 source: template
   WP_PERMISSIONS_SERVICE_NAME: "prj-wp-configuration" # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters:

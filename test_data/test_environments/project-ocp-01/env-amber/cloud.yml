@@ -57,10 +57,10 @@ deployParameters:
   CMDB_URL: "https://app-deployer.apps.project-ocp-01.managed.qubership.cloud" # cloud passport: project-ocp-01 version: 1.5
   COMMON_KAFKA_SERVER: "kafka.kafka:9092" # paramset: cloud-configuration version: 23.3 source: template
   CONSUL_ENABLED: "true"   # cloud passport: project-ocp-01 version: 1.5
-  CSE_EXTERNAL_MONITORING_PASSWORD: "" # cloud passport: project-ocp-01 version: 1.5
-  CSE_EXTERNAL_MONITORING_USER: "" # cloud passport: project-ocp-01 version: 1.5
-  CSE_GRAYLOG_PASSWORD: "${creds.get(\"graylog\").password}" # cloud passport: project-ocp-01 version: 1.5
-  CSE_GRAYLOG_USER: "${creds.get(\"graylog\").username}" # cloud passport: project-ocp-01 version: 1.5
+  PRJ_EXTERNAL_MONITORING_PASSWORD: "" # cloud passport: project-ocp-01 version: 1.5
+  PRJ_EXTERNAL_MONITORING_USER: "" # cloud passport: project-ocp-01 version: 1.5
+  PRJ_GRAYLOG_PASSWORD: "${creds.get(\"graylog\").password}" # cloud passport: project-ocp-01 version: 1.5
+  PRJ_GRAYLOG_USER: "${creds.get(\"graylog\").username}" # cloud passport: project-ocp-01 version: 1.5
   DAT_STORAGE_BUCKET: "${ENV_NAME}-dat-bucket" # cloud passport: project-ocp-01 version: 1.5
   DAT_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: project-ocp-01 version: 1.5
   DAT_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: project-ocp-01 version: 1.5
@@ -97,7 +97,7 @@ deployParameters:
   HDS_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: project-ocp-01 version: 1.5
   HDS_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: project-ocp-01 version: 1.5
   MAAS_CONFIG: |-
-    apiVersion: nc.maas.kafka/v2
+    apiVersion: qs.maas.kafka/v2
     kind: instance-designator
     spec:
       namespace: ${NAMESPACE}
@@ -106,7 +106,7 @@ deployParameters:
   MAVEN_REPO_DEV_NAME: "${MAVEN_REPO_NAME}" # cloud passport: project-ocp-01 version: 1.5
   MAVEN_REPO_NAME: "sd.prj_bss.mvn.group" # cloud passport: project-ocp-01 version: 1.5
   MAVEN_REPO_STAGING_NAME: "${MAVEN_REPO_NAME}" # cloud passport: project-ocp-01 version: 1.5
-  MAVEN_REPO_URL: "https://artifactorycn.qubership.com/" # cloud passport: project-ocp-01 version: 1.5
+  MAVEN_REPO_URL: "https://artifactory.qubership.org/" # cloud passport: project-ocp-01 version: 1.5
   MONITORING_ENABLED: "true" # cloud passport: project-ocp-01 version: 1.5
   MONITORING_EXT_MONITORING_QUERY_URL: "" # cloud passport: project-ocp-01 version: 1.5
   MONITORING_NAMESPACE: "platform-monitoring" # cloud passport: project-ocp-01 version: 1.5
@@ -132,7 +132,7 @@ deployParameters:
   STORAGE_SERVER_URL: "https://minio.apps.project-ocp-01.managed.qubership.cloud" # cloud passport: project-ocp-01 version: 1.5
   STORAGE_USERNAME: "${creds.get(\"storage\").username}" # cloud passport: project-ocp-01 version: 1.5
   TRACING_ENABLED: "true"  # cloud passport: project-ocp-01 version: 1.5
-  TRACING_HOST: "nc-diagnostic-agent" # cloud passport: project-ocp-01 version: 1.5
+  TRACING_HOST: "qs-diagnostic-agent" # cloud passport: project-ocp-01 version: 1.5
   TRACING_UI_URL: "https://jaeger.apps.project-ocp-01.managed.qubership.cloud" # cloud passport: project-ocp-01 version: 1.5
   USE_POSTGRESQL_AS_DB: "true" # paramset: cloud-configuration version: 23.3 source: template
   ZOOKEEPER_ADDRESS: "zookeeper.zookeeper:2181" # cloud passport: project-ocp-01 version: 1.5
@@ -140,20 +140,20 @@ deployParameters:
 e2eParameters:
   ARGO_TECH_APP_VERSION: "deploy-sync-app:1.9.1-20240722.152545-1-RELEASE" # paramset: argocd-e2e-params version: 24.1 source: template
   ATP_DYNAMIC_PARAMETERS: "ROOT_PROJECT,ATP_JENKINS_URL,ATP_JENKINS_CREDS_ID,TEST_PLAN,TEST_SUITE,TA_TOOLS_GROUP,THREAD_COUNT,EMAIL,TEST_DATA_SCOPE" # paramset: csd-configuration-e2e version: 1 source: template
-  ATP_JENKINS_URL: "https://duncan-ci-cn.qubership.com" # paramset: ci-configuration-e2e version: 1 source: template
+  ATP_JENKINS_URL: "https://duncan-ci-cn.qubership.org" # paramset: ci-configuration-e2e version: 1 source: template
   ATP_PARAMS_FILE_PATH: "atp/atpJobsProperties.yaml" # paramset: csd-configuration-e2e version: 1 source: template
   ATP_PARAMS_GIT_BRANCH: "master" # paramset: csd-configuration-e2e version: 1 source: template
-  ATP_PARAMS_GIT_URL: "https://git.qubership.com/SD.prj/devops/prj-atp-configuration.git" # paramset: csd-configuration-e2e version: 1 source: template
+  ATP_PARAMS_GIT_URL: "https://git.qubership.org/SD.prj/devops/prj-atp-configuration.git" # paramset: csd-configuration-e2e version: 1 source: template
   CSD_CONFIGURATION: |
-    '{"cse-toolset": {"DEFAULT_MAIN_SD_PREFIX": "prj-CSE-Toolset-SD", "DEFAULT_SD_PREFIX": ""}, "custom-operators": {"DEFAULT_MAIN_SD_PREFIX": "prj-Custom-Operators-SD", "DEFAULT_SD_PREFIX": ""}, "design-time": {"DEFAULT_MAIN_SD_PREFIX": "prj-Design-Time-SD", "DEFAULT_SD_PREFIX": ""}, "solution-deploy": {"DEFAULT_MAIN_SD_PREFIX": "prj-Product-SD", "DEFAULT_SD_PREFIX": "prj-Project-SD"}}'
+    '{"cse-toolset": {"DEFAULT_MAIN_SD_PREFIX": "prj-PRJ-Toolset-SD", "DEFAULT_SD_PREFIX": ""}, "custom-operators": {"DEFAULT_MAIN_SD_PREFIX": "prj-Custom-Operators-SD", "DEFAULT_SD_PREFIX": ""}, "design-time": {"DEFAULT_MAIN_SD_PREFIX": "prj-Design-Time-SD", "DEFAULT_SD_PREFIX": ""}, "solution-deploy": {"DEFAULT_MAIN_SD_PREFIX": "prj-Product-SD", "DEFAULT_SD_PREFIX": "prj-Project-SD"}}'
    # paramset: csd-configuration-e2e version: 1 source: template
-  MINIO_BINARY_FILE_URL: "https://artifactorycn.qubership.com/nc.thirdparty.files/minio/mc/linux-amd64/mc.RELEASE.2023-11-15T22-45-58Z" # paramset: csd-configuration-e2e version: 1 source: template
+  MINIO_BINARY_FILE_URL: "https://artifactory.qubership.org/qs.thirdparty.files/minio/mc/linux-amd64/mc.RELEASE.2023-11-15T22-45-58Z" # paramset: csd-configuration-e2e version: 1 source: template
   PROMOTE_CONFIG: |
-    '{"PROJECT_APP_PREFIX": "prj", "PROMOTE_JOB": "https://cloud-deployer.qubership.com/job/prj/job/regular.update.Promote"}'
+    '{"PROJECT_APP_PREFIX": "prj", "PROMOTE_JOB": "https://cloud-deployer.qubership.org/job/prj/job/regular.update.Promote"}'
    # paramset: csd-configuration-e2e version: 1 source: template
   ROOM_ID: "Y2lzY29zcGFyazovL3VzL1JPT00vMzQ1ZGY5YzAtOThlOS0xMWVlLTg3MzAtOGZmMjhlYWIwNjgz" # paramset: ci-configuration-e2e version: 1 source: template
   STABLE_ARTIFACTS_CONFIG: |
-    '[{"folder": "ETBSS_Product_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.prj/solution-descriptors/prj-stable-sd", "name": "prj-Product-SD"}, {"folder": "ETBSS_Project_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.prj/solution-descriptors/prj-stable-sd", "name": "prj-Project-SD"}, {"folder": "prj_env_templates_stable_builds", "git_branch": "release/ph1_cd1", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.com/SD.prj/solution-descriptors/prj-stable-sd", "name": "prj-env-templates"}]'
+    '[{"folder": "ETBSS_Product_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.org/SD.prj/solution-descriptors/prj-stable-sd", "name": "prj-Product-SD"}, {"folder": "ETBSS_Project_Scope_stable_builds", "git_branch": "feature/smallSDs", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.org/SD.prj/solution-descriptors/prj-stable-sd", "name": "prj-Project-SD"}, {"folder": "prj_env_templates_stable_builds", "git_branch": "release/ph1_cd1", "git_cred": "ci_beauty_git", "git_repo": "https://git.qubership.org/SD.prj/solution-descriptors/prj-stable-sd", "name": "prj-env-templates"}]'
    # paramset: csd-configuration-e2e version: 1 source: template
 technicalConfigurationParameters: {}
 deployParameterSets: []

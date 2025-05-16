@@ -2,11 +2,11 @@
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
 name: "another_cloud_name_composite_full"
-apiUrl: "sample-cloud-name.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
+apiUrl: "sample-cloud-name.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
 apiPort: 6443 # cloud passport: passport version: 1.5
-privateUrl: "dev-1.k8s-private.sdntest.qubership.com" # cloud passport: passport version: 1.5
-publicUrl: "dev-1.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
-dashboardUrl: "https://dev-1.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
+privateUrl: "dev-1.k8s-private.sdntest.qubership.org" # cloud passport: passport version: 1.5
+publicUrl: "dev-1.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
+dashboardUrl: "https://dev-1.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
 labels: []
 defaultCredentialsId: "deploy-sa-token" # cloud passport: passport version: 1.5
 protocol: "https" # cloud passport: passport version: 1.5
@@ -44,8 +44,8 @@ deployParameters:
   CDN_STORAGE_REGION: "${STORAGE_REGION}" # cloud passport: passport version: 1.5
   CDN_STORAGE_SERVER_URL: "${STORAGE_SERVER_URL}" # cloud passport: passport version: 1.5
   CDN_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: passport version: 1.5
-  CLOUD_DASHBOARD_URL: "https://dev-1.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
-  CMDB_URL: "https://cloud-deployer.qubership.com" # cloud passport: passport version: 1.5
+  CLOUD_DASHBOARD_URL: "https://dev-1.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
+  CMDB_URL: "https://cloud-deployer.qubership.org" # cloud passport: passport version: 1.5
   CM_KAFKA_BOOTSTRAP_SERVERS: "kafka.kafka:9092" # cloud passport: passport version: 1.5
   CM_KAFKA_CLIENT_PASSWORD: "${cmdb.creds.get(\"cm-kafka-cred\").username}" # cloud passport: passport version: 1.5
   CM_KAFKA_CLIENT_USERNAME: "${cmdb.creds.get(\"cm-kafka-cred\").password}" # cloud passport: passport version: 1.5
@@ -53,14 +53,14 @@ deployParameters:
   CM_POSTGRESQL_RW_SERVER: "pg-patroni.postgresql-billing:5432" # cloud passport: passport version: 1.5
   CM_POSTGRESQL_RW_USERNAME: "${cmdb.creds.get(\"cm-postgresql-rw-cred\").username}" # cloud passport: passport version: 1.5
   CONSUL_ENABLED: "false" # cloud passport: passport version: 1.5
-  CSE_EXTERNAL_MONITORING_PASSWORD: null # cloud passport: passport version: 1.5
-  CSE_EXTERNAL_MONITORING_USER: null # cloud passport: passport version: 1.5
-  CSE_GRAYLOG_PASSWORD: "${cmdb.creds.get(\"cse-graylog-cred\").password}" # cloud passport: passport version: 1.5
-  CSE_GRAYLOG_USER: "${cmdb.creds.get(\"cse-graylog-cred\").username}" # cloud passport: passport version: 1.5
+  PRJ_EXTERNAL_MONITORING_PASSWORD: null # cloud passport: passport version: 1.5
+  PRJ_EXTERNAL_MONITORING_USER: null # cloud passport: passport version: 1.5
+  PRJ_GRAYLOG_PASSWORD: "${cmdb.creds.get(\"cse-graylog-cred\").password}" # cloud passport: passport version: 1.5
+  PRJ_GRAYLOG_USER: "${cmdb.creds.get(\"cse-graylog-cred\").username}" # cloud passport: passport version: 1.5
   DAT_STORAGE_BUCKET: "dat-bucket" # cloud passport: passport version: 1.5
   DAT_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: passport version: 1.5
   DAT_STORAGE_USERNAME: "${STORAGE_USERNAME}" # cloud passport: passport version: 1.5
-  DEFAULT_TENANT_ADMIN_LOGIN: "cpq@qubership.com" # cloud passport: passport version: 1.5
+  DEFAULT_TENANT_ADMIN_LOGIN: "cpq@qubership.org" # cloud passport: passport version: 1.5
   DEFAULT_TENANT_NAME: "cpq" # cloud passport: passport version: 1.5
   DFT_STORAGE_BUCKET: "dft-bucket" # cloud passport: passport version: 1.5
   DFT_STORAGE_PASSWORD: "${STORAGE_PASSWORD}" # cloud passport: passport version: 1.5
@@ -92,7 +92,7 @@ deployParameters:
   MAVEN_REPO_DEV_NAME: "${MAVEN_REPO_NAME}" # cloud passport: passport version: 1.5
   MAVEN_REPO_NAME: "pd.saas.mvn.group" # cloud passport: passport version: 1.5
   MAVEN_REPO_STAGING_NAME: "${MAVEN_REPO_NAME}" # cloud passport: passport version: 1.5
-  MAVEN_REPO_URL: "https://artifactorycn.qubership.com/" # cloud passport: passport version: 1.5
+  MAVEN_REPO_URL: "https://artifactory.qubership.org/" # cloud passport: passport version: 1.5
   MONITORING_ENABLED: true # cloud passport: passport version: 1.5
   MONITORING_EXT_MONITORING_QUERY_URL: null # cloud passport: passport version: 1.5
   MONITORING_NAMESPACE: "platform-monitoring" # cloud passport: passport version: 1.5
@@ -104,7 +104,7 @@ deployParameters:
   PRODUCTION_MODE: false # cloud passport: passport version: 1.5
   SMTP_SERVER_PASSWORD: "${cmdb.creds.get(\"smtp-server-cred\").password}" # cloud passport: passport version: 1.5
   SMTP_SERVER_PORT: 25 # cloud passport: passport version: 1.5
-  SMTP_SERVER_URL: "testmail.qubership.com" # cloud passport: passport version: 1.5
+  SMTP_SERVER_URL: "testmail.qubership.org" # cloud passport: passport version: 1.5
   SMTP_SERVER_USERNAME: "${cmdb.creds.get(\"smtp-server-cred\").username}" # cloud passport: passport version: 1.5
   SSM_CMDB_TOKEN: "${cmdb.creds.get(\"ssm-cmdb-cred\").password}" # cloud passport: passport version: 1.5
   SSM_CMDB_USER: "${cmdb.creds.get(\"ssm-cmdb-cred\").username}" # cloud passport: passport version: 1.5
@@ -113,10 +113,10 @@ deployParameters:
   STORAGE_REGION: null # cloud passport: passport version: 1.5
   STORAGE_RWO_CLASS: "csi-cinder-sc-retain" # cloud passport: passport version: 1.5
   STORAGE_RWX_CLASS: "nfs-sc" # cloud passport: passport version: 1.5
-  STORAGE_SERVER_URL: "https://s3.qubership.com" # cloud passport: passport version: 1.5
+  STORAGE_SERVER_URL: "https://s3.qubership.org" # cloud passport: passport version: 1.5
   STORAGE_USERNAME: "${cmdb.creds.get(\"storage-cred\").username}" # cloud passport: passport version: 1.5
   TRACING_ENABLED: false # cloud passport: passport version: 1.5
-  TRACING_HOST: "nc-diagnostic-agent" # cloud passport: passport version: 1.5
+  TRACING_HOST: "qs-diagnostic-agent" # cloud passport: passport version: 1.5
   TRACING_UI_URL: "${CLOUD_PROTOCOL}://jaeger.${CLOUD_PUBLIC_HOST}" # cloud passport: passport version: 1.5
   ZOOKEEPER_ADDRESS: "zookeeper.zookeeper:2181" # cloud passport: passport version: 1.5
   ZOOKEEPER_URL: "${ZOOKEEPER_ADDRESS}" # cloud passport: passport version: 1.5

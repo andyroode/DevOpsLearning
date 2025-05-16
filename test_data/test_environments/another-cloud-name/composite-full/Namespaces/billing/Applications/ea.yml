@@ -45,7 +45,7 @@ deployParameters:
         - verbs:
             - "*"
           apiGroups:
-            - reflection.api.nrm.qubership.com
+            - reflection.api.nrm.qubership.org
           resources:
             - "*"
       anonymous: true
@@ -54,8 +54,8 @@ deployParameters:
         - verbs:
             - "*"
           apiGroups:
-            - ea.api.nrm.qubership.com
-            - reflection.api.nrm.qubership.com
+            - ea.api.nrm.qubership.org
+            - reflection.api.nrm.qubership.org
           resources:
             - "*"
       anonymous: false
@@ -64,8 +64,8 @@ deployParameters:
         - verbs:
             - "*"
           apiGroups:
-            - ea.api.nrm.qubership.com
-            - reflection.api.nrm.qubership.com
+            - ea.api.nrm.qubership.org
+            - reflection.api.nrm.qubership.org
           resources:
             - "*"
       anonymous: false
@@ -73,8 +73,8 @@ deployParameters:
       name: ROLE_cloud-graphql
       rules:
         - apiGroups:
-            - ea.api.nrm.qubership.com
-            - reflection.api.nrm.qubership.com
+            - ea.api.nrm.qubership.org
+            - reflection.api.nrm.qubership.org
           resources:
             - "*"
           verbs:

@@ -90,11 +90,11 @@ applications:
       scenarioId: "eb74c92c-0ee1-46ad-b3d2-cc34737cdacf"
   - appName: "prj-proposal-generation-service"
     parameters:
-      PDF_CONVERTER_IMAGE_REPOSITORY: "artifactorycn.qubership.com:17114/unoconv/unoserver-docker"
+      PDF_CONVERTER_IMAGE_REPOSITORY: "artifactory.qubership.org:17114/unoconv/unoserver-docker"
       PDF_CONVERTER_TAG: "0.3.21"
   - appName: "Cloud-Workplaces-FRW-Runtime"  # Added as per ETBSS-4367
     parameters:
-      BSS_LOCALIZATION_REPO_NAME: "prj-cloudbss-wp-localization"
+      BSS_LOCALIZATION_REPO_NAME: "prj-project-wp-localization"
       WP_PERMISSIONS_SERVICE_NAME: "prj-wp-configuration"
       WP_PERMISSIONS_FILE_NAME: "prj-wp-permissions.json"
   - appName: "Core-Extensions"  # Added as per ETBSS-5447
@@ -258,12 +258,12 @@ applications:
       CNS_PASSWORD: ${creds.get("prj-uim-int-smartplug").password}
       CNS_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoCns"
       CNS_ENDPOINT: "/TMFC000_CM/TMF681_CM/communicationMessage" #ETBSS-27892
-      CNS_REQUESTED_SYSTEM: "NC-UIM" #ETBSS-28407
+      CNS_REQUESTED_SYSTEM: "qs-UIM" #ETBSS-28407
   - appName: "CloudCRM-GraphQL"  #Added as per ETBSS-9507
     parameters:
       # update ETBSS-26264 and ETBSS-26787
       GQL_EXTENSION_POINT_PROPERTIES: "bulk-balance-inquiry-path=/tibcoBscs/tmf678/extension/bulkBalanceInquiry\ninvoice-overview-inquiry-path=/tibcoBscs/integration/ericsson/v1/invoiceOverviewInquiry\ncode-endpoint-path=/tibcoCodeUnifieddunninginquiry/customerbillingcollectionmgmt/r/unifieddunninginquiry\nget-crc-notes-path=/tibcoCodeFetchDunningDetails/customerbillingcollectionmgmt/r/fetchDunningDetails\nupdate-crc-notes-path=/tibcoCodePostDunningDetails/customerbillingcollectionmgmt/cud/postdunningdetails\npayment-endpoint-path=/tibcoCodeGetPayment/TMFC000/TMF676_PM/payment\ngenerate-on-demand-bill=/tibcoBscs/tmf678/customerBillOnDemand\nunbilled-charges-path=/tibcoBscs/integration/ericsson/v1/customerBill/getUnbilledCharges\nbsa-linked-account-path=/tibcoBscs/bsa/linkedAccount\nbsa-party-linked-account-path=/tibcoBscs/bsa/party/{partyId}/LinkedAccount\nbsa-invoice-path=/tibcoBscs/bsa/invoice\nbsa-invoice-details-path=/tibcoBscs/bsa/invoice/details\nretrieve-customer-bill-path=/tibcoBscs/tmf678/customerBill\nretrieve-customer-bill-by-account-id-path=/tibcoBscs/tmf678/customerBill\nretrieve-customer-bill-with-summary-by-account-id-path=/tibcoBscs/tmf678/customerBill"
-  - appName: "cloudbss-om"  #Added as per ETBSS-13668
+  - appName: "project-om"  #Added as per ETBSS-13668
     parameters:
       OM_UIM_URL: "http://uim:8080"
   - appName: "CRM-CIM"  #Added as per ETBSS-19808
@@ -271,11 +271,11 @@ applications:
       CIM_ENTITLEMENTS_ENABLED: "true"
   - appName: "CloudBSS-CPM" # Added as per ETBSS-22922
     parameters:
-      SMTP_SERVER_URL: "testmail.qubership.com"
+      SMTP_SERVER_URL: "testmail.qubership.org"
       SMTP_SERVER_USERNAME: "prj-approver"
       SMTP_SERVER_PASSWORD: "prj-approver"
       IMWS_EMAIL_CHECK_PERIOD_IN_MS: "10000"
-  - appName: "nc-diagnostic-agent"
+  - appName: "qs-diagnostic-agent"
     parameters:
       JAEGER_NS: ""
       #JAEGER_COLLECTOR_HOST: "open-telemetry-collector.cse-toolset.svc"

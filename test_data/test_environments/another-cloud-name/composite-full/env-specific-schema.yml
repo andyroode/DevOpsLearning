@@ -123,17 +123,17 @@ cloudPassport:
       DPC_STORAGE_PASSWORD: "string"
       SSM_CMDB_USER: "string"
       SSM_CMDB_TOKEN: "string"
-      CSE_GRAYLOG_USER: "string"
-      CSE_GRAYLOG_PASSWORD: "string"
+      PRJ_GRAYLOG_USER: "string"
+      PRJ_GRAYLOG_PASSWORD: "string"
       MONITORING_NAMESPACE: "string"
       MONITORING_TYPE: "string"
       MONITORING_EXT_MONITORING_QUERY_URL: 
         type: "string"
         allowNone: true
-      CSE_EXTERNAL_MONITORING_USER: 
+      PRJ_EXTERNAL_MONITORING_USER: 
         type: "string"
         allowNone: true
-      CSE_EXTERNAL_MONITORING_PASSWORD: 
+      PRJ_EXTERNAL_MONITORING_PASSWORD: 
         type: "string"
         allowNone: true
       OPS_IDP_URL: 

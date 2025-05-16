@@ -12,7 +12,7 @@ mergeDeployParametersAndE2EParameters: false
 deployParameters:
   DBAAS_CLUSTER_DBA_CREDENTIALS_PASSWORD: "${creds.get(\"dbaas-cluster-dba-cred\").password}" # paramset: dbaas version: 23.4 source: template
   DBAAS_CLUSTER_DBA_CREDENTIALS_USERNAME: "${creds.get(\"dbaas-cluster-dba-cred\").username}" # paramset: dbaas version: 23.4 source: template
-  DBAAS_PREMATURE_REGISTRATION_ADAPTER_ADDRESSES: "http://nc-dbaas-postgres-adapter.${namespace_postgresql_platform}:8080" # paramset: dbaas version: 23.4 source: template
+  DBAAS_PREMATURE_REGISTRATION_ADAPTER_ADDRESSES: "http://qs-dbaas-postgres-adapter.${namespace_postgresql_platform}:8080" # paramset: dbaas version: 23.4 source: template
   MONITORING_ENABLED: true # paramset: dbaas version: 23.4 source: template
   NODE_SELECTOR_DBAAS_KEY: "node-role.kubernetes.io/worker" # paramset: dbaas version: 23.4 source: template
   POSTGRES_DBA_PASSWORD: "${creds.get(\"postgresql-platform-cred\").password}" # paramset: dbaas version: 23.4 source: template

@@ -3,7 +3,7 @@ name: dbaas
 parameters:
   DBAAS_CLUSTER_DBA_CREDENTIALS_PASSWORD: "${creds.get(\"dbaas-cluster-dba-cred\").password}"
   DBAAS_CLUSTER_DBA_CREDENTIALS_USERNAME: "${creds.get(\"dbaas-cluster-dba-cred\").username}"
-  DBAAS_PREMATURE_REGISTRATION_ADAPTER_ADDRESSES: "http://nc-dbaas-postgres-adapter.${namespace_postgresql_platform}:8080"
+  DBAAS_PREMATURE_REGISTRATION_ADAPTER_ADDRESSES: "http://qs-dbaas-postgres-adapter.${namespace_postgresql_platform}:8080"
   NODE_SELECTOR_DBAAS_KEY: "node-role.kubernetes.io/worker"
   REGION_DBAAS: ""
   POSTGRES_DBA_PASSWORD: "${creds.get(\"postgresql-platform-cred\").password}"

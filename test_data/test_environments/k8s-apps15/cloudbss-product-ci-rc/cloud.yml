@@ -1,12 +1,12 @@
 # The contents of this file is generated from template artifact: demo-bss-env-template.
 # Contents will be overwritten by next generation.
 # Please modify this contents only for development purposes or as workaround.
-name: "k8s_apps15_cloudbss_product_ci_rc"
-apiUrl: "k8s-apps15.k8s.sdntest.qubership.com"  # cloud passport: passport version: 1.5
+name: "k8s_apps15_project_product_ci_rc"
+apiUrl: "k8s-apps15.k8s.sdntest.qubership.org"  # cloud passport: passport version: 1.5
 apiPort: "6443" # cloud passport: passport version: 1.5
-privateUrl: "k8s-apps15.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
-publicUrl: "k8s-apps15.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
-dashboardUrl: "https://dashboard.k8s-apps15.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
+privateUrl: "k8s-apps15.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
+publicUrl: "k8s-apps15.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
+dashboardUrl: "https://dashboard.k8s-apps15.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
 labels: []
 defaultCredentialsId: "k8s-apps15-service-admin" # cloud passport: passport version: 1.5
 protocol: "HTTPS" # cloud passport: passport version: 1.5
@@ -16,7 +16,7 @@ mergeDeployParametersAndE2EParameters: false
 maasConfig:
   credentialsId: "MaaS-Default-Client" # cloud passport: passport version: 1.5
   enable: true  # cloud passport: passport version: 1.5
-  maasUrl: "http://maas-service-maas.k8s-apps15.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
+  maasUrl: "http://maas-service-maas.k8s-apps15.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
   maasInternalAddress: "http://maas-service.maas:8080" # cloud passport: passport version: 1.5
 vaultConfig:
   credentialsId: ""  # cloud passport: passport version: 1.5
@@ -26,16 +26,16 @@ dbaasConfigs:
   - credentialsId: "Shared-default-dbaas" # cloud passport: passport version: 1.5
     enable: true # cloud passport: passport version: 1.5
     apiUrl: "http://dbaas-aggregator.dbaas:8080" # cloud passport: passport version: 1.5
-    aggregatorUrl: "https://aggregator-dbaas.k8s-apps15.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
+    aggregatorUrl: "https://aggregator-dbaas.k8s-apps15.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
 consulConfig:
   tokenSecret: "consul-token" # cloud passport: passport version: 1.5
   enabled: true # cloud passport: passport version: 1.5
-  publicUrl: "https://consul.k8s-apps15.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
+  publicUrl: "https://consul.k8s-apps15.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
   internalUrl: "consul.consul" # cloud passport: passport version: 1.5
 deployParameters:
-  CLOUD_DASHBOARD_URL: "https://dashboard.k8s-apps15.k8s.sdntest.qubership.com" # cloud passport: passport version: 1.5
+  CLOUD_DASHBOARD_URL: "https://dashboard.k8s-apps15.k8s.sdntest.qubership.org" # cloud passport: passport version: 1.5
   CONSUL_ENABLED: "true"                                # cloud passport: passport version: 1.5
-  ENV_NAME: "cloudbss-product-ci-rc"
+  ENV_NAME: "project-product-ci-rc"
   LS_URL: "http://license-server.license-server.svc:80" # paramset: license-param-set version: n/a
   PAAS_PLATFORM: "KUBERNETES"
   PRODUCTION_MODE: "false"                              # cloud passport: passport version: 1.5

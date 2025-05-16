@@ -50,14 +50,14 @@ def find_registry_configuration(template_name, base_path):
 
 def create_credentials(base_path, registry):
     if registry['credentialsId'] is None or registry['credentialsId'] == '':
-        registry['credentialsId'] = "artifactorycn-cred"
+        registry['credentialsId'] = "artifactory-cred"
     cred_path = findYamls(f'{base_path}/configuration/credentials', "credentials.y")[0]
     credsYaml = openYaml(cred_path)
     if not registry['credentialsId'] in credsYaml.keys():
         newCred = yaml.load("{}")
         newCred.insert(1, "type", "usernamePassword")
 
-        if registry['credentialsId'] == "artifactorycn-cred":
+        if registry['credentialsId'] == "artifactory-cred":
             data = yaml.load("{}")
             data.insert(1, "username", "")
             data.insert(1, "password", "")

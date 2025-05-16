@@ -6,7 +6,7 @@ credentialsId: ""
 isServerSideMerge: true
 labels:
   - "solutionInstance-env-without-passport"
-  - "solution-CODETOPROD"
+  - "solution-PROJECT"
 cleanInstallApprovalRequired: false
 mergeDeployParametersAndE2EParameters: false
 profile:

@@ -15,7 +15,7 @@ globalE2EParameters:
   mergeTenantsAndE2EParameters: false
   environmentParameters:
     # ETBSS-1243
-    PROMOTE_CONFIG: "{\"PROJECT_APP_PREFIX\": \"prj\", \"PROMOTE_JOB\": \"https://cloud-deployer.qubership.com/job/prj/job/regular.update.Promote\"}"
+    PROMOTE_CONFIG: "{\"PROJECT_APP_PREFIX\": \"prj\", \"PROMOTE_JOB\": \"https://cloud-deployer.qubership.org/job/prj/job/regular.update.Promote\"}"
     WEBEX_TOKEN: "MGE3MjYwNTQtZGE4My00MTlkLWIzN2MtZjU5YTg3NDA2Yzk0MzlmZmViZGUtYWY4_PF84_ba052c1a-a74c-48df-aead-18cddd1bffcc"
     # ETBSS-5151
     # INSTANSES_REPO: "SD.prj/deployment-configuration/prj-env-instances-rnd"

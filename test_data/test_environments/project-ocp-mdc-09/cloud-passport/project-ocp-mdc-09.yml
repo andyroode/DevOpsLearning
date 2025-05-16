@@ -53,14 +53,14 @@ core:
   DEFAULT_TENANT_NAME: cpq
   DEFAULT_TENANT_ADMIN_LOGIN: ${creds.get("coreexternal-creds").username}
   DEFAULT_TENANT_ADMIN_PASSWORD: ${creds.get("coreexternal-creds").password}
-  MAVEN_REPO_URL: https://artifactorycn.qubership.com/
+  MAVEN_REPO_URL: https://artifactory.qubership.org/
   MAVEN_REPO_NAME: sd.prj_bss.mvn.group
   MAVEN_REPO_STAGING_NAME: ${MAVEN_REPO_NAME}
   MAVEN_REPO_DEV_NAME: ${MAVEN_REPO_NAME}
 global:
   MONITORING_ENABLED: "true"
   TRACING_ENABLED: "true"
-  TRACING_HOST: nc-diagnostic-agent
+  TRACING_HOST: qs-diagnostic-agent
 bss:
   DOC_STORAGE_TEMPORARY_BUCKET_NAME: storage-proxy-temporary-bucket
   DOC_STORAGE_PERSISTENT_BUCKET_NAME: storage-proxy-permanent-bucket
@@ -84,15 +84,15 @@ cse:
   DPC_STORAGE_PASSWORD: ${STORAGE_PASSWORD}
   SSM_CMDB_USER: ${creds.get("cmdb-creds").username}
   SSM_CMDB_TOKEN: ${creds.get("cmdb-creds").password}
-  CSE_GRAYLOG_USER: ${creds.get("graylog-creds").username}
-  CSE_GRAYLOG_PASSWORD: ${creds.get("graylog-creds").password}
+  PRJ_GRAYLOG_USER: ${creds.get("graylog-creds").username}
+  PRJ_GRAYLOG_PASSWORD: ${creds.get("graylog-creds").password}
   MONITORING_NAMESPACE: platform-monitoring
   MONITORING_TYPE: VictoriaDB
   MONITORING_EXT_MONITORING_QUERY_URL: ""
-  # CSE_EXTERNAL_MONITORING_USER: ${creds.get("monitoringexternal-creds").username}
-  CSE_EXTERNAL_MONITORING_USER: ""
-  # CSE_EXTERNAL_MONITORING_PASSWORD: ${creds.get("monitoringexternal-creds").password}
-  CSE_EXTERNAL_MONITORING_PASSWORD: ""
+  # PRJ_EXTERNAL_MONITORING_USER: ${creds.get("monitoringexternal-creds").username}
+  PRJ_EXTERNAL_MONITORING_USER: ""
+  # PRJ_EXTERNAL_MONITORING_PASSWORD: ${creds.get("monitoringexternal-creds").password}
+  PRJ_EXTERNAL_MONITORING_PASSWORD: ""
   OPS_IDP_URL: ""
   BEOC_STORAGE_BUCKET: beoc-bucket
   BEOC_STORAGE_USERNAME: ${STORAGE_USERNAME}

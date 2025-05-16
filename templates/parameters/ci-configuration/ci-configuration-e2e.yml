@@ -1,5 +1,5 @@
 version: 1
 name: ci-configuration-e2e
 parameters:
-  JENKINS_URL: https://ci.qubership.com
+  JENKINS_URL: https://ci.qubership.org
 applications: []

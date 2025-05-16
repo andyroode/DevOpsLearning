@@ -3,6 +3,6 @@
 # Please modify this contents only for development purposes or as workaround.
 name: "prj-proposal-generation-service"
 deployParameters:
-  PDF_CONVERTER_IMAGE_REPOSITORY: "artifactorycn.qubership.com:17114/unoconv/unoserver-docker" # paramset: bss-common version: 1 source: template
+  PDF_CONVERTER_IMAGE_REPOSITORY: "artifactory.qubership.org:17114/unoconv/unoserver-docker" # paramset: bss-common version: 1 source: template
   PDF_CONVERTER_TAG: "0.3.21" # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters: {}

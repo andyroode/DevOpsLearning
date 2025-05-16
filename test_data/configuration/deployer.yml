@@ -1,8 +1,8 @@
 test-deployer:
   username: envgen.creds.get('test-deployer-username-cred').username
   token: envgen.creds.get('test-deployer-username-cred').password
-  deployerUrl: "https://test-deployer.qubership.com"
+  deployerUrl: "https://test-deployer.qubership.org"
 cloud-deployer:
   username: envgen.creds.get('cloud-deployer-user-cred').secret
   token: envgen.creds.get('cloud-deployer-token-cred').secret
-  deployerUrl: "https://cloud-deployer.qubership.com"
+  deployerUrl: "https://cloud-deployer.qubership.org"

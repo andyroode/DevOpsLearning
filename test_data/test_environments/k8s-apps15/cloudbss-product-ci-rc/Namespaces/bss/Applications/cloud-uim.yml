@@ -31,11 +31,11 @@ deployParameters:
           {
             "defaultPluginConfig": {
               "pluginSpecificConfigs": {
-                "host": "testmail.qubership.com",
+                "host": "testmail.qubership.org",
                 "password": "Nuud@y123",
                 "port": "25",
                 "transport_strategy": "SMTP",
-                "username": "test-prj@testmail.qubership.com"
+                "username": "test-prj@testmail.qubership.org"
               }
             },
             "implementationConfig": {

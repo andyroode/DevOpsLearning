@@ -1,6 +1,6 @@
 inventory:
   environmentName: "override-env-name"
-  tenantName: "CODETOPROD"
+  tenantName: "PROJECT"
   cloudName: "ovverride_cloud_name"
   deployer: "app-deployer"
   cloudPassport: "sample-cloud-name"
@@ -30,10 +30,10 @@ envTemplate:
   sharedMasterCredentialFiles:
     - prod-integration-creds
   templateArtifact:
-    registry: "artifactorycn"
+    registry: "artifactory"
     repository: "snapshotRepository"
     artifact:
-      group_id: "com.qubership.deploy.product"
+      group_id: "org.qubership.deploy.product"
       artifact_id: "prod.inmrnd.mano_devops_releaseengineering_sandboxtestenvironment_configuration-management_template-project"
       version: "master_20231005-131627"
 generatedVersions:

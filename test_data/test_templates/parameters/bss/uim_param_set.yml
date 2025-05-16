@@ -14,9 +14,9 @@ applications:
       \       \"implementationConfig\": {\n          \"oobPluginReference\": \"SMS\"\
       \n        },\n        \"pluginInstanceId\": \"SMS\"\n      },\n      {\n   \
       \     \"defaultPluginConfig\": {\n          \"pluginSpecificConfigs\": {\n \
-      \           \"host\": \"testmail.qubership.com\",\n            \"password\"\
+      \           \"host\": \"testmail.qubership.org\",\n            \"password\"\
       : \"Nuud@y123\",\n            \"port\": \"25\",\n            \"transport_strategy\"\
-      : \"SMTP\",\n            \"username\": \"test-prj@testmail.qubership.com\"\
+      : \"SMTP\",\n            \"username\": \"test-prj@testmail.qubership.org\"\
       \n          }\n        },\n        \"implementationConfig\": {\n          \"\
       oobPluginReference\": \"E_MAIL\"\n        },\n        \"pluginInstanceId\":\
       \ \"E_MAIL\"\n      }\n    ]\n  }\n}'"
@@ -43,9 +43,9 @@ applications:
       \       \"implementationConfig\": {\n          \"oobPluginReference\": \"SMS\"\
       \n        },\n        \"pluginInstanceId\": \"SMS\"\n      },\n      {\n   \
       \     \"defaultPluginConfig\": {\n          \"pluginSpecificConfigs\": {\n \
-      \           \"host\": \"testmail.qubership.com\",\n            \"password\"\
+      \           \"host\": \"testmail.qubership.org\",\n            \"password\"\
       : \"Nuud@y123\",\n            \"port\": \"25\",\n            \"transport_strategy\"\
-      : \"SMTP\",\n            \"username\": \"test-prj@testmail.qubership.com\"\
+      : \"SMTP\",\n            \"username\": \"test-prj@testmail.qubership.org\"\
       \n          }\n        },\n        \"implementationConfig\": {\n          \"\
       oobPluginReference\": \"E_MAIL\"\n        },\n        \"pluginInstanceId\":\
       \ \"E_MAIL\"\n      }\n    ]\n  }\n}'"

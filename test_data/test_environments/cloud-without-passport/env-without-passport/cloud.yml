@@ -39,7 +39,7 @@ e2eParameters:
   DCL_CONFIG_ARGOCD_URL: ""  # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_ARGOCD_USER: "${creds.get(\"argocd-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_CMDB_PASSWORD: "${creds.get(\"deployer-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
-  DCL_CONFIG_CMDB_URL: "https://cloud-deployer.qubership.com/" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
+  DCL_CONFIG_CMDB_URL: "https://cloud-deployer.qubership.org/" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_CMDB_USER: "${creds.get(\"deployer-cred\").username}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_CONF_ENGINE: "local-kustomize" # paramset: argocd-configuration-common-e2e version: 23.4 source: template
   DCL_CONFIG_GITLAB_TOKEN: "${creds.get(\"dcl-gitlab-cred\").password}" # paramset: argocd-configuration-common-e2e version: 23.4 source: template

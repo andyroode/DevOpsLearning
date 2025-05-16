@@ -5,7 +5,7 @@ name: "prj-uim-int-smartplug"
 deployParameters:
   CNS_ENDPOINT: "/TMFC000_CM/TMF681_CM/communicationMessage" # paramset: bss-common version: 1 source: template
   CNS_PASSWORD: "${creds.get(\"prj-uim-int-smartplug\").password}" # paramset: bss-common version: 1 source: template
-  CNS_REQUESTED_SYSTEM: "NC-UIM" # paramset: bss-common version: 1 source: template
+  CNS_REQUESTED_SYSTEM: "qs-UIM" # paramset: bss-common version: 1 source: template
   CNS_URL: "http://prj-bss-external-integration-egress-service:8080/tibcoCns" # paramset: bss-common version: 1 source: template
   CNS_USERNAME: "${creds.get(\"prj-uim-int-smartplug\").username}" # paramset: bss-common version: 1 source: template
 technicalConfigurationParameters: {}

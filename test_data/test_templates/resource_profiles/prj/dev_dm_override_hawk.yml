@@ -300,11 +300,11 @@ applications:
             value: "64Mi"
           - name: "MEMORY_LIMIT"
             value: "64Mi"       
-  - name: "nc-diagnostic-agent"
+  - name: "qs-diagnostic-agent"
     version: "release-1.2.3-20230503.063042-5-RELEASE"
     sd: ""
     services:
-      - name: "nc-diagnostic-agent"
+      - name: "qs-diagnostic-agent"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"

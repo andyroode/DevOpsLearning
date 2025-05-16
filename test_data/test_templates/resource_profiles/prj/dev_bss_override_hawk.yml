@@ -428,7 +428,7 @@ applications:
             value: "520Mi"
           - name: "MEM_ARGS"
             value: "-Xmx96m -Xms96m -Xss512k -XX:MaxDirectMemorySize=64m -XX:MetaspaceSize=96m -XX:MaxMetaspaceSize=96m -XX:ReservedCodeCacheSize=32m -XX:CompressedClassSpaceSize=16m -XX:MinMetaspaceExpansion=1M -XX:MaxMetaspaceExpansion=8M -XX:CodeCacheExpansionSize=256k"
-  - name: "cloudbss-agm"
+  - name: "project-agm"
     version: "release-2024.1-20240319.143147-5-RELEASE"
     sd: ""
     services:
@@ -450,7 +450,7 @@ applications:
             value: "100m"        
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "56Mi"
-      - name: "cloudbss-agm-composite-gateway"
+      - name: "project-agm-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -558,7 +558,7 @@ applications:
             value: "64Mi"
           - name: "MEM_ARGS"
             value: "-Xmx112m -Xms112m -Xss512k -XX:MetaspaceSize=120m -XX:MaxMetaspaceSize=120m -XX:ReservedCodeCacheSize=48m -XX:CompressedClassSpaceSize=16m -XX:MinMetaspaceExpansion=1M -XX:MaxMetaspaceExpansion=8M -XX:CodeCacheExpansionSize=256k"
-      - name: "cloudbss-bsscs-composite-gateway"
+      - name: "project-bsscs-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -642,7 +642,7 @@ applications:
             value: "100m" 
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "72Mi"
-      - name: "cloudbss-cpqbe-composite-gateway"
+      - name: "project-cpqbe-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -792,7 +792,7 @@ applications:
             value: "32Mi"
           - name: "MEMORY_LIMIT"
             value: "32Mi"
-  - name: "cloudbss-channel-orchestrator"
+  - name: "project-channel-orchestrator"
     version: "release-2024.1-20240401.151252-32-RELEASE"
     sd: ""
     services:
@@ -1163,7 +1163,7 @@ applications:
             value: "100m" 
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "56Mi"
-      - name: "cloudbss-pnl-gateway"
+      - name: "project-pnl-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1205,7 +1205,7 @@ applications:
             value: "100m" 
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "56Mi"
-      - name: "cloudbss-cpm-composite-gateway"
+      - name: "project-cpm-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1285,7 +1285,7 @@ applications:
             value: "100m"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "56Mi"
-      - name: "cloudbss-dgs-composite-gateway"
+      - name: "project-dgs-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1460,7 +1460,7 @@ applications:
             value: "100m"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "48Mi"
-      - name: "cloudbss-gsm-composite-gateway"
+      - name: "project-gsm-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1560,7 +1560,7 @@ applications:
             value: "100m"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "56Mi"
-      - name: "cloudbss-mcbe-gateway"
+      - name: "project-mcbe-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1570,11 +1570,11 @@ applications:
             value: "56Mi"
           - name: "MEMORY_LIMIT"
             value: "56Mi"            
-  - name: "nc-diagnostic-agent"
+  - name: "qs-diagnostic-agent"
     version: "release-1.2.3-20230503.063042-5-RELEASE"
     sd: ""
     services:
-      - name: "nc-diagnostic-agent"
+      - name: "qs-diagnostic-agent"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1614,7 +1614,7 @@ applications:
             value: "56Mi"
           - name: "MEMORY_LIMIT"
             value: "56Mi"                        
-  - name: "cloudbss-om"
+  - name: "project-om"
     version: "release-2024.1-20240329.071655-140-RELEASE"
     sd: ""
     services:
@@ -1948,7 +1948,7 @@ applications:
             value: "56Mi"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "56Mi"
-      - name: "cloudbss-sds-composite-gateway"
+      - name: "project-sds-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -1982,7 +1982,7 @@ applications:
             value: "64Mi"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "64Mi"
-      - name: "cloudbss-scripting-composite-gateway"
+      - name: "project-scripting-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -2016,7 +2016,7 @@ applications:
             value: "48Mi"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "48Mi"
-      - name: "cloudbss-scs-composite-gateway"
+      - name: "project-scs-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -2050,7 +2050,7 @@ applications:
             value: "56Mi"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "56Mi"
-      - name: "cloudbss-sps-composite-gateway"
+      - name: "project-sps-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"
@@ -2192,7 +2192,7 @@ applications:
             value: "48Mi"
           - name: "COMPOSITE_GATEWAY_MEMORY_LIMIT"
             value: "48Mi"
-      - name: "cloudbss-wls-composite-gateway"
+      - name: "project-wls-composite-gateway"
         parameters:
           - name: "CPU_REQUEST"
             value: "10m"

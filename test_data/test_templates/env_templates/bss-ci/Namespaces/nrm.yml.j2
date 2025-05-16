@@ -17,7 +17,7 @@ deployParameters:
   GRAYLOG_DEFAULT_SEARCH_STREAM_ID: "000000000000000000000001"
   KAFKA_PASSWORD: "tmp_password"
   GRAYLOG_CLOUD_TM_SEARCH_NAMESPACE: "${NAMESPACE}"
-  BSS_NAMESPACE: "cloudbss-product-ci-rc"
+  BSS_NAMESPACE: "project-product-ci-rc"
   BSS_TENANT: "bd9b0e7e-3a25-4221-88b5-737209587770"
   POSTGRESQL_URL: "pg-patroni.postgresql:5432"
   POSTGRESQL_USER: "tmp_user"
@@ -59,82 +59,82 @@ deployParameters:
             usedFor:
                 - clientCredentials
         coreidp-eca:
-            url: 'https://private-gateway-cloudbss-coreidp-eca.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'https://private-gateway-project-coreidp-eca.k8s-apps.openshift.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
-        cloudbss-kube-csrd-dev2:
-            url: 'https://private-gateway-cloudbss-kube-csrd-dev2.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+        project-kube-csrd-dev2:
+            url: 'https://private-gateway-project-kube-csrd-dev2.k8s-apps.openshift.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
         cloudsspbe-kube-portal-dev-ci:
-            url: 'https://private-gateway-cloudsspbe-kube-portal-dev-ci.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'https://private-gateway-cloudsspbe-kube-portal-dev-ci.k8s-apps.openshift.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
-        cloudbss-kube-csrd-dev-ci:
-            url: 'https://private-gateway-cloudbss-kube-csrd-dev-ci.k8s-apps2.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+        project-kube-csrd-dev-ci:
+            url: 'https://private-gateway-project-kube-csrd-dev-ci.k8s-apps2.k8s.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_K8S_APPS2}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
         cloudsspbe-kube-dev1:
-            url: 'https://private-gateway-cloudsspbe-kube-dev1.k8s-apps2.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'https://private-gateway-cloudsspbe-kube-dev1.k8s-apps2.k8s.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_K8S_APPS2}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
-        cloudbss-kube-csrd-dev3:
-            url: 'https://private-gateway-cloudbss-kube-csrd-dev3.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+        project-kube-csrd-dev3:
+            url: 'https://private-gateway-project-kube-csrd-dev3.k8s-apps.openshift.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
         rtcd-dev03:
-            url: 'https://private-gateway-rtcd-dev03.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'https://private-gateway-rtcd-dev03.k8s-apps.openshift.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
         rtcd-dev02:
-            url: 'https://private-gateway-rtcd-dev02.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'https://private-gateway-rtcd-dev02.k8s-apps.openshift.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
         rtcd-dev-ci:
-            url: 'https://private-gateway-rtcd-dev-ci.k8s-apps.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'https://private-gateway-rtcd-dev-ci.k8s-apps.openshift.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_COREIDP}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
         cjm-bss-dev-2:
-            url: 'http://private-gateway-cjm-bss-dev-2.k8s-apps3.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'http://private-gateway-cjm-bss-dev-2.k8s-apps3.k8s.sdntest.qubership.org/auth/realms/cloud-common'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
-        cloudbss-openshift-cert:
-            url: 'http://private-gateway-cloudbss-openshift-cert.paas-apps13.openshift.sdntest.qubership.com/auth/realms/cloud-common'
+        project-openshift-cert:
+            url: 'http://private-gateway-project-openshift-cert.paas-apps13.openshift.sdntest.qubership.org/auth/realms/cloud-common'
             caBundle: '${CA_BUNDLE_CERTIFICATE_OPENSHIFT}'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
         cjm-bss-dev-1:
-            url: 'http://private-gateway-cjm-bss-dev-1.k8s-apps3.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'http://private-gateway-cjm-bss-dev-1.k8s-apps3.k8s.sdntest.qubership.org/auth/realms/cloud-common'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
         cpq-dev4:
-            url: 'http://private-gateway-cpq-dev4.k8s-apps14.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'http://private-gateway-cpq-dev4.k8s-apps14.k8s.sdntest.qubership.org/auth/realms/cloud-common'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true
         cpq-dev3:
-            url: 'http://private-gateway-cpq-dev3.k8s-apps14.k8s.sdntest.qubership.com/auth/realms/cloud-common'
+            url: 'http://private-gateway-cpq-dev3.k8s-apps14.k8s.sdntest.qubership.org/auth/realms/cloud-common'
             verifierConfig:
                 skipClientIdCheck: true
                 skipIssuerCheck: true

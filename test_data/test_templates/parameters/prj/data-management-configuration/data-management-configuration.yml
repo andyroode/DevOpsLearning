@@ -15,7 +15,7 @@ applications:
       # ETBSS-12250
       BEOC_MODE: "dev"
       # ETBSS-12983
-      STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.com"
+      STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.org"
       BEOC_STORAGE_USERNAME: ${creds.get("common-minio-cred").username}
       BEOC_STORAGE_PASSWORD: ${creds.get("common-minio-cred").password}
       BEOC_SMARTPLUG_ENABLED: "true"
@@ -39,7 +39,7 @@ applications:
       CONFIG_MAP_ROLLOUT_TIMEOUT_SEC: "3600"
   - appName: "cloud-reporting" #ETBSS-20251
     parameters:
-      SMTP_SERVER_URL: "testmail.qubership.com"
+      SMTP_SERVER_URL: "testmail.qubership.org"
       SMTP_SERVER_PORT: "25"
       SMTP_SERVER_USERNAME: ""
       SMTP_SERVER_PASSWORD: ""

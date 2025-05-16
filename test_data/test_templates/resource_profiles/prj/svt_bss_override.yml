@@ -432,7 +432,7 @@ applications:
       value: "650Mi"
     - name: "REPLICAS"
       value: "1"
-  - name: "cloudbss-sps-composite-gateway"
+  - name: "project-sps-composite-gateway"
     parameters:
     - name: "MEMORY_REQUEST"
       value: "96Mi"
@@ -512,7 +512,7 @@ applications:
       value: "192Mi"
     - name: "REPLICAS"
       value: "1"
-- name: "cloudbss-om"
+- name: "project-om"
   version: ""
   sd: ""
   services:
@@ -848,7 +848,7 @@ applications:
       value: "1385Mi"
     - name: "REPLICAS"
       value: "1"
-- name: "cloudbss-agm"
+- name: "project-agm"
   version: ""
   sd: ""
   services:
@@ -1302,7 +1302,7 @@ applications:
       value: "3Gi"
     - name: "REPLICAS"
       value: "1"
-- name: "cloudbss-oc-ui"
+- name: "project-oc-ui"
   version: ""
   sd: ""
   services:

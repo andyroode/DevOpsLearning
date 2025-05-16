@@ -23,11 +23,11 @@ envTemplate:
     - "shared-data-management-creds"
     - "cluster-creds"
   templateArtifact:
-    registry: "artifactorycn"
+    registry: "artifactory"
     repository: "stagingRepository"
     templateRepository: "stagingTemplateRepository"
     artifact:
-      group_id: "com.qubership.deploy.custom-prj_deployment-configuration"
+      group_id: "org.qubership.deploy.custom-prj_deployment-configuration"
       artifact_id: "sd.prj_deployment-configuration_prj-env-templates"
       version: "release-ph1_cd1-SNAPSHOT"
 generatedVersions:

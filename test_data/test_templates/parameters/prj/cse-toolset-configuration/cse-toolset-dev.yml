@@ -92,6 +92,6 @@ applications:
       # ETBSS-12967
       ENVIRONMENT_CHECKER_CRON_SCHEDULE: "0 * * * *"
       ENVIRONMENT_CHECKER_CRON_JOB_COMMAND: "./TestOps/src/run_cronjob.sh prj"
-      STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.com"
+      STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.org"
       STORAGE_USERNAME: ${creds.get("common-minio-cred").username}
       STORAGE_PASSWORD: ${creds.get("common-minio-cred").password}

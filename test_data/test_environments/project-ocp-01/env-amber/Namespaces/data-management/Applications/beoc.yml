@@ -10,7 +10,7 @@ deployParameters:
   MONITORING_QUERY_password: "tmp_password" # paramset: data-management-wa version: 23.3 source: template
   MONITORING_QUERY_URL: "http://vmsingle-k8s.platform-monitoring:8429" # paramset: data-management-configuration version: 1 source: template
   MONITORING_QUERY_USER: "admin" # paramset: data-management-wa version: 23.3 source: template
-  STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.com" # paramset: data-management-configuration version: 1 source: template
+  STORAGE_SERVER_URL: "https://prj-mdc.s3.qubership.org" # paramset: data-management-configuration version: 1 source: template
 technicalConfigurationParameters:
   beoc_package.CIM_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 23.1 source: template
   beoc_package.COM_NAMESPACE: "${BSS_NAMESPACE}" # paramset: data-management-tech version: 23.1 source: template

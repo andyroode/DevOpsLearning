@@ -46,7 +46,7 @@
         "title": "Staging Repository",
         "description": "URL of the staging repository in registry",
         "examples": [
-          "https://artifactory.qubership.org/nc.dmp-descriptor.mvn.staging"
+          "https://artifactory.qubership.org/mvn.staging"
         ],
         "format": "uri"
       },
