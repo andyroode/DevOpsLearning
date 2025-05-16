@@ -1,6 +1,6 @@
 name: Run Pytest
 
-run-name: "EnvGene tests - commit: ${{ github.sha }} - branch: ${{ github.ref_name }}- started by: ${{ github.actor }}"
+run-name: "Build qubership envgene image on commit ${{ github.sha }}"
 
 on:
   workflow_dispatch:
