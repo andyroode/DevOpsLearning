@@ -1,5 +1,7 @@
 name: Run Pytest
 
+run-name: "${{ github.actor }}"
+
 on:
   workflow_dispatch:
 
