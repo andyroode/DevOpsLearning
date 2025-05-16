@@ -1,6 +1,6 @@
 name: Run Pytest
 
-run-name: "${{ github.actor }}"
+run-name: "${{ github.sha }}"
 
 on:
   workflow_dispatch:
