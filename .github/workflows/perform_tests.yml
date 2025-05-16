@@ -1,6 +1,6 @@
 name: Run Pytest
 
-run-name: "${{ github.sha }}"
+run-name: "EnvGene tests - commit: ${{ github.sha }} - branch: ${{ github.ref_name }}- started by: ${{ github.sha }}"
 
 on:
   workflow_dispatch:
@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Prepare environment
+      - name: Install dependencies
         run: |
           
           apt-get update && apt-get install -y --no-install-recommends \
@@ -38,8 +38,6 @@ jobs:
               ./python/build_modules.sh
           fi
 
-      - name: Install SOPS
-        run: |
           curl -LO https://github.com/getsops/sops/releases/download/v3.9.0/sops-v3.9.0.linux.amd64
           mv sops-v3.9.0.linux.amd64 /usr/local/bin/sops
           chmod +x /usr/local/bin/sops
